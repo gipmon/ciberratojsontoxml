@@ -1,0 +1,54 @@
+{
+    "challenge name" : "Final, 2005",
+
+    "challenge type" : "competitive",
+
+    "cycle time" : 50,
+
+    "duration" : 2400,
+
+    "scenario description" : {
+
+        "name" : "TOS challenge",
+        "dimensions" : [28, 14],
+
+        "beacons" : [
+            { "position" : [14, 7], "radius" : 1, "height" : 2 }
+        ],
+        "target areas" : [
+            { "position" : [14, 7], "radius" : 1, "height" : 2 }
+        ],
+
+        "walls" : [
+            { "height" : 1, "corner list" : [ [27, 7], [28, 6], [28, 8] ] },
+            { "height" : 1, "corner list" : [ [1, 7], [0, 6], [0, 8] ] },
+            { "height" : 1, "corner list" : [ [12.5, 5.5], [13, 5.5], [13, 6], [12.5, 6] ] }
+        ],
+            
+        "grid" : [ 
+            [2, 12.5, -15], 
+            [1.75, 1.5, 15], 
+            [26.25, 12.5, -165]
+        ]
+    },
+    
+    "robot modelling parameters" : {
+        
+        "motors noise" : 1.5,
+        "beacon sensor noise": 2,
+        
+        "beacon sensor aperture" : "PI"
+    },
+    
+    "scoring parameters" : {
+    
+        "robot-robot collision penalty" : 1,
+        "robot-wall collision penalty" : 1,
+
+        "key time" : 1800
+    }
+
+    "debugging parameters" : {
+    }
+}
+

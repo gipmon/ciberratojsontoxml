@@ -1,0 +1,212 @@
+{
+    "key time" : {
+        "comment" : "Time to finish an intermmediate goal",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "KeyTime"
+    },
+
+    "beacon sensor aperture" : {
+        "comment" : "Aperture of the beacon sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : "PI",
+        "XML name" : "BeaconAperture"
+    },
+
+    "beacon sensor noise" : {
+        "comment" : "Noise level of the beacon sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : 0,
+        "XML name" : "BeaconNoise"
+    },
+
+    "compass sensor noise" : {
+        "comment" : "Noise level of the compass",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : 0,
+        "XML name" : "CompassNoise"
+    },
+
+    "obstacle sensor noise" : {
+        "comment" : "Noise level of the obstacle sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : 0,
+        "XML name" : "ObstacleNoise"
+    },
+
+    "requests per cycle" : {
+        "comment" : "Number of resquestable sensor measures allowed per cycle",
+        "class" : "robot modelling parameters",
+        "value type" : "uint",
+        "XML name" : "RequestsPerCycle"
+    },
+
+    "beacon sensor latency" : {
+        "comment" : "Latency of the beacon sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "uint",
+        "default value" : 1,
+        "XML name" : "BeaconLatency"
+    },
+
+    "compass sensor latency" : {
+        "comment" : "Latency of the compass",
+        "class" : "robot modelling parameters",
+        "value type" : "uint",
+        "default value" : 1,
+        "XML name" : "CompassLatency"
+    },
+
+    "obstacle sensor latency" : {
+        "comment" : "Latency of the obstacle sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "uint",
+        "default value" : 1,
+        "XML name" : "ObstacleLatency"
+    },
+
+    "ground sensor latency" : {
+        "comment" : "Latency of the ground sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "uint",
+        "default value" : 1,
+        "XML name" : "GroundLatency"
+    },
+
+    "collision sensor latency" : {
+        "comment" : "Latency of the collision sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "uint",
+        "default value" : 1,
+        "XML name" : "CollisionLatency"
+    },
+
+    "obstacle sensor requestable" : {
+        "class" : "robot modelling parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "ObstacleRequestable"
+    },
+
+    "beacon sensor requestable" : {
+        "class" : "robot modelling parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "BeaconRequestable"
+    },
+
+    "ground sensor requestable" : {
+        "class" : "robot modelling parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "GroundRequestable"
+    },
+
+    "compass sensor requestable" : {
+        "class" : "robot modelling parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "CompassRequestable"
+    },
+
+    "collision sensor requestable" : {
+        "class" : "robot modelling parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "CollisionRequestable"
+    },
+
+    "GPS sensor" : {
+        "comment" : "Indicates if the robot has a GPS sensor",
+        "class" : "robot modelling parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "GPS"
+    },
+
+    "GPS sensor linear noise" : {
+        "comment" : "Noise level for GPS position",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : 0,
+        "XML name" : "GPSLinNoise"
+    },
+
+    "GPS sensor angular noise" : {
+        "comment" : "Noise level for GPS heading",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : 0,
+        "XML name" : "GPSDirNoise"
+    },
+
+    "motors noise" : {
+        "comment" : "Noise level of the motors",
+        "class" : "robot modelling parameters",
+        "value type" : "double",
+        "default value" : 1.0,
+        "XML name" : "MotorsNoise"
+    },
+
+    "return time penalty" : {
+        "comment" : "Score penalty if first goal not reached",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "ReturnTimePenalty"
+    },
+
+    "arrival time penalty" : {
+        "comment" : "Score penalty if second goal not reached",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "ArrivalTimePenalty"
+    },
+
+    "robot-wall collision penalty" : {
+        "comment" : "Score penalty for a collision on a wall",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "CollisionWallPenalty"
+    },
+
+    "robot-robot collision penalty" : {
+        "comment" : "Score penalty for a collision on another robot",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "CollisionRobotPenalty"
+    },
+
+    "target reward" : {
+        "comment" : "Score reward for a valid visit to a target area",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "TargetReward"
+    },
+
+    "home reward" : {
+        "comment" : "Score reward for reaching the home area",
+        "class" : "scoring parameters",
+        "value type" : "uint",
+        "XML name" : "HomeReward"
+    },
+
+    "score sensor" : {
+        "comment" : "A sensor that retrieves the current score",
+        "class" : "debugging parameters",
+        "value type" : "switch",
+        "default value" : "off",
+        "XML name" : "ScoreSensor"
+    },
+
+    "show actions" : {
+        "comment" : "???",
+        "class" : "debugging parameters",
+        "value type" : "boolean",
+        "default value" : false,
+        "XML name" : "ShowActions"
+    }
+}
