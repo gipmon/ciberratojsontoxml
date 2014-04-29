@@ -1,0 +1,1 @@
+// este ficheiro vai conter a tabela de simbolos reconhecida pelo json parser (mais detalhes em /plano)
