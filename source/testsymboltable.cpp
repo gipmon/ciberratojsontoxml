@@ -7,7 +7,7 @@ using namespace std;
 extern map<string, parameter>::iterator it;
 extern map<string, parameter> symbol_table;
 
-void construct(map<string, parameter> symboltable);
+void print_symboltable(map<string, parameter> symboltable);
 
 int main (){
     parameter one;
@@ -28,10 +28,10 @@ int main (){
 
     add_parameter(key1, one);
     add_parameter(key2, two);
-    construct(symbol_table);
+    print_symboltable(symbol_table);
 }
 
-void construct(map<string, parameter> symboltable){
+void print_symboltable(map<string, parameter> symboltable){
     cout << "{\n" << endl;
     for(it = symboltable.begin(); it != symboltable.end(); it++) {
         // itator->first = key
