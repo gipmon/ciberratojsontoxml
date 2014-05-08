@@ -48,22 +48,24 @@ map<string, parameter> find(string class_name){
   if(!exists(class_name)){
     throw MAP_PARAMETER_DOESNT_EXISTS;
   }
-
-  return param_map[class_name];
+  if(standard_map.count(class_name)!=0){
+    return standard_map[class_name];
+  }else{
+    return param_map[class_name];
+  }
 }
 
 parameter find(string class_name, string parameter_name){
   if(!exists(class_name, parameter_name)){
   	throw PARAMETER_DOESNT_EXISTS;
   }
-
   return find(class_name)[parameter_name];
 }
 
 bool exists(string class_name){
-  return param_map.count(class_name)!=0;
+  return param_map.count(class_name)!=0 || standard_map.count(class_name)!=0;
 }
 
 bool exists(string class_name, string parameter_name){
-  return exists(class_name) && param_map[class_name].count(parameter_name)!=0;
+  return exists(class_name) && (param_map[class_name].count(parameter_name)!=0 || standard_map[class_name].count(parameter_name)!=0);
 }
