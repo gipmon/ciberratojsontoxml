@@ -14,7 +14,7 @@ struct parameter{
 
 /************************ Definição de Códigos de Erro ************************/
 #define  PARAMETER_ALREADY_EXISTS		0
-#define  MAP_PARAMETER_DOESNT_EXISTS	1
+#define  MAP_CLASS_DOESNT_EXISTS		1
 #define  PARAMETER_DOESNT_EXISTS		2
 
 /***************** Definição dos mapas e iteradores *****************/

@@ -32,7 +32,7 @@ bool add_parameter(string class_name, pair<string, parameter> param){
 */
 bool has_default_value(string class_name, string parameter_name){
   if(!exists(class_name, parameter_name)){
-      return false;
+    throw PARAMETER_DOESNT_EXISTS;
   }
 
   parameter param = find(class_name, parameter_name);
@@ -46,7 +46,7 @@ bool has_default_value(string class_name, string parameter_name){
 
 map<string, parameter> find(string class_name){
   if(!exists(class_name)){
-    throw MAP_PARAMETER_DOESNT_EXISTS;
+    throw MAP_CLASS_DOESNT_EXISTS;
   }
   if(standard_map.count(class_name)!=0){
     return standard_map[class_name];
