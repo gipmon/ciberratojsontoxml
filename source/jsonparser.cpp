@@ -6,6 +6,13 @@
     int yyerror(char *s);
 %}
 
+%token <vcomment> COMMENT
+%token <vclass> CLASS
+%token <vvalue> VALUE_TYPE
+%token <vxml> XML_NAME
+%token <vdefault> DEFAULT_VALUE
+
+
 %%
 
 File :	'{' PL '}'									         	   // File = param-list.json
@@ -28,16 +35,21 @@ PAL  : /* lambda */
 	 ;
 	 
 AT   : /* lambda */												  // String fornecida pelo lexer2 (flex)
-	 | "comment" ":" String
-	 | "class" ":"String
-	 | "value type" ":" String
-	 | "XML name" ":" String
-	 | "default value" ":" String
+	 | COMMENT ':' String
+	 | CLASS ':' String
+	 | VALUE_TYPE ':' String
+	 | XML_NAME ':' String
+	 | DEFAULT_VALUE ':' String
 	 ;
 	
 
 	 
+%%
 
+int yyerror(const char *s)
+{
+    return 0;
+}
 
 	 
 	 
