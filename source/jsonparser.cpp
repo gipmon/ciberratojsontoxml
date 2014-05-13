@@ -27,13 +27,15 @@ PAL  : /* lambda */
 	 | AT ',' PAL
 	 ;
 	 
-AT   : /* lambda */
-	 | "comment" ":" 
-	 | "class" ":"
-	 | "value type" ":"
-	 | "XML name" ":"
-	 | "default value" ":"
+AT   : /* lambda */												  // String fornecida pelo lexer2 (flex)
+	 | "comment" ":" String
+	 | "class" ":"String
+	 | "value type" ":" String
+	 | "XML name" ":" String
+	 | "default value" ":" String
 	 ;
+	
+
 	 
 
 
