@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "symboltable.h"
+#include "param_table.h"
 
 using namespace std;
 

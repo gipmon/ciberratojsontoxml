@@ -1,6 +1,6 @@
 %{
     #include <stdio.h>
-	#include "symboltable.h"
+	#include "param_table.h"
 
     int yylex(void);
     int yyerror(char *s);
