@@ -2,27 +2,27 @@
     #include <stdlib.h>
 %}
 
-id      ([a-z] | [A-Z] | spaces | [-])+
+id      ([a-z]|[A-Z]|{spaces}|[-])+
 
 spaces  [ \t]+
 
 str  [^\"]*
 
-comment "comment"
+comment ["]comment["]
 
-class "class"
+class ["]class["]
 
-value_type "value type"
+value_type ["]value type["]
 
-xml_name "XML name"
+xml_name ["]XML name["]
 
-default_value "default value"
+default_value ["]default value["]
 
 /*valid [-+/(^)/=\n:;,.!*]*/
 
 %%
 
-{id}        { p->vid = yytext[0]; return ID; }
+{id}        { p->vid = strdup(yytext); return ID; }
 
 {spaces}    { }
 
@@ -30,15 +30,15 @@ default_value "default value"
 
 {str}		{ p->vstr = yytext[0]; return STR; }
 
-{comment}	{ p->vcomment = yytext[0]; return COMMENT; }
+{comment}	{ return COMMENT; }
 
-{class}		{ p->vclass = yytext[0]; return CLASS; }
+{class}		{ return CLASS; }
 
-{value_type} { p->vvalue = yytext[0]; return VALUE_TYPE; }
+{value_type} { return VALUE_TYPE; }
 
-{xml_name}  { p->vxml = yytext[0]; return XML_NAME; }
+{xml_name}  { return XML_NAME; }
 
-{default_value} { p->vdefault = yytext[0]; return DEFAULT_VALUE; }
+{default_value} { return DEFAULT_VALUE; }
 /*.           { p->vchar = yytext[0]; return OTHER; }*/
 
 %%
