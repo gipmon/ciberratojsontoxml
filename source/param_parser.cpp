@@ -14,6 +14,10 @@
 %token  DEFAULT_VALUE
 %token <vid> ID
 %token <vstr> STR
+%token DOUBLE
+%token UINT
+%token SWITCH
+%token BOOLEAN
 
 /*
 	{parameter param;} ONDE INICIALIZO A ESTRUTURA?
@@ -48,10 +52,17 @@ PAL  : /* lambda */
 AT   : /* lambda */
 	 | '\"' COMMENT '\"' ':' '\"' str '\"' {param->comment = $6;}
 	 | '\"' CLASS '\"' ':' '\"' str '\"' {string class_name = $6;}
-	 | '\"' VALUE_TYPE '\"' ':' '\"' str '\"' {param->value_type = $6;}
+	 | '\"' VALUE_TYPE '\"' ':' '\"' VT '\"' {param->value_type = $6;}   
 	 | '\"' XML_NAME '\"' ':' '\"' str '\"'	{param->xml_name = $6;}
 	 | '\"' DEFAULT_VALUE '\"' ':' '\"' str '\"' {param->default_value = $6;}
 	 ;
+//VT = value type
+VT	:
+	| '\"'DOUBLE'\"'
+	| '\"'UINT'\"'
+	| '\"'SWITCH'\"'
+	| '\"'BOOLEAN'\"'
+	;
 
 %%
 
