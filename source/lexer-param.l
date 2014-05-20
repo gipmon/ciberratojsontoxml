@@ -18,6 +18,14 @@ xml_name ["]XML name["]
 
 default_value ["]default value["]
 
+double ["]double["]
+
+uint ["]uint["]
+
+switch ["]switch["]
+
+booelan ["]boolean["]
+
 /*valid [-+/(^)/=\n:;,.!*]*/
 
 %%
@@ -40,5 +48,13 @@ default_value ["]default value["]
 
 {default_value} { return DEFAULT_VALUE; }
 /*.           { p->vchar = yytext[0]; return OTHER; }*/
+
+{double} {return DOUBLE;}
+
+{uint} {returN UINT}
+
+{switch} {return SWITCH}
+
+{boolean} {return BOOLEAN}
 
 %%
