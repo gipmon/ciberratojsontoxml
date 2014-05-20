@@ -7,11 +7,11 @@
 
 %}
 
-%token <vcomment> COMMENT
-%token <vclass> CLASS
-%token <vvalue> VALUE_TYPE
-%token <vxml> XML_NAME
-%token <vdefault> DEFAULT_VALUE
+%token  COMMENT
+%token  CLASS
+%token  VALUE_TYPE
+%token  XML_NAME
+%token  DEFAULT_VALUE
 %token <vid> ID
 %token <vstr> STR
 
