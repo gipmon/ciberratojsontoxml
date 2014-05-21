@@ -40,7 +40,7 @@ PI   : PK ':' '{' PAL '}'
 
 // Pk = parameter key
 // reconhecido e fornecido pelo lexer2 (flex)
-PK   : ID {string parameter_name = $1}
+PK   : ID { string parameter_name = $1; }
 	 ;
 
 // PAL = parameter atribute list
