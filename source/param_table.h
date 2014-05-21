@@ -19,12 +19,14 @@ struct parameter{
 
 /***************** Definição dos mapas e iteradores *****************/
 /* map<string => class, map<string => parameter_name, parameter>> map; */
-extern map<string, map<string, parameter> > standard_map;
-extern map<string, map<string, parameter> > param_map;
+extern map<string, map<string, parameter*>*> param_map;
+
+/*
 extern map<string, map<string, parameter> >:: iterator it1;
 extern map<string, parameter>:: iterator it2;;
-
 /*************************** Protótipos das Funções ***************************/
+
+void init();
 
 /*******************************************************************************
 	Tem valor de defeito (default_value) este valor permite tornar um parametro obrigatório ou não. Se não for obrigatório o default_value é usado no value.

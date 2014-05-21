@@ -26,6 +26,10 @@ switch ["]switch["]
 
 booelan ["]boolean["]
 
+class_value {str}
+
+
+
 /*valid [-+/(^)/=\n:;,.!*]*/
 
 %%
@@ -51,7 +55,7 @@ booelan ["]boolean["]
 
 {double} {return DOUBLE;}
 
-{uint} {returN UINT}
+{uint} {return UINT}
 
 {switch} {return SWITCH}
 

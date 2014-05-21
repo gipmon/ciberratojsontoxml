@@ -1,0 +1,133 @@
+Log for qt3to4 on qui Nov 24 00:16:09 2011. Number of log entries: 129
+No changes made to file /home/miguel/rmi/cpss/simulator/cbactionhandler.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbbeacon.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbbutton.cpp
+In file /home/miguel/rmi/cpss/simulator/cbclient.cpp at line 23 column 23: qsocketdevice.h -> q3socketdevice.h
+In file /home/miguel/rmi/cpss/simulator/cbclient.cpp at line 33 column 36: QSocketDevice -> Q3SocketDevice
+In file /home/miguel/rmi/cpss/simulator/cbclient.cpp at line 33 column 50: QSocketDevice -> Q3SocketDevice
+No changes made to file /home/miguel/rmi/cpss/simulator/cbgrid.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbgridhandler.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cblab.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cblabhandler.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbmotor.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbpanel.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbparameters.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbparamhandler.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbpoint.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbposition.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbreceptionhandler.cpp
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 31 column 15: qdict.h -> q3dict.h
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 51 column 65: QSocketDevice -> Q3SocketDevice
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 51 column 79: QSocketDevice -> Q3SocketDevice
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 113 column 34: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 113 column 57: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 125 column 62: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.cpp at line 125 column 85: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/cbrobot.cpp at line 32 column 19: qtextview.h -> q3textview.h
+In file /home/miguel/rmi/cpss/simulator/cbrobot.cpp at line 33 column 21: qstylesheet.h -> q3stylesheet.h
+In file /home/miguel/rmi/cpss/simulator/cbrobot.cpp at line 286 column 50: QStyleSheet -> Q3StyleSheet
+In file /home/miguel/rmi/cpss/simulator/cbrobot.cpp at line 296 column 48: QStyleSheet -> Q3StyleSheet
+No changes made to file /home/miguel/rmi/cpss/simulator/cbrobotaction.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbsensor.cpp
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 52 column 17: qcanvas.h -> q3canvas.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 55 column 19: qtextview.h -> q3textview.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 57 column 21: qfiledialog.h -> q3filedialog.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 176 column 35: QFileDialog -> Q3FileDialog
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 244 column 55: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 244 column 78: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 868 column 38: QCanvasView -> Q3CanvasView
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 871 column 20: QCanvas -> Q3Canvas
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 874 column 19: QCanvasText -> Q3CanvasText
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 878 column 32: QCanvas -> Q3Canvas
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 878 column 73: QCanvasView -> Q3CanvasView
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 882 column 28: QCanvasText -> Q3CanvasText
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 921 column 15: QCanvasPolygon -> Q3CanvasPolygon
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 922 column 17: QCanvasRectangle -> Q3CanvasRectangle
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 932 column 22: QCanvas -> Q3Canvas
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 937 column 12: QPointArray -> Q3PointArray
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 942 column 22: QPointArray -> Q3PointArray
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 946 column 33: QCanvasPolygon -> Q3CanvasPolygon
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp at line 978 column 38: QCanvasRectangle -> Q3CanvasRectangle
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.cpp: Added the following include directives:
+	#include <Q3PointArray> 	#include <QMouseEvent> 
+No changes made to file /home/miguel/rmi/cpss/simulator/cbtarget.cpp
+In file /home/miguel/rmi/cpss/simulator/cbview.cpp at line 23 column 23: qsocketdevice.h -> q3socketdevice.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbviewhandler.cpp
+No changes made to file /home/miguel/rmi/cpss/simulator/cbwall.cpp
+In file /home/miguel/rmi/cpss/simulator/simulator.cpp at line 28 column 17: qcanvas.h -> q3canvas.h
+In file /home/miguel/rmi/cpss/simulator/simulator.cpp at line 30 column 24: qmultilineedit.h -> q3multilineedit.h
+In file /home/miguel/rmi/cpss/simulator/simulator.cpp at line 124 column 34: QMessageBox -> Qt
+In file /home/miguel/rmi/cpss/simulator/simulator.cpp at line 124 column 57: QMessageBox -> Qt
+No changes made to file /home/miguel/rmi/cpss/simulator/cbgraph.cpp
+In file /home/miguel/rmi/cpss/simulator/cbrobotbeacon.cpp at line 26 column 19: qtextview.h -> q3textview.h
+In file /home/miguel/rmi/cpss/simulator/cbrobotbeacon.cpp at line 27 column 21: qstylesheet.h -> q3stylesheet.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbutils.cpp
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 28 column 18: qtoolbar.h -> q3toolbar.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 29 column 20: qpopupmenu.h -> q3popupmenu.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 33 column 19: qtextview.h -> q3textview.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 34 column 21: qfiledialog.h -> q3filedialog.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 35 column 21: qstylesheet.h -> q3stylesheet.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 44 column 92: WFlags -> Qt::WFlags
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 45 column 17: QMainWindow -> Q3MainWindow
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 49 column 25: QTextView -> Q3TextView
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 50 column 34: PlainText -> Qt::PlainText
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 55 column 11: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 55 column 38: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 59 column 11: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 59 column 41: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 65 column 11: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 65 column 38: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 66 column 59: Key_F1 -> Qt::Key_F1
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 144 column 30: QFileDialog -> Q3FileDialog
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 163 column 24: QFileDialog -> Q3FileDialog
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 182 column 31: QFileDialog -> Q3FileDialog
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.cpp at line 217 column 31: QFileDialog -> Q3FileDialog
+In file /home/miguel/rmi/cpss/simulator/cbparamdialog.cpp at line 31 column 103: WFlags -> Qt::WFlags
+No changes made to file /home/miguel/rmi/cpss/simulator/cbactionhandler.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbbeacon.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbbutton.h
+In file /home/miguel/rmi/cpss/simulator/cbclient.h at line 24 column 23: qsocketdevice.h -> q3socketdevice.h
+In file /home/miguel/rmi/cpss/simulator/cbclient.h at line 32 column 37: QSocketDevice -> Q3SocketDevice
+No changes made to file /home/miguel/rmi/cpss/simulator/cbgrid.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbgridhandler.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cblab.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cblabhandler.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbmotor.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbpanel.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbparameters.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbparamhandler.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbpoint.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbposition.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbreceptionform.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbreceptionhandler.h
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.h at line 27 column 23: qsocketdevice.h -> q3socketdevice.h
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.h at line 29 column 20: qasciidict.h -> q3asciidict.h
+In file /home/miguel/rmi/cpss/simulator/cbreceptionist.h at line 56 column 43: QSocketDevice -> Q3SocketDevice
+No changes made to file /home/miguel/rmi/cpss/simulator/cbrobot.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbrobotaction.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbsensor.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.h at line 50 column 17: QCanvasView -> Q3CanvasView
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.h at line 51 column 13: QCanvas -> Q3Canvas
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.h at line 128 column 8: QCanvas -> Q3Canvas
+In file /home/miguel/rmi/cpss/simulator/cbsimulator.h at line 129 column 12: QCanvasView -> Q3CanvasView
+No changes made to file /home/miguel/rmi/cpss/simulator/cbtarget.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbview.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbviewcommand.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbviewhandler.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbwall.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbgraph.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbrobotbeacon.h
+No changes made to file /home/miguel/rmi/cpss/simulator/cbutils.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 26 column 21: qmainwindow.h -> q3mainwindow.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 27 column 20: qpopupmenu.h -> q3popupmenu.h
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 29 column 15: QTextView -> Q3TextView
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 34 column 41: QMainWindow -> Q3MainWindow
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 39 column 87: WFlags -> Qt::WFlags
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 41 column 13: QTextView -> Q3TextView
+In file /home/miguel/rmi/cpss/simulator/cbsimulatorGUI.h at line 45 column 14: QPopupMenu -> Q3PopupMenu
+In file /home/miguel/rmi/cpss/simulator/cbparamdialog.h at line 31 column 108: WFlags -> Qt::WFlags
+In file simulator.pro: Added entry QT += network xml  qt3support 
+In file simulator.pro: Added entry CONFIG += uic3
+
+In file simulator.pro: Renamed INTERFACES to FORMS3
+
