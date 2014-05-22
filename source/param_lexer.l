@@ -28,7 +28,9 @@ booelan ["]boolean["]
 
 class_value {str}
 
+default_value_value {str}
 
+xml_name_value {str}
 
 /*valid [-+/(^)/=\n:;,.!*]*/
 
@@ -60,5 +62,11 @@ class_value {str}
 {switch} {return SWITCH}
 
 {boolean} {return BOOLEAN}
+
+{class_value} { p->vclassvalue = yytext[0]; return CLASS_VALUE; }
+
+{xml_name_value} { p->vxml = yytext[0]; return XML_NAME_VALUE; }
+
+{default_value_value} { p->vdvv = yytext[0]; return DEFAULT_VALUE_VALUE; }
 
 %%
