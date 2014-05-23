@@ -21,8 +21,8 @@
 %token  VALUE_TYPE
 %token  XML_NAME
 %token 	DEFAULT_VALUE
-%token 	<vid> ID
 %token 	<vstr> STR
+%token 	<vid> ID
 /* relativos ao value type*/
 %token 	DOUBLE
 %token 	UINT
@@ -43,7 +43,7 @@ File : '{' PL '}'
 
 // PL = parameter list
 PL   :  PI
-	 |  PL ',' PI
+	 |  PI ',' PL
 	 ;
 
 // PI = parameter item

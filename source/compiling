@@ -1,7 +1,9 @@
 flex -oparam_lexer.c param_lexer.l
 bison param_parser.y
 
-flex -oparam_lexer.c param_lexer.l && bison param_parser.y  && g++ param_parser.tab.c param_lexer.c 
+flex -oparam_lexer.c param_lexer.l && bison param_parser.y  && g++ param_parser.tab.c param_lexer.c
 
-./a.out ../exemplos/json/param-list.json 
+./a.out ../exemplos/json/param-list.json
 FUNCIONOU!
+
+./a.out /dev/tty

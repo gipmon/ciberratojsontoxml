@@ -1,0 +1,21 @@
+{
+"key time"
+:
+{
+"comment"
+:
+"Time to finish an intermmediate goal"
+,
+"class"
+:
+"scoring parameters"
+,
+"value type"
+:
+"uint"
+,
+"XML name"
+:
+"KeyTime"
+}
+}

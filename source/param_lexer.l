@@ -12,7 +12,7 @@
 
 id    			["][a-z][a-zA-Z -]*["]
 
-str  			["][[:alpha:][:digit:][:space:]]+["]
+str  			["][a-z][a-zA-Z0-9 ]+["]
 
 comment 		["]comment["]
 

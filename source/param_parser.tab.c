@@ -99,8 +99,8 @@
      VALUE_TYPE = 260,
      XML_NAME = 261,
      DEFAULT_VALUE = 262,
-     ID = 263,
-     STR = 264,
+     STR = 263,
+     ID = 264,
      DOUBLE = 265,
      UINT = 266,
      SWITCH = 267,
@@ -383,7 +383,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   33
+#define YYLAST   28
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  18
@@ -445,11 +445,11 @@ static const yytype_uint8 yyprhs[] =
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      19,     0,    -1,    14,    20,    15,    -1,    21,    -1,    20,
-      16,    21,    -1,     8,    17,    14,    22,    15,    -1,    23,
-      -1,    22,    16,    23,    -1,    -1,     3,    17,     9,    -1,
-       4,    17,     9,    -1,     5,    17,    24,    -1,     6,    17,
-       9,    -1,     7,    17,     9,    -1,    10,    -1,    11,    -1,
+      19,     0,    -1,    14,    20,    15,    -1,    21,    -1,    21,
+      16,    20,    -1,     9,    17,    14,    22,    15,    -1,    23,
+      -1,    22,    16,    23,    -1,    -1,     3,    17,     8,    -1,
+       4,    17,     8,    -1,     5,    17,    24,    -1,     6,    17,
+       8,    -1,     7,    17,     8,    -1,    10,    -1,    11,    -1,
       12,    -1,    13,    -1
 };
 
@@ -467,7 +467,7 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "COMMENT", "CLASS", "VALUE_TYPE",
-  "XML_NAME", "DEFAULT_VALUE", "ID", "STR", "DOUBLE", "UINT", "SWITCH",
+  "XML_NAME", "DEFAULT_VALUE", "STR", "ID", "DOUBLE", "UINT", "SWITCH",
   "BOOLEAN", "'{'", "'}'", "','", "':'", "$accept", "File", "PL", "PI",
   "PAL", "AT", "VT", 0
 };
@@ -516,19 +516,19 @@ static const yytype_int8 yydefgoto[] =
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -7
+#define YYPACT_NINF -12
 static const yytype_int8 yypact[] =
 {
-      -1,     6,    15,     0,    -6,    -7,    -7,     2,    -7,     6,
-      -3,    -7,     1,     3,     4,     5,     7,    -4,    -7,    10,
-      14,    -5,    16,    17,    -7,    -3,    -7,    -7,    -7,    -7,
-      -7,    -7,    -7,    -7,    -7,    -7
+      -2,     2,    13,    -1,     0,     1,   -12,     4,   -12,     2,
+      -3,   -12,     3,     5,     6,     7,     8,    -6,   -12,    11,
+      18,    -5,    19,    20,   -12,    -3,   -12,   -12,   -12,   -12,
+     -12,   -12,   -12,   -12,   -12,   -12
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -7,    -7,    -7,    18,    -7,     8,    -7
+     -12,   -12,    12,   -12,   -12,   -11,   -12
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -537,34 +537,32 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      12,    13,    14,    15,    16,    28,    29,    30,    31,     8,
-       9,    24,    25,     1,     3,     6,    10,     7,    19,    26,
-      20,    21,    22,    27,    23,    33,    34,    11,     0,     0,
-       0,     0,     0,    35
+      12,    13,    14,    15,    16,    28,    29,    30,    31,    24,
+      25,     3,     1,     6,    35,     8,     7,     9,    10,    26,
+      19,    11,    20,    21,    22,    23,    27,    33,    34
 };
 
 #define yypact_value_is_default(yystate) \
-  ((yystate) == (-7))
+  ((yystate) == (-12))
 
 #define yytable_value_is_error(yytable_value) \
   YYID (0)
 
-static const yytype_int8 yycheck[] =
+static const yytype_uint8 yycheck[] =
 {
        3,     4,     5,     6,     7,    10,    11,    12,    13,    15,
-      16,    15,    16,    14,     8,     0,    14,    17,    17,     9,
-      17,    17,    17,     9,    17,     9,     9,     9,    -1,    -1,
-      -1,    -1,    -1,    25
+      16,     9,    14,     0,    25,    15,    17,    16,    14,     8,
+      17,     9,    17,    17,    17,    17,     8,     8,     8
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    14,    19,     8,    20,    21,     0,    17,    15,    16,
-      14,    21,     3,     4,     5,     6,     7,    22,    23,    17,
-      17,    17,    17,    17,    15,    16,     9,     9,    10,    11,
-      12,    13,    24,     9,     9,    23
+       0,    14,    19,     9,    20,    21,     0,    17,    15,    16,
+      14,    20,     3,     4,     5,     6,     7,    22,    23,    17,
+      17,    17,    17,    17,    15,    16,     8,     8,    10,    11,
+      12,    13,    24,     8,     8,    23
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1450,7 +1448,7 @@ yyreduce:
       
 
 /* Line 1806 of yacc.c  */
-#line 1454 "param_parser.tab.c"
+#line 1452 "param_parser.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
