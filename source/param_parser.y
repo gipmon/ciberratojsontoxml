@@ -23,6 +23,7 @@
 %token 	DEFAULT_VALUE
 %token 	<vstr> STR
 %token 	<vid> ID
+
 /* relativos ao value type*/
 %token 	DOUBLE
 %token 	UINT

@@ -48,7 +48,7 @@ boolean 		["]boolean["]
 
 {uint} 			{ l->first_line=yylineno; return UINT; }
 
-{switch} 		{ l->first_line=yylineno;return SWITCH; }
+{switch} 		{ l->first_line=yylineno; return SWITCH; }
 
 {boolean} 		{ l->first_line=yylineno; return BOOLEAN; }
 
