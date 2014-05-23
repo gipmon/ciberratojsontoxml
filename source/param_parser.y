@@ -38,40 +38,32 @@
 %verbose
 
 %%
-// File = param-list.json
 File : '{' PL '}'
 	 ;
 
-// PL = parameter list
 PL   :  PI
 	 |  PI ',' PL
 	 ;
 
-// PI = parameter item
 PI   : ID ':' '{' PAL '}'
 	 ;
 
-// PAL = parameter atribute list
 PAL  : AT
-	 | PAL ',' AT
+	 | AT ',' PAL
 	 ;
 
-// AT = atribute
-// String fornecida pelo lexer2 (flex)
-AT   : /* lambda */
-	 |  COMMENT  ':'  STR
+AT   :  COMMENT  ':'  STR
 	 |  CLASS  ':'  STR
 	 |  VALUE_TYPE  ':'  VT
 	 |  XML_NAME  ':'  STR
 	 |  DEFAULT_VALUE  ':'  STR
 	 ;
 
-//VT = value type
-VT	: DOUBLE
-	| UINT
-	| SWITCH
-	| BOOLEAN
-	;
+VT	 : DOUBLE
+	 | UINT
+	 | SWITCH
+	 | BOOLEAN
+	 ;
 %%
 
 int main(int argc, char* argv[]){
@@ -84,8 +76,7 @@ int main(int argc, char* argv[]){
 	return 1;
 }
 
-int yyerror(YYLTYPE* l, const char* fname, const char *s)
-{
+int yyerror(YYLTYPE* l, const char* fname, const char *s){
 	extern char* yytext;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(0);

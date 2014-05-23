@@ -10,40 +10,39 @@ Gramática
     4 PI: ID ':' '{' PAL '}'
 
     5 PAL: AT
-    6    | PAL ',' AT
+    6    | AT ',' PAL
 
-    7 AT: /* vazio */
-    8   | COMMENT ':' STR
-    9   | CLASS ':' STR
-   10   | VALUE_TYPE ':' VT
-   11   | XML_NAME ':' STR
-   12   | DEFAULT_VALUE ':' STR
+    7 AT: COMMENT ':' STR
+    8   | CLASS ':' STR
+    9   | VALUE_TYPE ':' VT
+   10   | XML_NAME ':' STR
+   11   | DEFAULT_VALUE ':' STR
 
-   13 VT: DOUBLE
-   14   | UINT
-   15   | SWITCH
-   16   | BOOLEAN
+   12 VT: DOUBLE
+   13   | UINT
+   14   | SWITCH
+   15   | BOOLEAN
 
 
 Terminais, com as regras aonde aparecem
 
 $end (0) 0
 ',' (44) 3 6
-':' (58) 4 8 9 10 11 12
+':' (58) 4 7 8 9 10 11
 '{' (123) 1 4
 '}' (125) 1 4
 error (256)
-COMMENT (258) 8
-CLASS (259) 9
-VALUE_TYPE (260) 10
-XML_NAME (261) 11
-DEFAULT_VALUE (262) 12
-STR (263) 8 9 11 12
+COMMENT (258) 7
+CLASS (259) 8
+VALUE_TYPE (260) 9
+XML_NAME (261) 10
+DEFAULT_VALUE (262) 11
+STR (263) 7 8 10 11
 ID (264) 4
-DOUBLE (265) 13
-UINT (266) 14
-SWITCH (267) 15
-BOOLEAN (268) 16
+DOUBLE (265) 12
+UINT (266) 13
+SWITCH (267) 14
+BOOLEAN (268) 15
 
 
 Não-terminais, com as regras aonde aparecem
@@ -59,9 +58,9 @@ PI (21)
 PAL (22)
     à esquerda: 5 6, à direita: 4 6
 AT (23)
-    à esquerda: 7 8 9 10 11 12, à direita: 5 6
+    à esquerda: 7 8 9 10 11, à direita: 5 6
 VT (24)
-    à esquerda: 13 14 15 16, à direita: 10
+    à esquerda: 12 13 14 15, à direita: 9
 
 
 estado 0
@@ -155,8 +154,6 @@ estado 10
     XML_NAME       fazer shift, e ir para o estado 15
     DEFAULT_VALUE  fazer shift, e ir para o estado 16
 
-    $default  reduzir usando a regra 7 (AT)
-
     PAL  ir para o estado 17
     AT   ir para o estado 18
 
@@ -170,35 +167,35 @@ estado 11
 
 estado 12
 
-    8 AT: COMMENT . ':' STR
+    7 AT: COMMENT . ':' STR
 
     ':'  fazer shift, e ir para o estado 19
 
 
 estado 13
 
-    9 AT: CLASS . ':' STR
+    8 AT: CLASS . ':' STR
 
     ':'  fazer shift, e ir para o estado 20
 
 
 estado 14
 
-   10 AT: VALUE_TYPE . ':' VT
+    9 AT: VALUE_TYPE . ':' VT
 
     ':'  fazer shift, e ir para o estado 21
 
 
 estado 15
 
-   11 AT: XML_NAME . ':' STR
+   10 AT: XML_NAME . ':' STR
 
     ':'  fazer shift, e ir para o estado 22
 
 
 estado 16
 
-   12 AT: DEFAULT_VALUE . ':' STR
+   11 AT: DEFAULT_VALUE . ':' STR
 
     ':'  fazer shift, e ir para o estado 23
 
@@ -206,36 +203,37 @@ estado 16
 estado 17
 
     4 PI: ID ':' '{' PAL . '}'
-    6 PAL: PAL . ',' AT
 
     '}'  fazer shift, e ir para o estado 24
-    ','  fazer shift, e ir para o estado 25
 
 
 estado 18
 
     5 PAL: AT .
+    6    | AT . ',' PAL
+
+    ','  fazer shift, e ir para o estado 25
 
     $default  reduzir usando a regra 5 (PAL)
 
 
 estado 19
 
-    8 AT: COMMENT ':' . STR
+    7 AT: COMMENT ':' . STR
 
     STR  fazer shift, e ir para o estado 26
 
 
 estado 20
 
-    9 AT: CLASS ':' . STR
+    8 AT: CLASS ':' . STR
 
     STR  fazer shift, e ir para o estado 27
 
 
 estado 21
 
-   10 AT: VALUE_TYPE ':' . VT
+    9 AT: VALUE_TYPE ':' . VT
 
     DOUBLE   fazer shift, e ir para o estado 28
     UINT     fazer shift, e ir para o estado 29
@@ -247,14 +245,14 @@ estado 21
 
 estado 22
 
-   11 AT: XML_NAME ':' . STR
+   10 AT: XML_NAME ':' . STR
 
     STR  fazer shift, e ir para o estado 33
 
 
 estado 23
 
-   12 AT: DEFAULT_VALUE ':' . STR
+   11 AT: DEFAULT_VALUE ':' . STR
 
     STR  fazer shift, e ir para o estado 34
 
@@ -268,7 +266,7 @@ estado 24
 
 estado 25
 
-    6 PAL: PAL ',' . AT
+    6 PAL: AT ',' . PAL
 
     COMMENT        fazer shift, e ir para o estado 12
     CLASS          fazer shift, e ir para o estado 13
@@ -276,76 +274,75 @@ estado 25
     XML_NAME       fazer shift, e ir para o estado 15
     DEFAULT_VALUE  fazer shift, e ir para o estado 16
 
-    $default  reduzir usando a regra 7 (AT)
-
-    AT  ir para o estado 35
+    PAL  ir para o estado 35
+    AT   ir para o estado 18
 
 
 estado 26
 
-    8 AT: COMMENT ':' STR .
+    7 AT: COMMENT ':' STR .
 
-    $default  reduzir usando a regra 8 (AT)
+    $default  reduzir usando a regra 7 (AT)
 
 
 estado 27
 
-    9 AT: CLASS ':' STR .
+    8 AT: CLASS ':' STR .
 
-    $default  reduzir usando a regra 9 (AT)
+    $default  reduzir usando a regra 8 (AT)
 
 
 estado 28
 
-   13 VT: DOUBLE .
+   12 VT: DOUBLE .
 
-    $default  reduzir usando a regra 13 (VT)
+    $default  reduzir usando a regra 12 (VT)
 
 
 estado 29
 
-   14 VT: UINT .
+   13 VT: UINT .
 
-    $default  reduzir usando a regra 14 (VT)
+    $default  reduzir usando a regra 13 (VT)
 
 
 estado 30
 
-   15 VT: SWITCH .
+   14 VT: SWITCH .
 
-    $default  reduzir usando a regra 15 (VT)
+    $default  reduzir usando a regra 14 (VT)
 
 
 estado 31
 
-   16 VT: BOOLEAN .
+   15 VT: BOOLEAN .
 
-    $default  reduzir usando a regra 16 (VT)
+    $default  reduzir usando a regra 15 (VT)
 
 
 estado 32
 
-   10 AT: VALUE_TYPE ':' VT .
+    9 AT: VALUE_TYPE ':' VT .
 
-    $default  reduzir usando a regra 10 (AT)
+    $default  reduzir usando a regra 9 (AT)
 
 
 estado 33
 
-   11 AT: XML_NAME ':' STR .
+   10 AT: XML_NAME ':' STR .
 
-    $default  reduzir usando a regra 11 (AT)
+    $default  reduzir usando a regra 10 (AT)
 
 
 estado 34
 
-   12 AT: DEFAULT_VALUE ':' STR .
+   11 AT: DEFAULT_VALUE ':' STR .
 
-    $default  reduzir usando a regra 12 (AT)
+    $default  reduzir usando a regra 11 (AT)
 
 
 estado 35
 
-    6 PAL: PAL ',' AT .
+    6 PAL: AT ',' PAL .
 
     $default  reduzir usando a regra 6 (PAL)
