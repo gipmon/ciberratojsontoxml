@@ -18,7 +18,7 @@
         "comment" : "Noise level of the beacon sensor",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : 0,
+        "default value" : "0",
         "XML name" : "BeaconNoise"
     },
 
@@ -26,7 +26,7 @@
         "comment" : "Noise level of the compass",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : 0,
+        "default value" : "0",
         "XML name" : "CompassNoise"
     },
 
@@ -34,7 +34,7 @@
         "comment" : "Noise level of the obstacle sensor",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : 0,
+        "default value" : "0",
         "XML name" : "ObstacleNoise"
     },
 
@@ -49,7 +49,7 @@
         "comment" : "Latency of the beacon sensor",
         "class" : "robot modelling parameters",
         "value type" : "uint",
-        "default value" : 1,
+        "default value" : "1",
         "XML name" : "BeaconLatency"
     },
 
@@ -57,7 +57,7 @@
         "comment" : "Latency of the compass",
         "class" : "robot modelling parameters",
         "value type" : "uint",
-        "default value" : 1,
+        "default value" : "1",
         "XML name" : "CompassLatency"
     },
 
@@ -65,7 +65,7 @@
         "comment" : "Latency of the obstacle sensor",
         "class" : "robot modelling parameters",
         "value type" : "uint",
-        "default value" : 1,
+        "default value" : "1",
         "XML name" : "ObstacleLatency"
     },
 
@@ -73,7 +73,7 @@
         "comment" : "Latency of the ground sensor",
         "class" : "robot modelling parameters",
         "value type" : "uint",
-        "default value" : 1,
+        "default value" : "1",
         "XML name" : "GroundLatency"
     },
 
@@ -81,7 +81,7 @@
         "comment" : "Latency of the collision sensor",
         "class" : "robot modelling parameters",
         "value type" : "uint",
-        "default value" : 1,
+        "default value" : "1",
         "XML name" : "CollisionLatency"
     },
 
@@ -132,7 +132,7 @@
         "comment" : "Noise level for GPS position",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : 0,
+        "default value" : "0",
         "XML name" : "GPSLinNoise"
     },
 
@@ -140,7 +140,7 @@
         "comment" : "Noise level for GPS heading",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : 0,
+        "default value" : "0",
         "XML name" : "GPSDirNoise"
     },
 
@@ -148,7 +148,7 @@
         "comment" : "Noise level of the motors",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : 1.0,
+        "default value" : "1.0",
         "XML name" : "MotorsNoise"
     },
 
@@ -206,7 +206,7 @@
         "comment" : "???",
         "class" : "debugging parameters",
         "value type" : "boolean",
-        "default value" : false,
+        "default value" : "false",
         "XML name" : "ShowActions"
     },
 }

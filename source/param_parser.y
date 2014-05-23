@@ -42,17 +42,12 @@ File : '{' PL '}'
 	 ;
 
 // PL = parameter list
-PL   :	/* lambda */
-	 |  PI ',' PL
+PL   :  PI
+	 |  PL ',' PI
 	 ;
 
 // PI = parameter item
-PI   : PK " : " '{' PAL '}'
-	 ;
-
-// Pk = parameter key
-// reconhecido e fornecido pelo lexer2 (flex)
-PK   : ID
+PI   : ID ':' '{' PAL '}'
 	 ;
 
 // PAL = parameter atribute list
@@ -63,19 +58,19 @@ PAL  : AT
 // AT = atribute
 // String fornecida pelo lexer2 (flex)
 AT   : /* lambda */
-	 |  COMMENT  " : "  STR
-	 |  CLASS  " : "  STR
-	 |  VALUE_TYPE  " : "  VT
-	 |  XML_NAME  " : "  STR
-	 |  DEFAULT_VALUE  " : "  STR
+	 |  COMMENT  ':'  STR
+	 |  CLASS  ':'  STR
+	 |  VALUE_TYPE  ':'  VT
+	 |  XML_NAME  ':'  STR
+	 |  DEFAULT_VALUE  ':'  STR
 	 ;
+
 //VT = value type
 VT	: DOUBLE
 	| UINT
 	| SWITCH
 	| BOOLEAN
 	;
-
 %%
 
 int main(int argc, char* argv[]){

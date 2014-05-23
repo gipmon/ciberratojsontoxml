@@ -5,59 +5,58 @@
     #define YY_DECL int yylex(YYSTYPE* p, YYLTYPE* l)
 %}
 
-
 %option noyywrap
 %option nounput
 %option noinput
 %option yylineno
 
-space [ \t]+
+id    			["][a-z][a-zA-Z -]*["]
 
-id      ([a-z]|[A-Z]|[ \t]+|[-])+
+str  			["][[:alpha:][:digit:][:space:]]+["]
 
-str  [^\"]+
+comment 		["]comment["]
 
-comment ["]comment["]
+class 			["]class["]
 
-class ["]class["]
+value_type 		["]value[ ]type["]
 
-value_type ["]value[ ]type["]
+xml_name 		["]XML[ ]name["]
 
-xml_name ["]XML[ ]name["]
+default_value 	["]default[ ]value["]
 
-default_value ["]default[ ]value["]
+double 			["]double["]
 
-double ["]double["]
+uint 			["]uint["]
 
-uint ["]uint["]
+switch 			["]switch["]
 
-switch ["]switch["]
-
-boolean ["]boolean["]
+boolean 		["]boolean["]
 
 %%
-{space} 	{ }
 
-{id}        { p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
+{comment}		{ l->first_line=yylineno; return COMMENT; }
 
-{str}		{ p->vstr = strdup(yytext); l->first_line=yylineno; return STR; }
+{class}			{ l->first_line=yylineno; return CLASS; }
 
-{comment}	{ l->first_line=yylineno; return COMMENT; }
+{value_type} 	{ l->first_line=yylineno; return VALUE_TYPE; }
 
-{class}		{ l->first_line=yylineno; return CLASS; }
-
-{value_type} { l->first_line=yylineno; return VALUE_TYPE; }
-
-{xml_name}  { l->first_line=yylineno; return XML_NAME; }
+{xml_name}  	{ l->first_line=yylineno; return XML_NAME; }
 
 {default_value} { l->first_line=yylineno; return DEFAULT_VALUE; }
 
-{double} { l->first_line=yylineno;return DOUBLE;}
+{double} 		{ l->first_line=yylineno; return DOUBLE;}
 
-{uint} { l->first_line=yylineno;return UINT;}
+{uint} 			{ l->first_line=yylineno; return UINT;}
 
-{switch} { l->first_line=yylineno;return SWITCH;}
+{switch} 		{ l->first_line=yylineno;return SWITCH;}
 
-{boolean} { l->first_line=yylineno; return BOOLEAN;}
+{boolean} 		{ l->first_line=yylineno; return BOOLEAN;}
 
+{id}        	{ p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
+
+{str}			{ p->vstr = strdup(yytext); l->first_line=yylineno; return STR; }
+
+[[:blank:]]		{ }
+
+. { return yytext[0]; }
 %%
