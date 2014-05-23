@@ -1,0 +1,351 @@
+Gramática
+
+    0 $accept: File $end
+
+    1 File: '{' PL '}'
+
+    2 PL: PI
+    3   | PI ',' PL
+
+    4 PI: ID ':' '{' PAL '}'
+
+    5 PAL: AT
+    6    | PAL ',' AT
+
+    7 AT: /* vazio */
+    8   | COMMENT ':' STR
+    9   | CLASS ':' STR
+   10   | VALUE_TYPE ':' VT
+   11   | XML_NAME ':' STR
+   12   | DEFAULT_VALUE ':' STR
+
+   13 VT: DOUBLE
+   14   | UINT
+   15   | SWITCH
+   16   | BOOLEAN
+
+
+Terminais, com as regras aonde aparecem
+
+$end (0) 0
+',' (44) 3 6
+':' (58) 4 8 9 10 11 12
+'{' (123) 1 4
+'}' (125) 1 4
+error (256)
+COMMENT (258) 8
+CLASS (259) 9
+VALUE_TYPE (260) 10
+XML_NAME (261) 11
+DEFAULT_VALUE (262) 12
+STR (263) 8 9 11 12
+ID (264) 4
+DOUBLE (265) 13
+UINT (266) 14
+SWITCH (267) 15
+BOOLEAN (268) 16
+
+
+Não-terminais, com as regras aonde aparecem
+
+$accept (18)
+    à esquerda: 0
+File (19)
+    à esquerda: 1, à direita: 0
+PL (20)
+    à esquerda: 2 3, à direita: 1 3
+PI (21)
+    à esquerda: 4, à direita: 2 3
+PAL (22)
+    à esquerda: 5 6, à direita: 4 6
+AT (23)
+    à esquerda: 7 8 9 10 11 12, à direita: 5 6
+VT (24)
+    à esquerda: 13 14 15 16, à direita: 10
+
+
+estado 0
+
+    0 $accept: . File $end
+
+    '{'  fazer shift, e ir para o estado 1
+
+    File  ir para o estado 2
+
+
+estado 1
+
+    1 File: '{' . PL '}'
+
+    ID  fazer shift, e ir para o estado 3
+
+    PL  ir para o estado 4
+    PI  ir para o estado 5
+
+
+estado 2
+
+    0 $accept: File . $end
+
+    $end  fazer shift, e ir para o estado 6
+
+
+estado 3
+
+    4 PI: ID . ':' '{' PAL '}'
+
+    ':'  fazer shift, e ir para o estado 7
+
+
+estado 4
+
+    1 File: '{' PL . '}'
+
+    '}'  fazer shift, e ir para o estado 8
+
+
+estado 5
+
+    2 PL: PI .
+    3   | PI . ',' PL
+
+    ','  fazer shift, e ir para o estado 9
+
+    $default  reduzir usando a regra 2 (PL)
+
+
+estado 6
+
+    0 $accept: File $end .
+
+    $default  aceite
+
+
+estado 7
+
+    4 PI: ID ':' . '{' PAL '}'
+
+    '{'  fazer shift, e ir para o estado 10
+
+
+estado 8
+
+    1 File: '{' PL '}' .
+
+    $default  reduzir usando a regra 1 (File)
+
+
+estado 9
+
+    3 PL: PI ',' . PL
+
+    ID  fazer shift, e ir para o estado 3
+
+    PL  ir para o estado 11
+    PI  ir para o estado 5
+
+
+estado 10
+
+    4 PI: ID ':' '{' . PAL '}'
+
+    COMMENT        fazer shift, e ir para o estado 12
+    CLASS          fazer shift, e ir para o estado 13
+    VALUE_TYPE     fazer shift, e ir para o estado 14
+    XML_NAME       fazer shift, e ir para o estado 15
+    DEFAULT_VALUE  fazer shift, e ir para o estado 16
+
+    $default  reduzir usando a regra 7 (AT)
+
+    PAL  ir para o estado 17
+    AT   ir para o estado 18
+
+
+estado 11
+
+    3 PL: PI ',' PL .
+
+    $default  reduzir usando a regra 3 (PL)
+
+
+estado 12
+
+    8 AT: COMMENT . ':' STR
+
+    ':'  fazer shift, e ir para o estado 19
+
+
+estado 13
+
+    9 AT: CLASS . ':' STR
+
+    ':'  fazer shift, e ir para o estado 20
+
+
+estado 14
+
+   10 AT: VALUE_TYPE . ':' VT
+
+    ':'  fazer shift, e ir para o estado 21
+
+
+estado 15
+
+   11 AT: XML_NAME . ':' STR
+
+    ':'  fazer shift, e ir para o estado 22
+
+
+estado 16
+
+   12 AT: DEFAULT_VALUE . ':' STR
+
+    ':'  fazer shift, e ir para o estado 23
+
+
+estado 17
+
+    4 PI: ID ':' '{' PAL . '}'
+    6 PAL: PAL . ',' AT
+
+    '}'  fazer shift, e ir para o estado 24
+    ','  fazer shift, e ir para o estado 25
+
+
+estado 18
+
+    5 PAL: AT .
+
+    $default  reduzir usando a regra 5 (PAL)
+
+
+estado 19
+
+    8 AT: COMMENT ':' . STR
+
+    STR  fazer shift, e ir para o estado 26
+
+
+estado 20
+
+    9 AT: CLASS ':' . STR
+
+    STR  fazer shift, e ir para o estado 27
+
+
+estado 21
+
+   10 AT: VALUE_TYPE ':' . VT
+
+    DOUBLE   fazer shift, e ir para o estado 28
+    UINT     fazer shift, e ir para o estado 29
+    SWITCH   fazer shift, e ir para o estado 30
+    BOOLEAN  fazer shift, e ir para o estado 31
+
+    VT  ir para o estado 32
+
+
+estado 22
+
+   11 AT: XML_NAME ':' . STR
+
+    STR  fazer shift, e ir para o estado 33
+
+
+estado 23
+
+   12 AT: DEFAULT_VALUE ':' . STR
+
+    STR  fazer shift, e ir para o estado 34
+
+
+estado 24
+
+    4 PI: ID ':' '{' PAL '}' .
+
+    $default  reduzir usando a regra 4 (PI)
+
+
+estado 25
+
+    6 PAL: PAL ',' . AT
+
+    COMMENT        fazer shift, e ir para o estado 12
+    CLASS          fazer shift, e ir para o estado 13
+    VALUE_TYPE     fazer shift, e ir para o estado 14
+    XML_NAME       fazer shift, e ir para o estado 15
+    DEFAULT_VALUE  fazer shift, e ir para o estado 16
+
+    $default  reduzir usando a regra 7 (AT)
+
+    AT  ir para o estado 35
+
+
+estado 26
+
+    8 AT: COMMENT ':' STR .
+
+    $default  reduzir usando a regra 8 (AT)
+
+
+estado 27
+
+    9 AT: CLASS ':' STR .
+
+    $default  reduzir usando a regra 9 (AT)
+
+
+estado 28
+
+   13 VT: DOUBLE .
+
+    $default  reduzir usando a regra 13 (VT)
+
+
+estado 29
+
+   14 VT: UINT .
+
+    $default  reduzir usando a regra 14 (VT)
+
+
+estado 30
+
+   15 VT: SWITCH .
+
+    $default  reduzir usando a regra 15 (VT)
+
+
+estado 31
+
+   16 VT: BOOLEAN .
+
+    $default  reduzir usando a regra 16 (VT)
+
+
+estado 32
+
+   10 AT: VALUE_TYPE ':' VT .
+
+    $default  reduzir usando a regra 10 (AT)
+
+
+estado 33
+
+   11 AT: XML_NAME ':' STR .
+
+    $default  reduzir usando a regra 11 (AT)
+
+
+estado 34
+
+   12 AT: DEFAULT_VALUE ':' STR .
+
+    $default  reduzir usando a regra 12 (AT)
+
+
+estado 35
+
+    6 PAL: PAL ',' AT .
+
+    $default  reduzir usando a regra 6 (PAL)

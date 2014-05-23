@@ -456,8 +456,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    41,    41,    45,    46,    50,    54,    55,    60,    61,
-      62,    63,    64,    65,    69,    70,    71,    72
+       0,    42,    42,    46,    47,    51,    55,    56,    61,    62,
+      63,    64,    65,    66,    70,    71,    72,    73
 };
 #endif
 
@@ -1686,7 +1686,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 74 "param_parser.y"
+#line 75 "param_parser.y"
 
 
 int main(int argc, char* argv[]){
@@ -1701,7 +1701,8 @@ int main(int argc, char* argv[]){
 
 int yyerror(YYLTYPE* l, const char* fname, const char *s)
 {
-	printf("%s: %d: %s\n", fname, l->first_line, s);
+	extern char* yytext;
+	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(0);
 }
 

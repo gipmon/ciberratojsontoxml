@@ -10,9 +10,9 @@
 %option noinput
 %option yylineno
 
-id    			["][a-z][a-zA-Z -]*["]
+str  			["][a-z][a-zA-Z0-9 ]["]
 
-str  			["][a-z][a-zA-Z0-9 ]+["]
+id    			["][a-z][a-zA-Z -]*["]
 
 comment 		["]comment["]
 
@@ -52,9 +52,9 @@ boolean 		["]boolean["]
 
 {boolean} 		{ l->first_line=yylineno; return BOOLEAN;}
 
-{id}        	{ p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
-
 {str}			{ p->vstr = strdup(yytext); l->first_line=yylineno; return STR; }
+
+{id}        	{ p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
 
 [[:blank:]]		{ }
 

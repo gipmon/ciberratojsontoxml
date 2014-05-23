@@ -35,6 +35,7 @@
 %defines
 %error-verbose
 %locations
+%verbose
 
 %%
 // File = param-list.json
@@ -85,6 +86,7 @@ int main(int argc, char* argv[]){
 
 int yyerror(YYLTYPE* l, const char* fname, const char *s)
 {
-	printf("%s: %d: %s\n", fname, l->first_line, s);
+	extern char* yytext;
+	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(0);
 }
