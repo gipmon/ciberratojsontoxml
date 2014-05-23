@@ -1,9 +1,18 @@
+%union{
+	char* vid;
+	char* vstr;
+}
+
 %{
     #include <stdio.h>
 	#include "param_table.h"
 
-    int yylex(void);
-    int yyerror(char *s);
+	extern int yyparse(const char* fname);
+	extern FILE* yyin;
+
+	int yyerror(YYLTYPE* l, const char* fname, const char *s);
+    int yylex(YYSTYPE*, YYLTYPE* l);
+
     parameter param;
 %}
 
@@ -14,15 +23,18 @@
 %token 	DEFAULT_VALUE
 %token 	<vid> ID
 %token 	<vstr> STR
-%token  <vclassvalue> CLASS_VALUE
 /* relativos ao value type*/
 %token 	DOUBLE
 %token 	UINT
 %token 	SWITCH
 %token 	BOOLEAN
 /*     */
-%token <vdvv> DEFAULT_VALUE_VALUE
-%token <vxml> XML_NAME_VALUE
+
+%parse-param {const char* fname}
+%pure-parser
+%defines
+%error-verbose
+%locations
 
 %%
 // File = param-list.json
@@ -35,12 +47,12 @@ PL   :	/* lambda */
 	 ;
 
 // PI = parameter item
-PI   : PK ':' '{' PAL '}'
+PI   : PK " : " '{' PAL '}'
 	 ;
 
 // Pk = parameter key
 // reconhecido e fornecido pelo lexer2 (flex)
-PK   : ID { string parameter_name = $1; }
+PK   : ID
 	 ;
 
 // PAL = parameter atribute list
@@ -51,35 +63,33 @@ PAL  : AT
 // AT = atribute
 // String fornecida pelo lexer2 (flex)
 AT   : /* lambda */
-	 | '\"' COMMENT '\"' ':' '\"' STR '\"' {/*param->comment = $6;*/}
-	 | '\"' CLASS '\"' ':' '\"' CLASS_VALUE '\"' {/*string class_name = $6;*/}
-	 | '\"' VALUE_TYPE '\"' ':' '\"' VT '\"' {/*param->value_type = $6;*/}
-	 | '\"' XML_NAME '\"' ':' '\"' XML_NAME_VALUE '\"'	{/*param->xml_name = $6;*/}
-	 | '\"' DEFAULT_VALUE '\"' ':' '\"' DEFAULT_VALUE_VALUE '\"' {/*param->default_value = $6;*/}
+	 |  COMMENT  " : "  STR
+	 |  CLASS  " : "  STR
+	 |  VALUE_TYPE  " : "  VT
+	 |  XML_NAME  " : "  STR
+	 |  DEFAULT_VALUE  " : "  STR
 	 ;
 //VT = value type
-VT	:
-	| '\"'DOUBLE'\"'
-	| '\"'UINT'\"'
-	| '\"'SWITCH'\"'
-	| '\"'BOOLEAN'\"'
+VT	: DOUBLE
+	| UINT
+	| SWITCH
+	| BOOLEAN
 	;
 
 %%
 
-
 int main(int argc, char* argv[]){
-	extern FILE* yyin;
-	if((yyin = fopen(argv[i], "r")) == NULL){
+	if((yyin = fopen(argv[1], "r")) == NULL){
 		printf("ERRRO!\n");
 		return 0;
 	}
-	yyparser();
+	yyparse(argv[1]);
 	printf("FUNCIONOU!\n");
 	return 1;
 }
 
-int yyerror(const char *s)
+int yyerror(YYLTYPE* l, const char* fname, const char *s)
 {
-    return 0;
+	printf("%s: %d: %s\n", fname, l->first_line, s);
+    exit(0);
 }

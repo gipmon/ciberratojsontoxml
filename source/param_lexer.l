@@ -1,22 +1,31 @@
 %{
     #include <stdlib.h>
+    #include "param_parser.tab.h"
+
+    #define YY_DECL int yylex(YYSTYPE* p, YYLTYPE* l)
 %}
 
-id      ([a-z]|[A-Z]|{spaces}|[-])+
 
-spaces  [ \t]+
+%option noyywrap
+%option nounput
+%option noinput
+%option yylineno
 
-str  [^\"]*
+space [ \t]+
+
+id      ([a-z]|[A-Z]|[ \t]+|[-])+
+
+str  [^\"]+
 
 comment ["]comment["]
 
 class ["]class["]
 
-value_type ["]value type["]
+value_type ["]value[ ]type["]
 
-xml_name ["]XML name["]
+xml_name ["]XML[ ]name["]
 
-default_value ["]default value["]
+default_value ["]default[ ]value["]
 
 double ["]double["]
 
@@ -24,49 +33,31 @@ uint ["]uint["]
 
 switch ["]switch["]
 
-booelan ["]boolean["]
-
-class_value {str}
-
-default_value_value {str}
-
-xml_name_value {str}
-
-/*valid [-+/(^)/=\n:;,.!*]*/
+boolean ["]boolean["]
 
 %%
+{space} 	{ }
 
-{id}        { p->vid = strdup(yytext); return ID; }
+{id}        { p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
 
-{spaces}    { }
+{str}		{ p->vstr = strdup(yytext); l->first_line=yylineno; return STR; }
 
-/*{valid}     { return yytext[0]; }*/
+{comment}	{ l->first_line=yylineno; return COMMENT; }
 
-{str}		{ p->vstr = yytext[0]; return STR; }
+{class}		{ l->first_line=yylineno; return CLASS; }
 
-{comment}	{ return COMMENT; }
+{value_type} { l->first_line=yylineno; return VALUE_TYPE; }
 
-{class}		{ return CLASS; }
+{xml_name}  { l->first_line=yylineno; return XML_NAME; }
 
-{value_type} { return VALUE_TYPE; }
+{default_value} { l->first_line=yylineno; return DEFAULT_VALUE; }
 
-{xml_name}  { return XML_NAME; }
+{double} { l->first_line=yylineno;return DOUBLE;}
 
-{default_value} { return DEFAULT_VALUE; }
-/*.           { p->vchar = yytext[0]; return OTHER; }*/
+{uint} { l->first_line=yylineno;return UINT;}
 
-{double} {return DOUBLE;}
+{switch} { l->first_line=yylineno;return SWITCH;}
 
-{uint} {return UINT}
-
-{switch} {return SWITCH}
-
-{boolean} {return BOOLEAN}
-
-{class_value} { p->vclassvalue = yytext[0]; return CLASS_VALUE; }
-
-{xml_name_value} { p->vxml = yytext[0]; return XML_NAME_VALUE; }
-
-{default_value_value} { p->vdvv = yytext[0]; return DEFAULT_VALUE_VALUE; }
+{boolean} { l->first_line=yylineno; return BOOLEAN;}
 
 %%

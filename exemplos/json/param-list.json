@@ -208,5 +208,5 @@
         "value type" : "boolean",
         "default value" : false,
         "XML name" : "ShowActions"
-    }
+    },
 }

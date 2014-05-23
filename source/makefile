@@ -3,6 +3,9 @@ CFLAGS = -c -Wall
 
 all: test
 
+
+
+
 test: symboltable.o testsymboltable.o
 	$(CC) symboltable.o testsymboltable.o -o test.out
 	rm -rf *.o
