@@ -10,7 +10,7 @@
 %option noinput
 %option yylineno
 
-str  			["][a-zA-Z0-9 -]+["]
+str  			["][a-zA-Z0-9 -][a-zA-Z0-9 -]*["]
 
 id    			["][a-z][a-z -]*["]
 

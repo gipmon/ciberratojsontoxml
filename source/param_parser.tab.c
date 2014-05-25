@@ -99,8 +99,8 @@
      VALUE_TYPE = 260,
      XML_NAME = 261,
      DEFAULT_VALUE = 262,
-     ID = 263,
-     STR = 264,
+     STR = 263,
+     ID = 264,
      DOUBLE = 265,
      UINT = 266,
      SWITCH = 267,
@@ -446,18 +446,18 @@ static const yytype_uint8 yyprhs[] =
 static const yytype_int8 yyrhs[] =
 {
       19,     0,    -1,    14,    20,    15,    -1,    21,    -1,    21,
-      16,    20,    -1,     8,    17,    14,    22,    15,    -1,    23,
-      -1,    23,    16,    22,    -1,     3,    17,     9,    -1,     4,
-      17,     9,    -1,     5,    17,    24,    -1,     6,    17,     9,
-      -1,     7,    17,     9,    -1,    10,    -1,    11,    -1,    12,
+      16,    20,    -1,     9,    17,    14,    22,    15,    -1,    23,
+      -1,    23,    16,    22,    -1,     3,    17,     8,    -1,     4,
+      17,     8,    -1,     5,    17,    24,    -1,     6,    17,     8,
+      -1,     7,    17,     8,    -1,    10,    -1,    11,    -1,    12,
       -1,    13,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    41,    41,    44,    45,    48,    51,    52,    55,    56,
-      57,    58,    59,    62,    63,    64,    65
+       0,    42,    42,    45,    46,    49,    52,    53,    56,    57,
+      58,    59,    60,    63,    64,    65,    66
 };
 #endif
 
@@ -467,7 +467,7 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "COMMENT", "CLASS", "VALUE_TYPE",
-  "XML_NAME", "DEFAULT_VALUE", "ID", "STR", "DOUBLE", "UINT", "SWITCH",
+  "XML_NAME", "DEFAULT_VALUE", "STR", "ID", "DOUBLE", "UINT", "SWITCH",
   "BOOLEAN", "'{'", "'}'", "','", "':'", "$accept", "File", "PL", "PI",
   "PAL", "AT", "VT", 0
 };
@@ -519,16 +519,16 @@ static const yytype_int8 yydefgoto[] =
 #define YYPACT_NINF -14
 static const yytype_int8 yypact[] =
 {
-      -4,     1,    11,    -2,    -1,     0,   -14,     3,   -14,     1,
-      -3,   -14,     2,     4,     5,     6,     7,    10,    12,     9,
-      17,    -5,    18,    20,   -14,    -3,   -14,   -14,   -14,   -14,
+      -4,     0,    11,    -2,    -1,     1,   -14,     2,   -14,     0,
+      -3,   -14,     3,     4,     5,     6,     7,    10,    12,    18,
+      19,    -5,    21,    22,   -14,    -3,   -14,   -14,   -14,   -14,
      -14,   -14,   -14,   -14,   -14,   -14
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -14,   -14,    21,   -14,   -13,   -14,   -14
+     -14,   -14,     9,   -14,   -13,   -14,   -14
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -538,9 +538,9 @@ static const yytype_int8 yypgoto[] =
 static const yytype_uint8 yytable[] =
 {
       12,    13,    14,    15,    16,    28,    29,    30,    31,     3,
-       1,     6,    35,     0,     8,     7,     9,    10,    26,    19,
-       0,    20,    21,    22,    23,    24,    27,    33,    25,    34,
-      11
+       1,     6,    35,     0,     8,     7,    10,     9,    11,     0,
+      19,    20,    21,    22,    23,    24,    26,    27,    25,    33,
+      34
 };
 
 #define yypact_value_is_default(yystate) \
@@ -551,20 +551,20 @@ static const yytype_uint8 yytable[] =
 
 static const yytype_int8 yycheck[] =
 {
-       3,     4,     5,     6,     7,    10,    11,    12,    13,     8,
-      14,     0,    25,    -1,    15,    17,    16,    14,     9,    17,
-      -1,    17,    17,    17,    17,    15,     9,     9,    16,     9,
-       9
+       3,     4,     5,     6,     7,    10,    11,    12,    13,     9,
+      14,     0,    25,    -1,    15,    17,    14,    16,     9,    -1,
+      17,    17,    17,    17,    17,    15,     8,     8,    16,     8,
+       8
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    14,    19,     8,    20,    21,     0,    17,    15,    16,
+       0,    14,    19,     9,    20,    21,     0,    17,    15,    16,
       14,    20,     3,     4,     5,     6,     7,    22,    23,    17,
-      17,    17,    17,    17,    15,    16,     9,     9,    10,    11,
-      12,    13,    24,     9,     9,    22
+      17,    17,    17,    17,    15,    16,     8,     8,    10,    11,
+      12,    13,    24,     8,     8,    22
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1688,7 +1688,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 67 "param_parser.y"
+#line 68 "param_parser.y"
 
 
 int main(int argc, char* argv[]){
