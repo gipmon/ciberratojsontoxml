@@ -6,10 +6,10 @@ using namespace std;
 
 /************* Estrutura de dados para o parameter **************/
 struct parameter{
-  string comment;
-  string value_type;
-  string default_value;
-  string xml_name;
+  char* comment;
+  char* value_type;
+  char* default_value;
+  char* xml_name;
 };
 
 /************************ Definição de Códigos de Erro ************************/
@@ -62,3 +62,14 @@ bool exists(string class_name);
 	Verificar se exite o parametro
 *******************************************************************************/
 bool exists(string class_name, string parameter_name);
+
+
+void config_standard(string comment, string value_type, string default_type, string xml_name, string param_name);
+/*******************************************************************************
+	Imprimir o parametro no formato json
+*******************************************************************************/
+
+
+/*
+void print_parameter(char* class_name, class* parameter_name, parameter param);
+*/

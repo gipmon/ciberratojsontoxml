@@ -1,6 +1,7 @@
 %union{
 	char* vid;
 	char* vstr;
+	char* vidorstr;
 }
 
 %{
@@ -12,8 +13,11 @@
 
 	int yyerror(YYLTYPE* l, const char* fname, const char *s);
     int yylex(YYSTYPE*, YYLTYPE* l);
+    void print_parameter(char *class_name, char *parameter_name, parameter param);
 
     parameter param;
+    char* class_name;
+    char* id_name;
 %}
 
 %token  COMMENT
@@ -25,11 +29,14 @@
 %token 	<vid> ID
 
 /* relativos ao value type*/
-%token 	DOUBLE
-%token 	UINT
-%token 	SWITCH
-%token 	BOOLEAN
+%token 	<vstr> DOUBLE
+%token 	<vstr> UINT
+%token 	<vstr> SWITCH
+%token 	<vstr> BOOLEAN
 /*     */
+
+%type<vidorstr> IDORSTR
+%type<vstr> VT
 
 %parse-param {const char* fname}
 %pure-parser
@@ -40,35 +47,35 @@
 %start File
 
 %%
-File : '{' PL '}' { printf("FUNCIONOU!\n"); exit(2); }
+File : '{' PL '}' { print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(2); }
 	 ;
 
 PL   :  PI
 	 |  PI ',' PL
 	 ;
 
-PI   : ID ':' '{' PAL '}'
+PI   : ID {id_name = $1;} ':' '{' PAL '}'
 	 ;
 
 PAL  : AT
 	 | AT ',' PAL
 	 ;
 
-IDORSTR : STR
-		| ID
+IDORSTR : STR {$$ = $1;}
+		| ID {$$ = $1;}
 		;
 
-AT   :  COMMENT  ':'  IDORSTR
-	 |  CLASS  ':'  IDORSTR
-	 |  VALUE_TYPE  ':'  VT
-	 |  XML_NAME  ':'  IDORSTR
-	 |  DEFAULT_VALUE  ':'  IDORSTR
+AT   :  COMMENT  ':'  IDORSTR {param.comment = $3;}
+	 |  CLASS ':' IDORSTR {class_name = $3;}
+	 |  VALUE_TYPE  ':'  VT {param.value_type = $3;}
+	 |  XML_NAME  ':'  IDORSTR {param.xml_name = $3;}
+	 |  DEFAULT_VALUE  ':'  IDORSTR {param.default_value = $3;}
 	 ;
 
-VT	 : DOUBLE
-	 | UINT
-	 | SWITCH
-	 | BOOLEAN
+VT	 : DOUBLE {$$ = $1;}
+	 | UINT {$$ = $1;}
+	 | SWITCH {$$ = $1;}
+	 | BOOLEAN {$$ = $1;}
 	 ;
 
 %%
@@ -86,4 +93,8 @@ int yyerror(YYLTYPE* l, const char* fname, const char *s){
 	extern char* yytext;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(0);
+}
+
+void print_parameter(char *class_name, char *parameter_name, parameter param){
+  printf("\"%s\" : {\n\t\"comment\" : \"%s\",\n\t\"class\" : \"%s\",\n\t\"value type\" : \"%s\",\n\t\"XML name\" : \"%s\"\n}\n", parameter_name, param.comment, class_name, param.value_type, param.xml_name);
 }

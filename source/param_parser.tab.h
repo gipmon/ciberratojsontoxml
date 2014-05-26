@@ -62,11 +62,12 @@ typedef union YYSTYPE
 
 	char* vid;
 	char* vstr;
+	char* vidorstr;
 
 
 
 /* Line 2068 of yacc.c  */
-#line 70 "param_parser.tab.h"
+#line 71 "param_parser.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

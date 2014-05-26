@@ -19,3 +19,30 @@
 "KeyTime"
 }
 }
+
+
+{
+"key time"
+:
+{
+"comment"
+:
+"time"
+,
+"class"
+:
+"teste"
+,
+"value type"
+:
+"boolean"
+,
+"default value"
+:
+"teste"
+,
+"XML name"
+:
+"ok"
+}
+}

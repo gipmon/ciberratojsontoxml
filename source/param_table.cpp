@@ -7,29 +7,31 @@ using namespace std;
 
 
 /* map<string => class, map<string => parameter_name, parameter>> map; */
-map<string, map<string, parameter*>* > param_map;
+map<string, map<string, parameter> > param_map;
+map<string, parameter> class_standard;
 
 void init(){
   /* o map de cima vai ser uma class instanciada pelo init() inicial depois temos de fazer uma lista de parametros iniciais para colocar na class de standard e fazemos uma forma de iniciar a class para depois colocar no param_map */
-  map<string, parameter*> class_standard;
-
+/*
   config_standard("","","","","challenge name");
   config_standard("","","","","challenge type");
   config_standard("","uint","50","SimCycle","cycle time"); // !! verificar xml names
   config_standard("","uint","2400","SimTime","cycle time"); // !! verificar xml names
-
-  param_map["class_standard"] = class_standard;
+*/
+  //param_map["class_standard"] = class_standard;
 }
 
-void config_standard(string comment, string value_type, string default_type, string xml_name, string param_name){
+void config_standard(string comment, string value_type, string default_value, string xml_name, string param_name){
+  /*
   parameter tmp_parameter;
 
-  tmp_parameter->comment = comment;
-  tmp_parameter->value_type = value_type;
-  tmp_parameter->default_type = default_type;
-  tmp_parameter->xml_name = xml_name;
+  tmp_parameter.comment = comment;
+  tmp_parameter.value_type = value_type;
+  tmp_parameter.default_value = default_value;
+  tmp_parameter.xml_name = xml_name;
 
   class_standard[param_name] = tmp_parameter;
+  */
 }
 
 bool add_parameter(string class_name, pair<string, parameter> param){
@@ -68,11 +70,11 @@ map<string, parameter> find(string class_name){
   if(!exists(class_name)){
     throw MAP_CLASS_DOESNT_EXISTS;
   }
-  if(standard_map.count(class_name)!=0){
-    return standard_map[class_name];
-  }else{
-    return param_map[class_name];
-  }
+  return param_map[class_name];
+}
+
+void print_parameter(char *class_name, char *parameter_name, parameter param){
+  /*printf("\"%s\" : {\n\t\"comment\" : \"%s\",\n\t\"class\" : \"%s\",\n\t\"value type\" : \"%s\",\n\t\"XML name\" : \"%s\"\n}\n", parameter_name, param.comment, class_name, param.value_type, param.xml_name);*/
 }
 
 parameter find(string class_name, string parameter_name){
@@ -83,9 +85,9 @@ parameter find(string class_name, string parameter_name){
 }
 
 bool exists(string class_name){
-  return param_map.count(class_name)!=0 || standard_map.count(class_name)!=0;
+  return param_map.count(class_name)!=0;
 }
 
 bool exists(string class_name, string parameter_name){
-  return exists(class_name) && (param_map[class_name].count(parameter_name)!=0 || standard_map[class_name].count(parameter_name)!=0);
+  return exists(class_name) && find(class_name).count(parameter_name)!=0;
 }
