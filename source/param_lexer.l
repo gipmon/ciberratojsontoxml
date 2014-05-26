@@ -10,9 +10,13 @@
 %option noinput
 %option yylineno
 
-str  			["][a-zA-Z0-9 -][a-zA-Z0-9 -]*["]
+nint    		[0-9]+
 
-id    			["][a-z][a-z -]*["]
+num     		{nint}|{nint}\.{nint}
+
+str  			["]([a-zA-Z -?]|{num})([a-zA-Z -?]|{num})*["]
+
+id    			["][a-zA-Z][a-zA-Z -]*["]
 
 comment 		["]comment["]
 
@@ -55,6 +59,7 @@ boolean 		["]boolean["]
 {id}        	{ p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
 
 {str}			{ p->vstr = strdup(yytext); l->first_line=yylineno; return STR; }
+
 
 [[:blank:]]		{ }
 

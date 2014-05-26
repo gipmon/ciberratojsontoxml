@@ -37,9 +37,10 @@
 %error-verbose
 %locations
 %verbose
+%start File
 
 %%
-File : '{' PL '}'
+File : '{' PL '}' { printf("FUNCIONOU!\n"); exit(2); }
 	 ;
 
 PL   :  PI
@@ -53,11 +54,15 @@ PAL  : AT
 	 | AT ',' PAL
 	 ;
 
-AT   :  COMMENT  ':'  STR
-	 |  CLASS  ':'  STR
+IDORSTR : STR
+		| ID
+		;
+
+AT   :  COMMENT  ':'  IDORSTR
+	 |  CLASS  ':'  IDORSTR
 	 |  VALUE_TYPE  ':'  VT
-	 |  XML_NAME  ':'  STR
-	 |  DEFAULT_VALUE  ':'  STR
+	 |  XML_NAME  ':'  IDORSTR
+	 |  DEFAULT_VALUE  ':'  IDORSTR
 	 ;
 
 VT	 : DOUBLE
@@ -65,6 +70,7 @@ VT	 : DOUBLE
 	 | SWITCH
 	 | BOOLEAN
 	 ;
+
 %%
 
 int main(int argc, char* argv[]){
@@ -73,7 +79,6 @@ int main(int argc, char* argv[]){
 		return 0;
 	}
 	yyparse(argv[1]);
-	printf("FUNCIONOU!\n");
 	return 1;
 }
 
