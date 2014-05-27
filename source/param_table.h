@@ -10,6 +10,7 @@ struct parameter{
   char* value_type;
   char* default_value;
   char* xml_name;
+  char* class_name;
 };
 
 /************************ Definição de Códigos de Erro ************************/

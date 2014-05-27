@@ -158,11 +158,11 @@ typedef struct YYLTYPE
 
 	int yyerror(YYLTYPE* l, const char* fname, const char *s);
     int yylex(YYSTYPE*, YYLTYPE* l);
-    void print_parameter(char *class_name, char *parameter_name, parameter param);
+    void print_parameter(char* class_name, char *parameter_name, parameter param);	
 
     parameter param;
-    char* class_name;
     char* id_name;
+    char* class_name;
 
 
 /* Line 343 of yacc.c  */
@@ -1455,7 +1455,7 @@ yyreduce:
 
 /* Line 1806 of yacc.c  */
 #line 50 "param_parser.y"
-    { print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(2); }
+    { print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(0); }
     break;
 
   case 5:
@@ -1798,10 +1798,10 @@ int main(int argc, char* argv[]){
 int yyerror(YYLTYPE* l, const char* fname, const char *s){
 	extern char* yytext;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
-    exit(0);
+    exit(1);
 }
 
-void print_parameter(char *class_name, char *parameter_name, parameter param){
-  printf("\"%s\" : {\n\t\"comment\" : \"%s\",\n\t\"class\" : \"%s\",\n\t\"value type\" : \"%s\",\n\t\"XML name\" : \"%s\"\n}\n", parameter_name, param.comment, class_name, param.value_type, param.xml_name);
+void print_parameter(char* class_name, char *parameter_name, parameter param){
+  printf("\"%s\" : {\n\t\"comment\" : \"%s\",\n\t\"class\" : \"%s\",\n\t\"value type\" : \"%s\",\n\t\"default value\" : \"%s\"\n\t\"XML name\" : \"%s\"\n}\n", parameter_name, param.comment, class_name, param.value_type, param.default_value, param.xml_name);
 }
 

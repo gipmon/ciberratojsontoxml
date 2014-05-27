@@ -3,6 +3,7 @@
     #include "param_parser.tab.h"
 
     #define YY_DECL int yylex(YYSTYPE* p, YYLTYPE* l)
+
 %}
 
 %option noyywrap
@@ -14,7 +15,7 @@ nint    		[0-9]+
 
 num     		{nint}|{nint}\.{nint}
 
-str  			["]([a-zA-Z -?]|{num})([a-zA-Z -?]|{num})*["]
+str  			["][^"\n]*["]
 
 id    			["][a-zA-Z][a-zA-Z -]*["]
 
@@ -48,20 +49,21 @@ boolean 		["]boolean["]
 
 {default_value} { l->first_line=yylineno; return DEFAULT_VALUE; }
 
-{double} 		{ l->first_line=yylineno; return DOUBLE; }
+{double} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return DOUBLE; }
 
-{uint} 			{ l->first_line=yylineno; return UINT; }
+{uint} 			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return UINT; }
 
-{switch} 		{ l->first_line=yylineno; return SWITCH; }
+{switch} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return SWITCH; }
 
-{boolean} 		{ l->first_line=yylineno; return BOOLEAN; }
+{boolean} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return BOOLEAN; }
 
-{id}        	{ p->vid = strdup(yytext); l->first_line=yylineno; return ID; }
+{id}        	{ yytext[strlen(yytext)-1] = '\0'; p->vid = strdup(yytext+1); l->first_line=yylineno; return ID; }
 
-{str}			{ p->vstr = strdup(yytext); l->first_line=yylineno; return STR; }
+{str}			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return STR; }
 
 
 [[:blank:]]		{ }
 
 . { return yytext[0]; }
 %%
+
