@@ -6,6 +6,7 @@
 
 %{
     #include <stdio.h>
+    #include <string>
 	#include "param_table.h"
 
 	extern int yyparse(const char* fname);
@@ -13,7 +14,7 @@
 
 	int yyerror(YYLTYPE* l, const char* fname, const char *s);
     int yylex(YYSTYPE*, YYLTYPE* l);
-    void print_parameter(char* class_name, char *parameter_name, parameter param);	
+    void print_parameter(string class_name, string parameter_name, parameter param);
 
     parameter param;
     char* id_name;
@@ -47,7 +48,7 @@
 %start File
 
 %%
-File : '{' PL '}' { print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(0); }
+File : '{' PL '}' { /*pair <string, parameter> pair_to_insert(id_name, param); add_parameter(class_name, pair_to_insert);*/ print_parameter(class_name, id_name), param); printf("FUNCIONOU!\n"); exit(0); }
 	 ;
 
 PL   :  PI
@@ -95,6 +96,9 @@ int yyerror(YYLTYPE* l, const char* fname, const char *s){
     exit(1);
 }
 
-void print_parameter(char* class_name, char *parameter_name, parameter param){
-  printf("\"%s\" : {\n\t\"comment\" : \"%s\",\n\t\"class\" : \"%s\",\n\t\"value type\" : \"%s\",\n\t\"default value\" : \"%s\"\n\t\"XML name\" : \"%s\"\n}\n", parameter_name, param.comment, class_name, param.value_type, param.default_value, param.xml_name);
+/*
+void print_parameter(char* class_name, char* parameter_name, parameter param){
+  cout << "\""<< parameter_name << "\" : { \n " << "\t\"comment\" : \""<< param.comment << "\" \n" << "\t\"class\" : \""<< class_name << "\" \n" << "\t\"value type\" : \""<< param.value_type << "\" \n" << "\t\"default value\" : \""<< param.default_value << "\" \n"  << "\t\"XML name\" : \""<< param.xml_name << "\" \n" << "},"<< endl;
 }
+*/
+

@@ -6,18 +6,10 @@ using namespace std;
 
 /************* Estrutura de dados para o parameter **************/
 struct parameter{
-<<<<<<< Updated upstream
-  char* comment;
-  char* value_type;
-  char* default_value;
-  char* xml_name;
-  char* class_name;
-=======
   string comment;
   string value_type;
   string default_value;
   string xml_name;
->>>>>>> Stashed changes
 };
 
 /************************ Definição de Códigos de Erro ************************/

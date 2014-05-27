@@ -151,6 +151,7 @@ typedef struct YYLTYPE
 #line 7 "param_parser.y"
 
     #include <stdio.h>
+    #include <string>
 	#include "param_table.h"
 
 	extern int yyparse(const char* fname);
@@ -158,7 +159,7 @@ typedef struct YYLTYPE
 
 	int yyerror(YYLTYPE* l, const char* fname, const char *s);
     int yylex(YYSTYPE*, YYLTYPE* l);
-    void print_parameter(char* class_name, char *parameter_name, parameter param);	
+    void print_parameter(string class_name, string parameter_name, parameter param);
 
     parameter param;
     char* id_name;
@@ -166,7 +167,7 @@ typedef struct YYLTYPE
 
 
 /* Line 343 of yacc.c  */
-#line 170 "param_parser.tab.c"
+#line 171 "param_parser.tab.c"
 
 #ifdef short
 # undef short
@@ -460,8 +461,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    50,    50,    53,    54,    57,    57,    60,    61,    64,
-      65,    68,    69,    70,    71,    72,    75,    76,    77,    78
+       0,    51,    51,    54,    55,    58,    58,    61,    62,    65,
+      66,    69,    70,    71,    72,    73,    76,    77,    78,    79
 };
 #endif
 
@@ -1454,98 +1455,98 @@ yyreduce:
         case 2:
 
 /* Line 1806 of yacc.c  */
-#line 50 "param_parser.y"
-    { print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(0); }
+#line 51 "param_parser.y"
+    { /*pair <string, parameter> pair_to_insert(id_name, param); add_parameter(class_name, pair_to_insert);*/ print_parameter(std::string str(class_name), std::string str(id_name), param); printf("FUNCIONOU!\n"); exit(0); }
     break;
 
   case 5:
 
 /* Line 1806 of yacc.c  */
-#line 57 "param_parser.y"
+#line 58 "param_parser.y"
     {id_name = (yyvsp[(1) - (1)].vid);}
     break;
 
   case 9:
 
 /* Line 1806 of yacc.c  */
-#line 64 "param_parser.y"
+#line 65 "param_parser.y"
     {(yyval.vidorstr) = (yyvsp[(1) - (1)].vstr);}
     break;
 
   case 10:
 
 /* Line 1806 of yacc.c  */
-#line 65 "param_parser.y"
+#line 66 "param_parser.y"
     {(yyval.vidorstr) = (yyvsp[(1) - (1)].vid);}
     break;
 
   case 11:
 
 /* Line 1806 of yacc.c  */
-#line 68 "param_parser.y"
+#line 69 "param_parser.y"
     {param.comment = (yyvsp[(3) - (3)].vidorstr);}
     break;
 
   case 12:
 
 /* Line 1806 of yacc.c  */
-#line 69 "param_parser.y"
+#line 70 "param_parser.y"
     {class_name = (yyvsp[(3) - (3)].vidorstr);}
     break;
 
   case 13:
 
 /* Line 1806 of yacc.c  */
-#line 70 "param_parser.y"
+#line 71 "param_parser.y"
     {param.value_type = (yyvsp[(3) - (3)].vstr);}
     break;
 
   case 14:
 
 /* Line 1806 of yacc.c  */
-#line 71 "param_parser.y"
+#line 72 "param_parser.y"
     {param.xml_name = (yyvsp[(3) - (3)].vidorstr);}
     break;
 
   case 15:
 
 /* Line 1806 of yacc.c  */
-#line 72 "param_parser.y"
+#line 73 "param_parser.y"
     {param.default_value = (yyvsp[(3) - (3)].vidorstr);}
     break;
 
   case 16:
 
 /* Line 1806 of yacc.c  */
-#line 75 "param_parser.y"
+#line 76 "param_parser.y"
     {(yyval.vstr) = (yyvsp[(1) - (1)].vstr);}
     break;
 
   case 17:
 
 /* Line 1806 of yacc.c  */
-#line 76 "param_parser.y"
+#line 77 "param_parser.y"
     {(yyval.vstr) = (yyvsp[(1) - (1)].vstr);}
     break;
 
   case 18:
 
 /* Line 1806 of yacc.c  */
-#line 77 "param_parser.y"
+#line 78 "param_parser.y"
     {(yyval.vstr) = (yyvsp[(1) - (1)].vstr);}
     break;
 
   case 19:
 
 /* Line 1806 of yacc.c  */
-#line 78 "param_parser.y"
+#line 79 "param_parser.y"
     {(yyval.vstr) = (yyvsp[(1) - (1)].vstr);}
     break;
 
 
 
 /* Line 1806 of yacc.c  */
-#line 1549 "param_parser.tab.c"
+#line 1550 "param_parser.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1783,7 +1784,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 81 "param_parser.y"
+#line 82 "param_parser.y"
 
 
 int main(int argc, char* argv[]){
@@ -1801,7 +1802,10 @@ int yyerror(YYLTYPE* l, const char* fname, const char *s){
     exit(1);
 }
 
-void print_parameter(char* class_name, char *parameter_name, parameter param){
-  printf("\"%s\" : {\n\t\"comment\" : \"%s\",\n\t\"class\" : \"%s\",\n\t\"value type\" : \"%s\",\n\t\"default value\" : \"%s\"\n\t\"XML name\" : \"%s\"\n}\n", parameter_name, param.comment, class_name, param.value_type, param.default_value, param.xml_name);
+/*
+void print_parameter(char* class_name, char* parameter_name, parameter param){
+  cout << "\""<< parameter_name << "\" : { \n " << "\t\"comment\" : \""<< param.comment << "\" \n" << "\t\"class\" : \""<< class_name << "\" \n" << "\t\"value type\" : \""<< param.value_type << "\" \n" << "\t\"default value\" : \""<< param.default_value << "\" \n"  << "\t\"XML name\" : \""<< param.xml_name << "\" \n" << "},"<< endl;
 }
+*/
+
 
