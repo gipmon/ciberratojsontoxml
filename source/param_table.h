@@ -1,16 +1,23 @@
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 
 using namespace std;
 
 /************* Estrutura de dados para o parameter **************/
 struct parameter{
+<<<<<<< Updated upstream
   char* comment;
   char* value_type;
   char* default_value;
   char* xml_name;
   char* class_name;
+=======
+  string comment;
+  string value_type;
+  string default_value;
+  string xml_name;
+>>>>>>> Stashed changes
 };
 
 /************************ Definição de Códigos de Erro ************************/
@@ -20,13 +27,12 @@ struct parameter{
 
 /***************** Definição dos mapas e iteradores *****************/
 /* map<string => class, map<string => parameter_name, parameter>> map; */
-extern map<string, map<string, parameter*>*> param_map;
+extern map<string, map<string, parameter> > param_map;
 
 /*
 extern map<string, map<string, parameter> >:: iterator it1;
 extern map<string, parameter>:: iterator it2;;
 /*************************** Protótipos das Funções ***************************/
-
 void init();
 
 /*******************************************************************************
@@ -64,13 +70,12 @@ bool exists(string class_name);
 *******************************************************************************/
 bool exists(string class_name, string parameter_name);
 
-
-void config_standard(string comment, string value_type, string default_type, string xml_name, string param_name);
 /*******************************************************************************
 	Imprimir o parametro no formato json
 *******************************************************************************/
+void print_parameter(string class_name, string parameter_name, parameter param);
 
-
-/*
-void print_parameter(char* class_name, class* parameter_name, parameter param);
-*/
+/*******************************************************************************
+	FUNÇÃO DE INICIALIZAR PARAMETER TABLE
+*******************************************************************************/
+void init();
