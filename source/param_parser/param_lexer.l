@@ -1,6 +1,6 @@
 %{
     #include <stdlib.h>
-    #include "param_parser.tab.h"
+    #include "../param_parser.tab.h"
 
     #define YY_DECL int yylex(YYSTYPE* p, YYLTYPE* l)
 

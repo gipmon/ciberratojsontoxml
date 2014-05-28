@@ -7,7 +7,7 @@
 %{
     #include <stdio.h>
     #include <string>
-	#include "param_table.h"
+	#include "param_parser/param_table.h"
 
 	extern int yyparse(const char* fname);
 	extern FILE* yyin;
@@ -44,7 +44,7 @@
 %defines
 %error-verbose
 %locations
-%verbose
+/*%verbose*/
 %start File
 
 %%
