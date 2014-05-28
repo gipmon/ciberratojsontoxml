@@ -159,7 +159,7 @@ typedef struct YYLTYPE
 
 	int yyerror(YYLTYPE* l, const char* fname, const char *s);
     int yylex(YYSTYPE*, YYLTYPE* l);
-    void print_parameter(string class_name, string parameter_name, parameter param);
+    void print_parameter(char*, char*, parameter);
 
     parameter param;
     char* id_name;
@@ -1456,7 +1456,7 @@ yyreduce:
 
 /* Line 1806 of yacc.c  */
 #line 51 "param_parser.y"
-    { /*pair <string, parameter> pair_to_insert(id_name, param); add_parameter(class_name, pair_to_insert);*/ print_parameter(std::string str(class_name), std::string str(id_name), param); printf("FUNCIONOU!\n"); exit(0); }
+    { /*pair <string, parameter> pair_to_insert(id_name, param); add_parameter(class_name, pair_to_insert);*/print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(0); }
     break;
 
   case 5:
@@ -1801,11 +1801,4 @@ int yyerror(YYLTYPE* l, const char* fname, const char *s){
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(1);
 }
-
-/*
-void print_parameter(char* class_name, char* parameter_name, parameter param){
-  cout << "\""<< parameter_name << "\" : { \n " << "\t\"comment\" : \""<< param.comment << "\" \n" << "\t\"class\" : \""<< class_name << "\" \n" << "\t\"value type\" : \""<< param.value_type << "\" \n" << "\t\"default value\" : \""<< param.default_value << "\" \n"  << "\t\"XML name\" : \""<< param.xml_name << "\" \n" << "},"<< endl;
-}
-*/
-
 
