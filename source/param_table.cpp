@@ -111,6 +111,7 @@ int main (){
     one.comment = (char *)"Time to finish an intermmediate goal";
     char* class_name_one = (char *)"scoring parameters";
     one.value_type = (char *)"uint";
+    one.default_value = (char *)"2";
     one.xml_name = (char *)"KeyTime";
 
     two.comment = (char *)"Aperture of the beacon sensor";
@@ -126,14 +127,29 @@ int main (){
 }
 
 void print_symboltable(){
-    /*
-    cout << "{\n" << endl;
-    for(it = symboltable.begin(); it != symboltable.end(); it++) {
+    
+    for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
         // itator->first = key
         // itator->second = value
-        string key = it->first;
-        cout << "\""<< key << "\" : { \n " << "\t\"comment\" : \""<< find_parameter(key).comment << "\" \n" << "\t\"class\" : \""<< find_parameter(key).class_name << "\" \n" << "\t\"value type\" : \""<< find_parameter(key).value_type << "\" \n" << "\t\"default value\" : \""<< find_parameter(key).default_value << "\" \n"  << "\t\"XML name\" : \""<< find_parameter(key).xml_name << "\" \n" << "},"<< endl;
+        string key = it1->first;
+
+        cout << "\n"<< key <<endl;
+        for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++)
+        {
+          string key2 = it2->first;
+          string comment =it2->second.comment;
+          string value_type  = it2->second.value_type;
+          string default_value = it2->second.default_value;
+          string xml_name = it2->second.xml_name;
+          cout << "\n \t" << key2 <<endl;
+          cout << "\n \t \t \"comment\": " << comment <<endl;
+          cout << "\n \t \t \"value type\": " << value_type <<endl;
+          cout << "\n \t \t \"default value\": " << default_value <<endl;
+          cout << "\n \t \t \"xml name\": " << xml_name <<endl;
+
+        }
+          
+        //cout << "\""<< key << "\" : { \n " << "\t\"comment\" : \""<< find_parameter(key).comment << "\" \n" << "\t\"class\" : \""<< find_parameter(key).class_name << "\" \n" << "\t\"value type\" : \""<< find_parameter(key).value_type << "\" \n" << "\t\"default value\" : \""<< find_parameter(key).default_value << "\" \n"  << "\t\"XML name\" : \""<< find_parameter(key).xml_name << "\" \n" << "},"<< endl;
     }
-    cout << "\n}" << endl;
-    */
+    
 }
