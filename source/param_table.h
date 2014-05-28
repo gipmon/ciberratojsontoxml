@@ -18,9 +18,6 @@ struct parameter{
 /* std::map<char* => class, std::map<char* => parameter_name, parameter>> map; */
 extern std::map<char*, std::map<char*, parameter> > param_map;
 
-/*
-extern std::map<char*, std::map<char*, parameter> >:: iterator it1;
-extern std::map<char*, parameter>:: iterator it2;;
 /*************************** Protótipos das Funções ***************************/
 void init();
 
