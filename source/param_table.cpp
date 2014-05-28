@@ -109,18 +109,32 @@ void print_symboltable(){
         string key = it1->first;
 
         cout << "\n"<< key <<endl;
+
+
         for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++)
         {
-          string key2 = it2->first;
-          string comment =it2->second.comment;
-          string value_type  = it2->second.value_type;
-          string default_value = it2->second.default_value;
-          string xml_name = it2->second.xml_name;
-          cout << "\n \t" << key2 <<endl;
-          cout << "\n \t \t \"comment\": " << comment <<endl;
-          cout << "\n \t \t \"value type\": " << value_type <<endl;
-          cout << "\n \t \t \"default value\": " << default_value <<endl;
-          cout << "\n \t \t \"xml name\": " << xml_name <<endl;
+          if(it2->second.default_value == NULL){
+            string key2 = it2->first;
+            string comment =it2->second.comment;
+            string value_type  = it2->second.value_type;
+            string xml_name = it2->second.xml_name;
+            cout << "\n \t" << key2 <<endl;
+            cout << "\n \t \t \"comment\": " << comment <<endl;
+            cout << "\n \t \t \"value type\": " << value_type <<endl;
+            cout << "\n \t \t \"xml name\": " << xml_name <<endl;
+          }
+          else{
+            string key2 = it2->first;
+            string comment =it2->second.comment;
+            string value_type  = it2->second.value_type;
+            string default_value = it2->second.default_value;
+            string xml_name = it2->second.xml_name;
+            cout << "\n \t" << key2 <<endl;
+            cout << "\n \t \t \"comment\": " << comment <<endl;
+            cout << "\n \t \t \"value type\": " << value_type <<endl;
+            cout << "\n \t \t \"default value\": " << default_value <<endl;
+            cout << "\n \t \t \"xml name\": " << xml_name <<endl;
+          }
 
         }
           
