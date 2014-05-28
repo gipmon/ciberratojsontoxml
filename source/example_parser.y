@@ -1,6 +1,8 @@
 %union{
 	char* vstr;
 	char* vnum;
+	Pose* pose;
+	PoseList* pl
 }
 
 %token CHALLENGE_NAME
@@ -9,7 +11,7 @@
 %token DURATION
 %token SCENARIO_DESCRIPTION
 
-%token 	CLASS_NAME  {// nome das ultimas tres classes}
+%token CLASS_NAME  {// nome das ultimas tres classes}
 %token <vstr> STR
 %token <vnum> NUM
 
@@ -24,6 +26,9 @@
 %token SD_RADIUS
 %token SD_HEIGHT
 %token SD_CORNER_LIST
+
+%tpye <pose> POSE
+%type <pl> POSE_LIST
 
 %%
 
@@ -59,7 +64,7 @@ SP 		: SD_NAME ':' STR
 		| SD_WALLS ':' WALLS
 		| SD_GRID ':' GRID
 
-NUM_PAIR  : '['NUM','NUM']'
+NUM_PAIR    : '['NUM','NUM']'
 			;
 
 BEACONS 	: '[' BEACONS_VALUES ']'
@@ -68,10 +73,10 @@ BEACONS 	: '[' BEACONS_VALUES ']'
 BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}'
 				;
 
-TARGET_AREAS : '[' TARGET_VALUES ']'
-			 ;
+TARGET_AREAS    : '[' TARGET_VALUES ']'
+			    ;
 
-TARGET_VALUES : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}'
+TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}'
 				;
 
 WALLS   : '[' WALLS_VALUES ']'
@@ -85,8 +90,18 @@ CORNER_LIST : NUM_PAIR , CORNER_LIST
 			| NUM_PAIR
 			;
 
+GRID :  '[' POSE_LIST ']'
+	 ;
+
+POSE_LIST : POSE
+		  | POSE_LIST ',' POSE
+		  ;
+
+POSE    :'[' NUM ',' NUM ',' NUM ']'
+		;	
+
 LAST_CLASSES  	: CLASS_NAME ':' '{' PL '}' 
-		;
+		        ;
 
 PL  	: PD ',' PL 
 		| PD
