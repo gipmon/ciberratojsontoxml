@@ -5,49 +5,52 @@ Gramática
     1 File: '{' PL '}'
 
     2 PL: PI
-    3   | PI ',' PL
 
-    4 $@1: /* vazio */
+    3 $@1: /* vazio */
 
-    5 PI: ID $@1 ':' '{' PAL '}'
+    4 PL: PI $@1 ',' PL
 
-    6 PAL: AT
-    7    | AT ',' PAL
+    5 $@2: /* vazio */
 
-    8 IDORSTR: STR
-    9        | ID
+    6 PI: ID $@2 ':' '{' PAL '}'
 
-   10 AT: COMMENT ':' IDORSTR
-   11   | CLASS ':' IDORSTR
-   12   | VALUE_TYPE ':' VT
-   13   | XML_NAME ':' IDORSTR
-   14   | DEFAULT_VALUE ':' IDORSTR
+    7 PAL: AT
+    8    | AT ',' PAL
 
-   15 VT: DOUBLE
-   16   | UINT
-   17   | SWITCH
-   18   | BOOLEAN
+    9 IDORSTR: STR
+   10        | ID
+
+   11 AT: COMMENT ':' IDORSTR
+   12   | CLASS ':' IDORSTR
+   13   | VALUE_TYPE ':' VT
+   14   | XML_NAME ':' IDORSTR
+   15   | DEFAULT_VALUE ':' IDORSTR
+
+   16 VT: DOUBLE
+   17   | UINT
+   18   | SWITCH
+   19   | BOOLEAN
 
 
 Terminais, com as regras aonde aparecem
 
 $end (0) 0
-',' (44) 3 7
-':' (58) 5 10 11 12 13 14
-'{' (123) 1 5
-'}' (125) 1 5
+',' (44) 4 8
+':' (58) 6 11 12 13 14 15
+'{' (123) 1 6
+'}' (125) 1 6
 error (256)
-COMMENT (258) 10
-CLASS (259) 11
-VALUE_TYPE (260) 12
-XML_NAME (261) 13
-DEFAULT_VALUE (262) 14
-STR (263) 8
-ID (264) 5 9
-DOUBLE (265) 15
-UINT (266) 16
-SWITCH (267) 17
-BOOLEAN (268) 18
+COMMENT (258) 11
+CLASS (259) 12
+VALUE_TYPE (260) 13
+XML_NAME (261) 14
+DEFAULT_VALUE (262) 15
+STR (263) 9
+ID (264) 6 10
+DOUBLE (265) 16
+UINT (266) 17
+SWITCH (267) 18
+BOOLEAN (268) 19
 
 
 Não-terminais, com as regras aonde aparecem
@@ -57,19 +60,21 @@ $accept (18)
 File (19)
     à esquerda: 1, à direita: 0
 PL (20)
-    à esquerda: 2 3, à direita: 1 3
-PI (21)
-    à esquerda: 5, à direita: 2 3
-$@1 (22)
-    à esquerda: 4, à direita: 5
-PAL (23)
-    à esquerda: 6 7, à direita: 5 7
-IDORSTR (24)
-    à esquerda: 8 9, à direita: 10 11 13 14
-AT (25)
-    à esquerda: 10 11 12 13 14, à direita: 6 7
-VT (26)
-    à esquerda: 15 16 17 18, à direita: 12
+    à esquerda: 2 4, à direita: 1 4
+$@1 (21)
+    à esquerda: 3, à direita: 4
+PI (22)
+    à esquerda: 6, à direita: 2 4
+$@2 (23)
+    à esquerda: 5, à direita: 6
+PAL (24)
+    à esquerda: 7 8, à direita: 6 8
+IDORSTR (25)
+    à esquerda: 9 10, à direita: 11 12 14 15
+AT (26)
+    à esquerda: 11 12 13 14 15, à direita: 7 8
+VT (27)
+    à esquerda: 16 17 18 19, à direita: 13
 
 
 estado 0
@@ -100,11 +105,11 @@ estado 2
 
 estado 3
 
-    5 PI: ID . $@1 ':' '{' PAL '}'
+    6 PI: ID . $@2 ':' '{' PAL '}'
 
-    $default  reduzir usando a regra 4 ($@1)
+    $default  reduzir usando a regra 5 ($@2)
 
-    $@1  ir para o estado 7
+    $@2  ir para o estado 7
 
 
 estado 4
@@ -117,11 +122,12 @@ estado 4
 estado 5
 
     2 PL: PI .
-    3   | PI . ',' PL
+    4   | PI . $@1 ',' PL
 
-    ','  fazer shift, e ir para o estado 9
-
+    ','       reduzir usando a regra 3 ($@1)
     $default  reduzir usando a regra 2 (PL)
+
+    $@1  ir para o estado 9
 
 
 estado 6
@@ -133,7 +139,7 @@ estado 6
 
 estado 7
 
-    5 PI: ID $@1 . ':' '{' PAL '}'
+    6 PI: ID $@2 . ':' '{' PAL '}'
 
     ':'  fazer shift, e ir para o estado 10
 
@@ -147,246 +153,253 @@ estado 8
 
 estado 9
 
-    3 PL: PI ',' . PL
+    4 PL: PI $@1 . ',' PL
 
-    ID  fazer shift, e ir para o estado 3
-
-    PL  ir para o estado 11
-    PI  ir para o estado 5
+    ','  fazer shift, e ir para o estado 11
 
 
 estado 10
 
-    5 PI: ID $@1 ':' . '{' PAL '}'
+    6 PI: ID $@2 ':' . '{' PAL '}'
 
     '{'  fazer shift, e ir para o estado 12
 
 
 estado 11
 
-    3 PL: PI ',' PL .
+    4 PL: PI $@1 ',' . PL
 
-    $default  reduzir usando a regra 3 (PL)
+    ID  fazer shift, e ir para o estado 3
+
+    PL  ir para o estado 13
+    PI  ir para o estado 5
 
 
 estado 12
 
-    5 PI: ID $@1 ':' '{' . PAL '}'
+    6 PI: ID $@2 ':' '{' . PAL '}'
 
-    COMMENT        fazer shift, e ir para o estado 13
-    CLASS          fazer shift, e ir para o estado 14
-    VALUE_TYPE     fazer shift, e ir para o estado 15
-    XML_NAME       fazer shift, e ir para o estado 16
-    DEFAULT_VALUE  fazer shift, e ir para o estado 17
+    COMMENT        fazer shift, e ir para o estado 14
+    CLASS          fazer shift, e ir para o estado 15
+    VALUE_TYPE     fazer shift, e ir para o estado 16
+    XML_NAME       fazer shift, e ir para o estado 17
+    DEFAULT_VALUE  fazer shift, e ir para o estado 18
 
-    PAL  ir para o estado 18
-    AT   ir para o estado 19
+    PAL  ir para o estado 19
+    AT   ir para o estado 20
 
 
 estado 13
 
-   10 AT: COMMENT . ':' IDORSTR
+    4 PL: PI $@1 ',' PL .
 
-    ':'  fazer shift, e ir para o estado 20
+    $default  reduzir usando a regra 4 (PL)
 
 
 estado 14
 
-   11 AT: CLASS . ':' IDORSTR
+   11 AT: COMMENT . ':' IDORSTR
 
     ':'  fazer shift, e ir para o estado 21
 
 
 estado 15
 
-   12 AT: VALUE_TYPE . ':' VT
+   12 AT: CLASS . ':' IDORSTR
 
     ':'  fazer shift, e ir para o estado 22
 
 
 estado 16
 
-   13 AT: XML_NAME . ':' IDORSTR
+   13 AT: VALUE_TYPE . ':' VT
 
     ':'  fazer shift, e ir para o estado 23
 
 
 estado 17
 
-   14 AT: DEFAULT_VALUE . ':' IDORSTR
+   14 AT: XML_NAME . ':' IDORSTR
 
     ':'  fazer shift, e ir para o estado 24
 
 
 estado 18
 
-    5 PI: ID $@1 ':' '{' PAL . '}'
+   15 AT: DEFAULT_VALUE . ':' IDORSTR
 
-    '}'  fazer shift, e ir para o estado 25
+    ':'  fazer shift, e ir para o estado 25
 
 
 estado 19
 
-    6 PAL: AT .
-    7    | AT . ',' PAL
+    6 PI: ID $@2 ':' '{' PAL . '}'
 
-    ','  fazer shift, e ir para o estado 26
-
-    $default  reduzir usando a regra 6 (PAL)
+    '}'  fazer shift, e ir para o estado 26
 
 
 estado 20
 
-   10 AT: COMMENT ':' . IDORSTR
+    7 PAL: AT .
+    8    | AT . ',' PAL
 
-    STR  fazer shift, e ir para o estado 27
-    ID   fazer shift, e ir para o estado 28
+    ','  fazer shift, e ir para o estado 27
 
-    IDORSTR  ir para o estado 29
+    $default  reduzir usando a regra 7 (PAL)
 
 
 estado 21
 
-   11 AT: CLASS ':' . IDORSTR
+   11 AT: COMMENT ':' . IDORSTR
 
-    STR  fazer shift, e ir para o estado 27
-    ID   fazer shift, e ir para o estado 28
+    STR  fazer shift, e ir para o estado 28
+    ID   fazer shift, e ir para o estado 29
 
     IDORSTR  ir para o estado 30
 
 
 estado 22
 
-   12 AT: VALUE_TYPE ':' . VT
+   12 AT: CLASS ':' . IDORSTR
 
-    DOUBLE   fazer shift, e ir para o estado 31
-    UINT     fazer shift, e ir para o estado 32
-    SWITCH   fazer shift, e ir para o estado 33
-    BOOLEAN  fazer shift, e ir para o estado 34
+    STR  fazer shift, e ir para o estado 28
+    ID   fazer shift, e ir para o estado 29
 
-    VT  ir para o estado 35
+    IDORSTR  ir para o estado 31
 
 
 estado 23
 
-   13 AT: XML_NAME ':' . IDORSTR
+   13 AT: VALUE_TYPE ':' . VT
 
-    STR  fazer shift, e ir para o estado 27
-    ID   fazer shift, e ir para o estado 28
+    DOUBLE   fazer shift, e ir para o estado 32
+    UINT     fazer shift, e ir para o estado 33
+    SWITCH   fazer shift, e ir para o estado 34
+    BOOLEAN  fazer shift, e ir para o estado 35
 
-    IDORSTR  ir para o estado 36
+    VT  ir para o estado 36
 
 
 estado 24
 
-   14 AT: DEFAULT_VALUE ':' . IDORSTR
+   14 AT: XML_NAME ':' . IDORSTR
 
-    STR  fazer shift, e ir para o estado 27
-    ID   fazer shift, e ir para o estado 28
+    STR  fazer shift, e ir para o estado 28
+    ID   fazer shift, e ir para o estado 29
 
     IDORSTR  ir para o estado 37
 
 
 estado 25
 
-    5 PI: ID $@1 ':' '{' PAL '}' .
+   15 AT: DEFAULT_VALUE ':' . IDORSTR
 
-    $default  reduzir usando a regra 5 (PI)
+    STR  fazer shift, e ir para o estado 28
+    ID   fazer shift, e ir para o estado 29
+
+    IDORSTR  ir para o estado 38
 
 
 estado 26
 
-    7 PAL: AT ',' . PAL
+    6 PI: ID $@2 ':' '{' PAL '}' .
 
-    COMMENT        fazer shift, e ir para o estado 13
-    CLASS          fazer shift, e ir para o estado 14
-    VALUE_TYPE     fazer shift, e ir para o estado 15
-    XML_NAME       fazer shift, e ir para o estado 16
-    DEFAULT_VALUE  fazer shift, e ir para o estado 17
-
-    PAL  ir para o estado 38
-    AT   ir para o estado 19
+    $default  reduzir usando a regra 6 (PI)
 
 
 estado 27
 
-    8 IDORSTR: STR .
+    8 PAL: AT ',' . PAL
 
-    $default  reduzir usando a regra 8 (IDORSTR)
+    COMMENT        fazer shift, e ir para o estado 14
+    CLASS          fazer shift, e ir para o estado 15
+    VALUE_TYPE     fazer shift, e ir para o estado 16
+    XML_NAME       fazer shift, e ir para o estado 17
+    DEFAULT_VALUE  fazer shift, e ir para o estado 18
+
+    PAL  ir para o estado 39
+    AT   ir para o estado 20
 
 
 estado 28
 
-    9 IDORSTR: ID .
+    9 IDORSTR: STR .
 
     $default  reduzir usando a regra 9 (IDORSTR)
 
 
 estado 29
 
-   10 AT: COMMENT ':' IDORSTR .
+   10 IDORSTR: ID .
 
-    $default  reduzir usando a regra 10 (AT)
+    $default  reduzir usando a regra 10 (IDORSTR)
 
 
 estado 30
 
-   11 AT: CLASS ':' IDORSTR .
+   11 AT: COMMENT ':' IDORSTR .
 
     $default  reduzir usando a regra 11 (AT)
 
 
 estado 31
 
-   15 VT: DOUBLE .
+   12 AT: CLASS ':' IDORSTR .
 
-    $default  reduzir usando a regra 15 (VT)
+    $default  reduzir usando a regra 12 (AT)
 
 
 estado 32
 
-   16 VT: UINT .
+   16 VT: DOUBLE .
 
     $default  reduzir usando a regra 16 (VT)
 
 
 estado 33
 
-   17 VT: SWITCH .
+   17 VT: UINT .
 
     $default  reduzir usando a regra 17 (VT)
 
 
 estado 34
 
-   18 VT: BOOLEAN .
+   18 VT: SWITCH .
 
     $default  reduzir usando a regra 18 (VT)
 
 
 estado 35
 
-   12 AT: VALUE_TYPE ':' VT .
+   19 VT: BOOLEAN .
 
-    $default  reduzir usando a regra 12 (AT)
+    $default  reduzir usando a regra 19 (VT)
 
 
 estado 36
 
-   13 AT: XML_NAME ':' IDORSTR .
+   13 AT: VALUE_TYPE ':' VT .
 
     $default  reduzir usando a regra 13 (AT)
 
 
 estado 37
 
-   14 AT: DEFAULT_VALUE ':' IDORSTR .
+   14 AT: XML_NAME ':' IDORSTR .
 
     $default  reduzir usando a regra 14 (AT)
 
 
 estado 38
 
-    7 PAL: AT ',' PAL .
+   15 AT: DEFAULT_VALUE ':' IDORSTR .
 
-    $default  reduzir usando a regra 7 (PAL)
+    $default  reduzir usando a regra 15 (AT)
+
+
+estado 39
+
+    8 PAL: AT ',' PAL .
+
+    $default  reduzir usando a regra 8 (PAL)

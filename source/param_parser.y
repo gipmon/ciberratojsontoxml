@@ -48,7 +48,7 @@
 %start File
 
 %%
-File : '{' PL '}' { print_symboltable(); printf("FUNCIONOU!\n"); exit(0); }
+File : '{' PL '}' { print_symboltable(); exit(0); }
 	 ;
 
 PL   :  PI {add_parameter(class_name, param_name, param);}
