@@ -1,10 +1,18 @@
+%union{
+	char* vstr;
+	char* vnum;
+}
+
 %token CHALLENGE_NAME
 %token CHALLENGE_TYPE
 %token CYCLE_TIME
 %token DURATION
+%token SCENARIO_DESCRIPTION
 
-%token 	CLASS_O3  {// vai os id dO O3}
-%token STR
+%token 	CLASS_NAME  {// nome das ultimas tres classes}
+%token <vstr> STR
+%token <vnum> NUM
+
 
 %token SD_NAME  {// SD => scenario_description}
 %token SD_DIMENSIONS
@@ -12,9 +20,10 @@
 %token SD_TARGET_AREAS
 %token SD_WALLS
 %token SD_GRID
-
-%token SCENARIO_DESCRIPTION
-%token VP_NUM
+%token SD_POSITION
+%token SD_RADIUS
+%token SD_HEIGHT
+%token SD_CORNER_LIST
 
 %%
 
@@ -23,43 +32,67 @@ File 	: '{' OL '}' {// OL => Object List }
 OL  	: CLASS ',' OL
 		| CLASS
 
-CLASS 	: O1 ',' OL  {// 4 primeiros atributos}
-	 	| O3 ',' OL  {// 3 ultimos classes}   
-	 	| O2 ',' OL  {// senario description}
+CLASS 	: DEFAULT_VALUES ',' OL  {// 4 primeiros atributos}
+	 	| LAST_CLASSES ',' OL  {// 3 ultimos classes}   
+	 	| SD ',' OL  {// senario description}
 	 	;
 
 
 
-O1  	: CHALLENGE_NAME ':' STR
-		| CHALLENGE_TYPE ':' STR
-		| CYCLE_TIME ':' STR
-		| DURATION ':' STR
-		;
+DEFAULT_VALUES  : CHALLENGE_NAME ':' STR
+				| CHALLENGE_TYPE ':' STR
+				| CYCLE_TIME ':' STR
+				| DURATION ':' STR
+				;
 
-O2  	: SCENARIO_DESCRIPTION ':' '{' SDL '}'
-		;
+SD 	: SCENARIO_DESCRIPTION ':' '{' SDL '}'
+	;
 
 SDL 	: SP ',' SDL
 		: SP
 		;
 
 SP 		: SD_NAME ':' STR
-		| SD_DIMENSIONS ':' VP
-		| SD_BEACONS ':' 
-		| SD_TARGET_AREAS ':'
-		| SD_WALLS ':'
-		| SD_GRID ':'
+		| SD_DIMENSIONS ':' DIMENSIONS
+		| SD_BEACONS ':' BEACONS
+		| SD_TARGET_AREAS ':' TARGET_AREAS 
+		| SD_WALLS ':' WALLS
+		| SD_GRID ':' GRID
 
-VP      : '['VP_NUM','VP_NUM']'
+NUM_PAIR  : '['NUM','NUM']'
+			;
+
+BEACONS 	: '[' BEACONS_VALUES ']'
+			;
+
+BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}'
+				;
+
+TARGET_AREAS : '[' TARGET_VALUES ']'
+			 ;
+
+TARGET_VALUES : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}'
+				;
+
+WALLS   : '[' WALLS_VALUES ']'
 		;
 
-O3  	: CLASS_O3 ':' '{' PL '}' 
+WALLS_VALUES : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' ',' WALLS_VALUE
+			 | '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}'
+			 ;
+
+CORNER_LIST : NUM_PAIR , CORNER_LIST
+			| NUM_PAIR
+			;
+
+LAST_CLASSES  	: CLASS_NAME ':' '{' PL '}' 
 		;
 
 PL  	: PD ',' PL 
 		| PD
+		| /*lameda*/
 		;
 
-PD  	: PO3 ':' STR  {// PO3 => Parameter name O3     STR => value O3}
+PD  	: PSD ':' NUM  {// PSD => Parameter name O3     STR => value O3}
 
 %%
