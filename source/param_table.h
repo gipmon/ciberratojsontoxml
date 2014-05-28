@@ -65,3 +65,8 @@ void print_parameter(char* class_name, char* parameter_name, parameter param);
 	FUNÇÃO DE INICIALIZAR PARAMETER TABLE
 *******************************************************************************/
 void init();
+
+/*******************************************************************************
+	PRINT SYMBOL TABLE
+*******************************************************************************/
+void print_symboltable();

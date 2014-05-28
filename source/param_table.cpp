@@ -98,33 +98,8 @@ bool exists(char* class_name, char* parameter_name){
   return exists(class_name) && find(class_name).count(parameter_name)!=0;
 }
 
-void print_symboltable();
 std::map<char*, std::map<char*, parameter> >::iterator it1;
 std::map<char*, parameter>::iterator it2;
-
-int main (){
-    parameter one;
-    parameter two;
-    char* key1 = (char *)"key time"; /* param name*/
-    char* key2 = (char *)"beacon sensor aperture";
-
-    one.comment = (char *)"Time to finish an intermmediate goal";
-    char* class_name_one = (char *)"scoring parameters";
-    one.value_type = (char *)"uint";
-    one.default_value = (char *)"2";
-    one.xml_name = (char *)"KeyTime";
-
-    two.comment = (char *)"Aperture of the beacon sensor";
-    char* class_name_two = (char *)"robot modelling parameters";
-    two.value_type = (char *)"double";
-    two.default_value = (char *)"PI";
-    two.xml_name = (char *)"BeaconAperture";
-
-    add_parameter(class_name_one, key1, one);
-    add_parameter(class_name_two, key2, two);
-
-    print_symboltable();
-}
 
 void print_symboltable(){
     
@@ -149,7 +124,34 @@ void print_symboltable(){
 
         }
           
-        //cout << "\""<< key << "\" : { \n " << "\t\"comment\" : \""<< find_parameter(key).comment << "\" \n" << "\t\"class\" : \""<< find_parameter(key).class_name << "\" \n" << "\t\"value type\" : \""<< find_parameter(key).value_type << "\" \n" << "\t\"default value\" : \""<< find_parameter(key).default_value << "\" \n"  << "\t\"XML name\" : \""<< find_parameter(key).xml_name << "\" \n" << "},"<< endl;
-    }
+      }
     
 }
+
+/*
+int main (){
+    parameter one;
+    parameter two;
+    char* key1 = (char *)"key time"; // param name
+    char* key2 = (char *)"beacon sensor aperture";
+
+    one.comment = (char *)"Time to finish an intermmediate goal";
+    char* class_name_one = (char *)"scoring parameters";
+    one.value_type = (char *)"uint";
+    one.default_value = (char *)"2";
+    one.xml_name = (char *)"KeyTime";
+
+    two.comment = (char *)"Aperture of the beacon sensor";
+    char* class_name_two = (char *)"robot modelling parameters";
+    two.value_type = (char *)"double";
+    two.default_value = (char *)"PI";
+    two.xml_name = (char *)"BeaconAperture";
+
+    add_parameter(class_name_one, key1, one);
+    add_parameter(class_name_two, key2, two);
+
+    print_symboltable();
+}
+
+
+*/

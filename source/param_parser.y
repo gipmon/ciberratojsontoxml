@@ -17,7 +17,7 @@
     void print_parameter(char*, char*, parameter);
 
     parameter param;
-    char* id_name;
+    char* param_name;
     char* class_name;
 %}
 
@@ -48,14 +48,14 @@
 %start File
 
 %%
-File : '{' PL '}' { print_parameter(class_name, id_name, param); printf("FUNCIONOU!\n"); exit(0); }
+File : '{' PL '}' { print_symboltable(); printf("FUNCIONOU!\n"); exit(0); }
 	 ;
 
-PL   :  PI
-	 |  PI ',' PL
+PL   :  PI {add_parameter(class_name, param_name, param);}
+	 |  PI {add_parameter(class_name, param_name, param);} ',' PL
 	 ;
 
-PI   : ID {id_name = $1;} ':' '{' PAL '}'
+PI   : ID {param_name = $1;} ':' '{' PAL '}'
 	 ;
 
 PAL  : AT
