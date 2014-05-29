@@ -59,56 +59,37 @@ bool add_parameter(char* class_name, char* param_name, parameter param){
   return true;
 }
 
-/*
-  NOTA: Quando soubermos que o parâmetro existe, temos armazenado numa variavel e queremos saber se existe default value é mais eficiente fazer: param.default_value.length==0
-*/
 bool has_default_value(char* class_name, char* parameter_name){
-  if(!exists(class_name, parameter_name)){
-    throw PARAMETER_DOESNT_EXISTS;
-  }
 
-  parameter param = find(class_name, parameter_name);
-  return true;
-  /*
-  if(param.default_value()==0){
-    return false;
-  }else{
-    return true;
-  }
-  */
 }
 
-std::map<char*, parameter> find(char* class_name){
-  if(!exists(class_name)){
-    throw MAP_CLASS_DOESNT_EXISTS;
-  }
-  return param_map[class_name];
+bool parameter_exists(char* class_name, char* parameter_name){
+
+}
+
+bool get_default_value(char* class_name, char* parameter_name){
+
+}
+
+char* get_xml_name(char* class_name, char* parameter_name){
+
+}
+
+char* get_comment(char* class_name, char* parameter_name){
+
+}
+
+bool valid_value_type(char* class_name, char* parameter_name, char* value){
+  /* procura saber qual é o value type do parametro e depois consuante o value type do parametro tem de se validar os tokens recebidos pelo value. pode ser feito em flex isto, falar com o professor
+  o value vem da segunda gramática invocado em c++
+  */
 }
 
 void print_parameter(char* class_name, char* parameter_name, parameter param){
   cout << "\""<< parameter_name << "\" : { \n " << "\t\"comment\" : \""<< param.comment << "\" \n" << "\t\"class\" : \""<< class_name << "\" \n" << "\t\"value type\" : \""<< param.value_type << "\" \n" << "\t\"default value\" : \""<< param.default_value << "\" \n"  << "\t\"XML name\" : \""<< param.xml_name << "\" \n" << "},"<< endl;
 }
 
-parameter find(char* class_name, char* parameter_name){
-  if(!exists(class_name, parameter_name)){
-  	throw PARAMETER_DOESNT_EXISTS;
-  }
-  return find(class_name)[parameter_name];
-}
-
-bool exists(char* class_name){
-  it1 = param_map.find(class_name);
-  return it1!=param_map.end();
-}
-
-bool exists(char* class_name, char* parameter_name){
-  return exists(class_name) && find(class_name).count(parameter_name)!=0;
-}
-
 void print_symboltable(){
-    // itator->first = key
-    // itator->second = value
-
     for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
         cout << it1->first << "\n" << endl;
         for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++){
