@@ -7,8 +7,13 @@ struct Point{
     int x, y;
 };
 
+/* dois tiupos de paredes, uma q tem */
+thickness = 0; linha poligonal fechada, define os 6 pontos da paredes
+ou é thickness ≠ 0, define só 3 pontos
+
 struct Wall{
     int height;
+    int thickness;
     LinkedList<Point>* corner_list;
 };
 

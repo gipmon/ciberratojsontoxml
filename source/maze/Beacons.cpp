@@ -9,6 +9,11 @@ struct Beacon{
     int height;
 };
 
+/*
+não pode ter um beacon fora do senario de jogo etc
+o beacon não pode estar sobreposto
+*/
+
 class Beacons {
     private:
     LinkedList<Beacon>* beacons = new LinkedList<Beacon>();

@@ -6,8 +6,9 @@ using namespace std;
 struct TargetArea{
     Point position;
     int radius;
-    int height;
 };
+
+/* no futuro pode ter várias formas, para já é circular*/
 
 class TargetAreas {
     private:
