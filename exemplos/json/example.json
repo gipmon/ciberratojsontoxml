@@ -37,7 +37,7 @@
         "motors noise" : 1.5,
         "beacon sensor noise": 2,
 
-        "beacon sensor aperture" : 3,14
+        "beacon sensor aperture" : 3.14
     },
 
     "scoring parameters" : {
