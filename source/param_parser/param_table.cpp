@@ -60,29 +60,30 @@ bool add_parameter(char* class_name, char* param_name, parameter param){
 }
 
 bool has_default_value(char* class_name, char* parameter_name){
-
+  return 0;
 }
 
 bool parameter_exists(char* class_name, char* parameter_name){
-
+  return 0;
 }
 
 bool get_default_value(char* class_name, char* parameter_name){
-
+  return 0;
 }
 
 char* get_xml_name(char* class_name, char* parameter_name){
-
+  return 0;
 }
 
 char* get_comment(char* class_name, char* parameter_name){
-
+  return 0;
 }
 
 bool valid_value_type(char* class_name, char* parameter_name, char* value){
   /* procura saber qual é o value type do parametro e depois consuante o value type do parametro tem de se validar os tokens recebidos pelo value. pode ser feito em flex isto, falar com o professor
   o value vem da segunda gramática invocado em c++
   */
+    return 0;
 }
 
 void print_parameter(char* class_name, char* parameter_name, parameter param){

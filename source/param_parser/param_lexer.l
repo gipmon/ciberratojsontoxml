@@ -2,7 +2,7 @@
     #include <stdlib.h>
     #include "../param_parser.tab.h"
 
-    #define YY_DECL int yylex(YYSTYPE* p, YYLTYPE* l)
+    #define YY_DECL int param_lex(YYSTYPE* p, YYLTYPE* l)
 
 %}
 
@@ -63,6 +63,8 @@ boolean 		["]boolean["]
 
 
 [[:blank:]]		{ }
+
+\n 				{ }
 
 . { return yytext[0]; }
 %%

@@ -3,11 +3,17 @@
 
 using namespace std;
 
+/* Farol */
 struct Beacon{
     Point position;
     int radius;
     int height;
 };
+
+/*
+não pode ter um beacon fora do senario de jogo etc
+o beacon não pode estar sobreposto
+*/
 
 class Beacons {
     private:

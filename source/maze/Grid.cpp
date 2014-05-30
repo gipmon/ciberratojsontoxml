@@ -3,28 +3,28 @@
 
 using namespace std;
 
-struct Point{
-    int x, y, z;
+struct Pose{
+    int x, y, teta; /* teta => orientação do robot */
 };
 
 class Grid {
     private:
-    LinkedList<Point>* PointsList = new LinkedList<Point>();
+    LinkedList<Pose>* PosesList = new LinkedList<Pose>();
 
 	public:
-    void addPoint(Point add){
+    void addPose(Pose add){
 
     }
 
-    void removePoint(Point removePoint){
+    void removePose(Pose removePose){
 
     }
 
-    void modifyPoint(Point toModify, Point newPoint){
+    void modifyPose(Pose toModify, Pose newPose){
 
     }
 
-    LinkedList<Point>* pointsList(){
+    LinkedList<Pose>* PosesList(){
 
     }
 };
