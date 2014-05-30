@@ -17,5 +17,5 @@ class Maze {
     Grid* grid = new Grid();
 
 	public:
-    
+
 };

@@ -1,8 +1,8 @@
 %{
     #include <stdlib.h>
-    #include "description_parser.tab.h"
+    #include "../maze_parser.tab.h"
 
-    #define YY_DECL int yylex(YYSTYPE* p, YYLTYPE* l)
+    #define YY_DECL int maze_lex(YYSTYPE* p, YYLTYPE* l)
 
 %}
 

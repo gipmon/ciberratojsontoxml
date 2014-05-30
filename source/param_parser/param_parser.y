@@ -14,8 +14,11 @@
 
 	int param_error(YYLTYPE* l, const char* fname, const char *s);
     int param_lex(YYSTYPE*, YYLTYPE* l);
-    void print_parameter(char*, char*, parameter);
+    void reset_variables();
 
+    ParamTable *param_table = new ParamTable();
+
+    /* tmp variables */
     parameter param;
     char* param_name;
     char* class_name;
@@ -49,11 +52,11 @@
 %name-prefix="param_"
 
 %%
-File : '{' PL '}' { print_symboltable(); exit(0); }
+File : '{' PL '}' { param_table->print_symboltable(); return 0; }
 	 ;
 
-PL   :  PI {add_parameter(class_name, param_name, param);}
-	 |  PI {add_parameter(class_name, param_name, param);} ',' PL
+PL   : PI {param_table->add_parameter(class_name, param_name, param); reset_variables();}
+	 | PI {param_table->add_parameter(class_name, param_name, param); reset_variables();} ',' PL
 	 ;
 
 PI   : ID {param_name = $1;} ':' '{' PAL '}'
@@ -95,4 +98,11 @@ int param_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* yytext;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(1);
+}
+
+void reset_variables(){
+	parameter tmp;
+	param = tmp;
+	char* param_name = '\0';
+    char* class_name = '\0';
 }

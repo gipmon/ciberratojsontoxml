@@ -1,7 +1,6 @@
 %union{
 	char* vstr;
 	char* vnum;
-	
 }
 
 %{
@@ -9,11 +8,11 @@
     #include <string>
 	//#include "param_parser/param_table.h"
 
-	extern int yyparse(const char* fname);
+	extern int maze_parse(const char* fname);
 	extern FILE* yyin;
 
-	int yyerror(YYLTYPE* l, const char* fname, const char *s);
-    int yylex(YYSTYPE*, YYLTYPE* l);
+	int maze_error(YYLTYPE* l, const char* fname, const char *s);
+    int maze_lex(YYSTYPE*, YYLTYPE* l);
 
 %}
 
@@ -23,12 +22,12 @@
 %token DURATION
 %token SCENARIO_DESCRIPTION
 
-%token CLASS_NAME  
+%token CLASS_NAME
 %token <vstr> STR
 %token <vnum> NUM
 
 
-%token SD_NAME  
+%token SD_NAME
 %token SD_DIMENSIONS
 %token SD_BEACONS
 %token SD_TARGET_AREAS
@@ -45,22 +44,23 @@
 %defines
 %error-verbose
 %locations
-%verbose
+/*%verbose*/
+%name-prefix="maze_"
 
 %start File
 
 %%
 
-File 	: '{' OL '}' 
+File 	: '{' OL '}'
 		;
 
 OL  	: CLASS ',' OL
 		| CLASS
 		;
 
-CLASS 	: DEFAULT_VALUES 
-	 	| LAST_CLASSES   
-	 	| SD 
+CLASS 	: DEFAULT_VALUES
+	 	| LAST_CLASSES
+	 	| SD
 	 	;
 
 
@@ -81,7 +81,7 @@ SDL 	: SP ',' SDL
 SP 		: SD_NAME ':' STR
 		| SD_DIMENSIONS ':' NUM_PAIR
 		| SD_BEACONS ':' BEACONS
-		| SD_TARGET_AREAS ':' TARGET_AREAS 
+		| SD_TARGET_AREAS ':' TARGET_AREAS
 		| SD_WALLS ':' WALLS
 		| SD_GRID ':' GRID
 		;
@@ -121,17 +121,17 @@ POSE_LIST : POSE
 		  ;
 
 POSE    :'[' NUM ',' NUM ',' NUM ']'
-		;	
+		;
 
-LAST_CLASSES  	: STR ':' '{' PL '}' 
+LAST_CLASSES  	: STR ':' '{' PL '}'
 		        ;
 
-PL  	: PD ',' PL 
+PL  	: PD ',' PL
 		| PD
 		| /*lameda*/
 		;
 
-PD  	: STR ':' NUM  
+PD  	: STR ':' NUM
 		;
 
 %%
@@ -141,12 +141,12 @@ int main(int argc, char* argv[]){
 		printf("ERRRO!\n");
 		return 0;
 	}
-	yyparse(argv[1]);
+	maze_parse(argv[1]);
 	printf("FUNCIONOU\n");
 	return 1;
 }
 
-int yyerror(YYLTYPE* l, const char* fname, const char *s){
+int maze_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* yytext;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(1);
