@@ -30,6 +30,6 @@ maze_parser: maze_parser.y maze_parser.l
 	$(CC) maze_parser.tab.c maze_parser/maze_lexer.c -o maze_output
 	rm -rf maze_parser/*.o
 	rm -rf *.o
-	rm -f maze_parser/param_lexer.c
+	rm -f maze_parser/maze_lexer.c
 	rm -f *.tab.c
 	rm -f *.tab.h
