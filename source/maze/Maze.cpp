@@ -3,14 +3,14 @@
 
 using namespace std;
 
-struct Point{
-    int x, y;
+struct Dimensions{
+    int width, height;
 };
 
 class Maze {
     private:
     char* name;
-    Point* dimension = new Point(); /* largura e altura do labirinto */
+    Dimensions* dimension = new Dimensions();
     Beacons* beacons = new Beacons();
     TargetAreas* targetareas = new TargetAreas();
     Walls* walls = new Walls();

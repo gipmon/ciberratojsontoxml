@@ -64,6 +64,8 @@ boolean 		["]boolean["]
 
 [[:blank:]]		{ }
 
+\n 				{ }
+
 . { return yytext[0]; }
 %%
 
