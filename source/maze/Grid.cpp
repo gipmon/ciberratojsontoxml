@@ -4,7 +4,7 @@
 using namespace std;
 
 struct Point{
-    int x, y, z;
+    int x, y, teta; /* teta => orientação do robot */
 };
 
 class Grid {

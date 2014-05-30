@@ -9,11 +9,11 @@
     #include <string>
 	#include "param_parser/param_table.h"
 
-	extern int yyparse(const char* fname);
+	extern int param_parse(const char* fname);
 	extern FILE* yyin;
 
-	int yyerror(YYLTYPE* l, const char* fname, const char *s);
-    int yylex(YYSTYPE*, YYLTYPE* l);
+	int param_error(YYLTYPE* l, const char* fname, const char *s);
+    int param_lex(YYSTYPE*, YYLTYPE* l);
     void print_parameter(char*, char*, parameter);
 
     parameter param;
@@ -46,6 +46,7 @@
 %locations
 /*%verbose*/
 %start File
+%name-prefix="param_"
 
 %%
 File : '{' PL '}' { print_symboltable(); exit(0); }
@@ -86,11 +87,11 @@ int main(int argc, char* argv[]){
 		printf("ERRRO!\n");
 		return 0;
 	}
-	yyparse(argv[1]);
+	param_parse(argv[1]);
 	return 1;
 }
 
-int yyerror(YYLTYPE* l, const char* fname, const char *s){
+int param_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* yytext;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
     exit(1);
