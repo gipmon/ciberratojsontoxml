@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
 		return 0;
 	}
 	maze_parse(argv[2]);
+	challenge->printTest();
 
-	printf("FUNCIONOU\n");
 	return 1;
 }

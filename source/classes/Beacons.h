@@ -22,4 +22,6 @@ class Beacons {
     void removeBeacon(Beacon removeWall);
     void modifyBeacon(Beacon toModify, Beacon newWall);
     std::vector<Beacon> beaconsList();
+
+    void printTest();
 };

@@ -16,4 +16,6 @@ class Grid {
     void removePose(Pose removePose);
     void modifyPose(Pose toModify, Pose newPose);
     std::vector<Pose> getPosesList();
+
+    void printTest();
 };

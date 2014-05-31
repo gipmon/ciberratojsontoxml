@@ -2,12 +2,12 @@
 #define POINT_H
 class Point {
     private:
-    int x, y;
+    double x, y;
 
 	public:
-    Point(int x, int y) : x(x), y(y) {}
+    Point(double x, double y) : x(x), y(y) {}
     Point(){}
-    int getX(){ return x; }
-    int getY(){ return y; }
+    double getX(){ return x; }
+    double getY(){ return y; }
 };
 #endif

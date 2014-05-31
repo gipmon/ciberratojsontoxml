@@ -69,3 +69,11 @@ void Maze::addPose(int xx, int yy, int t){
 std::vector<Pose> Maze::getPoses(){
 	return grid->getPosesList();
 }
+
+void Maze::printTest(){
+	std::cout << "scenario description : \n\t" << "name : " << name << "\n\t" << "dimensions : " << "[" << dimensions.width << ", " << dimensions.height << "],\n\t" << std::endl;
+	beacons->printTest();
+	targetareas->printTest();
+	walls->printTest();
+	grid->printTest();
+}

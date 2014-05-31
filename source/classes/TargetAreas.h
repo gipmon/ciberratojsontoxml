@@ -20,4 +20,6 @@ class TargetAreas {
     void removeTargetArea(TargetArea removeWall);
     void modifyTargetArea(TargetArea toModify, TargetArea newWall);
     std::vector<TargetArea> targetAreasList();
+
+    void printTest();
 };

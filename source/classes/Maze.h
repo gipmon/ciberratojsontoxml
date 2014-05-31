@@ -45,4 +45,5 @@ class Maze {
     void addPose(int x, int y, int teta);
     std::vector<Pose> getPoses();
 
+    void printTest();
 };

@@ -9,8 +9,6 @@ class Challenge {
 em milissegundos. */
     int duration; /* e um numero inteiro e indica a duracao total da simulacao em numero de ciclos. */
 
-    Maze *maze; /* descreve o cenario de atuacao dos robos */
-
     //ExtraParamList *pm = new ExtraParamList();
     /* Na ExtraParamList estão presentes 3 classes:
         - A entrada "robot modelling parameters" indica os valores de par
@@ -19,6 +17,8 @@ em milissegundos. */
         - A entrada "debugging parameters" indica os valores de parametros que permitem o acesso a informacao extra durante a fase de desenvolvimento. */
 
 	public:
+    Maze *maze; /* descreve o cenario de atuacao dos robos */
+
     Challenge(char* ct, char* cn, int t, int d){
         challenge_name = cn;
         challenge_type = ct;
@@ -35,7 +35,7 @@ em milissegundos. */
     void setCycleTime(int);
     void setDuration(int);
 
-    Maze* getMaze();
+    void printTest();
 
     void addParameter();
 };

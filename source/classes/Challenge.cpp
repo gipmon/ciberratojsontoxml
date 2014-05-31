@@ -2,10 +2,6 @@
 #include <vector>
 #include "Challenge.h"
 
-Maze* Challenge::getMaze(){
-	return maze;
-}
-
 void Challenge::addParameter(){
 
 }
@@ -22,6 +18,11 @@ void Challenge::setCycleTime(int c_time){
 	cycle_time = c_time;
 }
 
-void Challenge::setDuration(int duration){
-	duration = duration;
+void Challenge::setDuration(int d){
+	duration = d;
+}
+
+void Challenge::printTest(){
+    std::cout << "\n!!CHALLENGE!!\n" << "challenge name : " << challenge_name << "\n" << "challenge type : " << challenge_type << "\n" << "cycle time : " << cycle_time << "\n" << "duration : " << duration << "\n" << std::endl;
+    maze->printTest();
 }

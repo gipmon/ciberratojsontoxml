@@ -9,7 +9,6 @@
 	char* vstr;
 	char* vnum;
 	Point* vpair;
-	std::vector<Point>* vpoint;
 }
 
 %{
@@ -18,7 +17,8 @@
 	int maze_error(YYLTYPE* l, const char* fname, const char *s);
     int maze_lex(YYSTYPE*, YYLTYPE* l);
 
-    Maze *tmp_maze = challenge->getMaze();
+	std::vector<Point> *vpoint = new std::vector<Point>();;
+
 %}
 
 %token CHALLENGE_NAME
@@ -43,7 +43,6 @@
 %token SD_CORNER_LIST
 
 %type<vpair> NUM_PAIR
-%type<vpoint> CORNER_LIST
 
 %parse-param {const char* fname}
 %pure-parser
@@ -84,42 +83,42 @@ SDL 	: SP ',' SDL
 		| SP
 		;
 
-SP 		: SD_NAME ':' STR {tmp_maze->setName($3);}
-		| SD_DIMENSIONS ':' NUM_PAIR {tmp_maze->setDimensions($3->getX(), $3->getY());}
+SP 		: SD_NAME ':' STR { challenge->maze->setName($3); }
+		| SD_DIMENSIONS ':' NUM_PAIR {challenge->maze->setDimensions($3->getX(), $3->getY());}
 		| SD_BEACONS ':' BEACONS
 		| SD_TARGET_AREAS ':' TARGET_AREAS
 		| SD_WALLS ':' WALLS
 		| SD_GRID ':' GRID
 		;
 
-NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atoi($2), atoi($4)); $$ = pt;}
+NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = pt;}
 			;
 
 
 BEACONS 	: '[' BEACONS_VALUES ']'
 			;
 
-BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}' {tmp_maze->addBeacon(*$4, atoi($8), atoi($12));}
+BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}' {challenge->maze->addBeacon(*$4, atoi($8), atoi($12));}
 				;
 
 TARGET_AREAS    : '[' TARGET_VALUES ']'
 			    ;
 
-TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {tmp_maze->addTargetArea(*$4, atoi($8));}
+TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {challenge->maze->addTargetArea(*$4, atoi($8));}
 				;
 
 WALLS   : '[' WALLS_VALUES ']'
 		;
 
-WALLS_VALUES : WALLS_VALUE WALLS_VALUES
+WALLS_VALUES : WALLS_VALUE ',' WALLS_VALUES
 			 | WALLS_VALUE
 			 ;
 
 /* falta o thickness */
-WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' ',' {tmp_maze->addWall(atoi($4), 0, $9);}
+WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new std::vector<Point>();}
 
-CORNER_LIST : NUM_PAIR ',' CORNER_LIST { $$->push_back(*$1); }
-			| NUM_PAIR { $$ = new std::vector<Point>(); $$->push_back(*$1);}
+CORNER_LIST : NUM_PAIR ',' CORNER_LIST { vpoint->push_back(*$1);}
+			| NUM_PAIR { vpoint->push_back(*$1);}
 			;
 
 GRID :  '[' POSE_LIST ']'
@@ -129,7 +128,7 @@ POSE_LIST : POSE
 		  | POSE_LIST ',' POSE
 		  ;
 
-POSE    :'[' NUM ',' NUM ',' NUM ']' { tmp_maze->addPose(atoi($2), atoi($4), atoi($6));}
+POSE    :'[' NUM ',' NUM ',' NUM ']' { challenge->maze->addPose(atoi($2), atoi($4), atoi($6)); }
 		;
 
 LAST_CLASSES  	: STR ':' '{' PL '}'
