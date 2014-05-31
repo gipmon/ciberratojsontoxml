@@ -1,6 +1,8 @@
 CC = g++
 CFLAGS = -c -Wall
 
+CLASSES =  Challenge Maze Grid  Beacons TargetAreas Walls
+
 all: paramparser
 
 paramparser: param_table.o param_bison param_flex
@@ -33,3 +35,10 @@ maze_parser: maze_parser.y maze_parser.l
 	rm -f maze_parser/maze_lexer.c
 	rm -f *.tab.c
 	rm -f *.tab.h
+
+classes: $(CLASSES)
+		 $(CC) classes/Challenge.o classes/Maze.o classes/Grid.o classes/Beacons.o classes/TargetAreas.o classes/Walls.o main.cpp -o main.output
+		 rm -f classes/*.o
+
+$(CLASSES): %: classes/%.cpp
+			$(CC) -c $(CFLAGS) classes/$@.cpp -o classes/$@.o
