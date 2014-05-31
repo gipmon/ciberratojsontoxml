@@ -4,17 +4,13 @@
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
 void Beacons::addBeacon(Beacon add){
-
+	beacons->push_back(add);
 }
 
-void Beacons::removeBeacon(Beacon removeWall){
-
+std::vector<Beacon> Beacons::beaconsList(){
+    return *beacons;
 }
 
-void Beacons::modifyBeacon(Beacon toModify, Beacon newWall){
-
-}
-
-std::vector<Beacon>* Beacons::beaconsList(){
-    return NULL;
-}
+/* a implementar se existir tempo */
+void Beacons::removeBeacon(Beacon removeWall){}
+void Beacons::modifyBeacon(Beacon toModify, Beacon newWall){}

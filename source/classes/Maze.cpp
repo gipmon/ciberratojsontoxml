@@ -2,42 +2,70 @@
 #include <vector>
 #include "Maze.h"
 
-void Maze::setDimensions(){
-
+void Maze::setName(char* n){
+	name = n;
 }
 
-Dimensions* Maze::getDimensions(){
-	return NULL;
+void Maze::setDimensions(int w, int h){
+	dimensions.width = w;
+	dimensions.height = h;
 }
 
-void Maze::addBeacon(Point position, int radius, int height){
-
+Dimensions Maze::getDimensions(){
+	return dimensions;
 }
 
-std::vector<Beacon>* Maze::getBeacons(){
-	return NULL;
+void Maze::addBeacon(Point p, int r, int h){
+    Beacon tmp;
+
+    tmp.position = p;
+    tmp.radius = r;
+    tmp.height = h;
+
+    beacons->addBeacon(tmp);
 }
 
-void Maze::addTargetArea(Point position, int radius){
-
+std::vector<Beacon> Maze::getBeacons(){
+	return beacons->beaconsList();
 }
 
-std::vector<TargetArea>* Maze::getTargetAreas(){
-	return NULL;
+void Maze::addTargetArea(Point p, int r){
+	TargetArea tmp;
+
+	tmp.radius = r;
+	tmp.position = p;
+
+	targetareas->addTargetArea(tmp);
 }
 
-void Maze::addWall(int height, int thickness, std::vector<Point>* corner_list){
-
+std::vector<TargetArea> Maze::getTargetAreas(){
+	return targetareas->targetAreasList();
 }
 
-std::vector<Wall>* Maze::getWalls(){
-	return NULL;
+void Maze::addWall(int h, int t, std::vector<Point>* cl){
+	Wall tmp;
+
+	tmp.height = h;
+	tmp.thickness = t;
+	tmp.corner_list = cl;
+
+	walls->addWall(tmp);
 }
 
-void Maze::addPose(int x, int y, int teta){
-
+std::vector<Wall> Maze::getWalls(){
+	return walls->wallsList();
 }
 
-std::vector<Pose>* Maze::getPoses(){
-	return NULL;
+void Maze::addPose(int xx, int yy, int t){
+	Pose tmp;
+
+	tmp.x = xx;
+	tmp.y = yy;
+	tmp.teta = t;
+
+	grid->addPose(tmp);
+}
+
+std::vector<Pose> Maze::getPoses(){
+	return grid->getPosesList();
 }

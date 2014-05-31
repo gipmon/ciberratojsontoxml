@@ -10,6 +10,7 @@
 %option nounput
 %option noinput
 %option yylineno
+%option prefix="param_"
 
 nint    		[0-9]+
 

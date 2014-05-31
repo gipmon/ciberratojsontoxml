@@ -19,5 +19,5 @@ class TargetAreas {
     void addTargetArea(TargetArea add);
     void removeTargetArea(TargetArea removeWall);
     void modifyTargetArea(TargetArea toModify, TargetArea newWall);
-    std::vector<TargetArea>* targetAreasList();
+    std::vector<TargetArea> targetAreasList();
 };

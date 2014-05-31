@@ -3,17 +3,13 @@
 #include "TargetAreas.h"
 
 void TargetAreas::addTargetArea(TargetArea add){
-
+	targetareas->push_back(add);
 }
 
-void TargetAreas::removeTargetArea(TargetArea removeWall){
-
+std::vector<TargetArea> TargetAreas::targetAreasList(){
+	return *targetareas;
 }
 
-void TargetAreas::modifyTargetArea(TargetArea toModify, TargetArea newWall){
-
-}
-
-std::vector<TargetArea>* TargetAreas::targetAreasList(){
-	return NULL;
-}
+/* a implementar se existir tempo */
+void TargetAreas::removeTargetArea(TargetArea removeWall){}
+void TargetAreas::modifyTargetArea(TargetArea toModify, TargetArea newWall){}

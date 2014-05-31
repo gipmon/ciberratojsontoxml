@@ -26,6 +26,14 @@ em milissegundos. */
         duration = d;
         maze = new Maze();
     }
+    Challenge(){
+        maze = new Maze();
+    }
+
+    void setChallengeName(char*);
+    void setChallengeType(char*);
+    void setCycleTime(int);
+    void setDuration(int);
 
     Maze* getMaze();
 

@@ -19,5 +19,5 @@ class Walls {
     void addWall(Wall add);
     void removeWall(Wall removeWall);
     void modifyWall(Wall toModify, Wall newWall);
-    std::vector<Wall>* wallsList();
+    std::vector<Wall> wallsList();
 };

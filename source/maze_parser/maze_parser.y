@@ -1,19 +1,24 @@
+%{
+	#include "classes/Point.h"
+    #include <stdio.h>
+    #include <stdlib.h>
+	#include <vector>
+%}
+
 %union{
 	char* vstr;
 	char* vnum;
+	Point* vpair;
+	std::vector<Point>* vpoint;
 }
 
 %{
-    #include <stdio.h>
-    #include <string>
-	//#include "param_parser/param_table.h"
-
-	extern int maze_parse(const char* fname);
-	extern FILE* yyin;
+    #include "main.h"
 
 	int maze_error(YYLTYPE* l, const char* fname, const char *s);
     int maze_lex(YYSTYPE*, YYLTYPE* l);
 
+    Maze *tmp_maze = challenge->getMaze();
 %}
 
 %token CHALLENGE_NAME
@@ -26,7 +31,6 @@
 %token <vstr> STR
 %token <vnum> NUM
 
-
 %token SD_NAME
 %token SD_DIMENSIONS
 %token SD_BEACONS
@@ -38,6 +42,8 @@
 %token SD_HEIGHT
 %token SD_CORNER_LIST
 
+%type<vpair> NUM_PAIR
+%type<vpoint> CORNER_LIST
 
 %parse-param {const char* fname}
 %pure-parser
@@ -63,12 +69,12 @@ CLASS 	: DEFAULT_VALUES
 	 	| SD
 	 	;
 
+/* nem sempre os default_values vem primeiro, é preciso ter cuidado e verificar se estes parametros e outros estao definidos */
 
-
-DEFAULT_VALUES  : CHALLENGE_NAME ':' STR
-				| CHALLENGE_TYPE ':' STR
-				| CYCLE_TIME ':' NUM
-				| DURATION ':' NUM
+DEFAULT_VALUES  : CHALLENGE_NAME ':' STR {challenge->setChallengeName($3);}
+				| CHALLENGE_TYPE ':' STR {challenge->setChallengeType($3);}
+				| CYCLE_TIME ':' NUM {challenge->setCycleTime(atoi($3));}
+				| DURATION ':' NUM {challenge->setDuration(atoi($3));}
 				;
 
 SD 	: SCENARIO_DESCRIPTION ':' '{' SDL '}'
@@ -78,39 +84,42 @@ SDL 	: SP ',' SDL
 		| SP
 		;
 
-SP 		: SD_NAME ':' STR
-		| SD_DIMENSIONS ':' NUM_PAIR
+SP 		: SD_NAME ':' STR {tmp_maze->setName($3);}
+		| SD_DIMENSIONS ':' NUM_PAIR {tmp_maze->setDimensions($3->getX(), $3->getY());}
 		| SD_BEACONS ':' BEACONS
 		| SD_TARGET_AREAS ':' TARGET_AREAS
 		| SD_WALLS ':' WALLS
 		| SD_GRID ':' GRID
 		;
 
-NUM_PAIR    : '['NUM','NUM']'
+NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atoi($2), atoi($4)); $$ = pt;}
 			;
 
 
 BEACONS 	: '[' BEACONS_VALUES ']'
 			;
 
-BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}'
+BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}' {tmp_maze->addBeacon(*$4, atoi($8), atoi($12));}
 				;
 
 TARGET_AREAS    : '[' TARGET_VALUES ']'
 			    ;
 
-TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}'
+TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {tmp_maze->addTargetArea(*$4, atoi($8));}
 				;
 
 WALLS   : '[' WALLS_VALUES ']'
 		;
 
-WALLS_VALUES : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' ',' WALLS_VALUES
-			 | '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}'
+WALLS_VALUES : WALLS_VALUE WALLS_VALUES
+			 | WALLS_VALUE
 			 ;
 
-CORNER_LIST : NUM_PAIR ',' CORNER_LIST
-			| NUM_PAIR
+/* falta o thickness */
+WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' ',' {tmp_maze->addWall(atoi($4), 0, $9);}
+
+CORNER_LIST : NUM_PAIR ',' CORNER_LIST { $$->push_back(*$1); }
+			| NUM_PAIR { $$ = new std::vector<Point>(); $$->push_back(*$1);}
 			;
 
 GRID :  '[' POSE_LIST ']'
@@ -120,7 +129,7 @@ POSE_LIST : POSE
 		  | POSE_LIST ',' POSE
 		  ;
 
-POSE    :'[' NUM ',' NUM ',' NUM ']'
+POSE    :'[' NUM ',' NUM ',' NUM ']' { tmp_maze->addPose(atoi($2), atoi($4), atoi($6));}
 		;
 
 LAST_CLASSES  	: STR ':' '{' PL '}'
@@ -136,18 +145,8 @@ PD  	: STR ':' NUM
 
 %%
 
-int main(int argc, char* argv[]){
-	if((yyin = fopen(argv[1], "r")) == NULL){
-		printf("ERRRO!\n");
-		return 0;
-	}
-	maze_parse(argv[1]);
-	printf("FUNCIONOU\n");
-	return 1;
-}
-
 int maze_error(YYLTYPE* l, const char* fname, const char *s){
-	extern char* yytext;
-	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
+	extern char* maze_text;
+	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, maze_text);
     exit(1);
 }

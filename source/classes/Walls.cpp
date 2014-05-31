@@ -4,17 +4,13 @@
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
 void Walls::addWall(Wall add){
-
+	walls->push_back(add);
 }
 
-void Walls::removeWall(Wall removeWall){
-
+std::vector<Wall> Walls::wallsList(){
+    return *walls;
 }
 
-void Walls::modifyWall(Wall toModify, Wall newWall){
-
-}
-
-std::vector<Wall>* Walls::wallsList(){
-    return NULL;
-}
+/* a implementar se existir tempo */
+void Walls::removeWall(Wall removeWall){}
+void Walls::modifyWall(Wall toModify, Wall newWall){}

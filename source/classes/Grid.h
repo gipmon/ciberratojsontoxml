@@ -15,5 +15,5 @@ class Grid {
     void addPose(Pose add);
     void removePose(Pose removePose);
     void modifyPose(Pose toModify, Pose newPose);
-    std::vector<Pose>* getPosesList();
+    std::vector<Pose> getPosesList();
 };

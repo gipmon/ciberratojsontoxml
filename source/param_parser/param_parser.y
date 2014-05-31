@@ -7,16 +7,11 @@
 %{
     #include <stdio.h>
     #include <string>
-	#include "param_parser/param_table.h"
-
-	extern int param_parse(const char* fname);
-	extern FILE* yyin;
+	#include "main.h"
 
 	int param_error(YYLTYPE* l, const char* fname, const char *s);
     int param_lex(YYSTYPE*, YYLTYPE* l);
     void reset_variables();
-
-    ParamTable *param_table = new ParamTable();
 
     /* tmp variables */
     parameter param;
@@ -52,7 +47,7 @@
 %name-prefix="param_"
 
 %%
-File : '{' PL '}' { param_table->print_symboltable(); return 0; }
+File : '{' PL '}' { return 1; }
 	 ;
 
 PL   : PI {param_table->add_parameter(class_name, param_name, param); reset_variables();}
@@ -85,18 +80,9 @@ VT	 : DOUBLE {$$ = $1;}
 
 %%
 
-int main(int argc, char* argv[]){
-	if((yyin = fopen(argv[1], "r")) == NULL){
-		printf("ERRRO!\n");
-		return 0;
-	}
-	param_parse(argv[1]);
-	return 1;
-}
-
 int param_error(YYLTYPE* l, const char* fname, const char *s){
-	extern char* yytext;
-	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, yytext);
+	extern char* param_text;
+	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, param_text);
     exit(1);
 }
 

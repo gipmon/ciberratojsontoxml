@@ -1,5 +1,7 @@
 %{
     #include <stdlib.h>
+	#include <vector>
+    #include "../classes/Point.h"
     #include "../maze_parser.tab.h"
 
     #define YY_DECL int maze_lex(YYSTYPE* p, YYLTYPE* l)
@@ -10,6 +12,7 @@
 %option nounput
 %option noinput
 %option yylineno
+%option prefix="maze_"
 
 nint    			[0-9]+
 
@@ -55,7 +58,7 @@ sd_corner_list		["]corner[ ]list["]
 {challenge_type} 			{ l->first_line=yylineno; return CHALLENGE_TYPE; }
 
 {cycle_time} 				{ l->first_line=yylineno; return CYCLE_TIME; }
- 
+
 {duration}					{ l->first_line=yylineno; return DURATION; }
 
 {scenario_description}		{ l->first_line=yylineno; return SCENARIO_DESCRIPTION; }
@@ -64,10 +67,10 @@ sd_corner_list		["]corner[ ]list["]
 
 {sd_dimensions}				{ l->first_line=yylineno; return SD_DIMENSIONS; }
 
-{sd_becons}					{ l->first_line=yylineno; return SD_BEACONS; } 
+{sd_becons}					{ l->first_line=yylineno; return SD_BEACONS; }
 
-{sd_target_areas}			{ l->first_line=yylineno; return SD_TARGET_AREAS; } 
- 
+{sd_target_areas}			{ l->first_line=yylineno; return SD_TARGET_AREAS; }
+
 {sd_walls}					{ l->first_line=yylineno; return SD_WALLS; }
 
 {sd_grid}					{ l->first_line=yylineno; return SD_GRID; }
@@ -87,7 +90,6 @@ sd_corner_list		["]corner[ ]list["]
 [[:blank:]]		{ }
 \n 				{ }
 
-. { return yytext[0]; }	
+. { return yytext[0]; }
 
 %%
-	
