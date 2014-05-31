@@ -26,7 +26,7 @@ maze_parser.l:
 classes: $(CLASSES)
 
 $(CLASSES): %: classes/%.cpp
-			$(CC) -c $(CFLAGS) classes/$@.cpp -o classes/$@.o
+			$(CC) $(CFLAGS) classes/$@.cpp -o classes/$@.o
 
 cleanall:
 	rm -rf param_parser/*.o
