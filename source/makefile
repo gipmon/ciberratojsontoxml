@@ -1,12 +1,12 @@
 CC = g++
 CFLAGS = -c -Wall
 
-CLASSES =  Challenge Maze Grid  Beacons TargetAreas Walls
+CLASSES =  Challenge Maze Grid  Beacons TargetAreas Walls ExtraParamList
 
 all: compile cleanall
 
 compile: param_table.o param_bison param_flex maze_parser.y maze_parser.l classes
-	$(CC) param_table.o param_parser.tab.c param_parser/param_lexer.c maze_parser.tab.c maze_parser/maze_lexer.c classes/Challenge.o classes/Maze.o classes/Grid.o classes/Beacons.o classes/TargetAreas.o classes/Walls.o main.cpp -o main.output
+	$(CC) param_table.o param_parser.tab.c param_parser/param_lexer.c maze_parser.tab.c maze_parser/maze_lexer.c classes/Challenge.o classes/Maze.o classes/Grid.o classes/Beacons.o classes/TargetAreas.o classes/Walls.o classes/ExtraParamList.o main.cpp -o main.output
 
 param_table.o:	param_parser/param_table.cpp
 	$(CC) $(CFLAGS) param_parser/param_table.cpp

@@ -17,7 +17,8 @@
 	int maze_error(YYLTYPE* l, const char* fname, const char *s);
     int maze_lex(YYSTYPE*, YYLTYPE* l);
 
-	std::vector<Point> *vpoint = new std::vector<Point>();;
+	std::vector<Point> *vpoint = new std::vector<Point>();
+	ParametersClass *pc = new ParametersClass();
 
 %}
 
@@ -131,7 +132,7 @@ POSE_LIST : POSE
 POSE    :'[' NUM ',' NUM ',' NUM ']' { challenge->maze->addPose(atoi($2), atoi($4), atoi($6)); }
 		;
 
-LAST_CLASSES  	: STR ':' '{' PL '}'
+LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new std::vector<Param>(); challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
 		        ;
 
 PL  	: PD ',' PL
@@ -139,7 +140,7 @@ PL  	: PD ',' PL
 		| /*lameda*/
 		;
 
-PD  	: STR ':' NUM
+PD  	: STR ':' NUM { Param tmp; tmp.name = $1; tmp.value = $3; challenge->pm->addParameterToClass(pc->class_name, tmp);}
 		;
 
 %%

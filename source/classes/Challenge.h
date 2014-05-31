@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Maze.h"
+#include "ExtraParamList.h"
 
 class Challenge {
     private:
@@ -9,7 +10,6 @@ class Challenge {
 em milissegundos. */
     int duration; /* e um numero inteiro e indica a duracao total da simulacao em numero de ciclos. */
 
-    //ExtraParamList *pm = new ExtraParamList();
     /* Na ExtraParamList estão presentes 3 classes:
         - A entrada "robot modelling parameters" indica os valores de par
         ametros usados para caraterizar os sensores e os atuadores dos corpos virtuais dos robos e para caraterizar o acesso que os agentes tem aos sensores.
@@ -18,6 +18,7 @@ em milissegundos. */
 
 	public:
     Maze *maze; /* descreve o cenario de atuacao dos robos */
+    ExtraParamList *pm;
 
     Challenge(char* ct, char* cn, int t, int d){
         challenge_name = cn;
@@ -25,9 +26,11 @@ em milissegundos. */
         cycle_time = t;
         duration = d;
         maze = new Maze();
+        pm = new ExtraParamList();
     }
     Challenge(){
         maze = new Maze();
+        pm = new ExtraParamList();
     }
 
     void setChallengeName(char*);

@@ -25,4 +25,5 @@ void Challenge::setDuration(int d){
 void Challenge::printTest(){
     std::cout << "\n!!CHALLENGE!!\n" << "challenge name : " << challenge_name << "\n" << "challenge type : " << challenge_type << "\n" << "cycle time : " << cycle_time << "\n" << "duration : " << duration << "\n" << std::endl;
     maze->printTest();
+    pm->printTest();
 }
