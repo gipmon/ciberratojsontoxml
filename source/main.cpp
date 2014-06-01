@@ -15,6 +15,7 @@ void warning_message(){
 }
 
 int main(int argc, char* argv[]){
+    
 	/* validação dos argumentos */
 	if(argc==1){
 		warning_message();
@@ -68,6 +69,7 @@ int main(int argc, char* argv[]){
 	}
 
 	if(output){
+		system("rm -rf ./xml");
 		system("mkdir ./xml");
 		ofstream labFile("./xml/Lab.xml");
 		ofstream gridFile("./xml/Grid.xml");

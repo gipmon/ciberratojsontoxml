@@ -23,15 +23,14 @@ void Grid::printTest(){
 }
 
 void Grid::gridOutputXML(ofstream& file){
-	ofstream outputFile ( "grid.xml" );
-
-	outputFile << "<Grid>\n";
+	
+	file << "<Grid>\n";
 	for (vector<Pose>::iterator it1 = posesList->begin() ; it1 != posesList->end(); ++it1){
-		outputFile << "\t<Position X=\"" << (*it1).x << "\" Y=\"" << (*it1).y << "\" Dir=\"" << (*it1).teta << "\"/>\n";
+		file << "\t<Position X=\"" << (*it1).x << "\" Y=\"" << (*it1).y << "\" Dir=\"" << (*it1).teta << "\"/>\n";
 	}
-	outputFile << "</Grid>";
+	file << "</Grid>";
 
-	outputFile.close();
+	file.close();
 }
 
 /* a implementar se existir tempo */
