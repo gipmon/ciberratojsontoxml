@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cstring>
 #include "main.h"
-
+#include <cstdlib>
 
 using namespace std;
 
@@ -68,9 +68,10 @@ int main(int argc, char* argv[]){
 	}
 
 	if(output){
-		ofstream labFile("Lab.xml");
-		ofstream gridFile("Grid.xml");
-		ofstream paramFile("Param.xml");
+		system("mkdir ./xml");
+		ofstream labFile("./xml/Lab.xml");
+		ofstream gridFile("./xml/Grid.xml");
+		ofstream paramFile("./xml/Param.xml");
 
 		gridOutputXML(gridFile);
 		labOutputXML(labFile);
