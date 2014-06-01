@@ -1,6 +1,8 @@
 #include <iostream>
 #include <map>
 
+using namespace std;
+
 /************* Estrutura de dados para o parameter **************/
 struct parameter{
   char* comment;
@@ -16,10 +18,10 @@ struct parameter{
 
 class ParamTable{
 	private:
-		/* std::map<char* => class, std::map<char* => parameter_name, parameter>> map; */
-		std::map<char*, std::map<char*, parameter> > param_map;
+		/* map<char* => class, map<char* => parameter_name, parameter>> map; */
+		map<char*, map<char*, parameter> > param_map;
 		/* para a class de parâmetros standard */
-		std::map<char*, parameter> class_standard;
+		map<char*, parameter> class_standard;
 
 		void config_standard(char* comment, char* value_type, char* default_value, char* xml_name, char* param_name);
 	public:

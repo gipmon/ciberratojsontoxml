@@ -1,8 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "Challenge.h"
-#include <iostream>
 #include <fstream>
+#include "Challenge.h"
 
 using namespace std;
 
@@ -27,7 +26,7 @@ void Challenge::setDuration(int d){
 }
 
 void Challenge::printTest(){
-    std::cout << "\n!!CHALLENGE!!\n" << "challenge name : " << challenge_name << "\n" << "challenge type : " << challenge_type << "\n" << "cycle time : " << cycle_time << "\n" << "duration : " << duration << "\n" << std::endl;
+    cout << "\n!!CHALLENGE!!\n" << "challenge name : " << challenge_name << "\n" << "challenge type : " << challenge_type << "\n" << "cycle time : " << cycle_time << "\n" << "duration : " << duration << "\n" << endl;
     maze->printTest();
     pm->printTest();
 }

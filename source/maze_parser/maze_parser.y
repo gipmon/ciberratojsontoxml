@@ -17,7 +17,7 @@
 	int maze_error(YYLTYPE* l, const char* fname, const char *s);
     int maze_lex(YYSTYPE*, YYLTYPE* l);
 
-	std::vector<Point> *vpoint = new std::vector<Point>();
+	vector<Point> *vpoint = new vector<Point>();
 	ParametersClass *pc = new ParametersClass();
 
 %}
@@ -116,7 +116,7 @@ WALLS_VALUES : WALLS_VALUE ',' WALLS_VALUES
 			 ;
 
 /* falta o thickness */
-WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new std::vector<Point>();}
+WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
 
 CORNER_LIST : NUM_PAIR ',' CORNER_LIST { vpoint->push_back(*$1);}
 			| NUM_PAIR { vpoint->push_back(*$1);}
@@ -132,7 +132,7 @@ POSE_LIST : POSE
 POSE    :'[' NUM ',' NUM ',' NUM ']' { challenge->maze->addPose(atoi($2), atoi($4), atoi($6)); }
 		;
 
-LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new std::vector<Param>(); challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
+LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new vector<Param>(); challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
 		        ;
 
 PL  	: PD ',' PL

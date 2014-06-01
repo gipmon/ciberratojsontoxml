@@ -6,8 +6,8 @@
 using namespace std;
 
 /* iteradores */
-std::map<char*, std::map<char*, parameter> >::iterator it1;
-std::map<char*, parameter>::iterator it2;
+map<char*, map<char*, parameter> >::iterator it1;
+map<char*, parameter>::iterator it2;
 
 ParamTable::ParamTable(){
     config_standard((char *)"", (char *)"", (char *)"", (char *)"", (char *)"challenge name");
@@ -53,7 +53,7 @@ void ParamTable::print_symboltable(){
 }
 
 bool ParamTable::add_parameter(char* class_name, char* param_name, parameter param){
-    /* itator->first  = key; itator->second = value std::map<char*, parameter> */
+    /* itator->first  = key; itator->second = value map<char*, parameter> */
 
     for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
         // strcmp() returns a 0 if the two strings are equal,
@@ -68,10 +68,10 @@ bool ParamTable::add_parameter(char* class_name, char* param_name, parameter par
         }
     }
 
-    std::map<char*, parameter> new_map;
+    map<char*, parameter> new_map;
     new_map[param_name] = param;
 
-    param_map.insert(std::pair<char*, std::map<char*, parameter> >(class_name, new_map));
+    param_map.insert(pair<char*, map<char*, parameter> >(class_name, new_map));
 
     return true;
 }
@@ -87,7 +87,7 @@ char* ParamTable::get_xml_name(char* class_name, char* parameter_name){
           }
         }
     }
-    	return "Erro";
+    	return (char*)"Erro";
 }
 
 

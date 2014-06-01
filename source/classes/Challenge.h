@@ -1,8 +1,7 @@
-#include "Maze.h"
-#include "ExtraParamList.h"
 #include <iostream>
 #include <fstream>
-
+#include "Maze.h"
+#include "ExtraParamList.h"
 
 using namespace std;
 

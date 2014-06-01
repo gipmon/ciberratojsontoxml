@@ -1,11 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <iostream>
 #include <fstream>
 
 using namespace std;
-
-/* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
 struct Pose{
     int x, y, teta; /* teta => orientação do robot */
@@ -13,14 +10,14 @@ struct Pose{
 
 class Grid {
     private:
-    std::vector<Pose>  *posesList;
+    vector<Pose>  *posesList;
 
 	public:
-    Grid(){ posesList = new std::vector<Pose>();}
+    Grid(){ posesList = new vector<Pose>();}
     void addPose(Pose add);
     void removePose(Pose removePose);
     void modifyPose(Pose toModify, Pose newPose);
-    std::vector<Pose> getPosesList();
+    vector<Pose> getPosesList();
 
     void printTest();
 

@@ -1,10 +1,10 @@
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include "Beacons.h"
 #include "TargetAreas.h"
 #include "Walls.h"
 #include "Grid.h"
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
@@ -37,16 +37,16 @@ class Maze {
     Dimensions getDimensions();
 
     void addBeacon(Point position, int radius, int height);
-    std::vector<Beacon> getBeacons();
+    vector<Beacon> getBeacons();
 
     void addTargetArea(Point position, int radius);
-    std::vector<TargetArea> getTargetAreas();
+    vector<TargetArea> getTargetAreas();
 
-    void addWall(int height, int thickness, std::vector<Point>* corner_list);
-    std::vector<Wall> getWalls();
+    void addWall(int height, int thickness, vector<Point>* corner_list);
+    vector<Wall> getWalls();
 
     void addPose(int x, int y, int teta);
-    std::vector<Pose> getPoses();
+    vector<Pose> getPoses();
 
     void printTest();
 

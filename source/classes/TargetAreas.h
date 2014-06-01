@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
-#include "Point.h"
-#include <iostream>
 #include <fstream>
+#include "Point.h"
 
 using namespace std;
 
-/* http://www.cplusplus.com/reference/std::vector/std::vector/ */
+
 
 struct TargetArea{
     Point position;
@@ -17,14 +16,14 @@ struct TargetArea{
 
 class TargetAreas {
     private:
-    std::vector<TargetArea>* targetareas;
+    vector<TargetArea>* targetareas;
 
 	public:
-    TargetAreas(){ targetareas = new std::vector<TargetArea>();}
+    TargetAreas(){ targetareas = new vector<TargetArea>();}
     void addTargetArea(TargetArea add);
     void removeTargetArea(TargetArea removeWall);
     void modifyTargetArea(TargetArea toModify, TargetArea newWall);
-    std::vector<TargetArea> targetAreasList();
+    vector<TargetArea> targetAreasList();
 
     void printTest();
 void labOutputXML(ofstream& file);

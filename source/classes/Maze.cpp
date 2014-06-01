@@ -1,8 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "Maze.h"
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
@@ -29,7 +28,7 @@ void Maze::addBeacon(Point p, int r, int h){
     beacons->addBeacon(tmp);
 }
 
-std::vector<Beacon> Maze::getBeacons(){
+vector<Beacon> Maze::getBeacons(){
 	return beacons->beaconsList();
 }
 
@@ -42,11 +41,11 @@ void Maze::addTargetArea(Point p, int r){
 	targetareas->addTargetArea(tmp);
 }
 
-std::vector<TargetArea> Maze::getTargetAreas(){
+vector<TargetArea> Maze::getTargetAreas(){
 	return targetareas->targetAreasList();
 }
 
-void Maze::addWall(int h, int t, std::vector<Point>* cl){
+void Maze::addWall(int h, int t, vector<Point>* cl){
 	Wall tmp;
 
 	tmp.height = h;
@@ -56,7 +55,7 @@ void Maze::addWall(int h, int t, std::vector<Point>* cl){
 	walls->addWall(tmp);
 }
 
-std::vector<Wall> Maze::getWalls(){
+vector<Wall> Maze::getWalls(){
 	return walls->wallsList();
 }
 
@@ -70,12 +69,12 @@ void Maze::addPose(int xx, int yy, int t){
 	grid->addPose(tmp);
 }
 
-std::vector<Pose> Maze::getPoses(){
+vector<Pose> Maze::getPoses(){
 	return grid->getPosesList();
 }
 
 void Maze::printTest(){
-	std::cout << "scenario description : \n\t" << "name : " << name << "\n\t" << "dimensions : " << "[" << dimensions.width << ", " << dimensions.height << "],\n\t" << std::endl;
+	cout << "scenario description : \n\t" << "name : " << name << "\n\t" << "dimensions : " << "[" << dimensions.width << ", " << dimensions.height << "],\n\t" << endl;
 	beacons->printTest();
 	targetareas->printTest();
 	walls->printTest();
