@@ -24,7 +24,8 @@ void Grid::printTest(){
 	}
 	std::cout << "\t]," << std::endl;
 }
-void Grid::gridOutputXML(){
+
+void Grid::gridOutputXML(ofstream& file){
 	ofstream outputFile ( "grid.xml" );
 	
 	outputFile << "<Grid>\n";

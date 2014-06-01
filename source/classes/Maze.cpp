@@ -82,8 +82,8 @@ void Maze::printTest(){
 	grid->printTest();
 }
 
-void Maze::gridOutputXML(){
-	grid->gridOutputXML();
+void Maze::gridOutputXML(ofstream& file){
+	grid->gridOutputXML(file);
 }
 
 void Maze::labOutputXML(ofstream& file){

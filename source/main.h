@@ -2,7 +2,7 @@
 #define MAIN_H
 
 #include "classes/Challenge.h"
-#include "param_parser/param_table.h"
+
 #include <iostream>
 #include <fstream>
 
@@ -16,7 +16,8 @@ extern int param_parse(const char* fname);
 extern FILE* param_in;
 extern FILE* maze_in;
 
-void gridOutputXML();
+void gridOutputXML(ofstream& file);
 void labOutputXML(ofstream& file);
+void paramOutputXML(ofstream& file, ParamTable *param_table);
 
 #endif

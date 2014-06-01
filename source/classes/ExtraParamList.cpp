@@ -1,7 +1,11 @@
-#include <iostream>
+
 #include <vector>
 #include <cstring>
 #include "ExtraParamList.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
@@ -29,5 +33,15 @@ void ExtraParamList::printTest(){
 				std::cout << "\t\t\t\"" << (*it2).name << "\" : " << (*it2).value  << "," << std::endl;
 			}
 		std::cout << "\t]," << std::endl;
+	}
+}
+
+void ExtraParamList::paramOutputXML(ofstream& file, ParamTable *param_table){
+	
+	for (std::vector<ParametersClass>::iterator it1 = parametersClassList->begin() ; it1 != parametersClassList->end(); ++it1){
+		
+			for(std::vector<Param>::iterator it2 = (*it1).paramList->begin() ; it2 != (*it1).paramList->end(); ++it2){
+				file << param_table->get_xml_name((*it1).class_name, (*it2).name) << "=\""<< (*it2).value  << "\" " ;
+			}
 	}
 }

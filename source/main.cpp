@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 
+
 using namespace std;
 
 ParamTable *param_table = new ParamTable();
@@ -22,20 +23,28 @@ int main(int argc, char* argv[]){
 	}
 	maze_parse(argv[2]);
 	challenge->printTest();
-
-	ofstream labOutputFile ( "Lab.xml" );	
 	
-	gridOutputXML();
-	labOutputXML(labOutputFile);
+	ofstream labFile ( "Lab.xml" );	
+	ofstream gridFile ( "Grid.xml" );	
+	ofstream paramFile ( "Param.xml" );
+
+	gridOutputXML(gridFile);
+	labOutputXML(labFile);
+	paramOutputXML(paramFile, param_table);
 	
 	return 1;
 }
 
-void gridOutputXML(){
-	challenge->gridOutputXML();
-	
+void gridOutputXML(ofstream& file){
+	challenge->gridOutputXML(file);	
 }
 
 void labOutputXML(ofstream& file){
 	challenge->labOutputXML(file);
 }
+
+void paramOutputXML(ofstream& file, ParamTable *param_table){
+	challenge->paramOutputXML(file, param_table);
+}
+
+

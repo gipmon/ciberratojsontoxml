@@ -50,7 +50,7 @@ class Maze {
 
     void printTest();
 
-    void gridOutputXML();
+    void gridOutputXML(ofstream& file);
 void labOutputXML(ofstream& file);    
 
 };

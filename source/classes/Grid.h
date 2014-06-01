@@ -1,5 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
 struct Pose{
@@ -19,5 +24,5 @@ class Grid {
 
     void printTest();
 
-    void gridOutputXML();
+    void gridOutputXML(ofstream& file);
 };

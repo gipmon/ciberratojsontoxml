@@ -76,6 +76,21 @@ bool ParamTable::add_parameter(char* class_name, char* param_name, parameter par
     return true;
 }
 
+char* ParamTable::get_xml_name(char* class_name, char* parameter_name){
+	for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
+        // strcmp() returns a 0 if the two strings are equal,
+        if(!strcmp(it1->first, class_name)){
+          for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++){
+            if(!strcmp(it2->first, parameter_name)){
+              return it2->second.xml_name;
+            }
+          }
+        }
+    }
+    	return "Erro";
+}
+
+
 bool ParamTable::has_default_value(char* class_name, char* parameter_name){
     return 0;
 }
@@ -88,9 +103,6 @@ bool ParamTable::get_default_value(char* class_name, char* parameter_name){
     return 0;
 }
 
-char* ParamTable::get_xml_name(char* class_name, char* parameter_name){
-    return 0;
-}
 
 char* ParamTable::get_comment(char* class_name, char* parameter_name){
     return 0;

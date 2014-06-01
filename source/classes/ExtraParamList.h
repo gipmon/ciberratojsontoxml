@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
+#include "../param_parser/param_table.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
+
 
 struct Param{
     char* name;
@@ -23,4 +30,5 @@ class ExtraParamList{
     std::vector<ParametersClass> getExtraParamList();
 
     void printTest();
+   void paramOutputXML(ofstream& paramFile, ParamTable *param_table);
 };

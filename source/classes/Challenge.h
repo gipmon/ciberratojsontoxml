@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 
+
 using namespace std;
 
 class Challenge {
@@ -44,7 +45,8 @@ em milissegundos. */
     void printTest();
 
     void addParameter();
-    void gridOutputXML();
+    void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
+    void paramOutputXML(ofstream& paramFile, ParamTable *param_table);
     
 };

@@ -32,11 +32,17 @@ void Challenge::printTest(){
     pm->printTest();
 }
 
-void Challenge::gridOutputXML(){
-	maze->gridOutputXML();
+void Challenge::gridOutputXML(ofstream& file){
+	maze->gridOutputXML(file);
 }
 
 void Challenge::labOutputXML(ofstream& file){
-	
 	maze->labOutputXML(file);
+}
+
+void Challenge::paramOutputXML(ofstream& file, ParamTable *param_table){
+	file << "<Parameters SimTime=\"" << duration << "\" CycleTime=\"" << cycle_time << "\" ";
+	pm->paramOutputXML(file, param_table);
+	file << "\n/>";
+	file.close();
 }
