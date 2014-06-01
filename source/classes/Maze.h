@@ -1,9 +1,12 @@
-#include <iostream>
 #include <vector>
 #include "Beacons.h"
 #include "TargetAreas.h"
 #include "Walls.h"
 #include "Grid.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 /* http://www.cplusplus.com/reference/vector/vector/ */
 
@@ -46,4 +49,8 @@ class Maze {
     std::vector<Pose> getPoses();
 
     void printTest();
+
+    void gridOutputXML();
+void labOutputXML(ofstream& file);    
+
 };

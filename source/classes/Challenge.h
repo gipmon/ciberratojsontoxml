@@ -1,6 +1,9 @@
-#include <iostream>
 #include "Maze.h"
 #include "ExtraParamList.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class Challenge {
     private:
@@ -41,4 +44,7 @@ em milissegundos. */
     void printTest();
 
     void addParameter();
+    void gridOutputXML();
+    void labOutputXML(ofstream& file);
+    
 };

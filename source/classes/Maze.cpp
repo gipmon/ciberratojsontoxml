@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 #include "Maze.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 void Maze::setName(char* n){
 	name = n;
@@ -76,4 +80,18 @@ void Maze::printTest(){
 	targetareas->printTest();
 	walls->printTest();
 	grid->printTest();
+}
+
+void Maze::gridOutputXML(){
+	grid->gridOutputXML();
+}
+
+void Maze::labOutputXML(ofstream& file){
+	
+	file << "<Lab Name=\"" << name << "\" Width=\"" << dimensions.width << "\" Height=\"" << dimensions.height << "\">\n";
+	beacons->labOutputXML(file);
+	targetareas->labOutputXML(file);
+	walls->labOutputXML(file);
+	file << "</Lab>";
+	file.close();
 }

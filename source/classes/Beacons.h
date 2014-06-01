@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 #include "Point.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
 /* Considerações especiais: não pode ter um beacon fora do cenário de jogo, os farois não podem estar sobrepostos. */
@@ -24,4 +30,5 @@ class Beacons {
     std::vector<Beacon> beaconsList();
 
     void printTest();
+	void labOutputXML(ofstream& file);
 };

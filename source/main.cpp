@@ -1,5 +1,9 @@
 #include "main.h"
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 ParamTable *param_table = new ParamTable();
 Challenge *challenge = new Challenge();
@@ -19,5 +23,19 @@ int main(int argc, char* argv[]){
 	maze_parse(argv[2]);
 	challenge->printTest();
 
+	ofstream labOutputFile ( "Lab.xml" );	
+	
+	gridOutputXML();
+	labOutputXML(labOutputFile);
+	
 	return 1;
+}
+
+void gridOutputXML(){
+	challenge->gridOutputXML();
+	
+}
+
+void labOutputXML(ofstream& file){
+	challenge->labOutputXML(file);
 }

@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
 #include "Point.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
 /* http://www.cplusplus.com/reference/std::vector/std::vector/ */
 
 struct TargetArea{
@@ -22,4 +27,5 @@ class TargetAreas {
     std::vector<TargetArea> targetAreasList();
 
     void printTest();
+void labOutputXML(ofstream& file);
 };

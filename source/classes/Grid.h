@@ -18,4 +18,6 @@ class Grid {
     std::vector<Pose> getPosesList();
 
     void printTest();
+
+    void gridOutputXML();
 };
