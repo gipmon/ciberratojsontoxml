@@ -6,9 +6,9 @@
 using namespace std;
 
 struct Wall{
-    int height;
+    double height;
     /* thickness = 0; linha poligonal fechada, define os 6 pontos da paredes ou é thickness ≠ 0, define só 3 pontos */
-    int thickness;
+    double thickness;
     vector<Point>* corner_list;
 };
 

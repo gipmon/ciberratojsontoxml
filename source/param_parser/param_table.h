@@ -20,8 +20,6 @@ class ParamTable{
 	private:
 		/* map<char* => class, map<char* => parameter_name, parameter>> map; */
 		map<char*, map<char*, parameter> > param_map;
-		/* para a class de parâmetros standard */
-		map<char*, parameter> class_standard;
 
 		void config_standard(char* comment, char* value_type, char* default_value, char* xml_name, char* param_name);
 	public:

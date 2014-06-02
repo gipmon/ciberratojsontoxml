@@ -129,7 +129,7 @@ POSE_LIST : POSE
 		  | POSE_LIST ',' POSE
 		  ;
 
-POSE    :'[' NUM ',' NUM ',' NUM ']' { challenge->maze->addPose(atoi($2), atoi($4), atoi($6)); }
+POSE    :'[' NUM ',' NUM ',' NUM ']' { challenge->maze->addPose(atof($2), atof($4), atof($6)); }
 		;
 
 LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new vector<Param>(); challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}

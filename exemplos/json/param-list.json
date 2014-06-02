@@ -10,7 +10,7 @@
         "comment" : "Aperture of the beacon sensor",
         "class" : "robot modelling parameters",
         "value type" : "double",
-        "default value" : "PI",
+        "default value" : "3.14",
         "XML name" : "BeaconAperture"
     },
 

@@ -9,7 +9,7 @@ void Maze::setName(char* n){
 	name = n;
 }
 
-void Maze::setDimensions(int w, int h){
+void Maze::setDimensions(double w, double h){
 	dimensions.width = w;
 	dimensions.height = h;
 }
@@ -18,7 +18,7 @@ Dimensions Maze::getDimensions(){
 	return dimensions;
 }
 
-void Maze::addBeacon(Point p, int r, int h){
+void Maze::addBeacon(Point p, double r, double h){
     Beacon tmp;
 
     tmp.position = p;
@@ -32,7 +32,7 @@ vector<Beacon> Maze::getBeacons(){
 	return beacons->beaconsList();
 }
 
-void Maze::addTargetArea(Point p, int r){
+void Maze::addTargetArea(Point p, double r){
 	TargetArea tmp;
 
 	tmp.radius = r;
@@ -45,7 +45,7 @@ vector<TargetArea> Maze::getTargetAreas(){
 	return targetareas->targetAreasList();
 }
 
-void Maze::addWall(int h, int t, vector<Point>* cl){
+void Maze::addWall(double h, double t, vector<Point>* cl){
 	Wall tmp;
 
 	tmp.height = h;
@@ -59,7 +59,7 @@ vector<Wall> Maze::getWalls(){
 	return walls->wallsList();
 }
 
-void Maze::addPose(int xx, int yy, int t){
+void Maze::addPose(double xx, double yy, double t){
 	Pose tmp;
 
 	tmp.x = xx;

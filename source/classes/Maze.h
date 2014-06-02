@@ -8,10 +8,8 @@
 
 using namespace std;
 
-/* http://www.cplusplus.com/reference/vector/vector/ */
-
 struct Dimensions{
-    int width, height;
+    double width, height;
 };
 
 class Maze {
@@ -33,24 +31,24 @@ class Maze {
 
     void setName(char* n);
 
-    void setDimensions(int w, int h);
+    void setDimensions(double w, double h);
     Dimensions getDimensions();
 
-    void addBeacon(Point position, int radius, int height);
+    void addBeacon(Point position, double radius, double height);
     vector<Beacon> getBeacons();
 
-    void addTargetArea(Point position, int radius);
+    void addTargetArea(Point position, double radius);
     vector<TargetArea> getTargetAreas();
 
-    void addWall(int height, int thickness, vector<Point>* corner_list);
+    void addWall(double height, double thickness, vector<Point>* corner_list);
     vector<Wall> getWalls();
 
-    void addPose(int x, int y, int teta);
+    void addPose(double x, double y, double teta);
     vector<Pose> getPoses();
 
     void printTest();
 
     void gridOutputXML(ofstream& file);
-void labOutputXML(ofstream& file);    
+    void labOutputXML(ofstream& file);    
 
 };

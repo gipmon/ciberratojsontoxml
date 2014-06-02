@@ -5,11 +5,9 @@
 
 using namespace std;
 
-
-
 struct TargetArea{
     Point position;
-    int radius;
+    double radius;
 };
 
 /* no futuro pode ter várias formas, para já é circular*/
@@ -26,5 +24,5 @@ class TargetAreas {
     vector<TargetArea> targetAreasList();
 
     void printTest();
-void labOutputXML(ofstream& file);
+    void labOutputXML(ofstream& file);
 };

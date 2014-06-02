@@ -14,7 +14,6 @@ ParamTable::ParamTable(){
     config_standard((char *)"", (char *)"", (char *)"", (char *)"", (char *)"challenge type");
     config_standard((char *)"", (char *)"uint", (char *)"50", (char *)"CycleTime", (char *)"cycle time");
     config_standard((char *)"", (char *)"uint", (char *)"2400", (char *)"SimTime", (char *)"duration");
-    param_map[(char *)"class_standard"] = class_standard;
 }
 
 void ParamTable::config_standard(char* comment, char* value_type, char* default_value, char* xml_name, char* param_name){
@@ -25,7 +24,7 @@ void ParamTable::config_standard(char* comment, char* value_type, char* default_
     tmp_parameter.default_value = default_value;
     tmp_parameter.xml_name = xml_name;
 
-    class_standard[param_name] = tmp_parameter;
+    add_parameter((char*)"parameters_standard", param_name, tmp_parameter);
 }
 
 void ParamTable::print_parameter(char* class_name, char* parameter_name, parameter param){
