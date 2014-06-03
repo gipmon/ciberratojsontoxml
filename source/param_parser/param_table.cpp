@@ -125,5 +125,11 @@ void ParamTable::validate_parameter(char* class_name, char* param_name, paramete
     }else if(strlen(param_name)==0){
         throw PARAMETER_NAME_REQUIRED;
     }
+
+    if(strlen(param.value_type)!=0){
+        if(!validateValuebyType(param.value_type, param.default_value)){
+            throw DEFAULT_VALUE_WRONG_BY_TYPE;
+        }
+    }
 }
 

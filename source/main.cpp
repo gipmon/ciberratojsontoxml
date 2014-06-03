@@ -115,8 +115,37 @@ void ErrorHandling(int NUM){
 	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("The class name is required for the parameter \"%s\".\n", param_name); break;
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
 		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
+		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is worng by value type in the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
+		case VALUE_TYPE_IS_NOT_CONSIDERED		: printf("The value type isn't considered");   break;
 	    default            				 		: printf("unknown error");
 	}
 	exit(0);
 }
 
+bool validateValuebyType(char* type, char* value){
+	if(!strcmp(type, "uint")){
+
+	}else if(!strcmp(type, "double")){
+
+	}else if(!strcmp(type, "boolean")){
+		if(strcmp(value, "0") && strcmp(value, "1") ){
+			return false;
+		}else{
+			return true;
+		}
+	}else if(!strcmp(type, "switch")){
+
+	}else if(!strcmp(type, "string")){
+
+	}else{
+		throw VALUE_TYPE_IS_NOT_CONSIDERED;
+	}
+	/*
+	uint inteiros
+
+        double float
+        boolean 1 or 0 true or false
+        switch off on
+        string strings
+	*/
+}

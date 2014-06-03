@@ -5,6 +5,7 @@
 using namespace std;
 
 extern void ErrorHandling(int);
+extern bool validateValuebyType(char*, char*);
 
 struct parameter{
   char* comment;
