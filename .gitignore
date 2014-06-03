@@ -2,3 +2,6 @@
 *.output
 *.out
 main.output
+Grid.xml
+Lab.xml
+Param.xml

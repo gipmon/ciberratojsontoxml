@@ -50,8 +50,8 @@
 File : '{' PL '}' { return 1; }
 	 ;
 
-PL   : PI {param_table->add_parameter(class_name, param_name, param); reset_variables();}
-	 | PI {param_table->add_parameter(class_name, param_name, param); reset_variables();} ',' PL
+PL   : PI { param_table->add_parameter(class_name, param_name, param); reset_variables(); }
+	 | PI { param_table->add_parameter(class_name, param_name, param); reset_variables(); } ',' PL
 	 ;
 
 PI   : ID {param_name = $1;} ':' '{' PAL '}'

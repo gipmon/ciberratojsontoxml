@@ -17,7 +17,7 @@ void warning_message(){
 int main(int argc, char* argv[]){
     
 	/* validação dos argumentos */
-	if(argc==1){
+	if(argc<4){
 		warning_message();
 		return 0;
 	}
@@ -52,7 +52,12 @@ int main(int argc, char* argv[]){
 		printf("ERRRO %d must be a .json file!\n", arg-1);
 		return 0;
 	}
-	param_parse(argv[1]);
+
+	try{
+		param_parse(argv[1]);
+	}catch(int e){
+		ErrorHandling(e);
+	}
 
 	if(print){
 		param_table->print_symboltable();
@@ -62,7 +67,12 @@ int main(int argc, char* argv[]){
 		printf("ERRRO %d must be a .json file!\n", arg);
 		return 0;
 	}
-	maze_parse(argv[2]);
+
+	try{
+		maze_parse(argv[2]);
+	}catch(int e){
+		ErrorHandling(e);
+	}
 
 	if(print){
 		challenge->printTest();
@@ -94,3 +104,17 @@ void labOutputXML(ofstream& file){
 void paramOutputXML(ofstream& file, ParamTable *param_table){
 	challenge->paramOutputXML(file, param_table);
 }
+
+void ErrorHandling(int NUM){
+	extern char* param_name;
+    extern char* class_name;
+
+	printf("[ERROR!] Error description below:\n");
+	switch (NUM){
+	    case PARAMETER_ALREADY_EXISTS    : printf("The parameter \"%s\" already exists in \"%s\" class.\n", param_name, class_name); break;
+	    case PARAMETER_COMMENT_REQUIRED	 : printf("The parameter comment is required for \"%s\" in class \"%s\".\n", param_name, class_name); break;
+		default            				 : printf("unknown error");
+	}
+	exit(0);
+}
+
