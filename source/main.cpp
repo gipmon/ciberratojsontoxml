@@ -1,8 +1,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstring>
-#include "main.h"
 #include <cstdlib>
+#include <tr1/regex>
+#include "main.h"
 
 using namespace std;
 
@@ -123,18 +124,19 @@ void ErrorHandling(int NUM){
 
 bool validateValuebyType(char* type, char* value){
 	if(!strcmp(type, "uint")){
-		int tmp = atoi(value);
-		char *tmp_int;
-		sprintf(tmp_int , "%d" , tmp);
-
-		if(strcmp(value, tmp_int)){
-			return false;
-		}else{
-			return true;
-		}
+		/*
+		regex integer("(\\+|-)?[[:digit:]]+");
+   		if(std::tr1::regex_match(value, integer)){
+   			return true;
+   		}else{
+            return false;
+        }
+        */
+        return true;
 	}else if(!strcmp(type, "double")){
+		/*
 		double tmp = atof(value);
-		char *tmp_int;
+		char* tmp_int;
 		sprintf(tmp_int , "%lf" , tmp);
 
 		if(strcmp(value, tmp_int)){
@@ -142,8 +144,10 @@ bool validateValuebyType(char* type, char* value){
 		}else{
 			return true;
 		}
+		*/
+		return true;
 	}else if(!strcmp(type, "boolean")){
-		if(strcmp(value, "0") && strcmp(value, "1") ){
+		if(strcmp(value, "0") && strcmp(value, "1") && strcmp(value, "true") && strcmp(value, "false")){
 			return false;
 		}else{
 			return true;
@@ -155,16 +159,8 @@ bool validateValuebyType(char* type, char* value){
 			return true;
 		}	
 	}else if(!strcmp(type, "string")){
-
+		return true;
 	}else{
 		throw VALUE_TYPE_IS_NOT_CONSIDERED;
 	}
-	/*
-	uint inteiros
-
-        double float
-        boolean 1 or 0 true or false
-        switch off or on 1 or 0
-        string strings
-	*/
 }
