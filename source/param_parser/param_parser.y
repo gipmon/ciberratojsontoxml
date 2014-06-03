@@ -6,12 +6,14 @@
 
 %{
     #include <stdio.h>
-    #include <string>
+    #include <iostream>
+	#include <string>
 	#include "main.h"
 
 	int param_error(YYLTYPE* l, const char* fname, const char *s);
     int param_lex(YYSTYPE*, YYLTYPE* l);
     void reset_variables();
+    void add_parameter_to_table_map(char*, char*, parameter);
 
     /* tmp variables */
     parameter param;
@@ -47,18 +49,18 @@
 %name-prefix="param_"
 
 %%
-File : '{' PL '}' { return 1; }
+File : {printf("aqui\n");} '{' PL '}' { return 1; }
 	 ;
 
-PL   : PI { param_table->add_parameter(class_name, param_name, param); reset_variables(); }
-	 | PI { param_table->add_parameter(class_name, param_name, param); reset_variables(); } ',' PL
+PL   : PI { add_parameter_to_table_map(class_name, param_name, param); }
+	 | PL ',' PI { add_parameter_to_table_map(class_name, param_name, param); } 
 	 ;
 
 PI   : ID {param_name = $1;} ':' '{' PAL '}'
 	 ;
 
 PAL  : AT
-	 | AT ',' PAL
+	 | PAL ',' AT 
 	 ;
 
 IDORSTR : STR {$$ = $1;}
@@ -84,6 +86,13 @@ int param_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* param_text;
 	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, param_text);
     exit(1);
+}
+
+void add_parameter_to_table_map(char* class_name, char* param_name, parameter param){
+	if(param_name != NULL && param_name[0] != '\0'){
+		param_table->add_parameter(class_name, param_name, param);
+		reset_variables();
+ 	}
 }
 
 void reset_variables(){

@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
 	}
 
 	if((param_in = fopen(argv[arg++], "r")) == NULL){
-		printf("ERRRO %d must be a .json file!\n", arg-1);
+		printf("[ERROR!] %d must be a .json file!\n", arg-1);
 		return 0;
 	}
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
 	}
 
 	if((maze_in = fopen(argv[arg], "r")) == NULL){
-		printf("ERRRO %d must be a .json file!\n", arg);
+		printf("[ERROR!] %d must be a .json file!\n", arg);
 		return 0;
 	}
 
@@ -111,10 +111,12 @@ void ErrorHandling(int NUM){
 
 	printf("[ERROR!] Error description below:\n");
 	switch (NUM){
-	    case PARAMETER_ALREADY_EXISTS    : printf("The parameter \"%s\" already exists in \"%s\" class.\n", param_name, class_name); break;
-	    case PARAMETER_COMMENT_REQUIRED	 : printf("The parameter comment is required for \"%s\" in class \"%s\".\n", param_name, class_name); break;
-		default            				 : printf("unknown error");
+	    case PARAMETER_ALREADY_EXISTS    	 	: printf("The parameter \"%s\" already exists in \"%s\" class.\n", param_name, class_name); break;
+	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("The class name is required for the parameter \"%s\".\n", param_name); break;
+		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
+		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
+	    default            				 : printf("unknown error");
 	}
-	exit(0);
+	//exit(0);
 }
 

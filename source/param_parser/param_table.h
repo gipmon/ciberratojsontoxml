@@ -29,6 +29,6 @@ class ParamTable{
 		char* get_comment(char* class_name, char* parameter_name);
 		bool valid_value_type(char* class_name, char* parameter_name, char* value);
 		void print_parameter(char* class_name, char* parameter_name, parameter param);
-		void validate_parameter(parameter param);
+		void validate_parameter(char* class_name, char* param_name, parameter param);
 		void print_symboltable();
 };

@@ -10,8 +10,8 @@ map<char*, map<char*, parameter> >::iterator it1;
 map<char*, parameter>::iterator it2;
 
 ParamTable::ParamTable(){
-    config_standard((char *)"", (char *)"", (char *)"", (char *)"", (char *)"challenge name");
-    config_standard((char *)"", (char *)"", (char *)"", (char *)"", (char *)"challenge type");
+    config_standard((char *)"", (char *)"string", (char *)"", (char *)"", (char *)"challenge name");
+    config_standard((char *)"", (char *)"string", (char *)"", (char *)"", (char *)"challenge type");
     config_standard((char *)"", (char *)"uint", (char *)"50", (char *)"CycleTime", (char *)"cycle time");
     config_standard((char *)"", (char *)"uint", (char *)"2400", (char *)"SimTime", (char *)"duration");
 }
@@ -52,9 +52,10 @@ void ParamTable::print_symboltable(){
 }
 
 void ParamTable::add_parameter(char* class_name, char* param_name, parameter param){
+
     /* validar se o parâmetro tem o que é obrigatório */
     try{
-        validate_parameter(param);
+        validate_parameter(class_name, param_name, param);
     }catch(int e){
         ErrorHandling(e);
     }
@@ -116,13 +117,13 @@ bool ParamTable::valid_value_type(char* class_name, char* parameter_name, char* 
     return 0;
 }
 
-void ParamTable::validate_parameter(parameter param){
-    if(strlen(param.comment)==0){
-        throw PARAMETER_COMMENT_REQUIRED;
-    }else if(strlen(param.value_type)==0){
-        printf("%d",PARAMETER_VALUE_TYPE_REQUIRED);
-    }else if(strlen(param.xml_name)==0){
-        printf("%d",PARAMETER_XML_NAME_REQUIRED);
+void ParamTable::validate_parameter(char* class_name, char* param_name, parameter param){
+    if(strlen(param.value_type)==0){
+        throw PARAMETER_VALUE_TYPE_REQUIRED;
+    }else if(strlen(class_name)==0){
+        throw PARAMETER_CLASS_NAME_REQUIRED;
+    }else if(strlen(param_name)==0){
+        throw PARAMETER_NAME_REQUIRED;
     }
 }
 
