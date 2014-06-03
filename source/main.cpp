@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdio.h>
-#include <fstream>
 #include <cstring>
 #include "main.h"
 #include <cstdlib>
@@ -124,9 +123,25 @@ void ErrorHandling(int NUM){
 
 bool validateValuebyType(char* type, char* value){
 	if(!strcmp(type, "uint")){
+		int tmp = atoi(value);
+		char *tmp_int;
+		sprintf(tmp_int , "%d" , tmp);
 
+		if(strcmp(value, tmp_int)){
+			return false;
+		}else{
+			return true;
+		}
 	}else if(!strcmp(type, "double")){
+		double tmp = atof(value);
+		char *tmp_int;
+		sprintf(tmp_int , "%lf" , tmp);
 
+		if(strcmp(value, tmp_int)){
+			return false;
+		}else{
+			return true;
+		}
 	}else if(!strcmp(type, "boolean")){
 		if(strcmp(value, "0") && strcmp(value, "1") ){
 			return false;
