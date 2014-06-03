@@ -134,7 +134,11 @@ bool validateValuebyType(char* type, char* value){
 			return true;
 		}
 	}else if(!strcmp(type, "switch")){
-
+		if(strcmp(value,"on") && strcmp(value, "off") && strcmp(value, "0") && strcmp(value,"1")){
+			return false;
+		}else{
+			return true;
+		}	
 	}else if(!strcmp(type, "string")){
 
 	}else{
@@ -145,7 +149,7 @@ bool validateValuebyType(char* type, char* value){
 
         double float
         boolean 1 or 0 true or false
-        switch off on
+        switch off or on 1 or 0
         string strings
 	*/
 }
