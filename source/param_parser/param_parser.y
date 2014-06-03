@@ -49,7 +49,7 @@
 %name-prefix="param_"
 
 %%
-File : {printf("aqui\n");} '{' PL '}' { return 1; }
+File : '{' PL '}' { return 1; }
 	 ;
 
 PL   : PI { add_parameter_to_table_map(class_name, param_name, param); }

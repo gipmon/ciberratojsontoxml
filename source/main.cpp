@@ -115,8 +115,8 @@ void ErrorHandling(int NUM){
 	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("The class name is required for the parameter \"%s\".\n", param_name); break;
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
 		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
-	    default            				 : printf("unknown error");
+	    default            				 		: printf("unknown error");
 	}
-	//exit(0);
+	exit(0);
 }
 
