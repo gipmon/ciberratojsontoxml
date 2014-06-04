@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <numeric>
 #include "Maze.h"
 
 using namespace std;
@@ -61,7 +62,12 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
 }
 
 bool Maze::validate_corner_list(vector<Point>* cl){
+	double series1[] = {2,2};
+  	double series2[] = {1,0};
 
+	std::cout << "using default inner_product: ";
+	std::cout << std::inner_product(series1,series1+3,series2,0);
+	std::cout << '\n';
 	return true;
 }
 
