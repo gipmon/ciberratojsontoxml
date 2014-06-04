@@ -17,6 +17,7 @@
 	// create json files
 	$dir = "tmp/";
 	$dir_json = $dir."json/";
+	$dir_xml = $dir."xml/";
 	$id = uniqid();
 	$param_id_json = $id."param.json";
 	$challange_id_json = $id."challange.json";
@@ -34,7 +35,12 @@
 	fclose($challange_file_handling);
 
 	// make output
-	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." tmp/xml/".$id."GRID.xml"." tmp/xml/".$id."LAB.xml"." tmp/xml/".$id."PARAM.xml"." tmp/xml/".$id."URDF.xml";
+	$grid_xml_output = $dir_xml.$id."GRID.xml";
+	$lab_xml_output = $dir_xml.$id."LAB.xml";
+	$param_xml_output = $dir_xml.$id."PARAM.xml";
+	$urdf_xml_outpout = $dir_xml.$id."URDF.xml";
+
+	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$grid_xml_output." ".$lab_xml_output." ".$param_xml_output." ".$urdf_xml_outpout;
     $output = shell_exec($command);
 
     if($output){
@@ -43,7 +49,6 @@
     }else{
     	// read param list.json
 		$param_file_xml = $param_id_xml;
-		$dir_xml = $dir."xml/";
 		$param_file_handling = fopen($dir_xml.$param_file_xml, 'r') or die("UPS! Something went wrong!");
 		$data = fread($param_file_handling, filesize($dir_xml.$param_file_xml));
 		fclose($param_file_handling);
