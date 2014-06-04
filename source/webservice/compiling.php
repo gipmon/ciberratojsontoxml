@@ -23,13 +23,13 @@
 
 	// create param list.json
 	$param_file = $param_id;
-	$param_file_handling = fopen($dir_json.$param_file, 'w') or echo("UPS! Something went wrong!");
+	$param_file_handling = fopen($dir_json.$param_file, 'w') or die("UPS! Something went wrong!");
 	fwrite($param_file_handling, $param_list);
 	fclose($param_file_handling);
 
 	// create challange .json
 	$challange_file = $challange_id;
-	$challange_file_handling = fopen($dir_json.$challange_file, 'w') or echo("UPS! Something went wrong!");
+	$challange_file_handling = fopen($dir_json.$challange_file, 'w') or die("UPS! Something went wrong!");
 	fwrite($challange_file_handling, $challange);
 	fclose($challange_file_handling);
 
