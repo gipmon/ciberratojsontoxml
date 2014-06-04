@@ -46,19 +46,19 @@
     if($output){
     	echo $output;
     }else{
-		$grid_file_handling = fopen($grid_xml_output, 'r') or die("UPS! Something went wrong!");
+		$grid_file_handling = fopen($grid_xml_output, 'r') or die("UPS! Something went wrong! GRID");
 		$array['grid_output'] = fread($grid_file_handling, filesize($grid_xml_output));
 		fclose($grid_file_handling);
 
-		$lab_file_handling = fopen($lab_xml_output, 'r') or die("UPS! Something went wrong!");
+		$lab_file_handling = fopen($lab_xml_output, 'r') or die("UPS! Something went wrong! LAB");
 		$array['lab_output'] = fread($lab_file_handling, filesize($lab_xml_output));
 		fclose($lab_file_handling);
 
-		$param_file_handling = fopen($param_xml_output, 'r') or die("UPS! Something went wrong!");
+		$param_file_handling = fopen($param_xml_output, 'r') or die("UPS! Something went wrong! PARAM");
 		$array['param_output'] = fread($param_file_handling, filesize($param_xml_output));
 		fclose($param_file_handling);
 
-		$urdf_file_handling = fopen($urdf_xml_output, 'r') or die("UPS! Something went wrong!");
+		$urdf_file_handling = fopen($urdf_xml_output, 'r') or die("UPS! Something went wrong! URDF");
 		$array['urdf_output'] = fread($urdf_file_handling, filesize($urdf_xml_output));
 		fclose($urdf_file_handling);
 
