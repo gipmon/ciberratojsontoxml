@@ -18,11 +18,10 @@ Dimensions Maze::getDimensions(){
 	return dimensions;
 }
 
-void Maze::addBeacon(Point p, double r, double h){
+void Maze::addBeacon(Point p, double h){
     Beacon tmp;
 
     tmp.position = p;
-    tmp.radius = r;
     tmp.height = h;
 
     beacons->addBeacon(tmp);

@@ -34,7 +34,7 @@ class Maze {
     void setDimensions(double w, double h);
     Dimensions getDimensions();
 
-    void addBeacon(Point position, double radius, double height);
+    void addBeacon(Point position, double height);
     vector<Beacon> getBeacons();
 
     void addTargetArea(Point position, double radius);
