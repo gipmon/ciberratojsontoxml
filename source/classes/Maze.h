@@ -34,7 +34,7 @@ class Maze {
     void setDimensions(double w, double h);
     Dimensions getDimensions();
 
-    void addBeacon(Point position, double radius, double height);
+    void addBeacon(Point position, double height);
     vector<Beacon> getBeacons();
 
     void addTargetArea(Point position, double radius);
@@ -47,9 +47,6 @@ class Maze {
     vector<Pose> getPoses();
 
     void printTest();
-
-    bool validate_corner_list(vector<Point>* cl);
-    void modify_vector(vector<Point>* cl);
 
     void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
