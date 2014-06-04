@@ -81,18 +81,24 @@ int main(int argc, char* argv[]){
 	if(output){
 		system("rm -rf ./xml");
 		system("mkdir ./xml");
+      
+    system("rm -rf ./urdf");
+    system("mkdir ./urdf");
+      
 		ofstream labFile("./xml/Lab.xml");
 		ofstream gridFile("./xml/Grid.xml");
 		ofstream paramFile("./xml/Param.xml");
+    ofstream URDFFile("./urdf/URDF.xml");
 
 		gridOutputXML(gridFile);
 		labOutputXML(labFile);
 		paramOutputXML(paramFile, param_table);
+    URDFOutput(URDFFile);
 	}
 
 	return 1;
 }
-
+/**********PRINTS**********/
 void gridOutputXML(ofstream& file){
 	challenge->gridOutputXML(file);
 }
@@ -105,6 +111,11 @@ void paramOutputXML(ofstream& file, ParamTable *param_table){
 	challenge->paramOutputXML(file, param_table);
 }
 
+void URDFOutput(ofstream& file){
+    challenge->URDFOutput(file);
+}
+
+/**********ERROS**********/
 void ErrorHandling(int NUM){
 	extern char* param_name;
     extern char* class_name;

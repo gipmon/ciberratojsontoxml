@@ -49,6 +49,7 @@ class Maze {
     void printTest();
 
     void gridOutputXML(ofstream& file);
-    void labOutputXML(ofstream& file);    
+    void labOutputXML(ofstream& file);
+    void URDFOutput(ofstream& file);
 
 };

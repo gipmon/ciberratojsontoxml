@@ -45,3 +45,7 @@ void Challenge::paramOutputXML(ofstream& file, ParamTable *param_table){
 	file << "\n/>";
 	file.close();
 }
+
+void Challenge::URDFOutput(ofstream& file){
+    maze->URDFOutput(file);
+}
