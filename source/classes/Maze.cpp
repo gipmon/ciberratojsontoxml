@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <numeric>
 #include "Maze.h"
 
 using namespace std;
@@ -45,17 +46,44 @@ vector<TargetArea> Maze::getTargetAreas(){
 }
 
 void Maze::addWall(double h, double t, vector<Point>* cl){
-	Wall tmp;
+  	if(validate_corner_list(cl)){
+  		Wall tmp;
 
-	tmp.height = h;
-	if(t==0){
-		tmp.thickness = 0.1;
-	}else{
-		tmp.thickness = t;
-	} 
-	tmp.corner_list = cl;
+		tmp.height = h;
+		if(t!=0){
+			modify_vector(cl);
+		}
+		tmp.thickness = 0;
+		tmp.corner_list = cl;
 
-	walls->addWall(tmp);
+		walls->addWall(tmp);
+  	}
+}
+
+bool Maze::validate_corner_list(vector<Point>* cl){
+	if(cl->size()<3){
+		return true;
+	}
+
+	vector<Point*> *scalar_vector = new vector<Point*>();
+
+	for(vector<Point>::iterator it = cl->begin() ; it != cl->end(); ++it){
+		Point *tmp =  new Point((*(it+1)).getX()-(*it).getX(), (*(it+1)).getY()-(*it).getY());
+		scalar_vector->push_back(tmp);
+	}
+	for(vector<Point*>::iterator it = scalar_vector->begin() ; it != scalar_vector->end()-1; ++it){
+
+		double series1[] = {(*it)->getX(), (*it)->getY()};
+	  	double series2[] = {(*(it+1))->getX(), (*(it+1))->getY()};
+		if(!inner_product(series1, series1+2, series2, 0)){
+			return true;
+		}
+	}
+	return false;
+}
+
+void Maze::modify_vector(vector<Point>* cl){
+
 }
 
 vector<Wall> Maze::getWalls(){

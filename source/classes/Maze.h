@@ -48,6 +48,9 @@ class Maze {
 
     void printTest();
 
+    
+    void modify_vector(vector<Point>* cl);
+    bool validate_corner_list(vector<Point>* cl);
     void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
     void URDFOutput(ofstream& file);
