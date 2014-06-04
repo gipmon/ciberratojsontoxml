@@ -14,13 +14,18 @@ void warning_message(){
 }
 
 int main(int argc, char* argv[]){
-    
-	/* validação dos argumentos */
 	if(argc<4){
-		warning_message();
-		return 0;
+		return menu(argc, argv);
+	}else{
+		return commandLineTools(argc, argv);
 	}
+}
 
+int menu(int argc, char* argv[]){
+	return 0;
+}
+
+int commandLineTools(int argc, char* argv[]){
 	/* options via terminal */
 	int print = 0;
 	int output = 0;
