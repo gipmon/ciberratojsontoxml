@@ -38,9 +38,9 @@
 	$grid_xml_output = $dir_xml.$id."GRID.xml";
 	$lab_xml_output = $dir_xml.$id."LAB.xml";
 	$param_xml_output = $dir_xml.$id."PARAM.xml";
-	$urdf_xml_outpout = $dir_xml.$id."URDF.xml";
+	$urdf_xml_output = $dir_xml.$id."URDF.xml";
 
-	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$grid_xml_output." ".$lab_xml_output." ".$param_xml_output." ".$urdf_xml_outpout;
+	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$grid_xml_output." ".$lab_xml_output." ".$param_xml_output." ".$urdf_xml_output;
     $output = shell_exec($command);
 
     if($output){
