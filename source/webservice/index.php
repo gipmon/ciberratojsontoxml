@@ -17,7 +17,6 @@
 
   <body role="document">
 
-    <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -31,39 +30,48 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Json to XML</a></li>
-            <li><a href="#about">URDF</a></li>
+            <li class="active"><a href="index.php">Json to XML</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="#">Rafael Ferreira</a></li>
+                <li><a href="#">Bernardo Ferreira</a></li>
+                <li><a href="#">Rodrigo Cunha</a></li>
+                <li><a href="#">Rafael Almeida</a></li>
+                <li><a href="#">João Quintanilha</a></li>
               </ul>
             </li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
 
     <div class="container theme-showcase" role="main">
+      <h3>JSON input (param list and challange list)</h3>
+      <div class="row">
+        <div class="col-md-6"><h4>param.json:</h4><br/><textarea style="width: 100%" id="param" rows="15"></textarea></div>
+        <div class="col-md-6"><h4>challange.json:</h4><br/><textarea style="width: 100%" id="challange" rows="15"></textarea></div>
+      </div>
+      <p style="text-align: center">
+        <button type="button" id="make" class="btn btn-primary btn-lg">Make XML</button>
+      </p>
+      <hr/>
+      <h4>OUTPUT</h4>
+      <pre id="output"></pre>
+      <hr/>
+      <h3>XML output</h3>
+      <div class="row">
+        <div class="col-md-6"><h4>Grid.xml:</h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
+        <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="param"  rows="30" readonly></textarea></div>
+        <div class="col-md-6"><h4>URDF.xml:</h4><br/><textarea style="width: 100%" id="urdf" rows="30" readonly></textarea></div>
+      </div>
+    </div>
 
-    <?php 
-      $output = shell_exec("../main.output a b c d e");
-      echo "<pre>$output</pre>"; 
-    ?>
-
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="jquery/jq.js"></script>
   </body>
 </html>
