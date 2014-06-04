@@ -129,7 +129,6 @@ void ErrorHandling(int NUM){
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
 		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n", param_name, class_name, param.value_type, default_value_type);   break;
-		case VALUE_TYPE_IS_NOT_CONSIDERED		: printf("The value type isn't considered");   break;
 	    default            				 		: printf("unknown error");
 	}
 	exit(0);
