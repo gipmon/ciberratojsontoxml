@@ -30,7 +30,7 @@ void Walls::labOutputXML(ofstream& file){
 	
 
 	for (vector<Wall>::iterator it1 = walls->begin() ; it1 != walls->end(); ++it1){
-		file << "\t<Wall Height=\"" << (*it1).height << "\" Thickness=\"" << (*it1).thickness << "\">\n";
+		file << "\t<Wall Height=\"" << (*it1).height << "\">\n";
 		for(vector<Point>::iterator it2 = (*it1).corner_list->begin() ; it2 != (*it1).corner_list->end(); ++it2){
 			file << "\t\t<Corner X=\"" << (*it2).getX() << "\" Y=\"" << (*it2).getY()  << "\"/>\n";
 		}
