@@ -34,7 +34,7 @@
 	fclose($challange_file_handling);
 
 	// make output
-	$command = "../main.output -p -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." /var/www/source/webservice/tmp/xml/".$id."GRID.xml"." /var/www/source/webservice/tmp/xml/".$id."LAB.xml"." /var/www/source/webservice/tmp/xml/".$id."PARAM.xml"." /var/www/source/webservice/tmp/xml/".$id."URDF.xml";
+	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." tmp/xml/".$id."GRID.xml"." tmp/xml/".$id."LAB.xml"." tmp/xml/".$id."PARAM.xml"." tmp/xml/".$id."URDF.xml";
     $output = shell_exec($command);
 
     if($output){
