@@ -62,7 +62,7 @@
 		$array['urdf_output'] = fread($urdf_file_handling, filesize($urdf_xml_output));
 		fclose($urdf_file_handling);
 
-		echo json_encode(array("response_type" => "ok", "val" => $array);
+		echo json_encode(array("response_type" => "ok", "val" => $array));
     }
 
     // delete files
