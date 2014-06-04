@@ -1,4 +1,8 @@
 $( document ).ready(function() {
+	function scroll(aid){
+	    var aTag = $(aid);
+	    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+	}
     $("#make").click(function(){ 
 		var param = $('#param').val();
 		var challange = $('#challange').val();
@@ -16,6 +20,7 @@ $( document ).ready(function() {
 					$('#urdf').text(response.val.urdf_output);
 					$('#output').text("OUTPUT done!");
   					$('#output_div').fadeIn("fast");
+  					scroll('#output_div');
 				}
 			}
 		});
