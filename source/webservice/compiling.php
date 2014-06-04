@@ -45,22 +45,24 @@
 
     if($output){
     	echo $output;
-    	echo $command."n";
     }else{
-    	// read param list.json
-		$param_file_xml = $param_id_xml;
-		$param_file_handling = fopen($dir_xml.$param_file_xml, 'r') or die("UPS! Something went wrong!");
-		$data = fread($param_file_handling, filesize($dir_xml.$param_file_xml));
+		$grid_file_handling = fopen($grid_xml_output, 'r') or die("UPS! Something went wrong!");
+		$array['grid_output'] = fread($grid_file_handling, filesize($grid_xml_output));
+		fclose($grid_file_handling);
+
+		$lab_file_handling = fopen($lab_xml_output, 'r') or die("UPS! Something went wrong!");
+		$array['lab_output'] = fread($lab_file_handling, filesize($lab_xml_output));
+		fclose($lab_file_handling);
+
+		$param_file_handling = fopen($param_xml_output, 'r') or die("UPS! Something went wrong!");
+		$array['param_output'] = fread($param_file_handling, filesize($param_xml_output));
 		fclose($param_file_handling);
 
-		// create challange .json
-		$challange_file = $challange_id_xml;
-		$challange_file_handling = fopen($dir_xml.$challange_file, 'r') or die("UPS! Something went wrong!");
-		$data = fread($challange_file_handling, filesize($dir_xml.$challange_file));
-		fclose($challange_file_handling);
+		$urdf_file_handling = fopen($urdf_xml_output, 'r') or die("UPS! Something went wrong!");
+		$array['urdf_output'] = fread($urdf_file_handling, filesize($urdf_xml_output));
+		fclose($urdf_file_handling);
 
-    	echo "aqui";
-    	echo $output;
+    	echo json_encode($array);
     }
 
     // delete files
