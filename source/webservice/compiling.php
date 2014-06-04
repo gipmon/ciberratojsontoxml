@@ -57,6 +57,6 @@
     }
 
     // delete files
-    unlink($dir_json.$param_file);
-    unlink($dir_json.$challange_file_json);
+    //unlink($dir_json.$param_file_json);
+    //unlink($dir_json.$challange_file_json);
 ?>
