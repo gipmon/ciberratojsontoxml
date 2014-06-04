@@ -54,7 +54,7 @@
 
     <?php 
       exec("../main.output a b c d e", $out); 
-      echo $out;  
+      echo print_r($out);  
     ?>
 
     </div> <!-- /container -->
