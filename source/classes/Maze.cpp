@@ -52,7 +52,7 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
 		tmp.thickness = 0.1;
 	}else{
 		tmp.thickness = t;
-	}
+	} 
 	tmp.corner_list = cl;
 
 	walls->addWall(tmp);
