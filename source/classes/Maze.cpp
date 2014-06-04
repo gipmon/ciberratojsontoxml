@@ -18,10 +18,11 @@ Dimensions Maze::getDimensions(){
 	return dimensions;
 }
 
-void Maze::addBeacon(Point p, double h){
+void Maze::addBeacon(Point p, double r, double h){
     Beacon tmp;
 
     tmp.position = p;
+    tmp.radius = r;
     tmp.height = h;
 
     beacons->addBeacon(tmp);
@@ -45,17 +46,27 @@ vector<TargetArea> Maze::getTargetAreas(){
 }
 
 void Maze::addWall(double h, double t, vector<Point>* cl){
-	Wall tmp;
+  	if(validate_corner_list(cl)){
+  		Wall tmp;
 
-	tmp.height = h;
-	if(t==0){
-		tmp.thickness = 0.1;
-	}else{
-		tmp.thickness = t;
-	}
-	tmp.corner_list = cl;
+		tmp.height = h;
+		if(t!=0){
+			modify_vector(cl);
+		}
+		tmp.thickness = 0;
+		tmp.corner_list = cl;
 
-	walls->addWall(tmp);
+		walls->addWall(tmp);
+  	}
+}
+
+bool Maze::validate_corner_list(vector<Point>* cl){
+
+	return true;
+}
+
+void Maze::modify_vector(vector<Point>* cl){
+
 }
 
 vector<Wall> Maze::getWalls(){
@@ -89,7 +100,7 @@ void Maze::gridOutputXML(ofstream& file){
 }
 
 void Maze::labOutputXML(ofstream& file){
-	
+
 	file << "<Lab Name=\"" << name << "\" Width=\"" << dimensions.width << "\" Height=\"" << dimensions.height << "\">\n";
 	beacons->labOutputXML(file);
 	targetareas->labOutputXML(file);
@@ -100,18 +111,18 @@ void Maze::labOutputXML(ofstream& file){
 
 void Maze::URDFOutput(ofstream& file){
     int count=1;
-    
+
     file << "<robot name=\"TOS challenge\">\n";
-    
+
     file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << dimensions.width/2 << " 0 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << dimensions.width << " 0.2 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
 
     file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << dimensions.width/2 << " "<< dimensions.height <<" 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << dimensions.width << " 0.2 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
-    
+
     file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"0 " << dimensions.height/2 <<" 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"0.2 "<< dimensions.height << " 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
-    
+
     file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\""<< dimensions.width << " " << dimensions.height/2 <<" 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"0.2 "<< dimensions.height << " 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
-    
-    file << "\t<link name=\"base\">\n\t\t<visual>\n\t\t\t<origin xyz=\""<< dimensions.width/2 << " " << dimensions.height/2 <<" 0\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\""<< dimensions.width << " " << dimensions.height << " 0.2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"yellow2\">\n\t\t\t\t<color rgba=\"1 1 0.5 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+    file << "\t<link name=\"base\">\n\t\t<visual>\n\t\t\t<origin xyz=\""<< dimensions.width/2 << " " << dimensions.height/2 <<" -0.1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\""<< dimensions.width << " " << dimensions.height << " 0.2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"yellow2\">\n\t\t\t\t<color rgba=\"1 1 0.5 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
 
     beacons->URDFOutput(file);
     targetareas->URDFOutput(file);

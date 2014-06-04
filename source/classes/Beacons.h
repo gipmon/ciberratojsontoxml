@@ -10,6 +10,7 @@ using namespace std;
 /* Farol */
 struct Beacon{
     Point position;
+    double radius;
     double height;
 };
 
