@@ -83,7 +83,7 @@ bool Maze::validate_corner_list(vector<Point>* cl){
 }
 
 void Maze::modify_vector(vector<Point>* cl){
-
+	
 }
 
 vector<Wall> Maze::getWalls(){
