@@ -23,6 +23,5 @@ void labOutputXML(ofstream& file);
 void paramOutputXML(ofstream& file, ParamTable *param_table);
 void URDFOutput(ofstream& file);
 void ErrorHandling(int);
-bool validateValuebyType(char* type, char* value);
 
 #endif

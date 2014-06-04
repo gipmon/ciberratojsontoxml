@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <cstring>
 #include <cstdlib>
-#include <tr1/regex>
 #include "main.h"
 
 using namespace std;
@@ -120,6 +119,8 @@ void URDFOutput(ofstream& file){
 void ErrorHandling(int NUM){
 	extern char* param_name;
     extern char* class_name;
+    extern parameter param;
+    extern char* default_value_type;
 
 	printf("[SEMANTIC ERROR!] Error description below:\n");
 	switch (NUM){
@@ -127,53 +128,10 @@ void ErrorHandling(int NUM){
 	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("The class name is required for the parameter \"%s\".\n", param_name); break;
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
 		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
-		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is worng by value type in the parameter \"%s\" in \"%s\" class.\n", param_name, class_name);   break;
+		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n", param_name, class_name, param.value_type, default_value_type);   break;
 		case VALUE_TYPE_IS_NOT_CONSIDERED		: printf("The value type isn't considered");   break;
 	    default            				 		: printf("unknown error");
 	}
 	exit(0);
 	/* SKYP OR EXIT? */
-}
-
-bool validateValuebyType(char* type, char* value){
-	if(!strcmp(type, "uint")){
-		/*
-		regex integer("(\\+|-)?[[:digit:]]+");
-   		if(std::tr1::regex_match(value, integer)){
-   			return true;
-   		}else{
-            return false;
-        }
-        */
-        return true;
-	}else if(!strcmp(type, "double")){
-		/*
-		double tmp = atof(value);
-		char* tmp_int;
-		sprintf(tmp_int , "%lf" , tmp);
-
-		if(strcmp(value, tmp_int)){
-			return false;
-		}else{
-			return true;
-		}
-		*/
-		return true;
-	}else if(!strcmp(type, "boolean")){
-		if(strcmp(value, "0") && strcmp(value, "1") && strcmp(value, "true") && strcmp(value, "false")){
-			return false;
-		}else{
-			return true;
-		}
-	}else if(!strcmp(type, "switch")){
-		if(strcmp(value,"on") && strcmp(value, "off") && strcmp(value, "0") && strcmp(value,"1")){
-			return false;
-		}else{
-			return true;
-		}	
-	}else if(!strcmp(type, "string")){
-		return true;
-	}else{
-		throw VALUE_TYPE_IS_NOT_CONSIDERED;
-	}
 }
