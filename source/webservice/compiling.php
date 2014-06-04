@@ -18,26 +18,39 @@
 	$dir = "tmp/";
 	$dir_json = $dir."json/";
 	$id = uniqid();
-	$param_id = $id."param.json";
-	$challange_id = $id."challange.json";
+	$param_id_json = $id."param.json";
+	$challange_id_json = $id."challange.json";
 
 	// create param list.json
-	$param_file = $param_id;
-	$param_file_handling = fopen($dir_json.$param_file, 'w') or die("UPS! Something went wrong!");
+	$param_file_json = $param_id_json;
+	$param_file_handling = fopen($dir_json.$param_file_json, 'w') or die("UPS! Something went wrong!");
 	fwrite($param_file_handling, $param_list);
 	fclose($param_file_handling);
 
 	// create challange .json
-	$challange_file = $challange_id;
-	$challange_file_handling = fopen($dir_json.$challange_file, 'w') or die("UPS! Something went wrong!");
+	$challange_file_json = $challange_id_json;
+	$challange_file_handling = fopen($dir_json.$challange_file_json, 'w') or die("UPS! Something went wrong!");
 	fwrite($challange_file_handling, $challange);
 	fclose($challange_file_handling);
 
 	// make output
-    $output = shell_exec("../main.output -o ".$dir_json.$param_file." ".$dir_json.$challange_file);
+    $output = shell_exec("../main.output -o ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json);
 
     if($output){
-    	// open files
+    	// read param list.json
+		$param_file_xml = $param_id_xml;
+		$dir_xml = $dir."xml/";
+		$param_file_handling = fopen($dir_xml.$param_file_xml, 'r') or die("UPS! Something went wrong!");
+		$data = fread($param_file_handling, filesize($dir_xml.$param_file_xml));
+		fclose($param_file_handling);
+
+		// create challange .json
+		$challange_file = $challange_id_xml;
+		$challange_file_handling = fopen($dir_xml.$challange_file, 'r') or die("UPS! Something went wrong!");
+		$data = fread($challange_file_handling, filesize($dir_xml.$challange_file));
+		fclose($challange_file_handling);
+
+    	echo $output;
     	echo "ok";
     }else{
     	echo $output;
@@ -45,5 +58,5 @@
 
     // delete files
     unlink($dir_json.$param_file);
-    unlink($dir_json.$challange_file);
+    unlink($dir_json.$challange_file_json);
 ?>
