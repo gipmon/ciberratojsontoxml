@@ -57,7 +57,7 @@ void ParamTable::add_parameter(char* class_name, char* param_name, parameter par
     try{
         validate_parameter(class_name, param_name, param);
     }catch(int e){
-        ErrorHandlingWithExit(e);
+        ErrorHandling(e);
     }
 
     /* itator->first  = key; itator->second = value map<char*, parameter> */

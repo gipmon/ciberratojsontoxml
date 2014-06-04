@@ -22,7 +22,7 @@ void gridOutputXML(ofstream& file);
 void labOutputXML(ofstream& file);
 void paramOutputXML(ofstream& file, ParamTable *param_table);
 void URDFOutput(ofstream& file);
-void ErrorHandlingWithExit(int);
+void ErrorHandling(int);
 int  menu(int argc, char* argv[]);
 int  commandLineTools(int argc, char* argv[]);
 

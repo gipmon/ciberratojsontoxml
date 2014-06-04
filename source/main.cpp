@@ -60,7 +60,7 @@ int commandLineTools(int argc, char* argv[]){
 	try{
 		param_parse(argv[1]);
 	}catch(int e){
-		ErrorHandlingWithExit(e);
+		ErrorHandling(e);
 	}
 
 	if(print){
@@ -75,7 +75,7 @@ int commandLineTools(int argc, char* argv[]){
 	try{
 		maze_parse(argv[2]);
 	}catch(int e){
-		ErrorHandlingWithExit(e);
+		ErrorHandling(e);
 	}
 
 	if(print){
@@ -121,7 +121,7 @@ void URDFOutput(ofstream& file){
 }
 
 /********** ERROR **********/
-void ErrorHandlingWithExit(int NUM){
+void ErrorHandling(int NUM){
 	extern char* param_name;
     extern char* class_name;
     extern parameter param;
