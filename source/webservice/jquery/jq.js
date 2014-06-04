@@ -11,6 +11,7 @@ $( document ).ready(function() {
 				$('#param').text(response.param_output);
 				$('#urdf').text(response.urdf_output);
 				console.log(response.param_output);
+				$('#output').text("OUTPUT done!");
 			}else{
 				$('#output').text(data);
 			}
