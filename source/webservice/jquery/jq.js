@@ -6,13 +6,15 @@ $( document ).ready(function() {
 		$.post("compiling.php",{param: param, challange: challange}, function(data){
 			var response = jQuery.parseJSON(data);
 			if(typeof response =='object'){
-				$('#grid').text(response.grid_output);
-				$('#lab').text(response.lab_output);
-				$('#param_output').text(response.param_output);
-				$('#urdf').text(response.urdf_output);
-				$('#output').text("OUTPUT done!");
-			}else{
-				$('#output').text(data);
+				if(response.response_type=="error"){
+					$('#output').text(response.val);
+				}else if(response.response_type=="ok"){
+					$('#grid').text(response.val.grid_output);
+					$('#lab').text(response.val.lab_output);
+					$('#param_output').text(response.val.param_output);
+					$('#urdf').text(response.val.urdf_output);
+					$('#output').text("OUTPUT done!");
+				}
 			}
 		});
     }); 

@@ -5,12 +5,12 @@
 	// test if is json
 	$ob_pl = json_decode($param_list);
 	if($ob_pl === null){
-		echo "param.json isn't a JSON file!";
+		echo json_encode(array("response_type" => "error", "val" => "param.json isn't a JSON file!"));
 		exit();
 	}
 	$ob_cl = json_decode($challange);
 	if($ob_cl === null){
-		echo "challange.json isn't a JSON file!";
+		echo json_encode(array("response_type" => "error", "val" => "challange.json isn't a JSON file!"));
 		exit();
 	}
 
@@ -44,7 +44,7 @@
     $output = shell_exec($command);
 
     if($output){
-    	echo $output;
+		echo json_encode(array("response_type" => "error", "val" => $output));
     }else{
 		$grid_file_handling = fopen($grid_xml_output, 'r') or die("UPS! Something went wrong!");
 		$array['grid_output'] = fread($grid_file_handling, filesize($grid_xml_output));
@@ -62,7 +62,7 @@
 		$array['urdf_output'] = fread($urdf_file_handling, filesize($urdf_xml_output));
 		fclose($urdf_file_handling);
 
-    	echo json_encode($array);
+		echo json_encode(array("response_type" => "ok", "val" => $array);
     }
 
     // delete files
