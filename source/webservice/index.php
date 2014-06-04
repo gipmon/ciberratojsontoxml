@@ -58,7 +58,7 @@
       <hr/>
       <h4>OUTPUT</h4>
       <pre id="output"></pre>
-      <div id="output_div" class="hide">
+      <div id="output_div" style="display:none">
         <hr/>
         <h3>XML output</h3>
         <div class="row">
