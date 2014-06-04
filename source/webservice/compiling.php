@@ -34,12 +34,11 @@
 	fclose($challange_file_handling);
 
 	// make output
-    $output = shell_exec("../main.output -o -p ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json);
-    
-    echo getcwd();
+    $output = shell_exec("../main.output -p -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." /var/www/source/webservice/tmp/xml/".$id."GRID.xml"." /var/www/source/webservice/tmp/xml/".$id."LAB.xml"." /var/www/source/webservice/tmp/xml/".$id."PARAM.xml"." /var/www/source/webservice/tmp/xml/".$id."URDF.xml");
 
     if($output){
     	echo $output;
+    	echo "n";
     }else{
     	// read param list.json
 		$param_file_xml = $param_id_xml;
