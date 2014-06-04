@@ -113,14 +113,15 @@ int param_error(YYLTYPE* l, const char* fname, const char *s){
 void add_parameter_to_table_map(char* class_name, char* param_name, parameter param){
 	if(param_name != NULL && param_name[0] != '\0' && class_name != NULL && class_name[0] != '\0'){
 		param_table->add_parameter(class_name, param_name, param);
-		reset_variables();
  	}
+	reset_variables();
 }
 void validate_dv(){
 	if(default_value_type != NULL && default_value_type[0] != '\0' && param.value_type != NULL && param.value_type[0] != '\0' && param.default_value != NULL && param.default_value[0] != '\0'){
 		if(!(!strcmp(param.value_type, "double") && (!strcmp(default_value_type, "double") || !strcmp(default_value_type, "uint")))){
 			if(strcmp(param.value_type, default_value_type)){
-				throw DEFAULT_VALUE_WRONG_BY_TYPE;
+				printf("%s=%s, %s\n", param.value_type, default_value_type, param.default_value);
+				//throw DEFAULT_VALUE_WRONG_BY_TYPE;
 			}
 		}
 	}
@@ -129,6 +130,7 @@ void validate_dv(){
 void reset_variables(){
 	parameter tmp;
 	param = tmp;
+	param.default_value = '\0';
 	char* param_name = '\0';
     char* class_name = '\0';
     char* default_value_type = '\0';
