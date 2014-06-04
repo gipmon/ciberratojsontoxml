@@ -4,7 +4,7 @@
 
 using namespace std;
 
-extern void ErrorHandling(int);
+extern void ErrorHandlingWithExit(int);
 extern bool validateValuebyType(char*, char*);
 
 struct parameter{
