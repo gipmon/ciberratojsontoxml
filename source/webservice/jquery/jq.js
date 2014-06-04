@@ -8,12 +8,14 @@ $( document ).ready(function() {
 			if(typeof response =='object'){
 				if(response.response_type=="error"){
 					$('#output').text(response.val);
+  					$('#output_div').fadeOut("fast");
 				}else if(response.response_type=="ok"){
 					$('#grid').text(response.val.grid_output);
 					$('#lab').text(response.val.lab_output);
 					$('#param_output').text(response.val.param_output);
 					$('#urdf').text(response.val.urdf_output);
 					$('#output').text("OUTPUT done!");
+  					$('#output_div').fadeIn("fast");
 				}
 			}
 		});
