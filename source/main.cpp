@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <cstring>
 #include <cstdlib>
+#include <cctype>
 #include "main.h"
 
 using namespace std;
@@ -14,15 +15,37 @@ void warning_message(){
 }
 
 int main(int argc, char* argv[]){
+	int option;
+
 	if(argc<4){
-		return menu(argc, argv);
+		option  = menu(argc, argv);
 	}else{
 		return commandLineTools(argc, argv);
+	}
+	
+	switch(option){
+		case 1:
+			printf("\nIntroduza o nome do ficheiro parameters list: ");
+
 	}
 }
 
 int menu(int argc, char* argv[]){
-	return 0;
+	int b, isDigit;
+	printf("MENU:\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Walls options (Models)\n0 - End Program\nOpção: ");
+	do{
+		cin >> b;
+		cin.clear();
+		cin.ignore(80,'\n');
+		
+		//isDigit = isdigit(b);
+
+		if(/*!isDigit ||*/ b < 1 || b > 5){
+			printf("Introduza uma opção válida: ");
+		}
+	}while(/*!isDigit ||*/ b < 1 || b > 5);
+
+	return b;
 }
 
 int commandLineTools(int argc, char* argv[]){
