@@ -53,6 +53,7 @@
     	echo $output;
     	echo "ok";
     }else{
+    	echo "aqui";
     	echo $output;
     }
 
