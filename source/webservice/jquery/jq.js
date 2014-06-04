@@ -8,7 +8,7 @@ $( document ).ready(function() {
 			if(typeof response =='object'){
 				$('#grid').text(response.grid_output);
 				$('#lab').text(response.lab_output);
-				$('#param').text(response.param_output);
+				$('#param_output').text(response.param_output);
 				$('#urdf').text(response.urdf_output);
 				console.log(response.param_output);
 				$('#output').text("OUTPUT done!");

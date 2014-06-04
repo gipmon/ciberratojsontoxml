@@ -65,7 +65,7 @@
         <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
       </div>
       <div class="row">
-        <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="param"  rows="30" readonly></textarea></div>
+        <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="param_output"  rows="30" readonly></textarea></div>
         <div class="col-md-6"><h4>URDF.xml:</h4><br/><textarea style="width: 100%" id="urdf" rows="30" readonly></textarea></div>
       </div>
     </div>
