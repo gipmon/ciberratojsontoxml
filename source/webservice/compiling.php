@@ -38,7 +38,7 @@
 
     if($output){
     	// open files
-
+    	echo "ok";
     }else{
     	echo $output;
     }
