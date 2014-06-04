@@ -37,6 +37,8 @@
     $output = shell_exec("../main.output -o -p ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json);
 
     if($output){
+    	echo $output;
+    }else{
     	// read param list.json
 		$param_file_xml = $param_id_xml;
 		$dir_xml = $dir."xml/";
@@ -50,9 +52,6 @@
 		$data = fread($challange_file_handling, filesize($dir_xml.$challange_file));
 		fclose($challange_file_handling);
 
-    	echo $output;
-    	echo "ok";
-    }else{
     	echo "aqui";
     	echo $output;
     }

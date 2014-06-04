@@ -52,6 +52,7 @@ int commandLineTools(int argc, char* argv[]){
 	/* options via terminal */
 	int print = 0;
 	int output = 0;
+	int output_set = 0;
 
 
 	if(!strcmp("-p", argv[1]) || !strcmp("-p", argv[2])){
@@ -59,6 +60,9 @@ int commandLineTools(int argc, char* argv[]){
 	}
 	if(!strcmp("-o", argv[1]) || !strcmp("-o", argv[2])){
 		output = 1;
+	}
+	if(output && (!strcmp("-s", argv[2]) || !strcmp("-s", argv[3]))){
+		output_set = 1;
 	}
 
 	if(!print && !output){
@@ -74,14 +78,17 @@ int commandLineTools(int argc, char* argv[]){
 	if(output){
 		arg++;
 	}
+	if(output_set){
+		arg++;
+	}
 
-	if((param_in = fopen(argv[arg++], "r")) == NULL){
+	if((param_in = fopen(argv[arg], "r")) == NULL){
 		printf("[ERROR!] %d must be a .json file!\n", arg-1);
 		return 0;
 	}
 
 	try{
-		param_parse(argv[1]);
+		param_parse(argv[arg++]);
 	}catch(int e){
 		ErrorHandlingWithExit(e);
 	}
@@ -96,7 +103,7 @@ int commandLineTools(int argc, char* argv[]){
 	}
 
 	try{
-		maze_parse(argv[2]);
+		maze_parse(argv[arg++]);
 	}catch(int e){
 		ErrorHandlingWithExit(e);
 	}
@@ -106,21 +113,33 @@ int commandLineTools(int argc, char* argv[]){
 	}
 
 	if(output){
-		system("rm -rf ./xml");
-		system("mkdir ./xml");
-      
-	    system("rm -rf ./urdf");
-	    system("mkdir ./urdf");
-	      
-		ofstream labFile("./xml/Lab.xml");
-		ofstream gridFile("./xml/Grid.xml");
-		ofstream paramFile("./xml/Param.xml");
-    	ofstream URDFFile("./urdf/URDF.xml");
+		if(output_set){
+			ofstream labFile(argv[arg++]);
+			ofstream gridFile(argv[arg++]);
+			ofstream paramFile(argv[arg++]);
+	    	ofstream URDFFile(argv[arg++]);
 
-		gridOutputXML(gridFile);
-		labOutputXML(labFile);
-		paramOutputXML(paramFile, param_table);
-    	URDFOutput(URDFFile);
+			gridOutputXML(gridFile);
+			labOutputXML(labFile);
+			paramOutputXML(paramFile, param_table);
+	    	URDFOutput(URDFFile);
+		}else{
+			system("rm -rf ./xml");
+			system("mkdir ./xml");
+	      
+		    system("rm -rf ./urdf");
+		    system("mkdir ./urdf");
+		      
+			ofstream labFile("./xml/Lab.xml");
+			ofstream gridFile("./xml/Grid.xml");
+			ofstream paramFile("./xml/Param.xml");
+	    	ofstream URDFFile("./urdf/URDF.xml");
+
+			gridOutputXML(gridFile);
+			labOutputXML(labFile);
+			paramOutputXML(paramFile, param_table);
+	    	URDFOutput(URDFFile);
+		}
 	}
 
 	return 1;
