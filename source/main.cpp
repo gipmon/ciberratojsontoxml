@@ -82,23 +82,24 @@ int main(int argc, char* argv[]){
 		system("rm -rf ./xml");
 		system("mkdir ./xml");
       
-    system("rm -rf ./urdf");
-    system("mkdir ./urdf");
-      
+	    system("rm -rf ./urdf");
+	    system("mkdir ./urdf");
+	      
 		ofstream labFile("./xml/Lab.xml");
 		ofstream gridFile("./xml/Grid.xml");
 		ofstream paramFile("./xml/Param.xml");
-    ofstream URDFFile("./urdf/URDF.xml");
+    	ofstream URDFFile("./urdf/URDF.xml");
 
 		gridOutputXML(gridFile);
 		labOutputXML(labFile);
 		paramOutputXML(paramFile, param_table);
-    URDFOutput(URDFFile);
+    	URDFOutput(URDFFile);
 	}
 
 	return 1;
 }
-/**********PRINTS**********/
+
+/********** PRINTS **********/
 void gridOutputXML(ofstream& file){
 	challenge->gridOutputXML(file);
 }
@@ -115,12 +116,12 @@ void URDFOutput(ofstream& file){
     challenge->URDFOutput(file);
 }
 
-/**********ERROS**********/
+/********** ERROR **********/
 void ErrorHandling(int NUM){
 	extern char* param_name;
     extern char* class_name;
 
-	printf("[ERROR!] Error description below:\n");
+	printf("[SEMANTIC ERROR!] Error description below:\n");
 	switch (NUM){
 	    case PARAMETER_ALREADY_EXISTS    	 	: printf("The parameter \"%s\" already exists in \"%s\" class.\n", param_name, class_name); break;
 	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("The class name is required for the parameter \"%s\".\n", param_name); break;
@@ -131,6 +132,7 @@ void ErrorHandling(int NUM){
 	    default            				 		: printf("unknown error");
 	}
 	exit(0);
+	/* SKYP OR EXIT? */
 }
 
 bool validateValuebyType(char* type, char* value){
