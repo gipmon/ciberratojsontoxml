@@ -25,4 +25,5 @@ class TargetAreas {
 
     void printTest();
     void labOutputXML(ofstream& file);
+    void URDFOutput(ofstream& file);
 };

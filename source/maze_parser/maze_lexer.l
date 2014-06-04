@@ -50,6 +50,8 @@ sd_height			["]height["]
 
 sd_corner_list		["]corner[ ]list["]
 
+thickness			["]thickness["]	
+
 
 %%
 
@@ -80,6 +82,8 @@ sd_corner_list		["]corner[ ]list["]
 {sd_radius}					{ l->first_line=yylineno; return SD_RADIUS; }
 
 {sd_height}					{ l->first_line=yylineno; return SD_HEIGHT; }
+
+{thickness}					{ l->first_line=yylineno; return THICKNESS; }
 
 {sd_corner_list}			{ l->first_line=yylineno; return SD_CORNER_LIST; }
 

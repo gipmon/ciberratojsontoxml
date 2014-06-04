@@ -10,7 +10,6 @@ using namespace std;
 /* Farol */
 struct Beacon{
     Point position;
-    double radius;
     double height;
 };
 
@@ -26,5 +25,6 @@ class Beacons {
     vector<Beacon> beaconsList();
 
     void printTest();
-	void labOutputXML(ofstream& file);
+    void labOutputXML(ofstream& file);
+    void URDFOutput(ofstream& file);
 };
