@@ -44,7 +44,7 @@
     $output = shell_exec($command);
 
     if($output){
-		echo json_encode(array("response_type" => "error", "val" => $output));
+		echo json_encode(array("response_type" => "error", "val" => str_replace("tmp/json/".$id, "", $output)));
     }else{
 		$grid_file_handling = fopen($grid_xml_output, 'r') or die("UPS! Something went wrong!");
 		$array['grid_output'] = fread($grid_file_handling, filesize($grid_xml_output));
