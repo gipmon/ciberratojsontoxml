@@ -35,6 +35,8 @@
 
 	// make output
     $output = shell_exec("../main.output -o -p ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json);
+    
+    echo getcwd();
 
     if($output){
     	echo $output;
