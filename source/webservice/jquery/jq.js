@@ -6,7 +6,7 @@ $( document ).ready(function() {
 		$.post("compiling.php",{param: param, challange: challange}, function(data){
 			$('#output').text(data);
 			var response = jQuery.parseJSON(data);
-			console.log(response);
+			console.log(response.grid_output);
 			/*
 			if(typeof response =='object'){
 				$('#grid').text(response[0]);
