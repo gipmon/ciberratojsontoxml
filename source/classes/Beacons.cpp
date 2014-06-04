@@ -17,7 +17,7 @@ void Beacons::printTest(){
 	cout << "\tbeacons\" : [ " << endl;
 
 	for (vector<Beacon>::iterator it = beacons->begin() ; it != beacons->end(); ++it){
-		cout << "\n\t\t" << "{ \"position\" : [" << (*it).position.getX() << ", " << (*it).position.getY() << "], radius: " <<  (*it).radius << ", height: " << (*it).height << "}\n\t]," << endl;
+		cout << "\n\t\t" << "{ \"position\" : [" << (*it).position.getX() << ", " << (*it).position.getY() << "], height: " << (*it).height << "}\n\t]," << endl;
 	}
 }
 
@@ -25,7 +25,7 @@ void Beacons::labOutputXML(ofstream& file){
 	file << "\t<Beacon ";
 
 	for (vector<Beacon>::iterator it = beacons->begin() ; it != beacons->end(); ++it){
-		file << "X=\"" << (*it).position.getX() << "\" Y=\"" << (*it).position.getY() << "\" Height=\"" << (*it).height << "\" Radius=\"" <<  (*it).radius <<  "\"/>\n";
+		file << "X=\"" << (*it).position.getX() << "\" Y=\"" << (*it).position.getY() << "\" Height=\"" << (*it).height <<  "\"/>\n";
 	}
 }
 

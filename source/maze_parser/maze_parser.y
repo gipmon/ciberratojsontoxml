@@ -42,6 +42,7 @@
 %token SD_RADIUS
 %token SD_HEIGHT
 %token SD_CORNER_LIST
+%token THICKNESS
 
 %type<vpair> NUM_PAIR
 
@@ -99,7 +100,7 @@ NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = 
 BEACONS 	: '[' BEACONS_VALUES ']'
 			;
 
-BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM ',' SD_HEIGHT ':' NUM '}' {challenge->maze->addBeacon(*$4, atoi($8), atoi($12));}
+BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {challenge->maze->addBeacon(*$4, atoi($8));}
 				;
 
 TARGET_AREAS    : '[' TARGET_VALUES ']'
@@ -117,6 +118,7 @@ WALLS_VALUES : WALLS_VALUE ',' WALLS_VALUES
 
 /* falta o thickness */
 WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
+			|'{' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), atof($8), vpoint); vpoint = new vector<Point>();}
 
 CORNER_LIST : NUM_PAIR ',' CORNER_LIST { vpoint->push_back(*$1);}
 			| NUM_PAIR { vpoint->push_back(*$1);}
