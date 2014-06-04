@@ -53,8 +53,8 @@
     <div class="container theme-showcase" role="main">
 
     <?php 
-      exec("../main.output a b c d e", $out); 
-      echo print_r($out);  
+      $output = shell_exec("../main.output a b c d e");
+      echo "<pre>$output</pre>"; 
     ?>
 
     </div> <!-- /container -->
