@@ -34,7 +34,7 @@
 	fclose($challange_file_handling);
 
 	// make output
-    $output = shell_exec("../main.output -o ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json);
+    $output = shell_exec("../main.output -o -p ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json);
 
     if($output){
     	// read param list.json
