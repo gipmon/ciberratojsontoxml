@@ -66,6 +66,11 @@
     }
 
     // delete files
-    //unlink($dir_json.$param_file_json);
-    //unlink($dir_json.$challange_file_json);
+    unlink($grid_xml_output);
+    unlink($lab_xml_output);
+    unlink($param_xml_output);
+    unlink($urdf_xml_output);
+    unlink($lab_xml_output);
+    unlink($dir_json.$challange_file_json);
+    unlink($dir_json.$param_file_json);
 ?>
