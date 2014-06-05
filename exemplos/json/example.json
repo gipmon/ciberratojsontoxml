@@ -29,6 +29,12 @@
 
         ],
 
+        "models" : [
+            { "name" : "modelo1", "height" : 1, "thickness" : 0.2, "first point" : [9,0], "second point" : [7, 2] },
+            { "name" : "modelo2", "height" : 1, "thickness" : 0.4, "first point" : [9,0], "second point" : [7, 2] },
+            { "name" : "modelo3", "height" : 1, "thickness" : 0.5, "first point" : [9,0], "second point" : [7, 2] }
+        ],
+
         "grid" : [
             [2, 12.5, -15],
             [1.75, 1.5, 15],

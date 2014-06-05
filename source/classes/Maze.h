@@ -5,6 +5,7 @@
 #include "TargetAreas.h"
 #include "Walls.h"
 #include "Grid.h"
+#include "Models.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class Maze {
     TargetAreas *targetareas;
     Walls *walls;
     Grid *grid;
+    Models *models;
 
 	public:
     Maze(){
@@ -27,6 +29,7 @@ class Maze {
         targetareas = new TargetAreas();
         walls = new Walls();
         grid = new Grid();
+        models = new Models();
     }
 
     void setName(char* n);
@@ -46,9 +49,13 @@ class Maze {
     void addPose(double x, double y, double teta);
     vector<Pose> getPoses();
 
-    void printTest();
 
-    
+    void addModel(char* name, double h, Point fp, Point sp, double t);
+    void loadModel(char* name, double x, double y, double rot);
+
+    void printTest();
+    void printTestModels();
+
     void modify_vector(vector<Point>* cl);
     bool validate_corner_list(vector<Point>* cl);
     void gridOutputXML(ofstream& file);

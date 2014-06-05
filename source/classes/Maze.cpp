@@ -3,7 +3,9 @@
 #include <vector>
 #include <numeric>
 #include "Maze.h"
+#include <cmath>
 
+#define PI 3.14159265359
 using namespace std;
 
 void Maze::setName(char* n){
@@ -27,6 +29,20 @@ void Maze::addBeacon(Point p, double h){
 
     beacons->addBeacon(tmp);
 }
+
+
+void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
+	Model tmp;
+
+	tmp.height = h;
+	tmp.name = nm;
+	tmp.first_point = fp;
+	tmp.second_point = sp;
+	tmp.thickness = t;
+
+    models->addModel(tmp);
+}
+
 
 vector<Beacon> Maze::getBeacons(){
 	return beacons->beaconsList();
@@ -121,6 +137,63 @@ void Maze::printTest(){
 	walls->printTest();
 	grid->printTest();
 }
+
+void Maze::printTestModels(){
+	models->printTest();
+}
+
+void Maze::loadModel(char* name, double x, double y, double rot_angle){
+	Model md = models->getModel(name);
+
+	Wall tmp;
+
+	tmp.height = md.height;
+	if(md.thickness==0){
+		tmp.thickness = 0.1;
+	}else if(md.thickness>0){
+		tmp.thickness = md.thickness;
+	}else{
+		tmp.thickness = 0.1;
+	}
+
+	vector<Point> *new_cl = new vector<Point>();
+	Point *fp = new Point(md.first_point.getX()+x, md.first_point.getY()+y);
+	Point *sp = new Point(md.second_point.getX()+x, md.second_point.getY()+y);
+
+	Point *middle = walls->middle_point(fp, sp);
+	double distance = walls->two_points_distance(fp,sp);
+	double d2 = distance/2;
+
+	double a = cos(rot_angle)*d2;
+	double o = sin(rot_angle)*d2;
+
+	double fp_x = middle->getX()-a;
+	double fp_y = middle->getY()-o;
+
+	double sp_x = middle->getX()+a;
+	double sp_y = middle->getY()+o;
+
+	fp = new Point(fp_x, fp_y);
+	sp = new Point(sp_x, sp_y);
+
+	new_cl->push_back(*fp);
+	new_cl->push_back(*sp);
+
+	tmp.corner_list = new_cl;
+	walls->addWall(tmp);
+	printf("aqui\n");
+	/*
+	struct Model{
+	    char* name;
+	    Point first_point;
+	    Point second_point;
+	    double thickness;
+	    double height;
+	};
+	*/
+}
+
+
 
 void Maze::gridOutputXML(ofstream& file){
 	grid->gridOutputXML(file);

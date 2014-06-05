@@ -43,7 +43,7 @@ void Walls::labOutputXML(ofstream& file){
 void Walls::URDFOutput(ofstream& file){
 	int count = 1;
 	for (vector<Wall>::iterator it1 = walls->begin() ; it1 != walls->end(); ++it1){
-		//file << "\t<Wall Height=\"" << (*it1).height << "\">\n";
+
 		for(vector<Point>::iterator it2 = (*it1).corner_list->begin() ; it2 != (*it1).corner_list->end()-1; ++it2){
 
 			Point *a =  new Point((*it2).getX(), (*it2).getY());

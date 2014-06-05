@@ -43,6 +43,9 @@
 %token SD_HEIGHT
 %token SD_CORNER_LIST
 %token THICKNESS
+%token SD_MODELS
+%token MODEL_FP
+%token MODEL_SP
 
 %type<vpair> NUM_PAIR
 
@@ -91,6 +94,14 @@ SP 		: SD_NAME ':' STR { challenge->maze->setName($3); }
 		| SD_TARGET_AREAS ':' TARGET_AREAS
 		| SD_WALLS ':' WALLS
 		| SD_GRID ':' GRID
+		| SD_MODELS ':' '[' MODELS ']'
+		;
+
+MODELS 	: MODEL ',' MODELS
+		| MODEL
+		;
+
+MODEL 	: '{' SD_NAME ':' STR ',' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' MODEL_FP ':'  NUM_PAIR ',' MODEL_SP ':' NUM_PAIR '}' {challenge->maze->addModel($4, atof($8), *$16, *$20, atof($12));}
 		;
 
 NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = pt;}

@@ -50,8 +50,13 @@ sd_height			["]height["]
 
 sd_corner_list		["]corner[ ]list["]
 
-thickness			["]thickness["]	
+thickness			["]thickness["]
 
+sd_models 			["]models["]
+
+model_fp			["]first[ ]point["]
+
+model_sp 			["]second[ ]point["]
 
 %%
 
@@ -84,6 +89,12 @@ thickness			["]thickness["]
 {sd_height}					{ l->first_line=yylineno; return SD_HEIGHT; }
 
 {thickness}					{ l->first_line=yylineno; return THICKNESS; }
+
+{sd_models} 				{ l->first_line=yylineno; return SD_MODELS; }
+
+{model_fp}					{ l->first_line=yylineno; return MODEL_FP; }
+
+{model_sp} 					{ l->first_line=yylineno; return MODEL_SP; }
 
 {sd_corner_list}			{ l->first_line=yylineno; return SD_CORNER_LIST; }
 

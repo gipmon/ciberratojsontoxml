@@ -5,6 +5,8 @@
 #include <cctype>
 #include "main.h"
 
+#define PI 3.14159265359
+
 using namespace std;
 
 ParamTable *param_table = new ParamTable();
@@ -22,7 +24,7 @@ int main(int argc, char* argv[]){
 	}else{
 		return commandLineTools(argc, argv);
 	}
-	
+
 	switch(option){
 		case 1:
 			printf("\nIntroduza o nome do ficheiro parameters list: ");
@@ -37,7 +39,7 @@ int menu(int argc, char* argv[]){
 		cin >> b;
 		cin.clear();
 		cin.ignore(80,'\n');
-		
+
 		//isDigit = isdigit(b);
 
 		if(/*!isDigit ||*/ b < 1 || b > 5){
@@ -108,8 +110,13 @@ int commandLineTools(int argc, char* argv[]){
 		ErrorHandlingWithExit(e);
 	}
 
+	// test models
+	challenge->maze->loadModel((char*)"modelo1", 0, 0, 0);
+	challenge->maze->loadModel((char*)"modelo1", 2, 2, 0);
+
 	if(print){
 		challenge->printTest();
+		challenge->maze->printTestModels();
 	}
 
 	if(output){
@@ -126,10 +133,10 @@ int commandLineTools(int argc, char* argv[]){
 		}else{
 			system("rm -rf ./xml");
 			system("mkdir ./xml");
-	      
+
 		    system("rm -rf ./urdf");
 		    system("mkdir ./urdf");
-		      
+
 			ofstream labFile("./xml/Lab.xml");
 			ofstream gridFile("./xml/Grid.xml");
 			ofstream paramFile("./xml/Param.xml");
