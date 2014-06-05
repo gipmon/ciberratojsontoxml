@@ -1,6 +1,12 @@
 <?php
-	$param_list = $_POST['param'];
-	$challange = $_POST['challange'];
+	if(isset($_POST['param']) && isset($_POST['challange'])){
+		$param_list = $_POST['param'];
+		$challange = $_POST['challange'];
+	}else{
+		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challange!"))
+		exit();
+	}
+
 
 	// test if is json
 	$ob_pl = json_decode($param_list);
