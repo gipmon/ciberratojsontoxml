@@ -61,7 +61,7 @@
 
 %%
 
-File 	: '{' OL '}' { challenge->validateDefaultValues(); }
+File 	: '{' OL '}' { tmp_challenge->validateDefaultValues(); }
 		;
 
 OL  	: CLASS ',' OL
@@ -75,10 +75,10 @@ CLASS 	: DEFAULT_VALUES
 
 /* nem sempre os default_values vem primeiro, é preciso ter cuidado e verificar se estes parametros e outros estao definidos */
 
-DEFAULT_VALUES  : CHALLENGE_NAME ':' STR {challenge->setChallengeName($3);}
-				| CHALLENGE_TYPE ':' STR {challenge->setChallengeType($3);}
-				| CYCLE_TIME ':' NUM {challenge->setCycleTime(atoi($3));}
-				| DURATION ':' NUM {challenge->setDuration(atoi($3));}
+DEFAULT_VALUES  : CHALLENGE_NAME ':' STR {tmp_challenge->setChallengeName($3);}
+				| CHALLENGE_TYPE ':' STR {tmp_challenge->setChallengeType($3);}
+				| CYCLE_TIME ':' NUM {tmp_challenge->setCycleTime(atoi($3));}
+				| DURATION ':' NUM {tmp_challenge->setDuration(atoi($3));}
 				;
 
 SD 	: SCENARIO_DESCRIPTION ':' '{' SDL '}'
@@ -88,8 +88,8 @@ SDL 	: SP ',' SDL
 		| SP
 		;
 
-SP 		: SD_NAME ':' STR { challenge->maze->setName($3); }
-		| SD_DIMENSIONS ':' NUM_PAIR {challenge->maze->setDimensions($3->getX(), $3->getY());}
+SP 		: SD_NAME ':' STR { tmp_challenge->maze->setName($3); }
+		| SD_DIMENSIONS ':' NUM_PAIR {tmp_challenge->maze->setDimensions($3->getX(), $3->getY());}
 		| SD_BEACONS ':' BEACONS
 		| SD_TARGET_AREAS ':' TARGET_AREAS
 		| SD_WALLS ':' WALLS
@@ -101,7 +101,7 @@ MODELS 	: MODEL ',' MODELS
 		| MODEL
 		;
 
-MODEL 	: '{' SD_NAME ':' STR ',' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' MODEL_FP ':'  NUM_PAIR ',' MODEL_SP ':' NUM_PAIR '}' {challenge->maze->addModel($4, atof($8), *$16, *$20, atof($12));}
+MODEL 	: '{' SD_NAME ':' STR ',' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' MODEL_FP ':'  NUM_PAIR ',' MODEL_SP ':' NUM_PAIR '}' {tmp_challenge->maze->addModel($4, atof($8), *$16, *$20, atof($12));}
 		;
 
 NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = pt;}
@@ -111,13 +111,13 @@ NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = 
 BEACONS 	: '[' BEACONS_VALUES ']'
 			;
 
-BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {challenge->maze->addBeacon(*$4, atoi($8));}
+BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {tmp_challenge->maze->addBeacon(*$4, atoi($8));}
 				;
 
 TARGET_AREAS    : '[' TARGET_VALUES ']'
 			    ;
 
-TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {challenge->maze->addTargetArea(*$4, atoi($8));}
+TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {tmp_challenge->maze->addTargetArea(*$4, atoi($8));}
 				;
 
 WALLS   : '[' WALLS_VALUES ']'
@@ -128,8 +128,8 @@ WALLS_VALUES : WALLS_VALUE ',' WALLS_VALUES
 			 ;
 
 /* falta o thickness */
-WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
-			|'{' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {challenge->maze->addWall(atoi($4), atof($8), vpoint); vpoint = new vector<Point>();}
+WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {tmp_challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
+			|'{' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {tmp_challenge->maze->addWall(atoi($4), atof($8), vpoint); vpoint = new vector<Point>();}
 
 CORNER_LIST : NUM_PAIR ',' CORNER_LIST { vpoint->push_back(*$1);}
 			| NUM_PAIR { vpoint->push_back(*$1);}
@@ -142,10 +142,10 @@ POSE_LIST : POSE
 		  | POSE_LIST ',' POSE
 		  ;
 
-POSE    :'[' NUM ',' NUM ',' NUM ']' { challenge->maze->addPose(atof($2), atof($4), atof($6)); }
+POSE    :'[' NUM ',' NUM ',' NUM ']' { tmp_challenge->maze->addPose(atof($2), atof($4), atof($6)); }
 		;
 
-LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new vector<Param>(); challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
+LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new vector<Param>(); tmp_challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
 		        ;
 
 PL  	: PD ',' PL
@@ -153,7 +153,7 @@ PL  	: PD ',' PL
 		| /*lameda*/
 		;
 
-PD  	: STR ':' NUM { Param tmp; tmp.name = $1; tmp.value = $3; challenge->pm->addParameterToClass(pc->class_name, tmp);}
+PD  	: STR ':' NUM { Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp);}
 		;
 
 %%
