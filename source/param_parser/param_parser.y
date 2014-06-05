@@ -120,8 +120,8 @@ void validate_dv(){
 	if(default_value_type != NULL && default_value_type[0] != '\0' && param.value_type != NULL && param.value_type[0] != '\0' && param.default_value != NULL && param.default_value[0] != '\0'){
 		if(!(!strcmp(param.value_type, "double") && (!strcmp(default_value_type, "double") || !strcmp(default_value_type, "uint")))){
 			if(strcmp(param.value_type, default_value_type)){
-				printf("%s=%s, %s\n", param.value_type, default_value_type, param.default_value);
-				//throw DEFAULT_VALUE_WRONG_BY_TYPE;
+				//printf("%s!=%s, %s\n", param.value_type, default_value_type, param.default_value);
+				throw DEFAULT_VALUE_WRONG_BY_TYPE;
 			}
 		}
 	}
