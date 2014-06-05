@@ -49,6 +49,9 @@
 	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$grid_xml_output." ".$lab_xml_output." ".$param_xml_output." ".$urdf_xml_output;
     $output = shell_exec($command);
 
+	echo json_encode(array("response_type" => "error", "val" => $command));
+	exit();
+
     if($output){
 		echo json_encode(array("response_type" => "error", "val" => str_replace("tmp/json/".$id, "", $output)));
     }else{
