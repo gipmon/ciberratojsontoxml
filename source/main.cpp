@@ -28,8 +28,8 @@ int main(int argc, char* argv[]){
 }
 
 void displayMenu(){
-	
-	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Stats\n0 - End Program\n\nOption: ");
+	system("clear");
+	printf("MENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Clear not perpendicular walls\n7 - Stats\n0 - End Program\n\nOption: ");
 
 }
 
@@ -176,6 +176,16 @@ int menu(int argc, char* argv[]){
 				break;
 
 			case 6:
+				if(flag1 && flag2){
+					
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to complete the stats table!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to complete the stats table!!\n");
+				}
+				break;
+
+			case 7:
 				if(flag1 && flag2){
 					printf("\nSTATS:\n\nChallenge Name: %s\n", challenge->getChallengeName());
 					printf("Challenge Type: %s\n", challenge->getChallengeType());
