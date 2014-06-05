@@ -1,3 +1,6 @@
+<?php
+  if($_POST['password']=="lfaworkteam"):
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,6 +34,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Json to XML</a></li>
+            <li class="active"><a href="http://mymodelrobot.appspot.com/" target="_blank">URDF viewer</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -77,3 +81,9 @@
     <script src="jquery/jq.js"></script>
   </body>
 </html>
+<?php else: ?>
+  <form method="post" action="">
+    <input type="password" name="password">
+    <input type="submit">
+  </form>
+<?php endif; ?>
