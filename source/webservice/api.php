@@ -58,8 +58,8 @@
                 <p><span class="glyphicon glyphicon-time"></span> June 2014</p>
                 <p class="lead">Se pretender usar a nossa api para fazer parsing dos ficheiros .json para o micro rato para .xml pode usar a nossa api!</p>
                 <p>Endpoint:</p>
-                <pre>Method: POST<br/>Parameters: param and challange with json files.</pre>
-                <p>Response:</p>
+                <pre>URL:http://lfa.rafaelferreira.pt/api/<br/>Method: POST<br/>Parameters: param and challange with json files.</pre>
+                <p>Success response:</p>
                 <pre>{
     <strong>"response_type"</strong>:<strong>"ok"</strong>,
     <strong>"val"</strong> : {
