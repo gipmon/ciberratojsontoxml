@@ -13,41 +13,146 @@ ParamTable *param_table = new ParamTable();
 Challenge *challenge = new Challenge();
 
 void warning_message(){
-	printf("OPTIONS:\n-p : print tables\n-o : output to xml\nIt should be passed the two files .json!\n\nExample:\n./main.output -o ../exemplos/json/param-list.json ../exemplos/json/example.json\n./main.output -p ../exemplos/json/param-list.json ../exemplos/json/example.json\n./main.output -p -o ../exemplos/json/param-list.json ../exemplos/json/example.json");
+	printf("\nOPTIONS:\n\n-p : print tables\n-o : output to xml\n./main.output : Menu with more options\n\nIt should be passed the two files .json or nothing!\n\nExample:\n./main.output\n./main.output -o ../exemplos/json/param-list.json ../exemplos/json/example.json\n./main.output -p ../exemplos/json/param-list.json ../exemplos/json/example.json\n./main.output -p -o ../exemplos/json/param-list.json ../exemplos/json/example.json\n");
 }
 
 int main(int argc, char* argv[]){
-	int option;
-
-	if(argc<4){
-		option  = menu(argc, argv);
-	}else{
-		return commandLineTools(argc, argv);
+	if(argc == 1){
+		return menu(argc, argv);
+	}else if(argc > 1){
+		return commandLineTools(argc,argv);
 	}
 
-	switch(option){
-		case 1:
-			printf("\nIntroduza o nome do ficheiro parameters list: ");
+	return 0;
+}
 
-	}
+void displayMenu(){
+	
+	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Walls options (Models)\n6 - Stats\n0 - End Program\n\nOption: ");
+
 }
 
 int menu(int argc, char* argv[]){
-	int b, isDigit;
-	printf("MENU:\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Walls options (Models)\n0 - End Program\nOpção: ");
+		
+	int b, flag1 = 0, flag2 = 0;
+	string filename;
+	const char * c;
+
 	do{
-		cin >> b;
-		cin.clear();
-		cin.ignore(80,'\n');
+		displayMenu();
 
-		//isDigit = isdigit(b);
+		while((cin >> b).fail() || cin.peek() != '\n' || b < 0 || b > 6){
+			cin.clear();
+			cin.ignore(80, '\n');
 
-		if(/*!isDigit ||*/ b < 1 || b > 5){
-			printf("Introduza uma opção válida: ");
+			cout << "Introduce a valid option: ";
 		}
-	}while(/*!isDigit ||*/ b < 1 || b > 5);
 
-	return b;
+		switch(b){
+			case 1:
+				printf("\nIntroduce the name of parameters list file: ");
+
+				cin >> filename;
+				cin.sync();
+				cout << "\n";
+				c = filename.c_str();
+				if((param_in = fopen(c, "r")) == NULL){
+					printf("[ERROR!] %s must be a .json file!\n", c);
+					break;
+				}
+
+				try{
+					param_parse(c);
+					flag1 = 1;
+				}catch(int e){
+					flag1 = 0;
+					ErrorHandling(e);
+				}
+				
+				break;
+
+			case 2:
+				if(flag1){
+					printf("\nIntroduce the name of challenge parameters file: ");
+					cin >> filename;
+					c = filename.c_str();
+					if((maze_in = fopen(c, "r")) == NULL){
+						printf("[ERROR!] %s must be a .json file!\n", c);
+						break;
+					}
+
+					try{
+						maze_parse(c);
+						flag2 = 1;
+					}catch(int e){
+						flag2 = 0;
+						ErrorHandling(e);
+					}
+				}else{
+					printf("\nYou have to read a parameters list file before read a challenge parameters file!!\n");
+				}
+
+				break;
+
+			case 3:
+				if(flag1 && flag2){
+					system("rm -rf ./xml");
+					system("mkdir ./xml");
+          
+					ofstream labFile("./xml/Lab.xml");
+					ofstream gridFile("./xml/Grid.xml");
+					ofstream paramFile("./xml/Param.xml");
+    	
+					gridOutputXML(gridFile);
+					labOutputXML(labFile);
+					paramOutputXML(paramFile, param_table);
+
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to print to XML!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to print to XML!!\n");
+				}
+
+				break;
+
+			case 4:
+				if(flag1 && flag2){
+					system("rm -rf ./urdf");
+		    		system("mkdir ./urdf");
+
+		    		ofstream URDFFile("./urdf/URDF.xml");
+		    		URDFOutput(URDFFile);
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
+				}
+
+				break;
+
+			case 5:
+				break;
+
+			case 6:
+				if(flag1 && flag2){
+					printf("\nSTATS:\n\nChallenge Name: %s\n", challenge->getChallengeName());
+					printf("Challenge Type: %s\n", challenge->getChallengeType());
+					printf("Cycle Time: %d\n", challenge->getCycleTime());
+					printf("Duration: %d\n", challenge->getDuration());
+					printf("Beacons: %d\n", challenge->maze->countBeacons());
+					printf("Target Areas: %d\n", challenge->maze->countTargetAreas());
+					printf("Walls: %d\n", challenge->maze->countWalls());
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to complete the stats table!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to complete the stats table!!\n");
+				}
+				break;
+
+		}
+	}while(b != 0);
+
+	return 0;
 }
 
 int commandLineTools(int argc, char* argv[]){
@@ -57,14 +162,16 @@ int commandLineTools(int argc, char* argv[]){
 	int output_set = 0;
 
 
-	if(!strcmp("-p", argv[1]) || !strcmp("-p", argv[2])){
-		print = 1;
-	}
-	if(!strcmp("-o", argv[1]) || !strcmp("-o", argv[2])){
-		output = 1;
-	}
-	if(output && (!strcmp("-s", argv[2]) || !strcmp("-s", argv[3]))){
-		output_set = 1;
+	if(argc > 2){
+		if(!strcmp("-p", argv[1]) || !strcmp("-p", argv[2])){
+			print = 1;
+		}
+		if(!strcmp("-o", argv[1]) || !strcmp("-o", argv[2])){
+			output = 1;
+		}
+		if(output && (!strcmp("-s", argv[2]) || !strcmp("-s", argv[3]))){
+			output_set = 1;
+		}
 	}
 
 	if(!print && !output){
@@ -171,6 +278,12 @@ void URDFOutput(ofstream& file){
 
 /********** ERROR **********/
 void ErrorHandlingWithExit(int NUM){
+	ErrorHandling(NUM);
+	exit(0);
+	/* SKYP OR EXIT? */
+}
+
+void ErrorHandling(int NUM){
 	extern char* param_name;
     extern char* class_name;
     extern parameter param;
@@ -185,6 +298,4 @@ void ErrorHandlingWithExit(int NUM){
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n", param_name, class_name, param.value_type, default_value_type);   break;
 	    default            				 		: printf("unknown error");
 	}
-	exit(0);
-	/* SKYP OR EXIT? */
 }
