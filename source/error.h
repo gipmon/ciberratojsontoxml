@@ -11,4 +11,8 @@
 #define  DEFAULT_VALUE_WRONG_BY_TYPE	6
 #define  MODEL_DOESNT_EXISTS			7
 #define  PARSING_ERROR					8
+#define  NULL_CHALLENGE_NAME   			9
+#define  NULL_CHALLENGE_TYPE		    10
+#define  NULL_CYCLE_TIME       			11
+#define  NULL_DURATION					12
 

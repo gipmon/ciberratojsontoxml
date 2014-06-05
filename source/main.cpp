@@ -347,6 +347,10 @@ void ErrorHandling(int NUM){
 		case PARAMETER_NAME_REQUIRED 			: printf("%sThe class name is required!\n", semantic); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("%sThe default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n",semantic, param_name, class_name, param.value_type, default_value_type);   break;
 		case PARSING_ERROR						: printf("\n[PARSING ERROR] Error description bellow:\n%s: %d: %s; conteudo no yytext: '%s'\n", error.fname, error.line, error.s, error.yytext); break;
+	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
+	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
+	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required!\n", semantic); break;
+	    case NULL_DURATION						: printf("%sThe duration is required!\n", semantic) break;
 	    default            				 		: printf("unknown error");
 	}
 }
