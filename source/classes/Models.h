@@ -22,7 +22,7 @@ class Models {
     void addModel(Model add);
     void removeModel(Model removeModel);
     void modifyModel(Model toModify, Model newModel);
-    Model getModel(char* name);
+    Model getModel(const char* name);
 
     void printTest();
     int existsModel(const char* name);
