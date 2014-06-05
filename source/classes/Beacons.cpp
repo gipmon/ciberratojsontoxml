@@ -13,6 +13,10 @@ vector<Beacon> Beacons::beaconsList(){
     return *beacons;
 }
 
+int Beacons::countBeacons(){
+	return beacons->size();
+}
+
 void Beacons::printTest(){
 	cout << "\tbeacons\" : [ " << endl;
 

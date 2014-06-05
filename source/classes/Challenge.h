@@ -41,6 +41,11 @@ em milissegundos. */
     void setCycleTime(int);
     void setDuration(int);
 
+    char* getChallengeName();
+    char* getChallengeType();
+    int getCycleTime();
+    int getDuration();
+
     void printTest();
 
     void addParameter();

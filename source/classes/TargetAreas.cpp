@@ -13,6 +13,10 @@ vector<TargetArea> TargetAreas::targetAreasList(){
 	return *targetareas;
 }
 
+int TargetAreas::countTargetAreas(){
+	return targetareas->size();
+}
+
 void TargetAreas::printTest(){
 	cout << "\ttarget areas\" : [ " << endl;
 

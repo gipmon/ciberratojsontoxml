@@ -30,7 +30,6 @@ void Maze::addBeacon(Point p, double h){
     beacons->addBeacon(tmp);
 }
 
-
 void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
 	Model tmp;
 
@@ -48,6 +47,10 @@ vector<Beacon> Maze::getBeacons(){
 	return beacons->beaconsList();
 }
 
+int Maze::countBeacons(){
+	return beacons->countBeacons();
+}
+
 void Maze::addTargetArea(Point p, double r){
 	TargetArea tmp;
 
@@ -59,6 +62,10 @@ void Maze::addTargetArea(Point p, double r){
 
 vector<TargetArea> Maze::getTargetAreas(){
 	return targetareas->targetAreasList();
+}
+
+int Maze::countTargetAreas(){
+	return targetareas->countTargetAreas();
 }
 
 void Maze::addWall(double h, double t, vector<Point>* cl){
@@ -114,6 +121,10 @@ void Maze::modify_vector(vector<Point>* cl){
 
 vector<Wall> Maze::getWalls(){
 	return walls->wallsList();
+}
+
+int Maze::countWalls(){
+	return walls->countWalls();
 }
 
 void Maze::addPose(double xx, double yy, double t){
@@ -181,7 +192,6 @@ void Maze::loadModel(char* name, double x, double y, double rot_angle){
 
 	tmp.corner_list = new_cl;
 	walls->addWall(tmp);
-	printf("aqui\n");
 	/*
 	struct Model{
 	    char* name;

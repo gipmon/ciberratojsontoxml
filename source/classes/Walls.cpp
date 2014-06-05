@@ -14,6 +14,10 @@ vector<Wall> Walls::wallsList(){
     return *walls;
 }
 
+int Walls::countWalls(){
+	return walls->size();
+}
+
 void Walls::printTest(){
 	cout << "\twalls\" : [ " << endl;
 

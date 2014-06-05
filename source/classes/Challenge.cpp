@@ -25,6 +25,22 @@ void Challenge::setDuration(int d){
 	duration = d;
 }
 
+char* Challenge::getChallengeName(){
+	return challenge_name;
+}
+
+char* Challenge::getChallengeType(){
+	return challenge_type;
+}
+
+int Challenge::getCycleTime(){
+	return cycle_time;
+}
+
+int Challenge::getDuration(){
+	return duration;
+}
+
 void Challenge::printTest(){
     cout << "\n!!CHALLENGE!!\n" << "challenge name : " << challenge_name << "\n" << "challenge type : " << challenge_type << "\n" << "cycle time : " << cycle_time << "\n" << "duration : " << duration << "\n" << endl;
     maze->printTest();

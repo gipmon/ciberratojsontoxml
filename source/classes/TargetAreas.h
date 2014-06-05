@@ -23,6 +23,8 @@ class TargetAreas {
     void modifyTargetArea(TargetArea toModify, TargetArea newWall);
     vector<TargetArea> targetAreasList();
 
+    int countTargetAreas();
+
     void printTest();
     void labOutputXML(ofstream& file);
     void URDFOutput(ofstream& file);

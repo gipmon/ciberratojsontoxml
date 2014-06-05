@@ -23,6 +23,8 @@ class Walls {
     void modifyWall(Wall toModify, Wall newWall);
     vector<Wall> wallsList();
 
+    int countWalls();
+
     void printTest();
 
     void labOutputXML(ofstream& file);

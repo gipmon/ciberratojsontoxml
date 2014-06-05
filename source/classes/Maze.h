@@ -39,12 +39,15 @@ class Maze {
 
     void addBeacon(Point position, double height);
     vector<Beacon> getBeacons();
+    int countBeacons();
 
     void addTargetArea(Point position, double radius);
     vector<TargetArea> getTargetAreas();
+    int countTargetAreas();
 
     void addWall(double height, double thickness, vector<Point>* corner_list);
     vector<Wall> getWalls();
+    int countWalls();
 
     void addPose(double x, double y, double teta);
     vector<Pose> getPoses();

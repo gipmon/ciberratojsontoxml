@@ -24,6 +24,8 @@ class Beacons {
     void modifyBeacon(Beacon toModify, Beacon newWall);
     vector<Beacon> beaconsList();
 
+    int countBeacons();
+
     void printTest();
     void labOutputXML(ofstream& file);
     void URDFOutput(ofstream& file);
