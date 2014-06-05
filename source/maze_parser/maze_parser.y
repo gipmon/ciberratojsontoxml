@@ -77,8 +77,8 @@ CLASS 	: DEFAULT_VALUES
 
 DEFAULT_VALUES  : CHALLENGE_NAME ':' STR {tmp_challenge->setChallengeName($3);}
 				| CHALLENGE_TYPE ':' STR {tmp_challenge->setChallengeType($3);}
-				| CYCLE_TIME ':' NUM {tmp_challenge->setCycleTime(atoi($3));}
-				| DURATION ':' NUM {tmp_challenge->setDuration(atoi($3));}
+				| CYCLE_TIME ':' NUM {tmp_challenge->validateIntType($3); tmp_challenge->setCycleTime(atoi($3));}
+				| DURATION ':' NUM {tmp_challenge->validateIntType($3); tmp_challenge->setDuration(atoi($3));}
 				;
 
 SD 	: SCENARIO_DESCRIPTION ':' '{' SDL '}'

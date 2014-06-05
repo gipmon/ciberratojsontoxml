@@ -362,8 +362,9 @@ void ErrorHandling(int NUM){
 		case PARSING_ERROR						: printf("\n[PARSING ERROR] Error description bellow:\n%s: %d: %s; conteudo no yytext: '%s'\n", error.fname, error.line, error.s, error.yytext); break;
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
-	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required!\n", semantic); break;
-	    case NULL_DURATION						: printf("%sThe duration is required!\n", semantic); break;
+	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or greater than zero!!\n", semantic); break;
+	    case NULL_DURATION						: printf("%sThe duration is required or greater than zero!!\n", semantic); break;
+	    case INT_TYPE_ERROR						: printf("\n[PARSING ERROR] Error description bellow:\n Isn't an int\n");
 	    default            				 		: printf("unknown error");
 	}
 }

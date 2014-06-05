@@ -15,4 +15,5 @@
 #define  NULL_CHALLENGE_TYPE		    10
 #define  NULL_CYCLE_TIME       			11
 #define  NULL_DURATION					12
+#define  INT_TYPE_ERROR					13
 

@@ -49,6 +49,8 @@ em milissegundos. */
     void printTest();
 
     void validateDefaultValues();
+    void validateIntType(char* num);
+    bool is_digits(const std::string &str);
 
     void addParameter();
     void gridOutputXML(ofstream& file);

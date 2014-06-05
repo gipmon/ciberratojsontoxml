@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <sstream>
+#include <locale>
+#include <cctype>
+#include <string>
 #include "Challenge.h"
 
 using namespace std;
@@ -46,9 +50,28 @@ void Challenge::validateDefaultValues(){
 		throw NULL_CHALLENGE_NAME;
 	}
 	if(challenge_type == NULL){
-		//throw 
+		throw NULL_CHALLENGE_TYPE;
+	}
+	if(cycle_time <= 0){
+		throw NULL_CYCLE_TIME;
+	}
+	if(duration <= 0){
+		throw NULL_DURATION;
 	}
 	
+}
+
+void Challenge::validateIntType(char* num){
+	string tmp = string(num);
+
+    if(!is_digits(tmp)){
+    	throw INT_TYPE_ERROR;
+	}
+}
+
+bool Challenge::is_digits(const std::string &str)
+{
+    return str.find_first_not_of("0123456789") == std::string::npos;
 }
 
 void Challenge::printTest(){

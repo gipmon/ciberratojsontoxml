@@ -26,6 +26,7 @@ struct Error{
 	int line;
 	const char* s;
 	char* yytext;
+	char* num;
 };
 
 void gridOutputXML(ofstream& file);
