@@ -15,7 +15,7 @@
 	}
 
 	// create json files
-	$dir = "tmp/";
+	$dir = "../tmp/";
 	$dir_json = $dir."json/";
 	$dir_xml = $dir."xml/";
 	$id = uniqid();
