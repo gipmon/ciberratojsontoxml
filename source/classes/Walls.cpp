@@ -104,14 +104,33 @@ bool Walls::validate_corner_list(vector<Point>* cl){
 	}
 	for(vector<Point*>::iterator it = scalar_vector->begin() ; it != (scalar_vector->end()-1); ++it){
 
-		double series1[] = {(*it)->getX(), (*it)->getY()};
-	  	double series2[] = {(*(it+1))->getX(), (*(it+1))->getY()};
-		if(!inner_product(series1, series1+2, series2, 0)){
+		vector<double> *series1 = new vector<double>();
+		series1->push_back((*it)->getX());
+		series1->push_back((*it)->getY());
+
+		vector<double> *series2 = new vector<double>();
+		series2->push_back((*(it+1))->getX());
+		series2->push_back((*(it+1))->getY());
+
+		if(!scalar_product(*series1, *series2)){
 			return true;
 		}
-		printf("%d",inner_product(series1, series1+2, series2, 0));
+		printf("%d dsf", scalar_product(*series1, *series2));
 	}
 	return false;
+}
+
+int Walls::scalar_product(vector<double> a, vector<double> b){
+    if(a.size() != b.size()){
+        puts("Error a's size not equal to b's size");
+        return -1;
+    }
+
+    double product = 0;
+    for (unsigned int i = 0; i <= a.size()-1; i++){
+       product += (a[i])*(b[i]);
+    }
+    return (int)product;
 }
 
 /* a implementar se existir tempo */

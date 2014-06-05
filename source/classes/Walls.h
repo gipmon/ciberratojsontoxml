@@ -28,6 +28,7 @@ class Walls {
     void printTest();
 
     void removeNotPerpendicularWalls();
+    int scalar_product(vector<double> a, vector<double> b);
     bool validate_corner_list(vector<Point>* cl);
 
     void labOutputXML(ofstream& file);
