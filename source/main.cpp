@@ -28,7 +28,7 @@ int main(int argc, char* argv[]){
 }
 
 void displayMenu(){
-	system("clear");
+	
 	printf("MENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Clear not perpendicular walls\n7 - Stats\n0 - End Program\n\nOption: ");
 
 }
@@ -38,8 +38,9 @@ int menu(int argc, char* argv[]){
 	int b, flag1 = 0, flag2 = 0;
 	string filename;
 	const char * c;
-
+	system("clear");
 	do{
+
 		displayMenu();
 
 		while((cin >> b).fail() || cin.peek() != '\n' || b < 0 || b > 6){
@@ -48,7 +49,7 @@ int menu(int argc, char* argv[]){
 
 			cout << "Introduce a valid option: ";
 		}
-
+		system("clear");
 		switch(b){
 			case 1:
 				printf("\nIntroduce the name of parameters list file: ");
@@ -58,7 +59,7 @@ int menu(int argc, char* argv[]){
 				cout << "\n";
 				c = filename.c_str();
 				if((param_in = fopen(c, "r")) == NULL){
-					printf("[ERROR!] %s must exist or be a .json file!\n", c);
+					printf("[ERROR!] %s must exist or be a .json file!\n\n", c);
 					break;
 				}
 
@@ -78,7 +79,7 @@ int menu(int argc, char* argv[]){
 					cin >> filename;
 					c = filename.c_str();
 					if((maze_in = fopen(c, "r")) == NULL){
-						printf("[ERROR!] %s must exist or be a .json file!\n", c);
+						printf("[ERROR!] %s must exist or be a .json file!\n\n", c);
 						break;
 					}
 
@@ -90,7 +91,7 @@ int menu(int argc, char* argv[]){
 						ErrorHandling(e);
 					}
 				}else{
-					printf("\nYou have to read a parameters list file before read a challenge parameters file!!\n");
+					printf("\nYou have to read a parameters list file before read a challenge parameters file!!\n\n");
 				}
 
 				break;
@@ -109,9 +110,9 @@ int menu(int argc, char* argv[]){
 					paramOutputXML(paramFile, param_table);
 
 				}else if(!flag1){
-					printf("\nYou have to read a parameters list file to print to XML!!\n");
+					printf("\nYou have to read a parameters list file to print to XML!!\n\n");
 				}else if(flag1 && !flag2){
-					printf("\nYou have to read a challenge parameters file to print to XML!!\n");
+					printf("\nYou have to read a challenge parameters file to print to XML!!\n\n");
 				}
 
 				break;
@@ -124,9 +125,9 @@ int menu(int argc, char* argv[]){
 		    		ofstream URDFFile("./urdf/URDF.xml");
 		    		URDFOutput(URDFFile);
 				}else if(!flag1){
-					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+					printf("\nYou have to read a parameters list file to print to URDF!!\n\n");
 				}else if(flag1 && !flag2){
-					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n\n");
 				}
 
 				break;
@@ -168,20 +169,20 @@ int menu(int argc, char* argv[]){
 						printf("\n[ERROR!] the %s doesn't exists!\n", model);
 					}
 				}else if(!flag1){
-					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+					printf("\nYou have to read a parameters list file to print to URDF!!\n\n");
 				}else if(flag1 && !flag2){
-					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n\n");
 				}
 
 				break;
 
 			case 6:
 				if(flag1 && flag2){
-					
+					challenge->maze->removeNotPerpendicularWalls();
 				}else if(!flag1){
-					printf("\nYou have to read a parameters list file to complete the stats table!!\n");
+					printf("\nYou have to read a parameters list file to complete the stats table!!\n\n");
 				}else if(flag1 && !flag2){
-					printf("\nYou have to read a challenge parameters file to complete the stats table!!\n");
+					printf("\nYou have to read a challenge parameters file to complete the stats table!!\n\n");
 				}
 				break;
 
@@ -195,9 +196,9 @@ int menu(int argc, char* argv[]){
 					printf("Target Areas: %d\n", challenge->maze->countTargetAreas());
 					printf("Walls: %d\n", challenge->maze->countWalls());
 				}else if(!flag1){
-					printf("\nYou have to read a parameters list file to complete the stats table!!\n");
+					printf("\nYou have to read a parameters list file to complete the stats table!!\n\n");
 				}else if(flag1 && !flag2){
-					printf("\nYou have to read a challenge parameters file to complete the stats table!!\n");
+					printf("\nYou have to read a challenge parameters file to complete the stats table!!\n\n");
 				}
 				break;
 
