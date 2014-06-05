@@ -70,7 +70,8 @@
     }
 }</pre>
         <p>Error response:</p>
-        <pre><strong>"response_type"</strong></strong>:<strong>"error"</strong>,
+        <pre>{
+        <strong>"response_type"</strong></strong>:<strong>"error"</strong>,
     <strong>"val"</strong> : {
         "error description"
     }
