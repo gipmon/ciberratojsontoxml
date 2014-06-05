@@ -274,8 +274,6 @@ int commandLineTools(int argc, char* argv[]){
 		challenge->printTest();
 		challenge->maze->printTestModels();
 	}
-	
-	challenge->maze->removeNotPerpendicularWalls();
 
 	if(output){
 		if(output_set){
