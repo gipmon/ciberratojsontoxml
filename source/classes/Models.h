@@ -20,8 +20,8 @@ class Models {
 	public:
     Models(){ modelsList = new vector<Model>(); }
     void addModel(Model add);
-    void removeModel(Model removePose);
-    void modifyModel(Model toModify, Model newPose);
+    void removeModel(Model removeModel);
+    void modifyModel(Model toModify, Model newModel);
     Model getModel(char* name);
 
     void printTest();

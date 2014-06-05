@@ -34,5 +34,5 @@ Model Models::getModel(char* name){
 }
 
 /* a implementar se existir tempo */
-void Models::removeModel(Model removePose){}
-void Models::modifyModel(Model toModify, Model newPose){}
+void Models::removeModel(Model removeModel){}
+void Models::modifyModel(Model toModify, Model newModel){}
