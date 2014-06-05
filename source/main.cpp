@@ -62,7 +62,7 @@ int menu(int argc, char* argv[]){
 					printf("[ERROR!] %s must exist or be a .json file!\n", c);
 					break;
 				}
-
+				
 				try{
 					param_parse(c);
 					flag1 = 1;
