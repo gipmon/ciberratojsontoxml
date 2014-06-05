@@ -34,7 +34,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Json to XML</a></li>
-            <li class="active"><a href="http://mymodelrobot.appspot.com/" target="_blank">URDF viewer</a></li>
+            <li><a href="http://mymodelrobot.appspot.com/" target="_blank">URDF viewer</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
               <ul class="dropdown-menu">
