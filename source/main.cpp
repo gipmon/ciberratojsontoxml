@@ -10,7 +10,11 @@
 using namespace std;
 
 ParamTable *param_table = new ParamTable();
+ParamTable *tmp_param_table = new ParamTable();
+
 Challenge *challenge = new Challenge();
+Challenge *tmp_challenge = new Challenge();
+
 Error error;
 
 void warning_message(){
@@ -63,8 +67,12 @@ int menu(int argc, char* argv[]){
 					break;
 				}
 				
+
+				tmp_param_table = new ParamTable();
+
 				try{
 					param_parse(c);
+					param_table = tmp_param_table;
 					flag1 = 1;
 				}catch(int e){
 					flag1 = 0;
@@ -83,8 +91,11 @@ int menu(int argc, char* argv[]){
 						break;
 					}
 
+					tmp_challenge = new Challenge();
+
 					try{
 						maze_parse(c);
+						challenge = tmp_challenge;
 						flag2 = 1;
 					}catch(int e){
 						flag2 = 0;
@@ -251,6 +262,7 @@ int commandLineTools(int argc, char* argv[]){
 
 	try{
 		param_parse(argv[arg++]);
+		param_table = tmp_param_table;
 	}catch(int e){
 		ErrorHandlingWithExit(e);
 	}
@@ -266,6 +278,7 @@ int commandLineTools(int argc, char* argv[]){
 
 	try{
 		maze_parse(argv[arg++]);
+		challenge = tmp_challenge;
 	}catch(int e){
 		ErrorHandlingWithExit(e);
 	}
@@ -350,7 +363,7 @@ void ErrorHandling(int NUM){
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
 	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required!\n", semantic); break;
-	    case NULL_DURATION						: printf("%sThe duration is required!\n", semantic) break;
+	    case NULL_DURATION						: printf("%sThe duration is required!\n", semantic); break;
 	    default            				 		: printf("unknown error");
 	}
 }

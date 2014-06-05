@@ -116,7 +116,7 @@ int param_error(YYLTYPE* l, const char* fname, const char *s){
 
 void add_parameter_to_table_map(char* class_name, char* param_name, parameter param){
 	if(param_name != NULL && param_name[0] != '\0' && class_name != NULL && class_name[0] != '\0'){
-		param_table->add_parameter(class_name, param_name, param);
+		tmp_param_table->add_parameter(class_name, param_name, param);
  	}
 	reset_variables();
 }

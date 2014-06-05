@@ -46,7 +46,7 @@ void Challenge::validateDefaultValues(){
 		throw NULL_CHALLENGE_NAME;
 	}
 	if(challenge_type == NULL){
-		throw 
+		//throw 
 	}
 	
 }

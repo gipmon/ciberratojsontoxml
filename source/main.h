@@ -10,7 +10,10 @@
 using namespace std;
 
 extern Challenge *challenge;
+extern Challenge *tmp_challenge;
+
 extern ParamTable *param_table;
+extern ParamTable *tmp_param_table;
 
 extern int maze_parse(const char* fname);
 extern int param_parse(const char* fname);
