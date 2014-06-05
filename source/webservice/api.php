@@ -56,7 +56,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h1>Using our API</h1>
                 <p><span class="glyphicon glyphicon-time"></span> June 2014</p>
-                <p class="lead">We designed our API in order to make easier .json to .xml conversions. It consists on two input files (.json) that need to be placed by the user, where the first file has all the parameters to be recognized and, the second one has the micro mouse parameters only. Our system will automatically check if we are currently talking about a .json file, or not, as well as if it has any parsing errors. After that, checks if  the files have variables that are not semantically according to our predefined ones. After that, it uses our algorithm to convert the .json file to a new .xml one. Consequently it generates our urdf to implement on micro mouse.</p>
+                <p class="lead">We designed our API in order to make easier .json to .xml conversions. It consists on two input files (.json) that need to be placed by the user, where the first file has all the parameters to be recognized and, the second one has the micro mouse parameters only. Our system will automatically check if we are currently talking about a .json file, or not, as well as if it has any parsing errors. After that, checks if  the files have variables that are not semantically according to our predefined ones. Then, it uses our algorithm to convert the .json file to a new .xml one. Consequently it generates our urdf to implement on micro mouse.</p>
                 <p>Endpoint:</p>
                 <pre>URL: http://lfa.rafaelferreira.pt/api/<br/>Method: POST<br/>Parameters: param and challange with json files.</pre>
                 <p>Success response:</p>
