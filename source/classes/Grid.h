@@ -22,4 +22,5 @@ class Grid {
     void printTest();
 
     void gridOutputXML(ofstream& file);
+    void URDFOutput(ofstream& file);
 };
