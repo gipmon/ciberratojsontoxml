@@ -7,7 +7,7 @@ $( document ).ready(function() {
 		var param = $('#param').val();
 		var challange = $('#challange').val();
 		$('#output').text('Please wait a moment!');
-		$.post("compiling.php",{param: param, challange: challange}, function(data){
+		$.post("api/",{param: param, challange: challange}, function(data){
 			var response = jQuery.parseJSON(data);
 			if(typeof response =='object'){
 				if(response.response_type=="error"){

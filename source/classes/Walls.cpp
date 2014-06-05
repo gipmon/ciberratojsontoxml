@@ -62,18 +62,6 @@ void Walls::URDFOutput(ofstream& file){
 	}
 }
 
-/*<link name="base_link">
-		<visual>
-		    <origin xyz="2.5 2.5  0" rpy="0 0 2.35"/>
-			<geometry>
-				<box size="1.41 0.5 2"/>
-			</geometry>
-			<material name="Cyan1">
-	       		<color rgba="0 0.9 0.9 1.0"/>
-	     	</material>
-		</visual>
-	</link>*/
-
 Point* Walls::middle_point(Point* a, Point* b){
 	Point *tmp =  new Point((a->getX()+b->getX())/2, (a->getY()+b->getY())/2);
 	return tmp;

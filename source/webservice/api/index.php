@@ -1,6 +1,12 @@
 <?php
-	$param_list = $_POST['param'];
-	$challange = $_POST['challange'];
+	if(isset($_POST['param']) && isset($_POST['challange'])){
+		$param_list = $_POST['param'];
+		$challange = $_POST['challange'];
+	}else{
+		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challange!"));
+		exit();
+	}
+
 
 	// test if is json
 	$ob_pl = json_decode($param_list);
@@ -15,7 +21,7 @@
 	}
 
 	// create json files
-	$dir = "tmp/";
+	$dir = "../tmp/";
 	$dir_json = $dir."json/";
 	$dir_xml = $dir."xml/";
 	$id = uniqid();
@@ -40,7 +46,7 @@
 	$param_xml_output = $dir_xml.$id."PARAM.xml";
 	$urdf_xml_output = $dir_xml.$id."URDF.xml";
 
-	$command = "../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$grid_xml_output." ".$lab_xml_output." ".$param_xml_output." ".$urdf_xml_output;
+	$command = "../../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$grid_xml_output." ".$lab_xml_output." ".$param_xml_output." ".$urdf_xml_output;
     $output = shell_exec($command);
 
     if($output){
