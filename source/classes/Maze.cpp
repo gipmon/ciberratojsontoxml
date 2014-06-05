@@ -89,30 +89,8 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
   	//}
 }
 
-bool Maze::validate_corner_list(vector<Point>* cl){
-
-	if(cl->size()<2){
-		return false;
-	}
-	if(cl->size()==2){
-		return true;
-	}
-
-	vector<Point*> *scalar_vector = new vector<Point*>();
-
-	for(vector<Point>::iterator it = cl->begin() ; it != cl->end(); ++it){
-		Point *tmp =  new Point((*(it+1)).getX()-(*it).getX(), (*(it+1)).getY()-(*it).getY());
-		scalar_vector->push_back(tmp);
-	}
-	for(vector<Point*>::iterator it = scalar_vector->begin() ; it != scalar_vector->end()-1; ++it){
-
-		double series1[] = {(*it)->getX(), (*it)->getY()};
-	  	double series2[] = {(*(it+1))->getX(), (*(it+1))->getY()};
-		if(!inner_product(series1, series1+2, series2, 0)){
-			return true;
-		}
-	}
-	return false;
+void Maze::removeNotPerpendicularWalls(){
+	walls->removeNotPerpendicularWalls();
 }
 
 void Maze::modify_vector(vector<Point>* cl){
