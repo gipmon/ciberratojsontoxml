@@ -42,8 +42,13 @@ int Challenge::getDuration(){
 }
 
 void Challenge::validateDefaultValues(){
-
-	//throw ERRO;
+	if(challenge_name == NULL){
+		throw NULL_CHALLENGE_NAME;
+	}
+	if(challenge_type == NULL){
+		throw 
+	}
+	
 }
 
 void Challenge::printTest(){
