@@ -81,6 +81,7 @@ void Walls::removeNotPerpendicularWalls(){
 	for (vector<Wall>::iterator it1 = walls->begin() ; it1 != walls->end(); ++it1){
 		if(!validate_corner_list((*it1).corner_list)){
 			walls->erase(it1);
+			it1--; /*SIM, PARECE ESTRANHO MAS E MESMO ASSIM! DEPOIS EXPLICO SE QUISERES!! NAO MEXER*/
 			printf("erase\n");
 		}
 		printf("noterase\n");
@@ -95,7 +96,7 @@ bool Walls::validate_corner_list(vector<Point>* cl){
 	if(cl->size()==2){
 		return true;
 	}
-
+	double scalarP=0;
 	vector<Point*> *scalar_vector = new vector<Point*>();
 
 	for(vector<Point>::iterator it = cl->begin() ; it != (cl->end()-1); ++it){
@@ -111,11 +112,11 @@ bool Walls::validate_corner_list(vector<Point>* cl){
 		vector<double> *series2 = new vector<double>();
 		series2->push_back((*(it+1))->getX());
 		series2->push_back((*(it+1))->getY());
+		scalarP += scalar_product(*series1, *series2);
 
-		if(!scalar_product(*series1, *series2)){
+	}
+	if(scalarP==0){
 			return true;
-		}
-		printf("%d dsf", scalar_product(*series1, *series2));
 	}
 	return false;
 }
