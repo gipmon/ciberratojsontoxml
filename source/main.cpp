@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
 
 void displayMenu(){
 	
-	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Walls options (Models)\n6 - Stats\n0 - End Program\n\nOption: ");
+	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Stats\n0 - End Program\n\nOption: ");
 
 }
 
@@ -58,7 +58,7 @@ int menu(int argc, char* argv[]){
 				cout << "\n";
 				c = filename.c_str();
 				if((param_in = fopen(c, "r")) == NULL){
-					printf("[ERROR!] %s must be a .json file!\n", c);
+					printf("[ERROR!] %s must exist or be a .json file!\n", c);
 					break;
 				}
 
@@ -78,7 +78,7 @@ int menu(int argc, char* argv[]){
 					cin >> filename;
 					c = filename.c_str();
 					if((maze_in = fopen(c, "r")) == NULL){
-						printf("[ERROR!] %s must be a .json file!\n", c);
+						printf("[ERROR!] %s must exist or be a .json file!\n", c);
 						break;
 					}
 
@@ -132,6 +132,47 @@ int menu(int argc, char* argv[]){
 				break;
 
 			case 5:
+				if(flag1 && flag2){
+					string modelname;
+					challenge->maze->printTestModels();
+					printf("\nIntroduce the name of the model: ");
+					cin >> modelname;
+					const char * model = modelname.c_str();
+					if(challenge->maze->existsModel(model)){
+						double x, y, rad;
+						printf("\nIntroduce the x translation: ");
+						while((cin >> x).fail() || cin.peek() != '\n'){
+							cin.clear();
+							cin.ignore(80, '\n');
+
+							cout << "\nIntroduce a valid option: ";
+						}
+						printf("\nIntroduce the y translation: ");
+						while((cin >> y).fail() || cin.peek() != '\n'){
+							cin.clear();
+							cin.ignore(80, '\n');
+
+							cout << "\nIntroduce a valid option: ";
+						}
+						printf("\nIntroduce the angle(rad) translation: ");
+						while((cin >> rad).fail() || cin.peek() != '\n'){
+							cin.clear();
+							cin.ignore(80, '\n');
+
+							cout << "\nIntroduce a valid option: ";
+						}
+
+						challenge->maze->loadModel(model, x, y, rad);
+
+					}else{
+						printf("\n[ERROR!] the %s doesn't exists!\n", model);
+					}
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
+				}
+
 				break;
 
 			case 6:
@@ -193,7 +234,7 @@ int commandLineTools(int argc, char* argv[]){
 	}
 
 	if((param_in = fopen(argv[arg], "r")) == NULL){
-		printf("[ERROR!] %d must be a .json file!\n", arg-1);
+		printf("[ERROR!] %d must exist or be a .json file!\n", arg-1);
 		return 0;
 	}
 
@@ -208,7 +249,7 @@ int commandLineTools(int argc, char* argv[]){
 	}
 
 	if((maze_in = fopen(argv[arg], "r")) == NULL){
-		printf("[ERROR!] %d must be a .json file!\n", arg);
+		printf("[ERROR!] %d must exist or be a .json file!\n", arg);
 		return 0;
 	}
 
@@ -217,10 +258,6 @@ int commandLineTools(int argc, char* argv[]){
 	}catch(int e){
 		ErrorHandlingWithExit(e);
 	}
-
-	// test models
-	challenge->maze->loadModel((char*)"modelo1", 0, 0, 0);
-	challenge->maze->loadModel((char*)"modelo1", 2, 2, 0);
 
 	if(print){
 		challenge->printTest();
@@ -290,14 +327,15 @@ void ErrorHandling(int NUM){
     extern parameter param;
     extern char* default_value_type;
 
-	printf("[SEMANTIC ERROR!] Error description below:\n");
+    const char* semantic = "\n[SEMANTIC ERROR!] Error description below:\n";
+
 	switch (NUM){
-	    case PARAMETER_ALREADY_EXISTS    	 	: printf("The parameter \"%s\" already exists in \"%s\" class.\n", param_name, class_name); break;
-	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("The class name is required for the parameter \"%s\".\n", param_name); break;
-		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name); break;
-		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
-		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n", param_name, class_name, param.value_type, default_value_type);   break;
-		case PARSING_ERROR					: printf("%s: %d: %s; conteudo no yytext: '%s'\n", error.fname, error.line, error.s, error.yytext); break;
+	    case PARAMETER_ALREADY_EXISTS    	 	: printf("%sThe parameter \"%s\" already exists in \"%s\" class.\n",semantic, param_name, class_name); break;
+	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("%sThe class name is required for the parameter \"%s\".\n",semantic, param_name); break;
+		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("%sThe value type is required for the parameter \"%s\" in \"%s\" class.\n",semantic, param_name, class_name); break;
+		case PARAMETER_NAME_REQUIRED 			: printf("%sThe class name is required!\n", semantic); break;
+		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("%sThe default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n",semantic, param_name, class_name, param.value_type, default_value_type);   break;
+		case PARSING_ERROR						: printf("\n[PARSING ERROR] Error description bellow:\n%s: %d: %s; conteudo no yytext: '%s'\n", error.fname, error.line, error.s, error.yytext); break;
 	    default            				 		: printf("unknown error");
 	}
 }

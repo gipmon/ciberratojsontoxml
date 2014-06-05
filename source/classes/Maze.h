@@ -54,7 +54,8 @@ class Maze {
 
 
     void addModel(char* name, double h, Point fp, Point sp, double t);
-    void loadModel(char* name, double x, double y, double rot);
+    void loadModel(const char* name, double x, double y, double rot);
+    int existsModel(const char* name);
 
     void printTest();
     void printTestModels();

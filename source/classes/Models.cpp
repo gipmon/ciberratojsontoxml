@@ -15,14 +15,13 @@ vector<Model> Models::getModelsList(){
 }
 
 void Models::printTest(){
-	cout << "\tmodels\" : [ " << endl;
-
+	printf("\nList of Models: \n");
 	for (vector<Model>::iterator it = modelsList->begin() ; it != modelsList->end(); ++it){
-		cout << "\n\t\t" << "{  name: " <<  (*it).name << "}\n\t] height: \"" <<  (*it).height << "\" first point\" : [" << (*it).first_point.getX() << ", " << (*it).first_point.getY() << "], \"second_point \" : [" << (*it).second_point.getX() << ", " << (*it).second_point.getY() << "], thickness: " <<  (*it).thickness << "}\n\t]," << endl;
+		cout << "\n" << "Model name: " <<  (*it).name << ", height: \"" <<  (*it).height << ", \" first point\" : (" << (*it).first_point.getX() << ", " << (*it).first_point.getY() << "), \"second_point \" : (" << (*it).second_point.getX() << ", " << (*it).second_point.getY() << ") , thickness: " <<  (*it).thickness << endl;
 	}
 }
 
-Model Models::getModel(char* name){
+Model Models::getModel(const char* name){
 	for (vector<Model>::iterator it = modelsList->begin() ; it != modelsList->end(); ++it){
 		if(!strcmp((*it).name, name)){
 			return (*it);
@@ -31,6 +30,15 @@ Model Models::getModel(char* name){
 	//throw MODEL_DOESNT_EXISTS;
 	Model tmp;
 	return tmp;
+}
+
+int Models::existsModel(const char* name){
+	for (vector<Model>::iterator it = modelsList->begin() ; it != modelsList->end(); ++it){
+		if(!strcmp((*it).name, name)){
+			return 1;
+		}
+	}
+	return 0;
 }
 
 /* a implementar se existir tempo */

@@ -106,8 +106,12 @@ VT	 : DOUBLE {$$ = $1;}
 
 int param_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* param_text;
-	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, param_text);
-    exit(1);
+	extern Error error;
+	error.fname = fname;
+	error.line = l->first_line;
+	error.s = s;
+
+	throw PARSING_ERROR;
 }
 
 void add_parameter_to_table_map(char* class_name, char* param_name, parameter param){

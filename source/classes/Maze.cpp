@@ -153,7 +153,7 @@ void Maze::printTestModels(){
 	models->printTest();
 }
 
-void Maze::loadModel(char* name, double x, double y, double rot_angle){
+void Maze::loadModel(const char* name, double x, double y, double rot_angle){
 	Model md = models->getModel(name);
 
 	Wall tmp;
@@ -203,6 +203,9 @@ void Maze::loadModel(char* name, double x, double y, double rot_angle){
 	*/
 }
 
+int Maze::existsModel(const char* name){
+	return models->existsModel(name);
+}
 
 
 void Maze::gridOutputXML(ofstream& file){

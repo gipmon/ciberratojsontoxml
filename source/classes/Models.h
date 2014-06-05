@@ -22,9 +22,9 @@ class Models {
     void addModel(Model add);
     void removeModel(Model removePose);
     void modifyModel(Model toModify, Model newPose);
-    Model getModel(char* name);
+    Model getModel(const char* name);
 
     void printTest();
-
+    int existsModel(const char* name);
     vector<Model> getModelsList();
 };
