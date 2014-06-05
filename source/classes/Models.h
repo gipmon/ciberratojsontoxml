@@ -1,3 +1,6 @@
+#ifndef MODELS_H
+#define MODELS_H
+
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -28,3 +31,5 @@ class Models {
     int existsModel(const char* name);
     vector<Model> getModelsList();
 };
+
+#endif
