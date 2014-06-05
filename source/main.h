@@ -18,6 +18,13 @@ extern FILE* param_in;
 extern FILE* maze_in;
 
 /************************ Prótotipos das funções ************************/
+struct Error{
+	char* fname;
+	int line;
+	char* s;
+	char* yytext;
+};
+
 void gridOutputXML(ofstream& file);
 void labOutputXML(ofstream& file);
 void paramOutputXML(ofstream& file, ParamTable *param_table);

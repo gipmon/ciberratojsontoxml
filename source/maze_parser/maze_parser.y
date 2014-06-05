@@ -160,6 +160,10 @@ PD  	: STR ':' NUM { Param tmp; tmp.name = $1; tmp.value = $3; challenge->pm->ad
 
 int maze_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* maze_text;
-	printf("%s: %d: %s; conteudo no yytext: '%s'\n", fname, l->first_line, s, maze_text);
-    exit(1);
+	extern Error error.filename = fname;
+	error.line = first_line;
+	error.s = s;
+	error.yytext = maze_text;
+	
+	throw(MAZE_PARSING_ERROR);
 }
