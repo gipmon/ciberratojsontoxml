@@ -72,7 +72,7 @@
         <p>Error response:</p>
         <pre>"response_type"</strong>:<strong>"error"</strong>,
     <strong>"val"</strong> : {
-        <strong>"error description"
+        "error description"
     }
 }</pre>
             </div>
