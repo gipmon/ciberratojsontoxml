@@ -3,6 +3,7 @@
 #include <fstream>
 #include "Walls.h"
 #include <cmath>
+#include <numeric>
 
 using namespace std;
 
@@ -76,6 +77,39 @@ double Walls::two_points_distance(Point* a, Point* b){
 
 }
 
+void Walls::removeNotPerpendicularWalls(){
+	for (vector<Wall>::iterator it1 = walls->begin() ; it1 != walls->end(); ++it1){
+		if(!validate_corner_list((*it1).corner_list)){
+			walls->erase(it1);
+		}
+	}
+}
+
+bool Walls::validate_corner_list(vector<Point>* cl){
+
+	if(cl->size()<2){
+		return false;
+	}
+	if(cl->size()==2){
+		return true;
+	}
+
+	vector<Point*> *scalar_vector = new vector<Point*>();
+
+	for(vector<Point>::iterator it = cl->begin() ; it != cl->end(); ++it){
+		Point *tmp =  new Point((*(it+1)).getX()-(*it).getX(), (*(it+1)).getY()-(*it).getY());
+		scalar_vector->push_back(tmp);
+	}
+	for(vector<Point*>::iterator it = scalar_vector->begin() ; it != scalar_vector->end()-1; ++it){
+
+		double series1[] = {(*it)->getX(), (*it)->getY()};
+	  	double series2[] = {(*(it+1))->getX(), (*(it+1))->getY()};
+		if(!inner_product(series1, series1+2, series2, 0)){
+			return true;
+		}
+	}
+	return false;
+}
 
 /* a implementar se existir tempo */
 void Walls::removeWall(Wall removeWall){}

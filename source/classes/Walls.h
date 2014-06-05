@@ -27,6 +27,9 @@ class Walls {
 
     void printTest();
 
+    void removeNotPerpendicularWalls();
+    bool validate_corner_list(vector<Point>* cl);
+
     void labOutputXML(ofstream& file);
     void URDFOutput(ofstream& file);
     Point* middle_point(Point* a, Point* b);
