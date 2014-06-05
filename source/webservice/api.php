@@ -60,7 +60,15 @@
                 <p>Endpoint:</p>
                 <pre>Method: POST<br/>Parameters: param and challange with json files.</pre>
                 <p>Response:</p>
-                <pre></pre>
+                <pre>{
+    <strong>"response_type"</strong>:<strong>"ok"</strong>,
+    <strong>"val"</strong> : {
+        <strong>"grid_output"</strong> : "&#60;Lab Name=\"TOS challenge\" Width=\"28\" Height=\"14\">\n\t&#60;Beacon X=\"14\" Y=\"7\" Height=\"2\"\/>\n\t&#60;Target X=\"14\" Y=\"7\" Radius=\"1\"\/>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"6\" Y=\"0\"\/>\n\t\t&#60;Corner X=\"3\" Y=\"3\"\/>\n\t\t&#60;Corner X=\"3\" Y=\"0\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"5.5\" Y=\"11\"\/>\n\t\t&#60;Corner X=\"5.5\" Y=\"7\"\/>\n\t\t&#60;Corner X=\"0\" Y=\"7\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"20\" Y=\"8\"\/>\n\t\t&#60;Corner X=\"18\" Y=\"5.5\"\/>\n\t\t&#60;Corner X=\"18\" Y=\"0\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"11\" Y=\"5\"\/>\n\t\t&#60;Corner X=\"9\" Y=\"7.5\"\/>\n\t\t&#60;Corner X=\"9\" Y=\"14\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"15\" Y=\"10\"\/>\n\t\t&#60;Corner X=\"17.5\" Y=\"10\"\/>\n\t\t&#60;Corner X=\"21\" Y=\"14\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"23\" Y=\"9.5\"\/>\n\t\t&#60;Corner X=\"26\" Y=\"7.5\"\/>\n\t\t&#60;Corner X=\"24\" Y=\"6\"\/>\n\t\t&#60;Corner X=\"24\" Y=\"3\"\/>\n\t\t&#60;Corner X=\"28\" Y=\"3\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"6.58579\" Y=\"1\"\/>\n\t\t&#60;Corner X=\"9.41421\" Y=\"1\"\/>\n\t&#60;\/Wall>\n\t&#60;Wall Height=\"1\">\n\t\t&#60;Corner X=\"8.58579\" Y=\"3\"\/>\n\t\t&#60;Corner X=\"11.4142\" Y=\"3\"\/>\n\t&#60;\/Wall>\n&#60;\/Lab>",
+        <strong>"lab_output"</strong>:"&#60;Grid>\n\t&#60;Position X=\"2\" Y=\"12.5\" Dir=\"-15\"\/>\n\t&#60;Position X=\"1.75\" Y=\"1.5\" Dir=\"15\"\/>\n\t&#60;Position X=\"26.25\" Y=\"12.5\" Dir=\"-165\"\/>\n&#60;\/Grid>",
+        <strong>"param_output"</strong>:"&#60;Parameters SimTime=\"2400\" CycleTime=\"50\" MotorsNoise=\"1.5\" BeaconNoise=\"2\" BeaconAperture=\"3.14\" CollisionRobotPenalty=\"1\" CollisionWallPenalty=\"1\" KeyTime=\"1800\" \n\/>",
+        <strong>"urdf_output"</strong>:"&#60;robot name=\"TOS challenge\">\n\t ... &#60;\/robot>"
+    }
+}</pre>
             </div>
         </div>
     </div>
