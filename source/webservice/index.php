@@ -38,11 +38,11 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Rafael Ferreira</a></li>
-                <li><a href="#">Bernardo Ferreira</a></li>
-                <li><a href="#">Rodrigo Cunha</a></li>
-                <li><a href="#">Rafael Almeida</a></li>
-                <li><a href="#">João Quintanilha</a></li>
+                <li><a href="http://www.rafaelferreira.pt/">Rafael Ferreira</a></li>
+                <li><a href="https://www.facebook.com/Bernardo94?fref=ts">Bernardo Ferreira</a></li>
+                <li><a href="https://www.facebook.com/rlopescunha">Rodrigo Cunha</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100000144346090">Rafael Almeida</a></li>
+                <li><a href="https://www.facebook.com/quintanilha.joao.9">João Quintanilha</a></li>
               </ul>
             </li>
           </ul>
