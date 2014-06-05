@@ -50,41 +50,19 @@
         </div>
       </div>
     </div>
-    <?php
-    $parameters_file = "../../exemplos/json/param-list.json";
-    $parameters_file_handling = fopen($parameters_file, 'r') or die("UPS! Something went wrong!");
-    $parameters = fread($parameters_file_handling, filesize($parameters_file));
-    fclose($parameters_file_handling);
 
-    $challange_file = "../../exemplos/json/example.json";
-    $challange_file_handling = fopen($challange_file, 'r') or die("UPS! Something went wrong!");
-    $challange = fread($challange_file_handling, filesize($challange_file));
-    fclose($challange_file_handling);
-    ?>
     <div class="container theme-showcase" role="main">
-      <h3>JSON input (param list and challange list)</h3>
-      <div class="row">
-        <div class="col-md-6"><h4>param.json:</h4><br/><textarea style="width: 100%" id="param" rows="15"><?=$parameters?></textarea></div>
-        <div class="col-md-6"><h4>challange.json:</h4><br/><textarea style="width: 100%" id="challange" rows="15"><?=$challange?></textarea></div>
-      </div>
-      <p style="text-align: center">
-        <button type="button" id="make" class="btn btn-primary btn-lg">Make XML</button>
-      </p>
-      <hr/>
-      <h4>OUTPUT</h4>
-      <pre id="output"></pre>
-      <div id="output_div" style="display:none">
-        <hr/>
-        <h3>XML output</h3>
         <div class="row">
-          <div class="col-md-6"><h4>Grid.xml:</h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
-          <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Using our API</h1>
+                <p><span class="glyphicon glyphicon-time"></span> June 2014</p>
+                <p class="lead">Se pretender usar a nossa api para fazer parsing dos ficheiros .json para o micro rato para .xml pode usar a nossa api!</p>
+                <p>Endpoint:</p>
+                <pre>Method: POST<br/>Parameters: param and challange with json files.</pre>
+                <p>Response:</p>
+                <pre></pre>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="param_output"  rows="30" readonly></textarea></div>
-          <div class="col-md-6"><h4>URDF.xml:</h4><br/><textarea style="width: 100%" id="urdf" rows="30" readonly></textarea></div>
-        </div>
-      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

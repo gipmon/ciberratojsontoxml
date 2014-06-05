@@ -20,6 +20,7 @@ $( document ).ready(function() {
 					$('#urdf').text(response.val.urdf_output);
 					$('#output').text("OUTPUT done!");
   					$('#output_div').fadeIn("fast");
+  					console.log(data);
   					scroll('#output_div');
 				}
 			}
