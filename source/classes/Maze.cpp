@@ -181,7 +181,6 @@ void Maze::loadModel(char* name, double x, double y, double rot_angle){
 
 	tmp.corner_list = new_cl;
 	walls->addWall(tmp);
-	printf("aqui\n");
 	/*
 	struct Model{
 	    char* name;
