@@ -33,8 +33,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Json to XML</a></li>
-            <li><a href="api.php" style="color: #B00000"><strong>API</strong></a></li>
+            <li><a href="index.php">Json to XML</a></li>
+            <li class="active"><a href="api.php" style="color: #B00000"><strong>API</strong></a></li>
             <li><a href="http://mymodelrobot.appspot.com/" target="_blank">URDF viewer</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
