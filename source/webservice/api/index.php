@@ -3,7 +3,7 @@
 		$param_list = $_POST['param'];
 		$challange = $_POST['challange'];
 	}else{
-		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challange!"))
+		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challange!"));
 		exit();
 	}
 
