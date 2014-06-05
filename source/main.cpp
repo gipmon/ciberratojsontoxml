@@ -11,7 +11,7 @@ using namespace std;
 
 ParamTable *param_table = new ParamTable();
 Challenge *challenge = new Challenge();
-Error *error;
+Error error;
 
 void warning_message(){
 	printf("\nOPTIONS:\n\n-p : print tables\n-o : output to xml\n./main.output : Menu with more options\n\nIt should be passed the two files .json or nothing!\n\nExample:\n./main.output\n./main.output -o ../exemplos/json/param-list.json ../exemplos/json/example.json\n./main.output -p ../exemplos/json/param-list.json ../exemplos/json/example.json\n./main.output -p -o ../exemplos/json/param-list.json ../exemplos/json/example.json\n");
@@ -297,7 +297,7 @@ void ErrorHandling(int NUM){
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("The value type is required for the parameter \"%s\" in \"%s\" class.\n", param_name, class_name); break;
 		case PARAMETER_NAME_REQUIRED 			: printf("The class name is required!\n"); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("The default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n", param_name, class_name, param.value_type, default_value_type);   break;
-		case MAZE_PARSING_ERROR					: printf("%s: %d: %s; conteudo no yytext: '%s'\n", error.filename, error.line, error.s, error.yytext); break;
+		case PARSING_ERROR					: printf("%s: %d: %s; conteudo no yytext: '%s'\n", error.fname, error.line, error.s, error.yytext); break;
 	    default            				 		: printf("unknown error");
 	}
 }

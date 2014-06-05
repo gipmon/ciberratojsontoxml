@@ -160,10 +160,11 @@ PD  	: STR ':' NUM { Param tmp; tmp.name = $1; tmp.value = $3; challenge->pm->ad
 
 int maze_error(YYLTYPE* l, const char* fname, const char *s){
 	extern char* maze_text;
-	extern Error error.filename = fname;
-	error.line = first_line;
+	extern Error error;
+	error.fname = fname;
+	error.line = l->first_line;
 	error.s = s;
 	error.yytext = maze_text;
 	
-	throw(MAZE_PARSING_ERROR);
+	throw PARSING_ERROR;
 }

@@ -19,9 +19,9 @@ extern FILE* maze_in;
 
 /************************ Prótotipos das funções ************************/
 struct Error{
-	char* fname;
+	const char* fname;
 	int line;
-	char* s;
+	const char* s;
 	char* yytext;
 };
 
