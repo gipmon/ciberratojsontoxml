@@ -9,24 +9,6 @@ using namespace std;
 map<char*, map<char*, parameter> >::iterator it1;
 map<char*, parameter>::iterator it2;
 
-ParamTable::ParamTable(){
-    config_standard((char *)"", (char *)"string", (char *)"", (char *)"", (char *)"challenge name");
-    config_standard((char *)"", (char *)"string", (char *)"", (char *)"", (char *)"challenge type");
-    config_standard((char *)"", (char *)"uint", (char *)"50", (char *)"CycleTime", (char *)"cycle time");
-    config_standard((char *)"", (char *)"uint", (char *)"2400", (char *)"SimTime", (char *)"duration");
-}
-
-void ParamTable::config_standard(char* comment, char* value_type, char* default_value, char* xml_name, char* param_name){
-    parameter tmp_parameter;
-
-    tmp_parameter.comment = comment;
-    tmp_parameter.value_type = value_type;
-    tmp_parameter.default_value = default_value;
-    tmp_parameter.xml_name = xml_name;
-
-    add_parameter((char*)"parameters_standard", param_name, tmp_parameter);
-}
-
 void ParamTable::print_parameter(char* class_name, char* parameter_name, parameter param){
     cout << "\""<< parameter_name << "\" : { \n " << "\t\"comment\" : \""<< param.comment << "\" \n" << "\t\"class\" : \""<< class_name << "\" \n" << "\t\"value type\" : \""<< param.value_type << "\" \n" << "\t\"default value\" : \""<< param.default_value << "\" \n"  << "\t\"XML name\" : \""<< param.xml_name << "\" \n" << "},"<< endl;
 }

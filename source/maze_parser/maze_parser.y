@@ -61,7 +61,7 @@
 
 %%
 
-File 	: '{' OL '}'
+File 	: '{' OL '}' { challenge->validateDefaultValues(); }
 		;
 
 OL  	: CLASS ',' OL

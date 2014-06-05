@@ -41,6 +41,11 @@ int Challenge::getDuration(){
 	return duration;
 }
 
+void Challenge::validateDefaultValues(){
+
+	//throw ERRO;
+}
+
 void Challenge::printTest(){
     cout << "\n!!CHALLENGE!!\n" << "challenge name : " << challenge_name << "\n" << "challenge type : " << challenge_type << "\n" << "cycle time : " << cycle_time << "\n" << "duration : " << duration << "\n" << endl;
     maze->printTest();

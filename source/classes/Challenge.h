@@ -48,6 +48,8 @@ em milissegundos. */
 
     void printTest();
 
+    void validateDefaultValues();
+
     void addParameter();
     void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
