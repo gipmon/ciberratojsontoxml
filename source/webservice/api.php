@@ -56,9 +56,9 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h1>Using our API</h1>
                 <p><span class="glyphicon glyphicon-time"></span> June 2014</p>
-                <p class="lead">Se pretender usar a nossa api para fazer parsing dos ficheiros .json para o micro rato para .xml pode usar a nossa api!</p>
+                <p class="lead">We designed our API in order to make easier .json to .xml conversions. It consists on two input files (.json) that need to be placed by the user, where the first file has all the parameters to be recognized and, the second one has the micro mouse parameters only. Our system will automatically check if we are currently talking about a .json file, or not, as well as if it has any parsing errors. After that, checks if  the files have variables that are not semantically according to our predefined ones. After that, it uses our algorithm to convert the .json file to a new .xml one. Consequently it generates our urdf to implement on micro mouse.</p>
                 <p>Endpoint:</p>
-                <pre>URL:http://lfa.rafaelferreira.pt/api/<br/>Method: POST<br/>Parameters: param and challange with json files.</pre>
+                <pre>URL: http://lfa.rafaelferreira.pt/api/<br/>Method: POST<br/>Parameters: param and challange with json files.</pre>
                 <p>Success response:</p>
                 <pre>{
     <strong>"response_type"</strong>:<strong>"ok"</strong>,
@@ -67,6 +67,12 @@
         <strong>"lab_output"</strong>:"&#60;Grid>\n\t&#60;Position X=\"2\" Y=\"12.5\" Dir=\"-15\"\/>\n\t&#60;Position X=\"1.75\" Y=\"1.5\" Dir=\"15\"\/>\n\t&#60;Position X=\"26.25\" Y=\"12.5\" Dir=\"-165\"\/>\n&#60;\/Grid>",
         <strong>"param_output"</strong>:"&#60;Parameters SimTime=\"2400\" CycleTime=\"50\" MotorsNoise=\"1.5\" BeaconNoise=\"2\" BeaconAperture=\"3.14\" CollisionRobotPenalty=\"1\" CollisionWallPenalty=\"1\" KeyTime=\"1800\" \n\/>",
         <strong>"urdf_output"</strong>:"&#60;robot name=\"TOS challenge\">\n\t ... &#60;\/robot>"
+    }
+}</pre>
+        <p>Error response:</p>
+        <pre>"response_type"</strong>:<strong>"error"</strong>,
+    <strong>"val"</strong> : {
+        <strong>"error description"
     }
 }</pre>
             </div>
