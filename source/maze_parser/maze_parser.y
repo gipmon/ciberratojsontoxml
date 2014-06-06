@@ -3,6 +3,7 @@
     #include <stdio.h>
     #include <stdlib.h>
 	#include <vector>
+	#include <string.h>
 %}
 
 %union{
@@ -19,6 +20,8 @@
 
 	vector<Point> *vpoint = new vector<Point>();
 	ParametersClass *pc = new ParametersClass();
+
+	extern Error error;
 
 %}
 
@@ -61,7 +64,7 @@
 
 %%
 
-File 	: '{' OL '}' { tmp_challenge->validateDefaultValues(); }
+File 	: '{' OL '}' { tmp_challenge->validateDefaultValues(); tmp_challenge->validateScenarioDescription(); }
 		;
 
 OL  	: CLASS ',' OL
@@ -77,8 +80,8 @@ CLASS 	: DEFAULT_VALUES
 
 DEFAULT_VALUES  : CHALLENGE_NAME ':' STR {tmp_challenge->setChallengeName($3);}
 				| CHALLENGE_TYPE ':' STR {tmp_challenge->setChallengeType($3);}
-				| CYCLE_TIME ':' NUM {tmp_challenge->validateIntType($3); tmp_challenge->setCycleTime(atoi($3));}
-				| DURATION ':' NUM {tmp_challenge->validateIntType($3); tmp_challenge->setDuration(atoi($3));}
+				| CYCLE_TIME ':' NUM {error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateIntType($3); tmp_challenge->setCycleTime(atoi($3));}
+				| DURATION ':' NUM {error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateIntType($3); tmp_challenge->setDuration(atoi($3));}
 				;
 
 SD 	: SCENARIO_DESCRIPTION ':' '{' SDL '}'
@@ -163,7 +166,8 @@ int maze_error(YYLTYPE* l, const char* fname, const char *s){
 	extern Error error;
 	error.fname = fname;
 	error.line = l->first_line;
-	error.s = s;
+	error.column = l->first_column;
+	error.s = strdup(s);
 	error.yytext = maze_text;
 	
 	throw PARSING_ERROR;

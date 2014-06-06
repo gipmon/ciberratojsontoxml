@@ -72,6 +72,7 @@ int menu(int argc, char* argv[]){
 
 				try{
 					param_parse(c);
+					delete param_table;
 					param_table = tmp_param_table;
 					flag1 = 1;
 				}catch(int e){
@@ -95,6 +96,7 @@ int menu(int argc, char* argv[]){
 
 					try{
 						maze_parse(c);
+						delete challenge;
 						challenge = tmp_challenge;
 						flag2 = 1;
 					}catch(int e){
@@ -351,7 +353,7 @@ void ErrorHandling(int NUM){
     extern parameter param;
     extern char* default_value_type;
 
-    const char* semantic = "\n[SEMANTIC ERROR!] Error description below:\n";
+    const char* semantic = "[SEMANTIC ERROR!] Error description below:\n";
 
 	switch (NUM){
 	    case PARAMETER_ALREADY_EXISTS    	 	: printf("%sThe parameter \"%s\" already exists in \"%s\" class.\n",semantic, param_name, class_name); break;
@@ -359,12 +361,12 @@ void ErrorHandling(int NUM){
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("%sThe value type is required for the parameter \"%s\" in \"%s\" class.\n",semantic, param_name, class_name); break;
 		case PARAMETER_NAME_REQUIRED 			: printf("%sThe class name is required!\n", semantic); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("%sThe default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n",semantic, param_name, class_name, param.value_type, default_value_type);   break;
-		case PARSING_ERROR						: printf("\n[PARSING ERROR] Error description bellow:\n%s: %d: %s; conteudo no yytext: '%s'\n", error.fname, error.line, error.s, error.yytext); break;
+		case PARSING_ERROR						: printf("[PARSING ERROR] Error description bellow:\n%s: line %d, column %d: %s; content in yytext: '%s'\n", error.fname, error.line, error.column, error.s, error.yytext); free(error.s); break;
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
 	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or greater than zero!!\n", semantic); break;
 	    case NULL_DURATION						: printf("%sThe duration is required or greater than zero!!\n", semantic); break;
-	    case INT_TYPE_ERROR						: printf("\n[PARSING ERROR] Error description bellow:\n Isn't an int\n");
+	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description bellow:\n%s: line %d, column %d: %s isn't an int\n",error.fname, error.line, error.column, error.num);
 	    default            				 		: printf("unknown error");
 	}
 }

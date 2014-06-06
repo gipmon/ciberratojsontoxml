@@ -16,4 +16,9 @@
 #define  NULL_CYCLE_TIME       			11
 #define  NULL_DURATION					12
 #define  INT_TYPE_ERROR					13
+#define  NULL_SCENARIO_DESCRIPTION_NAME 14
+#define  NULL_BEACONS					15
+#define  NULL_TARGET_AREAS				16
+#define  WRONG_GRID						17
+#define  WRONG_DIMENSIONS				18
 

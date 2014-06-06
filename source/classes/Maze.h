@@ -52,6 +52,7 @@ class Maze {
     void addPose(double x, double y, double teta);
     vector<Pose> getPoses();
 
+    void validateScenarioDescription();
 
     void addModel(char* name, double h, Point fp, Point sp, double t);
     void loadModel(const char* name, double x, double y, double rot);

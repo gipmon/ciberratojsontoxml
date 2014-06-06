@@ -1,10 +1,18 @@
 %{
     #include <stdlib.h>
+    #include <string.h>
+    #include <stdint.h>
 	#include <vector>
     #include "../classes/Point.h"
     #include "../maze_parser.tab.h"
 
-    #define YY_DECL int maze_lex(YYSTYPE* p, YYLTYPE* l)
+    #define YY_DECL int maze_lex(YYSTYPE* p, YYLTYPE* loc)
+
+    #define UPDATE_LOC { \
+        loc->first_line = loc->last_line = yylineno; \
+        loc->first_column = col; \
+        col += strlen(yytext); \
+        loc->last_column = col-1; }
 
 %}
 
@@ -60,50 +68,52 @@ model_sp 			["]second[ ]point["]
 
 %%
 
-{challenge_name}			{ l->first_line=yylineno; return CHALLENGE_NAME; }
+							static int col = 1;
 
-{challenge_type} 			{ l->first_line=yylineno; return CHALLENGE_TYPE; }
+{challenge_name}			{ UPDATE_LOC; return CHALLENGE_NAME; }
 
-{cycle_time} 				{ l->first_line=yylineno; return CYCLE_TIME; }
+{challenge_type} 			{ UPDATE_LOC; return CHALLENGE_TYPE; }
 
-{duration}					{ l->first_line=yylineno; return DURATION; }
+{cycle_time} 				{ UPDATE_LOC; return CYCLE_TIME; }
 
-{scenario_description}		{ l->first_line=yylineno; return SCENARIO_DESCRIPTION; }
+{duration}					{ UPDATE_LOC; return DURATION; }
 
-{sd_name}					{ l->first_line=yylineno; return SD_NAME; }
+{scenario_description}		{ UPDATE_LOC; return SCENARIO_DESCRIPTION; }
 
-{sd_dimensions}				{ l->first_line=yylineno; return SD_DIMENSIONS; }
+{sd_name}					{ UPDATE_LOC; return SD_NAME; }
 
-{sd_becons}					{ l->first_line=yylineno; return SD_BEACONS; }
+{sd_dimensions}				{ UPDATE_LOC; return SD_DIMENSIONS; }
 
-{sd_target_areas}			{ l->first_line=yylineno; return SD_TARGET_AREAS; }
+{sd_becons}					{ UPDATE_LOC; return SD_BEACONS; }
 
-{sd_walls}					{ l->first_line=yylineno; return SD_WALLS; }
+{sd_target_areas}			{ UPDATE_LOC; return SD_TARGET_AREAS; }
 
-{sd_grid}					{ l->first_line=yylineno; return SD_GRID; }
+{sd_walls}					{ UPDATE_LOC; return SD_WALLS; }
 
-{sd_position}				{ l->first_line=yylineno; return SD_POSITION; }
+{sd_grid}					{ UPDATE_LOC; return SD_GRID; }
 
-{sd_radius}					{ l->first_line=yylineno; return SD_RADIUS; }
+{sd_position}				{ UPDATE_LOC; return SD_POSITION; }
 
-{sd_height}					{ l->first_line=yylineno; return SD_HEIGHT; }
+{sd_radius}					{ UPDATE_LOC; return SD_RADIUS; }
 
-{thickness}					{ l->first_line=yylineno; return THICKNESS; }
+{sd_height}					{ UPDATE_LOC; return SD_HEIGHT; }
 
-{sd_models} 				{ l->first_line=yylineno; return SD_MODELS; }
+{thickness}					{ UPDATE_LOC; return THICKNESS; }
 
-{model_fp}					{ l->first_line=yylineno; return MODEL_FP; }
+{sd_models} 				{ UPDATE_LOC; return SD_MODELS; }
 
-{model_sp} 					{ l->first_line=yylineno; return MODEL_SP; }
+{model_fp}					{ UPDATE_LOC; return MODEL_FP; }
 
-{sd_corner_list}			{ l->first_line=yylineno; return SD_CORNER_LIST; }
+{model_sp} 					{ UPDATE_LOC; return MODEL_SP; }
 
-{num}						{ l->first_line=yylineno; p->vnum = strdup(yytext); return NUM; }
+{sd_corner_list}			{ UPDATE_LOC; return SD_CORNER_LIST; }
 
-{str}						{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return STR; }
+{num}						{ UPDATE_LOC; p->vnum = strdup(yytext); return NUM; }
 
-[[:blank:]]		{ }
-\n 				{ }
+{str}						{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return STR; }
+
+[[:blank:]]		{ col++; }
+\n 				{ col = 1; }
 
 . { return yytext[0]; }
 

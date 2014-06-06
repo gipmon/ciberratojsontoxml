@@ -14,18 +14,31 @@ void Challenge::addParameter(){
 }
 
 void Challenge::setChallengeName(char* c_name){
+	if(challenge_name == NULL){
+		throw NULL_CHALLENGE_NAME;
+	}
 	challenge_name = c_name;
 }
 
 void Challenge::setChallengeType(char* c_type){
+	if(challenge_type == NULL){
+		throw NULL_CHALLENGE_TYPE;
+	}
 	challenge_type = c_type;
 }
 
 void Challenge::setCycleTime(int c_time){
+	if(cycle_time <= 0){
+		throw NULL_CYCLE_TIME;
+	}
 	cycle_time = c_time;
 }
 
 void Challenge::setDuration(int d){
+	if(duration <= 0){
+		throw NULL_DURATION;
+	}
+
 	duration = d;
 }
 
@@ -52,21 +65,15 @@ void Challenge::validateDefaultValues(){
 	if(challenge_type == NULL){
 		throw NULL_CHALLENGE_TYPE;
 	}
+	
 	if(cycle_time <= 0){
 		throw NULL_CYCLE_TIME;
 	}
+	
 	if(duration <= 0){
 		throw NULL_DURATION;
 	}
 	
-}
-
-void Challenge::validateIntType(char* num){
-	string tmp = string(num);
-
-    if(!is_digits(tmp)){
-    	throw INT_TYPE_ERROR;
-	}
 }
 
 bool Challenge::is_digits(const string &str)
