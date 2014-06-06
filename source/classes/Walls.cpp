@@ -47,18 +47,46 @@ void Walls::labOutputXML(ofstream& file){
 
 void Walls::URDFOutput(ofstream& file){
 	int count = 1;
+	int iteration = 0;
+	int complement = 1;
+
 	for (vector<Wall>::iterator it1 = walls->begin() ; it1 != walls->end(); ++it1){
+		if(validate_corner_list((*it1).corner_list) && (*it1).corner_list->size()>2){
+			for(vector<Point>::iterator it2 = (*it1).corner_list->begin() ; it2 != (*it1).corner_list->end()-1; ++it2){
+				if(iteration == 0){
+					Point *a =  new Point((*it2).getX(), (*it2).getY());
+					Point *b =  new Point((*(it2+1)).getX(), (*(it2+1)).getY());
+					Point *middle = middle_point(a,b);
+					double angle = atan2(((*(it2+1)).getY() - (*it2).getY()), ((*(it2+1)).getX() - (*it2).getX()));
+					double distance = two_points_distance(a,b);
+					file << "\t<link name=\""<< "wall" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << middle->getX() << " " << middle->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << distance << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+				}
+				else{
+					Point *a =  new Point((*it2).getX(), (*it2).getY());
+					Point *b =  new Point((*(it2+1)).getX(), (*(it2+1)).getY());
+					Point *middle = middle_point(a,b);
+					double angle = atan2(((*(it2+1)).getY() - (*it2).getY()), ((*(it2+1)).getX() - (*it2).getX()));
+					double distance = two_points_distance(a,b);
+					file << "\t<link name=\""<< "wall" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << middle->getX() << " " << middle->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << distance << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+					file << "\t<link name=\""<< "complement" << complement++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << a->getX() << " " << a->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << (*it1).thickness << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
 
-		for(vector<Point>::iterator it2 = (*it1).corner_list->begin() ; it2 != (*it1).corner_list->end()-1; ++it2){
-
-			Point *a =  new Point((*it2).getX(), (*it2).getY());
-			Point *b =  new Point((*(it2+1)).getX(), (*(it2+1)).getY());
-			Point *middle = middle_point(a,b);
-			double angle = atan2(((*(it2+1)).getY() - (*it2).getY()), ((*(it2+1)).getX() - (*it2).getX()));
-			double distance = two_points_distance(a,b);
-			file << "\t<link name=\""<< "wall" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << middle->getX() << " " << middle->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << distance << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
-
+				}
+				iteration++;
+			}
 		}
+		else{
+			for(vector<Point>::iterator it2 = (*it1).corner_list->begin() ; it2 != (*it1).corner_list->end()-1; ++it2){
+
+				Point *a =  new Point((*it2).getX(), (*it2).getY());
+				Point *b =  new Point((*(it2+1)).getX(), (*(it2+1)).getY());
+				Point *middle = middle_point(a,b);
+				double angle = atan2(((*(it2+1)).getY() - (*it2).getY()), ((*(it2+1)).getX() - (*it2).getX()));
+				double distance = two_points_distance(a,b);
+				file << "\t<link name=\""<< "wall" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << middle->getX() << " " << middle->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << distance << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+			}
+		}
+
 
 	}
 }
@@ -112,7 +140,9 @@ bool Walls::validate_corner_list(vector<Point>* cl){
 		vector<double> *series2 = new vector<double>();
 		series2->push_back((*(it+1))->getX());
 		series2->push_back((*(it+1))->getY());
-		scalarP += scalar_product(*series1, *series2);
+		if((scalarP = scalar_product(*series1, *series2)) != 0 ){
+			return false;
+		}
 
 	}
 	if(scalarP==0){

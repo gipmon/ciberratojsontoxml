@@ -119,6 +119,22 @@ vector<Pose> Maze::getPoses(){
 	return grid->getPosesList();
 }
 
+void Maze::validateScenarioDescription(){
+	if(name == NULL){
+		throw NULL_SCENARIO_DESCRIPTION_NAME;
+	}
+	if(dimensions.width <= 0 || dimensions.height <= 0){
+		throw WRONG_DIMENSIONS;
+	}
+	if(beacons->countBeacons() < 1){
+		throw NULL_BEACONS;
+	}
+	if(targetareas->countTargetAreas() < 1){
+		throw NULL_TARGET_AREAS;
+	}
+	
+}
+
 void Maze::printTest(){
 	cout << "scenario description : \n\t" << "name : " << name << "\n\t" << "dimensions : " << "[" << dimensions.width << ", " << dimensions.height << "],\n\t" << endl;
 	beacons->printTest();

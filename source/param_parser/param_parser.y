@@ -109,7 +109,9 @@ int param_error(YYLTYPE* l, const char* fname, const char *s){
 	extern Error error;
 	error.fname = fname;
 	error.line = l->first_line;
-	error.s = s;
+	error.column = l->first_column;
+	error.s = strdup(s);
+	error.yytext = param_text;
 
 	throw PARSING_ERROR;
 }

@@ -2,7 +2,13 @@
     #include <stdlib.h>
     #include "../param_parser.tab.h"
 
-    #define YY_DECL int param_lex(YYSTYPE* p, YYLTYPE* l)
+    #define YY_DECL int param_lex(YYSTYPE* p, YYLTYPE* loc)
+
+    #define UPDATE_LOC { \
+        loc->first_line = loc->last_line = yylineno; \
+        loc->first_column = col; \
+        col += strlen(yytext); \
+        loc->last_column = col-1; }
 
 %}
 
@@ -46,40 +52,42 @@ boolean 		["]boolean["]
 
 %%
 
-{comment}		{ l->first_line=yylineno; return COMMENT; }
+				static int col = 1;
 
-{class}			{ l->first_line=yylineno; return CLASS; }
+{comment}		{ UPDATE_LOC; return COMMENT; }
 
-{value_type} 	{ l->first_line=yylineno; return VALUE_TYPE; }
+{class}			{ UPDATE_LOC; return CLASS; }
 
-{xml_name}  	{ l->first_line=yylineno; return XML_NAME; }
+{value_type} 	{ UPDATE_LOC; return VALUE_TYPE; }
 
-{default_value} { l->first_line=yylineno; return DEFAULT_VALUE; }
+{xml_name}  	{ UPDATE_LOC; return XML_NAME; }
 
-{double} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return DOUBLE; }
+{default_value} { UPDATE_LOC; return DEFAULT_VALUE; }
 
-{uint} 			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return UINT; }
+{double} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return DOUBLE; }
 
-{switch} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return SWITCH; }
+{uint} 			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return UINT; }
 
-{boolean} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return BOOLEAN; }
+{switch} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return SWITCH; }
 
-{dv_bool}		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return DV_BOOL; }
+{boolean} 		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return BOOLEAN; }
 
-{dv_switch}		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return DV_SWITCH; }
+{dv_bool}		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return DV_BOOL; }
 
-{dv_int}			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return DV_INT; }
+{dv_switch}		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return DV_SWITCH; }
 
-{dv_double}			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return DV_DOUBLE; }
+{dv_int}		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return DV_INT; }
 
-{id}        	{ yytext[strlen(yytext)-1] = '\0'; p->vid = strdup(yytext+1); l->first_line=yylineno; return ID; }
+{dv_double}		{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return DV_DOUBLE; }
 
-{str}			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); l->first_line=yylineno; return STR; }
+{id}        	{ yytext[strlen(yytext)-1] = '\0'; p->vid = strdup(yytext+1); UPDATE_LOC; return ID; }
+
+{str}			{ yytext[strlen(yytext)-1] = '\0'; p->vstr = strdup(yytext+1); UPDATE_LOC; return STR; }
 
 
-[[:blank:]]		{ }
+[[:blank:]]		{ col++; }
 
-\n 				{ }
+\n 				{ col = 1; }
 
 . { return yytext[0]; }
 %%

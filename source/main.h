@@ -24,10 +24,13 @@ extern FILE* maze_in;
 struct Error{
 	const char* fname;
 	int line;
-	const char* s;
+	int column;
+ 	char* s;
 	char* yytext;
 	char* num;
 };
+
+extern Error error;
 
 void gridOutputXML(ofstream& file);
 void labOutputXML(ofstream& file);
