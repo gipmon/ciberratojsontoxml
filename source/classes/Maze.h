@@ -6,6 +6,7 @@
 #include "Walls.h"
 #include "Grid.h"
 #include "Models.h"
+#include "SuperModels.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class Maze {
     Walls *walls;
     Grid *grid;
     Models *models;
+    SuperModels *supermodels;
 
 	public:
     Maze(){
@@ -30,6 +32,7 @@ class Maze {
         walls = new Walls();
         grid = new Grid();
         models = new Models();
+        supermodels = new SuperModels();
     }
 
     void setName(char* n);
@@ -61,6 +64,11 @@ class Maze {
     void addModel(char* name, double h, Point fp, Point sp, double t);
     void loadModel(const char* name, double x, double y, double rot);
     int existsModel(const char* name);
+
+    void createSuperModel(const char* name);
+    void addModelToSuperModel(const char* supermodel_name, Model add);
+    bool superModelExists(const char* name);
+    void loadSuperModeltoWalls(const char* name, double x, double y, double rot); 
 
     void printTest();
     void printTestModels();

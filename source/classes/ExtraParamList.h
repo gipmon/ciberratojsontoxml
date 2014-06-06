@@ -26,5 +26,5 @@ class ExtraParamList{
     vector<ParametersClass> getExtraParamList();
 
     void printTest();
-   void paramOutputXML(ofstream& paramFile, ParamTable *param_table);
+    void paramOutputXML(ofstream& paramFile, ParamTable *param_table);
 };

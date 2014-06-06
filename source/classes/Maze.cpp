@@ -51,6 +51,18 @@ void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
 }
 
 
+void Maze::loadSuperModeltoWalls(const char* name, double x, double y, double rot){
+	if(!supermodels->superModelExists(name)){
+		throw SUPER_MODEL_DOESNT_EXISTS;
+	}
+
+	SuperModel tmp = supermodels->getSuperModel(name);
+
+	for(vector<char*>::iterator it = tmp.names_models_List->begin() ; it != tmp.names_models_List->end(); ++it){
+		this->loadModel((*it), x, y, rot);
+	}
+}
+
 vector<Beacon> Maze::getBeacons(){
 	return beacons->beaconsList();
 }
