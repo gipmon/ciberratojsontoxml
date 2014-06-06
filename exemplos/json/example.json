@@ -20,12 +20,11 @@
         ],
 
         "walls" : [
-            { "height" : 1, "thickness" : 0.3, "corner list" : [ [3,0], [3, 3], [6, 0] ] },
-            { "height" : 1, "thickness" : 0.3, "corner list" : [ [0, 7], [5.5, 7], [5.5, 11] ] },
-            { "height" : 1, "thickness" : 0.3, "corner list" : [ [18, 0], [18, 5.5], [20, 8] ] },
-            { "height" : 1, "thickness" : 0.3, "corner list" : [ [9, 14], [9, 7.5], [11, 5] ] },
-            { "height" : 1, "thickness" : 0.3, "corner list" : [ [21, 14], [17.5, 10], [15, 10] ] },
-            { "height" : 1, "thickness" : 0.3, "corner list" : [ [28, 3], [24, 3], [24, 6], [26, 7.5], [23,9.5] ] }
+            { "height" : 1, "thickness" : 0.3, "corner list" : [ [5,12], [2.5, 4], [11.5, 4], [12.5, 6.5], [13, 6.5] ] },
+            { "height" : 1, "thickness" : 0.3, "corner list" : [ [7.5,12], [5.5,6], [10,6], [12,12], [23,12], [25.5,4] ] },
+            { "height" : 1, "thickness" : 0.3, "corner list" : [ [15.5,8.5], [13, 8.5], [13.5, 10], [17.2, 10], [15, 4] ] },
+            { "height" : 1, "thickness" : 0.3, "corner list" : [ [18.7, 8.5], [19.3, 10], [21, 10], [21.5, 8.5], [18.7,8.5] ]  },
+            { "height" : 1, "thickness" : 0.3, "corner list" : [ [17.5,4], [18.2,6], [22.3,6], [23,4] ] }
 
         ],
 
