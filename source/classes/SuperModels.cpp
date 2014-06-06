@@ -7,8 +7,11 @@
 
 using namespace std;
 
-void SuperModels::addSuperModel(SuperModel add){
-	superModelList->push_back(add);
+void SuperModels::createSuperModel(char* supermodel_name){
+	Model tmp;
+	tmp.name = supermodel_name;
+	tmp.modelsList = new vector<Model>();
+	superModelList->push_back(tmp);
 }
 
 void SuperModels::addModelToSuperModel(const char* supermodel_name, Model add){
