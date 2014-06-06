@@ -69,9 +69,9 @@ void Challenge::validateIntType(char* num){
 	}
 }
 
-bool Challenge::is_digits(const std::string &str)
+bool Challenge::is_digits(const string &str)
 {
-    return str.find_first_not_of("0123456789") == std::string::npos;
+    return str.find_first_not_of("0123456789") == string::npos;
 }
 
 void Challenge::printTest(){
