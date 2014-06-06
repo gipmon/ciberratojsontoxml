@@ -49,6 +49,7 @@ em milissegundos. */
     void printTest();
 
     void validateDefaultValues();
+    void validateScenarioDescription();
     void validateIntType(char* num);
     bool is_digits(const std::string &str);
 

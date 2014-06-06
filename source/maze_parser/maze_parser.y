@@ -114,13 +114,21 @@ NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = 
 BEACONS 	: '[' BEACONS_VALUES ']'
 			;
 
-BEACONS_VALUES  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {tmp_challenge->maze->addBeacon(*$4, atoi($8));}
+BEACONS_VALUES : BEACONS_VALUE ',' BEACONS_VALUES
+			   | BEACONS_VALUE
+			   ;
+
+BEACONS_VALUE  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {tmp_challenge->maze->addBeacon(*$4, atoi($8));}
 				;
 
 TARGET_AREAS    : '[' TARGET_VALUES ']'
 			    ;
 
-TARGET_VALUES   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {tmp_challenge->maze->addTargetArea(*$4, atoi($8));}
+TARGET_VALUES : TARGET_VALUE ',' TARGET_VALUES
+			  | TARGET_VALUE
+			  ;
+
+TARGET_VALUE   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {tmp_challenge->maze->addTargetArea(*$4, atoi($8));}
 				;
 
 WALLS   : '[' WALLS_VALUES ']'

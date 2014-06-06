@@ -3,6 +3,7 @@
 
     "challenge type" : "competitive",
 
+    "cycle time" : 50,
 
     "duration" : 2400,
 
@@ -14,6 +15,7 @@
         "beacons" : [
             { "position" : [14, 7], "height" : 2 }
         ],
+        
         "target areas" : [
             { "position" : [14, 7], "radius" : 1}
         ],
@@ -34,7 +36,7 @@
         ],
 
         "grid" : [
-            [2, 12.5, -15],
+            [2 , 12.5, -15],
             [1.75, 1.5, 15],
             [26.25, 12.5, -165]
         ]

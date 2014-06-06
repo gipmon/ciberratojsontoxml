@@ -3,16 +3,23 @@
 #include <vector>
 #include <numeric>
 #include "Maze.h"
+#include "../error.h"
 #include <cmath>
 
 #define PI 3.14159265359
 using namespace std;
 
 void Maze::setName(char* n){
+	if(n == NULL){
+		throw NULL_SCENARIO_DESCRIPTION_NAME;	
+	}
 	name = n;
 }
 
 void Maze::setDimensions(double w, double h){
+	if(w <= 0 || h <= 0){
+		throw WRONG_DIMENSIONS;
+	}
 	dimensions.width = w;
 	dimensions.height = h;
 }
@@ -24,6 +31,7 @@ Dimensions Maze::getDimensions(){
 void Maze::addBeacon(Point p, double h){
     Beacon tmp;
 
+    validateBeaconsPoints(p.getX(), p.getY());
     tmp.position = p;
     tmp.height = h;
 
@@ -53,8 +61,11 @@ int Maze::countBeacons(){
 
 void Maze::addTargetArea(Point p, double r){
 	TargetArea tmp;
-
+	if(r <= 0){
+		throw NULL_TARGET_RADIUS;
+	}
 	tmp.radius = r;
+	validateTargetAreaPoints(p.getX(), p.getY());
 	tmp.position = p;
 
 	targetareas->addTargetArea(tmp);
@@ -83,6 +94,9 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
 			tmp.thickness = 0.1;
 		}
 
+		for (vector<Point>::iterator it1 = cl->begin() ; it1 != cl->end(); ++it1){
+			validateWallsPoints((*it1).getX(), (*it1).getY());
+		}
 		tmp.corner_list = cl;
 
 		walls->addWall(tmp);
@@ -132,8 +146,40 @@ void Maze::validateScenarioDescription(){
 	if(targetareas->countTargetAreas() < 1){
 		throw NULL_TARGET_AREAS;
 	}
+	if(grid->countPoses() == 0){
+		throw WRONG_GRID;
+	}
 	
 }
+
+void Maze::validateBeaconsPoints(double x, double y){
+	if(x > dimensions.width){
+		throw EXTERN_POINTX_BEACONS;
+	}
+	if(y > dimensions.height){
+		throw EXTERN_POINTY_BEACONS;
+	}
+}
+
+void Maze::validateTargetAreaPoints(double x, double y){
+	if(x > dimensions.width){
+		throw EXTERN_POINTX_TARGET;
+	}
+	if(y > dimensions.height){
+		throw EXTERN_POINTY_TARGET;
+	}
+}
+
+void Maze::validateWallsPoints(double x, double y){
+	if(x > dimensions.width){
+		throw EXTERN_POINTX_WALLS;
+	}
+	if(y > dimensions.height){
+		throw EXTERN_POINTY_WALLS;
+	}
+}
+
+
 
 void Maze::printTest(){
 	cout << "scenario description : \n\t" << "name : " << name << "\n\t" << "dimensions : " << "[" << dimensions.width << ", " << dimensions.height << "],\n\t" << endl;

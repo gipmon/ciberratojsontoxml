@@ -40,7 +40,10 @@ void Grid::URDFOutput(ofstream& file){
 		file << "\t<link name=\""<< "pointer" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << (*it1).x << " "<< (*it1).y << " 0.15\" rpy=\"0 0 " << ((*it1).teta*3.14159265/180) << "\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"0.03 1 0.3\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
 
 	}
+}
 
+int Grid::countPoses(){
+	return posesList->size();
 }
 /*<link name="torso_link">
 		<visual>

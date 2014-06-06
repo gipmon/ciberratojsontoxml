@@ -19,6 +19,9 @@ class Grid {
     void modifyPose(Pose toModify, Pose newPose);
     vector<Pose> getPosesList();
 
+
+    int countPoses();
+
     void printTest();
 
     void gridOutputXML(ofstream& file);

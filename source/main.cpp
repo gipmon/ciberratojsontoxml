@@ -364,9 +364,21 @@ void ErrorHandling(int NUM){
 		case PARSING_ERROR						: printf("[PARSING ERROR] Error description bellow:\n%s: line %d, column %d: %s; content in yytext: '%s'\n", error.fname, error.line, error.column, error.s, error.yytext); free(error.s); break;
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
-	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or greater than zero!!\n", semantic); break;
-	    case NULL_DURATION						: printf("%sThe duration is required or greater than zero!!\n", semantic); break;
+	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or should be greater than zero!!\n", semantic); break;
+	    case NULL_DURATION						: printf("%sThe duration is required or should be greater than zero!!\n", semantic); break;
 	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description bellow:\n%s: line %d, column %d: %s isn't an int\n",error.fname, error.line, error.column, error.num);
+	    case NULL_SCENARIO_DESCRIPTION_NAME     : printf("%sThe scenario description name is required!\n", semantic); break;
+	    case WRONG_DIMENSIONS    				: printf("%sThe dimensions are wrong, they should be greater than zero!\n", semantic); break;
+		case NULL_BEACONS					    : printf("%sAt least one Beacon is required!\n", semantic); break;
+		case NULL_TARGET_AREAS				    : printf("%sAt least one Target Area is required!\n", semantic); break;
+		case WRONG_GRID							: printf("%sAt least one Grid is required!\n", semantic); break;
+		case NULL_TARGET_RADIUS					: printf("%sTarget radius should be greater than zero\n", semantic); break;
+		case EXTERN_POINTX_BEACONS              : printf("%sThe coordenate x of Beacon is out of dimensions\n", semantic); break;
+		case EXTERN_POINTY_BEACONS              : printf("%sThe coordenate y of Beacon is out of dimensions\n", semantic); break;
+		case EXTERN_POINTX_TARGET               : printf("%sThe coordenate x of Target Area is out of dimensions\n", semantic); break;
+		case EXTERN_POINTY_TARGET               : printf("%sThe coordenate y of Target Area is out of dimensions\n", semantic); break;
+		case EXTERN_POINTX_WALLS                : printf("%sThe coordenate x of Wall is out of dimensions\n", semantic); break;
+		case EXTERN_POINTY_WALLS                : printf("%sThe coordenate x of Beacon is out of dimensions\n", semantic); break;
 	    default            				 		: printf("unknown error");
 	}
 }
