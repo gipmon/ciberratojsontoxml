@@ -7,7 +7,7 @@ using namespace std;
 
 struct SuperModel{
     char* name;
-    vector<Model> *modelsList; //inicializar
+    vector<Model> *modelsList;
 };
 
 class SuperModels{
@@ -16,7 +16,7 @@ class SuperModels{
 
 	public:
     SuperModels(){ superModelList = new vector<SuperModel>(); }
-    void addSuperModel(SuperModel add);
+    void createSuperModel(char* supermodel_name);
     void addModelToSuperModel(const char* supermodel_name, Model add);
 
     void removeSuperModel(SuperModel removeSuperModel);
