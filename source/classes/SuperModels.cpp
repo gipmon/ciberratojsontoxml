@@ -60,7 +60,7 @@ SuperModel SuperModels::getSuperModel(const char* name){
 void SuperModels::printTest(){
 	printf("\nList of Super Models: \n");
 	for (vector<SuperModel>::iterator it1 = superModelList->begin() ; it1 != superModelList->end(); ++it1){
-		cout << "\n" << "SuperModel name: " <<  (*it1).name << ", Models: \"";
+		cout << "\n" << "SuperModel name: " <<  (*it1).name << ", Models: ";
 		
 		for (vector<char*>::iterator it2 = (*it1).names_models_List->begin() ; it2 != (*it1).names_models_List->end(); ++it2){
 			cout << (*it2) << ", ";
