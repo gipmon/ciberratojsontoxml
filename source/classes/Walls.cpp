@@ -82,8 +82,9 @@ void Walls::URDFOutput(ofstream& file){
 				Point *middle = middle_point(a,b);
 				double angle = atan2(((*(it2+1)).getY() - (*it2).getY()), ((*(it2+1)).getX() - (*it2).getX()));
 				double distance = two_points_distance(a,b);
-				file << "\t<link name=\""<< "wall" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << middle->getX() << " " << middle->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << distance << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
-
+				file << "\t<link name=\""<< "wall" << count <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"0 0 0\" rpy=\"0 0 "<< angle <<"\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << distance << " "<< (*it1).thickness << " " << (*it1).height << "\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+				file << "\t<joint name=\""<< "joint" << count <<"\" type=\"continuous\">\n\t\t<parent link=\"wall"<< count <<"\"/>\n\t\t<child link=\"wall" << count << "\"/>\n\t\t<origin xyz=\"" << middle->getX() << " " << middle->getY() << " " << (*it1).height/2 << "\" rpy=\"0 0 0\"/>\n\t\t<axis xyz=\"0 0 1\"/>\n\t</joint>\n";
+				count++;
 			}
 		}
 

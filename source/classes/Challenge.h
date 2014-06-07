@@ -53,7 +53,6 @@ em milissegundos. */
     void validateIntType(char* num);
     bool is_digits(const std::string &str);
 
-    void addParameter();
     void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
     void paramOutputXML(ofstream& paramFile, ParamTable *param_table);

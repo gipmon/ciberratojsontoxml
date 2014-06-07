@@ -15,7 +15,7 @@
         "beacons" : [
             { "position" : [14, 7], "height" : 2 }
         ],
-        
+
         "target areas" : [
             { "position" : [14, 7], "radius" : 1}
         ],

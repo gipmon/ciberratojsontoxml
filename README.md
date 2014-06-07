@@ -1,25 +1,20 @@
---------------
 Menu interface
---------------
+==============
 
-
-----------------------
 Command Line Arguments
-----------------------
+======================
 
 
----------------
 Web Service API
----------------
+===============
 URL: http://lfa.rafaelferreira.pt/
 
 Password: lfaworkteam
 
 The web page will be public on Thursday
 
---------------
 Class Hierachy
---------------
+==============
 
       +---------+      +--------------+   +---------------+  +-----+
       |Challenge+------+ExtraParamList+---+ParametersClass+--+Param|
@@ -51,29 +46,37 @@ Class Hierachy
            +----+SuperModels +---+SuperModel+---+ name, names_models_list |   
                 +------------+   +----------+   +-------------------------+   
 
---------
 Features
---------
+========
 
 1. Validations
+--------------
+Default Values:
 
-⋅⋅ Default Values:
+Scenario description:
 
-⋅⋅ Scenario description:
-
-⋅⋅ Last parameters:
+Last parameters:
 
 2. Errors Handling
-⋅⋅ 
+------------------
 
 3. XML
-⋅⋅
+------
 
 4. URDF
-⋅⋅
+-------
 
 5. Models and Super Models
-⋅⋅
+--------------------------
+** Models**
+
+Os models permite instanciar várias paredes nas walls tendo ambas uma forma pré-definida. Ao instanciar é possível fazer uma translação em x e em y, assim como uma rotação em torno do seu eixo em radianos. 
+
+Um model é definido por um nome que o identifica, uma height que tem de ser >0, um thickness >=0 e dois pontos: first and second.
+
+{ "name" : "nome_do_modelo", "height" : 1, "thickness" : 0.2, "first point" : [9,0], "second point" : [7, 2] },
+
+*Super Models*
 
 5. API
-⋅⋅
+------
