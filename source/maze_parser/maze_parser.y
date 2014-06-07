@@ -138,9 +138,9 @@ WALLS_VALUES : WALLS_VALUE ',' WALLS_VALUES
 			 | WALLS_VALUE
 			 ;
 
-/* falta o thickness */
 WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {tmp_challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
 			|'{' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {tmp_challenge->maze->addWall(atoi($4), atof($8), vpoint); vpoint = new vector<Point>();}
+			;
 
 CORNER_LIST : NUM_PAIR ',' CORNER_LIST { vpoint->push_back(*$1);}
 			| NUM_PAIR { vpoint->push_back(*$1);}
