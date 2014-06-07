@@ -68,6 +68,9 @@ Last parameters:
 
 5. Models and Super Models
 --------------------------
-     
+*Models*
+
+*Super Models*
+
 5. API
 ------
