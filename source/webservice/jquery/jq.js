@@ -17,7 +17,8 @@ $( document ).ready(function() {
 					$('#grid').text(response.val.grid_output);
 					$('#lab').text(response.val.lab_output);
 					$('#param_output').text(response.val.param_output);
-					$('#urdf').text(response.val.urdf_output);
+					$('#urdf_xml_output_rotate').text(response.val.urdf_xml_output_rotate);
+					$('#urdf_xml_output_fixed').text(response.val.urdf_xml_output_fixed);
 					$('#output').text("OUTPUT done!");
   					$('#output_div').fadeIn("fast");
   					scroll('#output_div');

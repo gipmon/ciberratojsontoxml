@@ -396,11 +396,13 @@ int commandLineTools(int argc, char* argv[]){
 			ofstream labFile(argv[arg++]);
 			ofstream gridFile(argv[arg++]);
 			ofstream paramFile(argv[arg++]);
+	    	ofstream URDFFileR(argv[arg++]);
 	    	ofstream URDFFileF(argv[arg++]);
 
 			gridOutputXML(gridFile);
 			labOutputXML(labFile);
 			paramOutputXML(paramFile, param_table);
+	    	URDFOutputRotate(URDFFileR);
 	    	URDFOutputFixed(URDFFileF);
 		}else{
 			system("rm -rf ./xml");
