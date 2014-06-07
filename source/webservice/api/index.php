@@ -26,7 +26,7 @@
 
 	$id = uniqid();
 
-	$default_files = array($id."param.json", $id."challenge.json");
+	$default_files = array($dir_json.$id."param.json", $dir_json.$id."challenge.json");
 
 	// create default files
 	foreach ($default_files as $value){
