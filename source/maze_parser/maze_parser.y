@@ -164,8 +164,8 @@ PL  	: PD ',' PL
 		| /*lameda*/
 		;
 
-PD  	: STR ':' STR { if(!param_table->parameter_exists(pc->class_name, $1)){ throw PARAMETER_DOESNT_EXISTS; } error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateTypes(param_table->get_value_type(pc->class_name, $1), $3); Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp); }
-		| STR ':' NUM { if(!param_table->parameter_exists(pc->class_name, $1)){ throw PARAMETER_DOESNT_EXISTS; } error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateTypes(param_table->get_value_type(pc->class_name, $1), $3); Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp);}
+PD  	: STR ':' STR { error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; error.s = $1; if(!param_table->parameter_exists(pc->class_name, $1)){ throw PARAMETER_DOESNT_EXISTS; } tmp_challenge->validateTypes(param_table->get_value_type(pc->class_name, $1), $3); Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp); }
+		| STR ':' NUM { error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; error.s = $1; if(!param_table->parameter_exists(pc->class_name, $1)){ throw PARAMETER_DOESNT_EXISTS; } tmp_challenge->validateTypes(param_table->get_value_type(pc->class_name, $1), $3); Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp);}
 		;
 
 %%

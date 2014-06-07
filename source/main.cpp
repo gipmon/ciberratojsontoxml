@@ -460,6 +460,7 @@ void ErrorHandling(int NUM){
     extern char* class_name;
     extern parameter param;
     extern char* default_value_type;
+    extern ParametersClass *pc;
 
     const char* semantic = "[SEMANTIC ERROR!] Error description below:\n";
 
@@ -468,7 +469,7 @@ void ErrorHandling(int NUM){
 	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("%sThe class name is required for the parameter \"%s\".\n",semantic, param_name); break;
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("%sThe value type is required for the parameter \"%s\" in \"%s\" class.\n",semantic, param_name, class_name); break;
 		case PARAMETER_NAME_REQUIRED 			: printf("%sThe class name is required!\n", semantic); break;
-		case PARAMETER_DOESNT_EXISTS			: printf("%sThe parameter \"%s\" doesn't exixts in \"%s\" class. \n", semantic, param_name, class_name); break;
+		case PARAMETER_DOESNT_EXISTS			: printf("%sThe parameter \"%s\" doesn't exixts in \"%s\" class. It must be defined in param-list.json first! \n", semantic, error.s, pc->class_name); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("%sThe default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n",semantic, param_name, class_name, param.value_type, default_value_type);   break;
 		case PARSING_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s; content in yytext: '%s'\n", error.fname, error.line, error.column, error.s, error.yytext); free(error.s); break;
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
