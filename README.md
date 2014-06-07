@@ -29,7 +29,7 @@ Class Hierachy
       +  maze   +--+dimensions|           | class_name    |  |name |
       +----+----+  +----------+           | Vector Param  |  |value|
            |                              +---------------+  +-----+
-           |                         +------------+                         
+           |                           +------------+                         
            |    +---------+  +------+  | position   |                         
            |----| beacons +--+beacon+--+ height     |                         
            |    +---------+  +------+  +------------+                         
