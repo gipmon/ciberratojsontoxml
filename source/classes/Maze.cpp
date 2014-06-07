@@ -50,6 +50,17 @@ void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
     models->addModel(tmp);
 }
 
+void Maze::createSuperModel(const char* supermodel_name){
+	supermodels->createSuperModel(supermodel_name);
+}
+
+void Maze::addModelToSuperModel(const char* supermodel_name, const char* model_to_add){
+	supermodels->addModelToSuperModel(supermodel_name, model_to_add);
+}
+
+void Maze::printSuperModels(){
+	supermodels->printTest();
+}
 
 void Maze::loadSuperModeltoWalls(const char* name, double x, double y, double rot){
 	if(!supermodels->superModelExists(name)){

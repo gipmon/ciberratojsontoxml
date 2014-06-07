@@ -66,9 +66,10 @@ class Maze {
     int existsModel(const char* name);
 
     void createSuperModel(const char* name);
-    void addModelToSuperModel(const char* supermodel_name, Model add);
+    void addModelToSuperModel(const char* supermodel_name, const char* add);
     bool superModelExists(const char* name);
     void loadSuperModeltoWalls(const char* name, double x, double y, double rot); 
+    void printSuperModels();
 
     void printTest();
     void printTestModels();

@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
 
 void displayMenu(){
 	
-	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Clear not perpendicular walls\n7 - Stats\n0 - End Program\n\nOption: ");
+	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Clear not perpendicular walls\n7 - Create Super Model\n8 - Add model to Super Model\n9 - Add Super Model to walls\n10 - Stats\n0 - End Program\n\nOption: ");
 
 }
 
@@ -47,7 +47,7 @@ int menu(int argc, char* argv[]){
 
 		displayMenu();
 
-		while((cin >> b).fail() || cin.peek() != '\n' || b < 0 || b > 7){
+		while((cin >> b).fail() || cin.peek() != '\n' || b < 0 || b > 10){
 			cin.clear();
 			cin.ignore(80, '\n');
 
@@ -200,6 +200,40 @@ int menu(int argc, char* argv[]){
 				break;
 
 			case 7:
+				printf("\nIntroduce the name of the new Super Model: ");
+				string supermodel_name;
+				cin >> supermodel_name;
+				challenge->maze->createSuperModel(supermodel_name.c_str());
+				break;
+
+			case 8:
+				printf("\nIntroduce the name of the Super Model: ");
+				
+				string supermodel_n;
+				cin >> supermodel_n;
+				const char* sm = supermodel_n.c_str();
+				
+				const char* model_to_add;
+
+				do{
+					printf("\nIntroduce the name of the model to add to the Super Model or 0 to skip: ");
+					string model_n;
+					cin >> model_n;
+					model_to_add = model_n.c_str();
+					if(model_to_add[0]!='0'){
+						try{
+							//se o super model não existir
+							challenge->maze->addModelToSuperModel(sm, model_to_add);
+						}catch(int e){
+							ErrorHandling(e);
+						}
+					}
+				}while(model_to_add[0]!='0');
+				break;
+			case 9:
+				challenge->maze->printSuperModels();
+				break;
+			case 10:
 				if(flag1 && flag2){
 					printf("\nSTATS:\n\nChallenge Name: %s\n", challenge->getChallengeName());
 					printf("Challenge Type: %s\n", challenge->getChallengeType());
@@ -379,6 +413,7 @@ void ErrorHandling(int NUM){
 		case EXTERN_POINTY_TARGET               : printf("%sThe coordenate y of Target Area is out of dimensions\n", semantic); break;
 		case EXTERN_POINTX_WALLS                : printf("%sThe coordenate x of Wall is out of dimensions\n", semantic); break;
 		case EXTERN_POINTY_WALLS                : printf("%sThe coordenate x of Beacon is out of dimensions\n", semantic); break;
+		case SUPER_MODEL_DOESNT_EXISTS          : printf("%sThe super model doesn't exists!\n", semantic); break;
 	    default            				 		: printf("unknown error");
 	}
 }
