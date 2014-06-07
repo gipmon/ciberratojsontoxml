@@ -46,6 +46,7 @@
                 <li><a href="https://www.facebook.com/quintanilha.joao.9">João Quintanilha</a></li>
               </ul>
             </li>
+            <li><a href="https://bitbucket.org/eypo94/lfa-work-team/overview">Git Repo</a></li>
           </ul>
         </div>
       </div>
