@@ -23,6 +23,7 @@ class ParamTable{
 		void add_parameter(char* class_name, char* param_name, parameter param);
 		bool has_default_value(char* class_name, char* parameter_name);
 		char* get_default_value(char* class_name, char* parameter_name);
+		bool class_exists(char* class_name);
 		bool parameter_exists(char* class_name, char* parameter_name);
 		char* get_xml_name(char* class_name, char* parameter_name);
 		char* get_comment(char* class_name, char* parameter_name);

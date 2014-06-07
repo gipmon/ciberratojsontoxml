@@ -107,6 +107,15 @@ bool ParamTable::parameter_exists(char* class_name, char* parameter_name){
     return false;
 }
 
+bool ParamTable::class_exists(char* class_name){
+    for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
+        if(!strcmp(it1->first, class_name)){
+            return true;
+        }
+    }
+    return false;
+}
+
 char* ParamTable::get_default_value(char* class_name, char* parameter_name){
     for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
         if(!strcmp(it1->first, class_name)){
