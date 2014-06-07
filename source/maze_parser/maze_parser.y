@@ -156,7 +156,7 @@ POSE_LIST : POSE
 POSE    :'[' NUM ',' NUM ',' NUM ']' { tmp_challenge->maze->addPose(atof($2), atof($4), atof($6)); }
 		;
 
-LAST_CLASSES  	: STR {pc->class_name = $1; pc->paramList = new vector<Param>(); tmp_challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
+LAST_CLASSES  	: STR {if(!param_table->class_exists($1)){ throw MAP_CLASS_DOESNT_EXISTS; }  pc->class_name = $1; pc->paramList = new vector<Param>(); tmp_challenge->pm->addClass(*pc); } ':' '{' PL '}' {pc = new ParametersClass();}
 		        ;
 
 PL  	: PD ',' PL
@@ -164,7 +164,8 @@ PL  	: PD ',' PL
 		| /*lameda*/
 		;
 
-PD  	: STR ':' NUM { Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp);}
+PD  	: STR ':' STR { if(!param_table->parameter_exists(pc->class_name, $1)){ throw PARAMETER_DOESNT_EXISTS; } Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp); }
+		| STR ':' NUM { if(!param_table->parameter_exists(pc->class_name, $1)){ throw PARAMETER_DOESNT_EXISTS; } Param tmp; tmp.name = $1; tmp.value = $3; tmp_challenge->pm->addParameterToClass(pc->class_name, tmp);}
 		;
 
 %%
