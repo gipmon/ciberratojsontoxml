@@ -1,14 +1,10 @@
-================
 Menu interface
 ==============
 
-
-======================
 Command Line Arguments
 ======================
 
 
-===============
 Web Service API
 ===============
 URL: http://lfa.rafaelferreira.pt/
@@ -17,7 +13,6 @@ Password: lfaworkteam
 
 The web page will be public on Thursday
 
-==============
 Class Hierachy
 ==============
 
@@ -51,7 +46,6 @@ Class Hierachy
            +----+SuperModels +---+SuperModel+---+ name, names_models_list |   
                 +------------+   +----------+   +-------------------------+   
 
-========
 Features
 ========
 
