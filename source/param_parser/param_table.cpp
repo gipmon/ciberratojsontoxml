@@ -78,25 +78,60 @@ char* ParamTable::get_xml_name(char* class_name, char* parameter_name){
 
 
 bool ParamTable::has_default_value(char* class_name, char* parameter_name){
-    return 0;
+    for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
+        if(!strcmp(it1->first, class_name)){
+          for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++){
+            if(!strcmp(it2->first, parameter_name)){
+                if(it2->second.default_value != NULL && it2->second.default_value[0] != '\0'){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+          }
+        }
+    }
+    return false;
 }
 
 bool ParamTable::parameter_exists(char* class_name, char* parameter_name){
-    return 0;
+    for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
+        if(!strcmp(it1->first, class_name)){
+          for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++){
+            if(!strcmp(it2->first, parameter_name)){
+                return true;
+            }
+          }
+        }
+    }
+    return false;
 }
 
-bool ParamTable::get_default_value(char* class_name, char* parameter_name){
-    return 0;
+char* ParamTable::get_default_value(char* class_name, char* parameter_name){
+    for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
+        if(!strcmp(it1->first, class_name)){
+          for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++){
+            if(!strcmp(it2->first, parameter_name)){
+              return it2->second.default_value;
+            }
+          }
+        }
+    }
+    return '\0';
 }
 
 
 char* ParamTable::get_comment(char* class_name, char* parameter_name){
-    return 0;
-}
-
-bool ParamTable::valid_value_type(char* class_name, char* parameter_name, char* value){
-    /* procura saber qual é o value type do parametro e depois consuante o value type do parametro tem de se validar os tokens recebidos pelo value. feito em REGEX o value vem da segunda gramática invocado em c++ */
-    return 0;
+    for(it1 = param_map.begin(); it1 != param_map.end(); it1++) {
+        if(!strcmp(it1->first, class_name)){
+          for(it2 = it1->second.begin(); it2 != it1->second.end(); it2++){
+            if(!strcmp(it2->first, parameter_name)){
+              return it2->second.comment;
+            }
+          }
+        }
+    }
+    return '\0';
 }
 
 void ParamTable::validate_parameter(char* class_name, char* param_name, parameter param){
