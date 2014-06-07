@@ -1,25 +1,25 @@
---------------
+================
 Menu interface
---------------
+==============
 
 
-----------------------
+======================
 Command Line Arguments
-----------------------
+======================
 
 
----------------
+===============
 Web Service API
----------------
+===============
 URL: http://lfa.rafaelferreira.pt/
 
 Password: lfaworkteam
 
 The web page will be public on Thursday
 
---------------
+==============
 Class Hierachy
---------------
+==============
 
       +---------+      +--------------+   +---------------+  +-----+
       |Challenge+------+ExtraParamList+---+ParametersClass+--+Param|
@@ -51,29 +51,29 @@ Class Hierachy
            +----+SuperModels +---+SuperModel+---+ name, names_models_list |   
                 +------------+   +----------+   +-------------------------+   
 
---------
+========
 Features
---------
+========
 
 1. Validations
+--------------
+Default Values:
 
-⋅⋅ Default Values:
+Scenario description:
 
-⋅⋅ Scenario description:
-
-⋅⋅ Last parameters:
+Last parameters:
 
 2. Errors Handling
-⋅⋅ 
+------------------
 
 3. XML
-⋅⋅
+------
 
 4. URDF
-⋅⋅
+-------
 
 5. Models and Super Models
-⋅⋅
-
+--------------------------
+     
 5. API
-⋅⋅
+------
