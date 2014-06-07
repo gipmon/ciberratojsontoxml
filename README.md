@@ -80,7 +80,7 @@ Os models permite instanciar várias paredes nas walls tendo ambas uma forma pr�
 
 **Super Models**
 
-Um super model é uma lista de models que podem ser instanciados ao mesmo tempo nas walls. Sendo este caracterizado por um nome que o identifica e uma lista de nomes que identificam os models associados. Ao instanciar um super model nas walls é possível fazer as mesmas operações de translação e rotação.
+Um super model é uma lista de models que podem ser instanciados ao mesmo tempo nas walls. Sendo este caracterizado por um nome que o identifica e uma lista de nomes que identificam os models associados. Ao instanciar um super model nas walls é possível fazer as mesmas operações de translação e rotação que são possíveis num model.
 
 5. API
 ------
