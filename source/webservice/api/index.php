@@ -30,7 +30,7 @@
 
 	// create default files
 	foreach ($default_files as $value){
-		$file_handling = fopen($dir_json.$value, 'w') or die("UPS! Something went wrong!");
+		$file_handling = fopen($value, 'w') or die("UPS! Something went wrong!");
 		fwrite($file_handling, $param_list);
 		fclose($file_handling);
 	}
