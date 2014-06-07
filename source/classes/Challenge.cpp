@@ -9,10 +9,6 @@
 
 using namespace std;
 
-void Challenge::addParameter(){
-
-}
-
 void Challenge::setChallengeName(char* c_name){
 	if(c_name == NULL){
 		throw NULL_CHALLENGE_NAME;
