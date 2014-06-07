@@ -26,6 +26,8 @@ class SuperModels{
     SuperModel getSuperModel(const char* name);
     bool superModelExists(const char* name);
 
+    int countSuperModels();
+    
     void printTest();
 
     vector<SuperModel> getModelsList();

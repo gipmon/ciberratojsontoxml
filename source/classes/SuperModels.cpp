@@ -70,6 +70,10 @@ void SuperModels::printTest(){
 	}
 }
 
+int SuperModels::countSuperModels(){
+	return superModelList->size();
+}
+
 /* a implementar se existir tempo */
 void removeSuperModel(SuperModel removeSuperModel);
 void modifySuperModel(SuperModel toModify, SuperModel newSuperModel);

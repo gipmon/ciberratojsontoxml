@@ -87,6 +87,9 @@ void Maze::createSuperModel(const char* supermodel_name){
 }
 
 void Maze::addModelToSuperModel(const char* supermodel_name, const char* model_to_add){
+	if(!models->existsModel(model_to_add)){
+		throw MODEL_DOESNT_EXISTS;
+	}
 	supermodels->addModelToSuperModel(supermodel_name, model_to_add);
 }
 
@@ -104,6 +107,14 @@ void Maze::loadSuperModeltoWalls(const char* name, double x, double y, double ro
 	for(vector<char*>::iterator it = tmp.names_models_List->begin() ; it != tmp.names_models_List->end(); ++it){
 		this->loadModel((*it), x, y, rot);
 	}
+}
+
+bool Maze::existsSuperModel(const char* name){
+	return supermodels->superModelExists(name);
+}
+
+int Maze::countSuperModels(){
+	return supermodels->countSuperModels();
 }
 
 vector<Beacon> Maze::getBeacons(){

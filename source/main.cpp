@@ -200,42 +200,101 @@ int menu(int argc, char* argv[]){
 				break;
 
 			case 7:{
-				printf("\nIntroduce the name of the new Super Model: ");
-				string supermodel_name;
-				cin >> supermodel_name;
-				challenge->maze->createSuperModel(supermodel_name.c_str());
+				if(flag1 && flag2){
+					printf("\nIntroduce the name of the new Super Model: ");
+					string supermodel_name;
+					cin >> supermodel_name;
+					challenge->maze->createSuperModel(supermodel_name.c_str());
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
 				}
 				break;
 
 
 			case 8:{
-				printf("\nIntroduce the name of the Super Model: ");
+				if(flag1 && flag2){
+					challenge->maze->printSuperModels();
+					printf("\nIntroduce the name of the Super Model: ");
 				
-				string supermodel_n;
-				cin >> supermodel_n;
-				const char* sm = supermodel_n.c_str();
+					string supermodel_n;
+					cin >> supermodel_n;
+					const char* sm = supermodel_n.c_str();
 				
-				const char* model_to_add;
-
-				do{
-					printf("\nIntroduce the name of the model to add to the Super Model or 0 to skip: ");
-					string model_n;
-					cin >> model_n;
-					model_to_add = model_n.c_str();
-					if(model_to_add[0]!='0'){
-						try{
-							//se o super model não existir
-							challenge->maze->addModelToSuperModel(sm, model_to_add);
-						}catch(int e){
-							ErrorHandling(e);
-						}
+					const char* model_to_add;
+					challenge->maze->printTestModels();
+					if(challenge->maze->existsSuperModel(sm)){
+						do{
+							printf("\nIntroduce the name of the model to add to the Super Model or 0 to skip: ");
+							string model_n;
+							cin >> model_n;
+							model_to_add = model_n.c_str();
+							if(model_to_add[0]!='0'){
+								try{
+									//se o super model não existir
+									challenge->maze->addModelToSuperModel(sm, model_to_add);
+								}catch(int e){
+									ErrorHandling(e);
+								}
+							}
+						}while(model_to_add[0]!='0');
+					}else{
+						throw SUPER_MODEL_DOESNT_EXISTS;
 					}
-				}while(model_to_add[0]!='0');
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
+				}
 				}
 				break;
 			
-			case 9:
-				challenge->maze->printSuperModels();
+			case 9:{
+				if(flag1 && flag2){
+					challenge->maze->printSuperModels();
+					printf("\nIntroduce the name of the Super Model: ");
+					
+					string supermodel_n;
+					cin >> supermodel_n;
+					const char* sm = supermodel_n.c_str();
+
+					if(challenge->maze->existsSuperModel(sm)){
+						double x, y, rad;
+						printf("\nIntroduce the x translation: ");
+						while((cin >> x).fail() || cin.peek() != '\n'){
+							cin.clear();
+							cin.ignore(80, '\n');
+
+							cout << "\nIntroduce a valid option: ";
+						}
+						printf("\nIntroduce the y translation: ");
+						while((cin >> y).fail() || cin.peek() != '\n'){
+							cin.clear();
+							cin.ignore(80, '\n');
+
+							cout << "\nIntroduce a valid option: ";
+						}
+						printf("\nIntroduce the angle(rad) translation: ");
+						while((cin >> rad).fail() || cin.peek() != '\n'){
+							cin.clear();
+							cin.ignore(80, '\n');
+
+							cout << "\nIntroduce a valid option: ";
+						}
+
+						challenge->maze->loadSuperModeltoWalls(sm, x, y, rad);
+
+					}else{
+						throw SUPER_MODEL_DOESNT_EXISTS;
+					}
+				}else if(!flag1){
+					printf("\nYou have to read a parameters list file to print to URDF!!\n");
+				}else if(flag1 && !flag2){
+					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
+				}
+				}
+				
 				break;
 			case 10:
 				if(flag1 && flag2){
@@ -246,6 +305,7 @@ int menu(int argc, char* argv[]){
 					printf("Beacons: %d\n", challenge->maze->countBeacons());
 					printf("Target Areas: %d\n", challenge->maze->countTargetAreas());
 					printf("Walls: %d\n", challenge->maze->countWalls());
+					printf("Super Models: %d\n", challenge->maze->countSuperModels());
 				}else if(!flag1){
 					printf("\nYou have to read a parameters list file to complete the stats table!!\n");
 				}else if(flag1 && !flag2){
@@ -418,6 +478,7 @@ void ErrorHandling(int NUM){
 		case INVALID_MODEL_HEIGHT				: printf("%sThe model's height should be greater than zero!\n", semantic); break;
 		case INVALID_WALL_HEIGHT				: printf("%sThe wall's height should be greater than zero!\n", semantic); break;
 		case INVALID_WALL_THICKNESS				: printf("%sThe wall's thickness should be equal or greater than zero!\n", semantic); break;
+		case MODEL_DOESNT_EXISTS 				: printf("%sThe model doesn't exists!\n", semantic); break;
 	    default            				 		: printf("unknown error");
 	}
 }
