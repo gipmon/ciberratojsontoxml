@@ -44,13 +44,18 @@
 			 );
 
 	$files_name = "";
+	foreach ($default_files as $value) {
+		$filename .= " ".$value;
+	}
 	foreach ($files as $key => $value) {
 		$filename .= " ".$value["filename"];
 	}
 
-	$command = "../../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challenge_file_json." ".$filename;
+	$command = "../../main.output -o -s ".$filename;
+	/*
 	echo json_encode(array("response_type" => "error", "val" => $command));
 	exit();
+    */
     $output = shell_exec($command);
 
     if($output){
