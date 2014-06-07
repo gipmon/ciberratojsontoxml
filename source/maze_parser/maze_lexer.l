@@ -24,7 +24,7 @@
 
 nint    			[0-9]+
 
-num     			{nint}|{nint}\.{nint}|\-{nint}
+num     			{nint}|{nint}\.{nint}|\-{nint}|\-{nint}\.{nint}
 
 str    				["][^"\n]*["]
 

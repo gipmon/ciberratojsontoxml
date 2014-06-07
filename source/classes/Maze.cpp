@@ -32,8 +32,6 @@ Dimensions Maze::getDimensions(){
 void Maze::addBeacon(Point p, double h){
     Beacon tmp;
 
-    int flagx = validateXPoints(p.getX());
-    int flagy = validateYPoints(p.getY());
     tmp.position = p;
 
     if(h <= 0){
@@ -41,11 +39,11 @@ void Maze::addBeacon(Point p, double h){
     }
     tmp.height = h;
 
-    if(flagx){
-    	printf("%sThe coordenate x (%.2f) of Beacon is out of dimensions\n", warning, p.getX());
+    if(validateXPoints(p.getX())){
+    	printf("%sThe x-coordinate (%.2f) of Beacon is out the dimensions\n", warning, p.getX());
     }
-    if(flagy){
-    	printf("%sThe coordenate y (%.2f) of Beacon is out of dimensions\n", warning, p.getY());
+    if(validateYPoints(p.getY())){
+    	printf("%sThe y-coordinate (%.2f) of Beacon is outside the dimensions\n", warning, p.getY());
     }
     beacons->addBeacon(tmp);
 }
@@ -53,11 +51,32 @@ void Maze::addBeacon(Point p, double h){
 void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
 	Model tmp;
 
-
+	if(h <= 0){
+		throw INVALID_MODEL_HEIGHT;
+	}
 	tmp.height = h;
+	if(nm == NULL){
+		throw NULL_MODEL_NAME;
+	}
 	tmp.name = nm;
+
+	if(validateXPoints(fp.getX())){
+		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, fp.getX(), nm);
+	}
+	if(validateYPoints(fp.getY())){
+		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, fp.getY(), nm);
+	}
+	if(validateXPoints(sp.getX())){
+		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, sp.getX(), nm);
+	}
+	if(validateYPoints(sp.getY())){
+		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, sp.getY(), nm);
+	}
 	tmp.first_point = fp;
 	tmp.second_point = sp;
+	if(t <= 0){
+		throw THICKNESS_MODEL_ERROR;
+	}
 	tmp.thickness = t;
 
     models->addModel(tmp);
@@ -101,14 +120,13 @@ void Maze::addTargetArea(Point p, double r){
 		throw NULL_TARGET_RADIUS;
 	}
 	tmp.radius = r;
-	int flagx = validateXPoints(p.getX());
-	int flagy = validateYPoints(p.getY());
+
 	tmp.position = p;
-	if(flagx){
-		printf("%sThe coordenate x (%.2f) of Target Area is out of dimensions\n", warning, p.getX());
+	if(validateXPoints(p.getX())){
+		printf("%sThe x-coordinate (%.2f) of Target Area is outside the dimensions\n", warning, p.getX());
 	}
-	if(flagy){
-		printf("%sThe coordenate y (%.2f) of Target Area is out of dimensions\n", warning, p.getY());
+	if(validateYPoints(p.getY())){
+		printf("%sThe y-coordinate (%.2f) of Target Area is outside the dimensions\n", warning, p.getY());
 	}
 	targetareas->addTargetArea(tmp);
 }
@@ -124,10 +142,14 @@ int Maze::countTargetAreas(){
 void Maze::addWall(double h, double t, vector<Point>* cl){
   	//if(validate_corner_list(cl)){
   		Wall tmp;
-  		int flagx = 0;
-  		int flagy = 0;
-
+  	
+  		if(h <= 0){
+  			throw INVALID_WALL_HEIGHT;
+  		}
 		tmp.height = h;
+		if(t < 0){
+			throw INVALID_WALL_THICKNESS;
+		}
 		if(t==0){
 			tmp.thickness = 0.1;
 		}
@@ -139,13 +161,12 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
 		}
 
 		for (vector<Point>::iterator it1 = cl->begin() ; it1 != cl->end(); ++it1){
-			flagx = validateXPoints((*it1).getX());
-			flagy = validateYPoints((*it1).getY());
-			if(flagx){
-				printf("%sThe coordenate x (%.2f) of Walls is out of dimensions\n", warning, ((*it1).getX()));
+			
+			if(validateXPoints((*it1).getX())){
+				printf("%sThe x-coordinate (%.2f) of Walls is outside the dimensions\n", warning, ((*it1).getX()));
 			}
-			if(flagy){
-				printf("%sThe coordenate y (%.2f) of Walls is out of dimensions\n", warning, ((*it1).getY()));
+			if(validateYPoints((*it1).getY())){
+				printf("%sThe y-coordinate (%.2f) of Walls is out the dimensions\n", warning, ((*it1).getY()));
 			}
 		}
 		tmp.corner_list = cl;
@@ -172,16 +193,14 @@ int Maze::countWalls(){
 
 void Maze::addPose(double xx, double yy, double t){
 	Pose tmp;
-	int flagx = validateXPoints(xx);
-	int flagy = validateYPoints(yy);
 	tmp.x = xx;
 	tmp.y = yy;
 	tmp.teta = t;
-	if(flagx){
-		printf("%sThe coordenate x (%.2f) of Grid is out of dimensions\n", warning, xx);
+	if(validateXPoints(xx)){
+		printf("%sThe x-coordinate (%.2f) of Grid is outside the dimensions\n", warning, xx);
 	}
-	if(flagy){
-		printf("%sThe coordenate y (%.2f) of Grid is out of dimensions\n", warning, yy);
+	if(validateYPoints(yy)){
+		printf("%sThe y-coordinate (%.2f) of Grid is outside the dimensions\n", warning, yy);
 	}
 	grid->addPose(tmp);
 	

@@ -413,6 +413,11 @@ void ErrorHandling(int NUM){
 		case NULL_TARGET_RADIUS					: printf("%sTarget radius should be greater than zero\n", semantic); break;
 		case SUPER_MODEL_DOESNT_EXISTS          : printf("%sThe super model doesn't exists!\n", semantic); break;
 		case INVALID_BEACON_HEIGHT				: printf("%sThe beacon height should be greater than zero!\n", semantic); break;
+		case THICKNESS_MODEL_ERROR				: printf("%sThe model's thickness should be equal or greater than zero!\n", semantic); break;
+		case NULL_MODEL_NAME					: printf("%sThe model's name is required!\n", semantic); break;
+		case INVALID_MODEL_HEIGHT				: printf("%sThe model's height should be greater than zero!\n", semantic); break;
+		case INVALID_WALL_HEIGHT				: printf("%sThe wall's height should be greater than zero!\n", semantic); break;
+		case INVALID_WALL_THICKNESS				: printf("%sThe wall's thickness should be equal or greater than zero!\n", semantic); break;
 	    default            				 		: printf("unknown error");
 	}
 }
