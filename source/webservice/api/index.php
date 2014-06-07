@@ -52,10 +52,8 @@
 	}
 
 	$command = "../../main.output -o -s ".$filename;
-	/*
 	echo json_encode(array("response_type" => "error", "val" => $command));
 	exit();
-    */
     $output = shell_exec($command);
 
     if($output){
