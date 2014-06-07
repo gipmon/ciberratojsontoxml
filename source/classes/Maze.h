@@ -57,9 +57,8 @@ class Maze {
 
     void validateScenarioDescription();
 
-    void validateBeaconsPoints(double x, double y);
-    void validateTargetAreaPoints(double x, double y);
-    void validateWallsPoints(double x, double y);
+    int validateXPoints(double x);
+    int validateYPoints(double y);
 
     void addModel(char* name, double h, Point fp, Point sp, double t);
     void loadModel(const char* name, double x, double y, double rot);
