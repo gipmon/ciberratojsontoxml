@@ -26,12 +26,12 @@
 
 	$id = uniqid();
 
-	$default_files = array($dir_json.$id."param.json", $dir_json.$id."challenge.json");
+	$default_files = array($dir_json.$id."param.json" => $param_list, $dir_json.$id."challenge.json" => $challenge);
 
 	// create default files
-	foreach ($default_files as $value){
-		$file_handling = fopen($value, 'w') or die("UPS! Something went wrong!");
-		fwrite($file_handling, $param_list);
+	foreach ($default_files as $key => $value){
+		$file_handling = fopen($key, 'w') or die("UPS! Something went wrong!");
+		fwrite($file_handling, $value);
 		fclose($file_handling);
 	}
 
@@ -44,17 +44,15 @@
 			 );
 
 	$files_name = "";
-	foreach ($default_files as $value) {
-		$filename .= " ".$value;
+	foreach ($default_files as $key => $value) {
+		$filename .= " ".$key;
 	}
 	foreach ($files as $key => $value) {
 		$filename .= " ".$value["filename"];
 	}
 
 	$command = "../../main.output -o -s ".$filename;
-	echo json_encode(array("response_type" => "error", "val" => $command));
-	exit();
-    $output = shell_exec($command);
+	$output = shell_exec($command);
 
     if($output){
 		echo json_encode(array("response_type" => "error", "val" => str_replace("tmp/json/".$id, "", $output)));
@@ -71,7 +69,7 @@
     foreach ($files as $key => $value) {
     	unlink($value["filename"]);
 	}
-	foreach ($default_files as $value){
-		unlink($value);
+	foreach ($default_files as $key => $value){
+		unlink($key);
 	}
 ?>
