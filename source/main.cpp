@@ -210,6 +210,7 @@ int menu(int argc, char* argv[]){
 				}else if(flag1 && !flag2){
 					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
 				}
+				}
 				break;
 
 
