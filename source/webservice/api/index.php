@@ -48,7 +48,7 @@
 		$filename .= " ".$value["filename"];
 	}
 
-	$command = "../../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$filename;
+	$command = "../../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challenge_file_json." ".$filename;
     $output = shell_exec($command);
 
     if($output){
