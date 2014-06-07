@@ -12,7 +12,7 @@ const char* warning = "[WARNING!] Warning description below:\n";
 
 void Maze::setName(char* n){
 	if(n == NULL){
-		throw NULL_SCENARIO_DESCRIPTION_NAME;	
+		throw NULL_SCENARIO_DESCRIPTION_NAME;
 	}
 	name = n;
 }
@@ -153,7 +153,7 @@ int Maze::countTargetAreas(){
 void Maze::addWall(double h, double t, vector<Point>* cl){
   	//if(validate_corner_list(cl)){
   		Wall tmp;
-  	
+
   		if(h <= 0){
   			throw INVALID_WALL_HEIGHT;
   		}
@@ -172,7 +172,7 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
 		}
 
 		for (vector<Point>::iterator it1 = cl->begin() ; it1 != cl->end(); ++it1){
-			
+
 			if(validateXPoints((*it1).getX())){
 				printf("%sThe x-coordinate (%.2f) of Walls is outside the dimensions\n", warning, ((*it1).getX()));
 			}
@@ -214,9 +214,9 @@ void Maze::addPose(double xx, double yy, double t){
 		printf("%sThe y-coordinate (%.2f) of Grid is outside the dimensions\n", warning, yy);
 	}
 	grid->addPose(tmp);
-	
 
-	
+
+
 }
 
 vector<Pose> Maze::getPoses(){
@@ -239,7 +239,7 @@ void Maze::validateScenarioDescription(){
 	if(grid->countPoses() == 0){
 		throw WRONG_GRID;
 	}
-	
+
 }
 
 int Maze::validateXPoints(double x){
@@ -338,7 +338,7 @@ void Maze::labOutputXML(ofstream& file){
 	file.close();
 }
 
-void Maze::URDFOutput(ofstream& file){
+void Maze::URDFOutputRotate(ofstream& file){
     int count=1;
 
     file << "<robot name=\"TOS challenge\">\n";
@@ -355,7 +355,30 @@ void Maze::URDFOutput(ofstream& file){
 
     beacons->URDFOutput(file);
     targetareas->URDFOutput(file);
-    walls->URDFOutput(file);
+    walls->URDFOutputRotate(file);
+    grid->URDFOutput(file);
+    file << "</robot>";
+    file.close();
+}
+
+void Maze::URDFOutputFixed(ofstream& file){
+    int count=1;
+
+    file << "<robot name=\"TOS challenge\">\n";
+
+    file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << dimensions.width/2 << " 0 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << dimensions.width << " 0.05 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+    file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"" << dimensions.width/2 << " "<< dimensions.height <<" 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"" << dimensions.width << " 0.05 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+    file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\"0 " << dimensions.height/2 <<" 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"0.05 "<< dimensions.height << " 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+    file << "\t<link name=\""<< "parede" << count++ <<"\">\n\t\t<visual>\n\t\t\t<origin xyz=\""<< dimensions.width << " " << dimensions.height/2 <<" 1\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\"0.05 "<< dimensions.height << " 2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"Cyan1\">\n\t\t\t\t<color rgba=\"0 0.9 0.9 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+    file << "\t<link name=\"base\">\n\t\t<visual>\n\t\t\t<origin xyz=\""<< dimensions.width/2 << " " << dimensions.height/2 <<" 0\" rpy=\"0 0 0\"/>\n\t\t\t<geometry>\n\t\t\t\t<box size=\""<< dimensions.width << " " << dimensions.height << " 0.2\"/>\n\t\t\t</geometry>\n\t\t\t<material name=\"yellow2\">\n\t\t\t\t<color rgba=\"1 1 0.5 1.0\"/>\n\t\t\t</material>\n\t\t</visual>\n\t</link>\n";
+
+    beacons->URDFOutput(file);
+    targetareas->URDFOutput(file);
+    walls->URDFOutputFixed(file);
     grid->URDFOutput(file);
     file << "</robot>";
     file.close();

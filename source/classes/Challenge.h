@@ -56,6 +56,7 @@ em milissegundos. */
     void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
     void paramOutputXML(ofstream& paramFile, ParamTable *param_table);
-    void URDFOutput(ofstream& file);
-    
+    void URDFOutputRotate(ofstream& file);
+    void URDFOutputFixed(ofstream& file);
+
 };

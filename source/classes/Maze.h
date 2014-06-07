@@ -67,7 +67,7 @@ class Maze {
     void createSuperModel(const char* name);
     void addModelToSuperModel(const char* supermodel_name, const char* add);
     bool existsSuperModel(const char* name);
-    void loadSuperModeltoWalls(const char* name, double x, double y, double rot); 
+    void loadSuperModeltoWalls(const char* name, double x, double y, double rot);
     void printSuperModels();
     int countSuperModels();
 
@@ -79,6 +79,8 @@ class Maze {
     void modify_vector(vector<Point>* cl);
     void gridOutputXML(ofstream& file);
     void labOutputXML(ofstream& file);
-    void URDFOutput(ofstream& file);
+    void URDFOutputRotate(ofstream& file);
+    void URDFOutputFixed(ofstream& file);
+
 
 };

@@ -32,13 +32,13 @@ int main(int argc, char* argv[]){
 }
 
 void displayMenu(){
-	
+
 	printf("\nMENU:\n\n1 - Read parameters list file (.json)\n2 - Read challenge parameters file (.json)\n3 - Print to XML\n4 - Print URDF\n5 - Add Model to Walls\n6 - Clear not perpendicular walls\n7 - Create Super Model\n8 - Add model to Super Model\n9 - Add Super Model to walls\n10 - Stats\n0 - End Program\n\nOption: ");
 
 }
 
 int menu(int argc, char* argv[]){
-		
+
 	int b, flag1 = 0, flag2 = 0;
 	string filename;
 	const char * c;
@@ -66,7 +66,7 @@ int menu(int argc, char* argv[]){
 					printf("[ERROR!] %s must exist or be a .json file!\n", c);
 					break;
 				}
-				
+
 
 				tmp_param_table = new ParamTable();
 
@@ -79,7 +79,7 @@ int menu(int argc, char* argv[]){
 					flag1 = 0;
 					ErrorHandling(e);
 				}
-				
+
 				break;
 
 			case 2:
@@ -113,11 +113,11 @@ int menu(int argc, char* argv[]){
 				if(flag1 && flag2){
 					system("rm -rf ./xml");
 					system("mkdir ./xml");
-          
+
 					ofstream labFile("./xml/Lab.xml");
 					ofstream gridFile("./xml/Grid.xml");
 					ofstream paramFile("./xml/Param.xml");
-    	
+
 					gridOutputXML(gridFile);
 					labOutputXML(labFile);
 					paramOutputXML(paramFile, param_table);
@@ -135,8 +135,10 @@ int menu(int argc, char* argv[]){
 					system("rm -rf ./urdf");
 		    		system("mkdir ./urdf");
 
-		    		ofstream URDFFile("./urdf/URDF.xml");
-		    		URDFOutput(URDFFile);
+		    		ofstream URDFFileR("./urdf/URDFRotate.xml");
+		    		ofstream URDFFileF("./urdf/URDFFixed.xml");
+		    		URDFOutputRotate(URDFFileR);
+		    		URDFOutputFixed(URDFFileF);
 				}else if(!flag1){
 					printf("\nYou have to read a parameters list file to print to URDF!!\n");
 				}else if(flag1 && !flag2){
@@ -218,11 +220,11 @@ int menu(int argc, char* argv[]){
 				if(flag1 && flag2){
 					challenge->maze->printSuperModels();
 					printf("\nIntroduce the name of the Super Model: ");
-				
+
 					string supermodel_n;
 					cin >> supermodel_n;
 					const char* sm = supermodel_n.c_str();
-				
+
 					const char* model_to_add;
 					challenge->maze->printTestModels();
 					if(challenge->maze->existsSuperModel(sm)){
@@ -250,12 +252,12 @@ int menu(int argc, char* argv[]){
 				}
 				}
 				break;
-			
+
 			case 9:{
 				if(flag1 && flag2){
 					challenge->maze->printSuperModels();
 					printf("\nIntroduce the name of the Super Model: ");
-					
+
 					string supermodel_n;
 					cin >> supermodel_n;
 					const char* sm = supermodel_n.c_str();
@@ -295,7 +297,7 @@ int menu(int argc, char* argv[]){
 					printf("\nYou have to read a challenge parameters file to print to URDF!!\n");
 				}
 				}
-				
+
 				break;
 			case 10:
 				if(flag1 && flag2){
@@ -394,12 +396,12 @@ int commandLineTools(int argc, char* argv[]){
 			ofstream labFile(argv[arg++]);
 			ofstream gridFile(argv[arg++]);
 			ofstream paramFile(argv[arg++]);
-	    	ofstream URDFFile(argv[arg++]);
+	    	ofstream URDFFileF(argv[arg++]);
 
 			gridOutputXML(gridFile);
 			labOutputXML(labFile);
 			paramOutputXML(paramFile, param_table);
-	    	URDFOutput(URDFFile);
+	    	URDFOutputFixed(URDFFileF);
 		}else{
 			system("rm -rf ./xml");
 			system("mkdir ./xml");
@@ -410,12 +412,14 @@ int commandLineTools(int argc, char* argv[]){
 			ofstream labFile("./xml/Lab.xml");
 			ofstream gridFile("./xml/Grid.xml");
 			ofstream paramFile("./xml/Param.xml");
-	    	ofstream URDFFile("./urdf/URDF.xml");
+	    	ofstream URDFFileR("./urdf/URDFRotate.xml");
+	    	ofstream URDFFileF("./urdf/URDFFixed.xml");
 
 			gridOutputXML(gridFile);
 			labOutputXML(labFile);
 			paramOutputXML(paramFile, param_table);
-	    	URDFOutput(URDFFile);
+	    	URDFOutputRotate(URDFFileR);
+	    	URDFOutputFixed(URDFFileF);
 		}
 	}
 
@@ -435,8 +439,11 @@ void paramOutputXML(ofstream& file, ParamTable *param_table){
 	challenge->paramOutputXML(file, param_table);
 }
 
-void URDFOutput(ofstream& file){
-    challenge->URDFOutput(file);
+void URDFOutputRotate(ofstream& file){
+    challenge->URDFOutputRotate(file);
+}
+void URDFOutputFixed(ofstream& file){
+    challenge->URDFOutputFixed(file);
 }
 
 /********** ERROR **********/

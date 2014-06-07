@@ -32,7 +32,8 @@ class Walls {
     bool validate_corner_list(vector<Point>* cl);
 
     void labOutputXML(ofstream& file);
-    void URDFOutput(ofstream& file);
+    void URDFOutputRotate(ofstream& file);
+    void URDFOutputFixed(ofstream& file);
     Point* middle_point(Point* a, Point* b);
     double two_points_distance(Point* a, Point* b);
 };

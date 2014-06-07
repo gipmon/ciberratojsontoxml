@@ -61,15 +61,15 @@ void Challenge::validateDefaultValues(){
 	if(challenge_type == NULL){
 		throw NULL_CHALLENGE_TYPE;
 	}
-	
+
 	if(cycle_time <= 0){
 		throw NULL_CYCLE_TIME;
 	}
-	
+
 	if(duration <= 0){
 		throw NULL_DURATION;
 	}
-	
+
 }
 
 void Challenge::validateScenarioDescription(){
@@ -109,6 +109,10 @@ void Challenge::paramOutputXML(ofstream& file, ParamTable *param_table){
 	file.close();
 }
 
-void Challenge::URDFOutput(ofstream& file){
-    maze->URDFOutput(file);
+void Challenge::URDFOutputRotate(ofstream& file){
+    maze->URDFOutputRotate(file);
+}
+
+void Challenge::URDFOutputFixed(ofstream& file){
+    maze->URDFOutputFixed(file);
 }
