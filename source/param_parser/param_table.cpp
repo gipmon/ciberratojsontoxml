@@ -9,6 +9,10 @@ using namespace std;
 map<char*, map<char*, parameter> >::iterator it1;
 map<char*, parameter>::iterator it2;
 
+map<char*, map<char*, parameter> > ParamTable::getParamMap(){
+    return param_map;
+}
+
 void ParamTable::print_parameter(char* class_name, char* parameter_name, parameter param){
     cout << "\""<< parameter_name << "\" : { \n " << "\t\"comment\" : \""<< param.comment << "\" \n" << "\t\"class\" : \""<< class_name << "\" \n" << "\t\"value type\" : \""<< param.value_type << "\" \n" << "\t\"default value\" : \""<< param.default_value << "\" \n"  << "\t\"XML name\" : \""<< param.xml_name << "\" \n" << "},"<< endl;
 }

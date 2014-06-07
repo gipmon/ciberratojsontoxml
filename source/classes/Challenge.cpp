@@ -55,7 +55,11 @@ int Challenge::getDuration(){
 	return duration;
 }
 
-void Challenge::validateDefaultValues(){
+void Challenge::setParametersWithDefaultValues(){
+	pm->setParametersWithDefaultValues();
+}
+
+void Challenge::validateRequiredValues(){
 	if(challenge_name == NULL){
 		throw NULL_CHALLENGE_NAME;
 	}
