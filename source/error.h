@@ -32,3 +32,5 @@
 #define  DOUBLE_TYPE_ERROR				27
 #define  BOOLEAN_TYPE_ERROR				28
 #define  SWITCH_TYPE_ERROR				29
+#define  CYCLE_TIME_ZERO				30
+#define  DURATION_ZERO					31

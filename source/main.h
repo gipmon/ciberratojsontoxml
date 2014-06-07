@@ -28,6 +28,7 @@ struct Error{
  	char* s;
 	char* yytext;
 	char* num;
+	double d;
 };
 
 extern Error error;

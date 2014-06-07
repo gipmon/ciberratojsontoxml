@@ -18,9 +18,7 @@ void Maze::setName(char* n){
 }
 
 void Maze::setDimensions(double w, double h){
-	if(w <= 0 || h <= 0){
-		throw WRONG_DIMENSIONS;
-	}
+	
 	dimensions.width = w;
 	dimensions.height = h;
 }
@@ -34,9 +32,6 @@ void Maze::addBeacon(Point p, double h){
 
     tmp.position = p;
 
-    if(h <= 0){
-    	throw INVALID_BEACON_HEIGHT;
-    }
     tmp.height = h;
 
     if(validateXPoints(p.getX())){
@@ -51,9 +46,6 @@ void Maze::addBeacon(Point p, double h){
 void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
 	Model tmp;
 
-	if(h <= 0){
-		throw INVALID_MODEL_HEIGHT;
-	}
 	tmp.height = h;
 	if(nm == NULL){
 		throw NULL_MODEL_NAME;
@@ -61,22 +53,20 @@ void Maze::addModel(char* nm, double h, Point fp, Point sp, double t){
 	tmp.name = nm;
 
 	if(validateXPoints(fp.getX())){
-		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, fp.getX(), nm);
+		printf("%sThe x-coordinate (%.2f) of the first point of the Model %s is out the dimensions\n", warning, fp.getX(), nm);
 	}
 	if(validateYPoints(fp.getY())){
-		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, fp.getY(), nm);
+		printf("%sThe y-coordinate (%.2f) of the first point of the Model %s is out the dimensions\n", warning, fp.getY(), nm);
 	}
 	if(validateXPoints(sp.getX())){
-		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, sp.getX(), nm);
+		printf("%sThe x-coordinate (%.2f) of the second point of the Model %s is out the dimensions\n", warning, sp.getX(), nm);
 	}
 	if(validateYPoints(sp.getY())){
-		printf("%sThe x-coordinate (%.2f) of Model %s is out the dimensions\n", warning, sp.getY(), nm);
+		printf("%sThe y-coordinate (%.2f) of the second point of the Model %s is out the dimensions\n", warning, sp.getY(), nm);
 	}
 	tmp.first_point = fp;
 	tmp.second_point = sp;
-	if(t <= 0){
-		throw THICKNESS_MODEL_ERROR;
-	}
+	
 	tmp.thickness = t;
 
     models->addModel(tmp);
@@ -151,16 +141,11 @@ int Maze::countTargetAreas(){
 }
 
 void Maze::addWall(double h, double t, vector<Point>* cl){
-  	//if(validate_corner_list(cl)){
+  	
   		Wall tmp;
 
-  		if(h <= 0){
-  			throw INVALID_WALL_HEIGHT;
-  		}
 		tmp.height = h;
-		if(t < 0){
-			throw INVALID_WALL_THICKNESS;
-		}
+	
 		if(t==0){
 			tmp.thickness = 0.1;
 		}
@@ -183,7 +168,7 @@ void Maze::addWall(double h, double t, vector<Point>* cl){
 		tmp.corner_list = cl;
 
 		walls->addWall(tmp);
-  	//}
+
 }
 
 void Maze::removeNotPerpendicularWalls(){
@@ -227,9 +212,7 @@ void Maze::validateScenarioDescription(){
 	if(name == NULL){
 		throw NULL_SCENARIO_DESCRIPTION_NAME;
 	}
-	if(dimensions.width <= 0 || dimensions.height <= 0){
-		throw WRONG_DIMENSIONS;
-	}
+	
 	if(beacons->countBeacons() < 1){
 		throw NULL_BEACONS;
 	}
@@ -300,6 +283,18 @@ void Maze::loadModel(const char* name, double x, double y, double rot_angle){
 	double sp_x = middle->getX()+a;
 	double sp_y = middle->getY()+o;
 
+	if(validateXPoints(fp_x)){
+		printf("%sThe x-coordinate (%.2f) of the first point of the Model %s is out the dimensions\n", warning, fp_x, name);
+	}
+	if(validateYPoints(fp_y)){
+		printf("%sThe y-coordinate (%.2f) of the first point of the Model %s is out the dimensions\n", warning, fp_y, name);
+	}
+	if(validateXPoints(sp_x)){
+		printf("%sThe x-coordinate (%.2f) of the second point of the Model %s is out the dimensions\n", warning, sp_x, name);
+	}
+	if(validateYPoints(sp_y)){
+		printf("%sThe y-coordinate (%.2f) of the second point of the Model %s is out the dimensions\n", warning, sp_y, name);
+	}
 	fp = new Point(fp_x, fp_y);
 	sp = new Point(sp_x, sp_y);
 

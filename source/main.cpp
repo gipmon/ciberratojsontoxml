@@ -463,6 +463,7 @@ void ErrorHandling(int NUM){
     extern ParametersClass *pc;
 
     const char* semantic = "[SEMANTIC ERROR!] Error description below:\n";
+    const char* parsing = "[PARSING ERROR] Error description below:\n";
 
 	switch (NUM){
 	    case PARAMETER_ALREADY_EXISTS    	 	: printf("%sThe parameter \"%s\" already exists in \"%s\" class.\n",semantic, param_name, class_name); break;
@@ -472,29 +473,31 @@ void ErrorHandling(int NUM){
 		case PARAMETER_DOESNT_EXISTS			: printf("%sThe parameter \"%s\" doesn't exists in \"%s\" class. It must be defined in param-list.json first! \n", semantic, error.s, pc->class_name); break;
 		case CLASS_DOESNT_EXIST_IN_PT			: printf("%sThe class \"%s\" doesn't exists. It must be defined in param-list.json first! \n", semantic, pc->class_name); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("%sThe default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n",semantic, param_name, class_name, param.value_type, default_value_type);   break;
-		case PARSING_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s; content in yytext: '%s'\n", error.fname, error.line, error.column, error.s, error.yytext); free(error.s); break;
+		case PARSING_ERROR						: printf("%s%s: line %d, column %d: %s; content in yytext: '%s'\n", parsing, error.fname, error.line, error.column, error.s, error.yytext); free(error.s); break;
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
-	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or should be greater than zero!!\n", semantic); break;
+	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required!!\n", semantic); break;
 	    case NULL_DURATION						: printf("%sThe duration is required or should be greater than zero!!\n", semantic); break;
-	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't an int\n",error.fname, error.line, error.column, error.num); break;
+	    case INT_TYPE_ERROR						: printf("%s%s: line %d, column %d: \"%s\", isn't an int!\n",parsing, error.fname, error.line, error.column, error.num); break;
 	    case NULL_SCENARIO_DESCRIPTION_NAME     : printf("%sThe scenario description name is required!\n", semantic); break;
-	    case WRONG_DIMENSIONS    				: printf("%sThe dimensions are wrong, they should be greater than zero!\n", semantic); break;
+	    case WRONG_DIMENSIONS    				: printf("%s%s: line %d, column %d: \"%.2f\", dimensions should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.d); break;
 		case NULL_BEACONS					    : printf("%sAt least one Beacon is required!\n", semantic); break;
 		case NULL_TARGET_AREAS				    : printf("%sAt least one Target Area is required!\n", semantic); break;
 		case WRONG_GRID							: printf("%sAt least one Grid is required!\n", semantic); break;
-		case NULL_TARGET_RADIUS					: printf("%sTarget radius should be greater than zero\n", semantic); break;
+		case NULL_TARGET_RADIUS					: printf("%s%s: line %d, column %d: \"%s\", target radius should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
 		case SUPER_MODEL_DOESNT_EXISTS          : printf("%sThe super model doesn't exists!\n", semantic); break;
-		case INVALID_BEACON_HEIGHT				: printf("%sThe beacon height should be greater than zero!\n", semantic); break;
-		case THICKNESS_MODEL_ERROR				: printf("%sThe model's thickness should be equal or greater than zero!\n", semantic); break;
+		case INVALID_BEACON_HEIGHT				: printf("%s%s: line %d, column %d: \"%s\", beacon height should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
+		case THICKNESS_MODEL_ERROR				: printf("%s%s: line %d, column %d: \"%s\", model's thickness should be equal or greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
 		case NULL_MODEL_NAME					: printf("%sThe model's name is required!\n", semantic); break;
-		case INVALID_MODEL_HEIGHT				: printf("%sThe model's height should be greater than zero!\n", semantic); break;
-		case INVALID_WALL_HEIGHT				: printf("%sThe wall's height should be greater than zero!\n", semantic); break;
-		case INVALID_WALL_THICKNESS				: printf("%sThe wall's thickness should be equal or greater than zero!\n", semantic); break;
+		case INVALID_MODEL_HEIGHT				: printf("%s%s: line %d, column %d: \"%s\", model's height should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
+		case INVALID_WALL_HEIGHT				: printf("%s%s: line %d, column %d: \"%s\", wall's height should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
+		case INVALID_WALL_THICKNESS				: printf("%s%s: line %d, column %d: \"%s\", wall's thickness should be equal or greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
 		case MODEL_DOESNT_EXISTS 				: printf("%sThe model doesn't exists!\n", semantic); break;
-		case DOUBLE_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't a double\n",error.fname, error.line, error.column, error.num); break;
-	    case BOOLEAN_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't a boolean\n",error.fname, error.line, error.column, error.num); break;
-	    case SWITCH_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't a switch\n",error.fname, error.line, error.column, error.num); break;
+		case DOUBLE_TYPE_ERROR					: printf("%s%s: line %d, column %d: \"%s\", isn't a double!\n", parsing, error.fname, error.line, error.column, error.num); break;
+	    case BOOLEAN_TYPE_ERROR					: printf("%s%s: line %d, column %d: \"%s\", isn't a boolean!\n",parsing, error.fname, error.line, error.column, error.num); break;
+	    case SWITCH_TYPE_ERROR					: printf("%s%s: line %d, column %d: \"%s\", isn't a switch!\n",parsing, error.fname, error.line, error.column, error.num); break;
+	    case CYCLE_TIME_ZERO					: printf("%s%s: line %d, column %d: \"%s\", cycle time should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
+	    case DURATION_ZERO						: printf("%s%s: line %d, column %d: \"%s\", duration should be greater than zero!\n", parsing, error.fname, error.line, error.column, error.num); break;
 	    default            				 		: printf("unknown error");
 	}
 }

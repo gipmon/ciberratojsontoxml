@@ -80,8 +80,8 @@ CLASS 	: DEFAULT_VALUES
 
 DEFAULT_VALUES  : CHALLENGE_NAME ':' STR {tmp_challenge->setChallengeName($3);}
 				| CHALLENGE_TYPE ':' STR {tmp_challenge->setChallengeType($3);}
-				| CYCLE_TIME ':' NUM {error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateIntType($3); tmp_challenge->setCycleTime(atoi($3));}
-				| DURATION ':' NUM {error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateIntType($3); tmp_challenge->setDuration(atoi($3));}
+				| CYCLE_TIME ':' NUM {error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateIntType($3); if(atoi($3) == 0){ throw CYCLE_TIME_ZERO; } tmp_challenge->setCycleTime(atoi($3));}
+				| DURATION ':' NUM {error.num = $3; error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; tmp_challenge->validateIntType($3); if(atoi($3) == 0){ throw DURATION_ZERO; }tmp_challenge->setDuration(atoi($3));}
 				;
 
 SD 	: SCENARIO_DESCRIPTION ':' '{' SDL '}'
@@ -92,7 +92,7 @@ SDL 	: SP ',' SDL
 		;
 
 SP 		: SD_NAME ':' STR { tmp_challenge->maze->setName($3); }
-		| SD_DIMENSIONS ':' NUM_PAIR {tmp_challenge->maze->setDimensions($3->getX(), $3->getY());}
+		| SD_DIMENSIONS ':' NUM_PAIR {error.line = @3.first_line; error.column = @3.first_column; error.fname = fname; if($3->getX() <= 0){ error.d = $3->getX(); throw WRONG_DIMENSIONS; } if($3->getY() <= 0){ error.d = $3->getY(); throw WRONG_DIMENSIONS; } tmp_challenge->maze->setDimensions($3->getX(), $3->getY());}
 		| SD_BEACONS ':' BEACONS
 		| SD_TARGET_AREAS ':' TARGET_AREAS
 		| SD_WALLS ':' WALLS
@@ -104,7 +104,7 @@ MODELS 	: MODEL ',' MODELS
 		| MODEL
 		;
 
-MODEL 	: '{' SD_NAME ':' STR ',' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' MODEL_FP ':'  NUM_PAIR ',' MODEL_SP ':' NUM_PAIR '}' {tmp_challenge->maze->addModel($4, atof($8), *$16, *$20, atof($12));}
+MODEL 	: '{' SD_NAME ':' STR ',' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' MODEL_FP ':'  NUM_PAIR ',' MODEL_SP ':' NUM_PAIR '}' {error.fname = fname; if(atof($8) <= 0){ error.num = $8; error.line = @8.first_line; error.column = @8.first_column; throw INVALID_MODEL_HEIGHT; } if(atof($12) < 0){ error.num = $12; error.line = @12.first_line; error.column = @12.first_column; throw THICKNESS_MODEL_ERROR; } tmp_challenge->maze->addModel($4, atof($8), *$16, *$20, atof($12));}
 		;
 
 NUM_PAIR    : '['NUM','NUM']' { Point *pt = new Point(atof($2), atof($4)); $$ = pt;}
@@ -118,7 +118,7 @@ BEACONS_VALUES : BEACONS_VALUE ',' BEACONS_VALUES
 			   | BEACONS_VALUE
 			   ;
 
-BEACONS_VALUE  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {tmp_challenge->maze->addBeacon(*$4, atoi($8));}
+BEACONS_VALUE  : '{' SD_POSITION ':' NUM_PAIR ',' SD_HEIGHT ':' NUM '}' {if(atof($8) <= 0){ error.num = $8; error.line = @8.first_line; error.column = @8.first_column; error.fname = fname; throw INVALID_BEACON_HEIGHT; } tmp_challenge->maze->addBeacon(*$4, atoi($8));}
 				;
 
 TARGET_AREAS    : '[' TARGET_VALUES ']'
@@ -128,7 +128,7 @@ TARGET_VALUES : TARGET_VALUE ',' TARGET_VALUES
 			  | TARGET_VALUE
 			  ;
 
-TARGET_VALUE   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {tmp_challenge->maze->addTargetArea(*$4, atoi($8));}
+TARGET_VALUE   : '{' SD_POSITION ':' NUM_PAIR ',' SD_RADIUS ':' NUM '}' {if(atof($8) <= 0){ error.num = $8; error.line = @8.first_line; error.column = @8.first_column; error.fname = fname; throw NULL_TARGET_RADIUS; } tmp_challenge->maze->addTargetArea(*$4, atoi($8));}
 				;
 
 WALLS   : '[' WALLS_VALUES ']'
@@ -138,8 +138,8 @@ WALLS_VALUES : WALLS_VALUE ',' WALLS_VALUES
 			 | WALLS_VALUE
 			 ;
 
-WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {tmp_challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
-			|'{' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {tmp_challenge->maze->addWall(atoi($4), atof($8), vpoint); vpoint = new vector<Point>();}
+WALLS_VALUE : '{' SD_HEIGHT ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {error.fname = fname; if(atof($4) <= 0){ error.num = $4; error.line = @4.first_line; error.column = @4.first_column; throw INVALID_WALL_HEIGHT; }tmp_challenge->maze->addWall(atoi($4), 0, vpoint); vpoint = new vector<Point>();}
+			|'{' SD_HEIGHT ':' NUM ',' THICKNESS ':' NUM ',' SD_CORNER_LIST ':' '[' CORNER_LIST ']' '}' {error.fname = fname; if(atof($4) <= 0){ error.num = $4; error.line = @4.first_line; error.column = @4.first_column; throw INVALID_WALL_HEIGHT; } if(atof($8) < 0){ error.num = $8; error.line = @8.first_line; error.column = @8.first_column; throw INVALID_WALL_THICKNESS; } tmp_challenge->maze->addWall(atoi($4), atof($8), vpoint); vpoint = new vector<Point>();}
 			;
 
 CORNER_LIST : NUM_PAIR ',' CORNER_LIST { vpoint->push_back(*$1);}
