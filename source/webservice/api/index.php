@@ -1,9 +1,9 @@
 <?php
-	if(isset($_POST['param']) && isset($_POST['challange'])){
+	if(isset($_POST['param']) && isset($_POST['challenge'])){
 		$param_list = $_POST['param'];
-		$challange = $_POST['challange'];
+		$challenge = $_POST['challenge'];
 	}else{
-		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challange!"));
+		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challenge!"));
 		exit();
 	}
 
@@ -13,9 +13,9 @@
 		echo json_encode(array("response_type" => "error", "val" => "param.json isn't a JSON file!"));
 		exit();
 	}
-	$ob_cl = json_decode($challange);
+	$ob_cl = json_decode($challenge);
 	if($ob_cl === null){
-		echo json_encode(array("response_type" => "error", "val" => "challange.json isn't a JSON file!"));
+		echo json_encode(array("response_type" => "error", "val" => "challenge.json isn't a JSON file!"));
 		exit();
 	}
 
@@ -26,7 +26,7 @@
 
 	$id = uniqid();
 
-	$default_files = array($id."param.json", $id."challange.json");
+	$default_files = array($id."param.json", $id."challenge.json");
 
 	// create default files
 	foreach ($default_files as $value){

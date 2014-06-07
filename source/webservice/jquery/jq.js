@@ -5,9 +5,9 @@ $( document ).ready(function() {
 	}
     $("#make").click(function(){ 
 		var param = $('#param').val();
-		var challange = $('#challange').val();
+		var challenge = $('#challenge').val();
 		$('#output').text('Please wait a moment!');
-		$.post("api/",{param: param, challange: challange}, function(data){
+		$.post("api/",{param: param, challenge: challenge}, function(data){
 			var response = jQuery.parseJSON(data);
 			if(typeof response =='object'){
 				if(response.response_type=="error"){

@@ -56,16 +56,16 @@
     $parameters = fread($parameters_file_handling, filesize($parameters_file));
     fclose($parameters_file_handling);
 
-    $challange_file = "../../exemplos/json/example.json";
-    $challange_file_handling = fopen($challange_file, 'r') or die("UPS! Something went wrong!");
-    $challange = fread($challange_file_handling, filesize($challange_file));
-    fclose($challange_file_handling);
+    $challenge_file = "../../exemplos/json/example.json";
+    $challenge_file_handling = fopen($challenge_file, 'r') or die("UPS! Something went wrong!");
+    $challenge = fread($challenge_file_handling, filesize($challenge_file));
+    fclose($challenge_file_handling);
     ?>
     <div class="container theme-showcase" role="main">
-      <h3>JSON input (param list and challange list)</h3>
+      <h3>JSON input (param list and challenge list)</h3>
       <div class="row">
         <div class="col-md-6"><h4>param.json:</h4><br/><textarea style="width: 100%" id="param" rows="15"><?=$parameters?></textarea></div>
-        <div class="col-md-6"><h4>challange.json:</h4><br/><textarea style="width: 100%" id="challange" rows="15"><?=$challange?></textarea></div>
+        <div class="col-md-6"><h4>challenge.json:</h4><br/><textarea style="width: 100%" id="challenge" rows="15"><?=$challenge?></textarea></div>
       </div>
       <p style="text-align: center">
         <button type="button" id="make" class="btn btn-primary btn-lg">Make XML</button>
