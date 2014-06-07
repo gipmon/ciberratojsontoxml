@@ -4,6 +4,7 @@
 #include <sstream>
 #include <locale>
 #include <cctype>
+#include <cstring>
 #include <string>
 #include "Challenge.h"
 
@@ -76,11 +77,46 @@ void Challenge::validateScenarioDescription(){
 	maze->validateScenarioDescription();
 }
 
+void Challenge::validateTypes(char* value_type, char* value){
+	if(!strcmp("uint", value_type)){
+		validateIntType(value);
+	}else if(!strcmp("double", value_type)){
+		validateDoubleType(value);
+	}else if(!strcmp("boolean", value_type)){
+		validateBooleanType(value);
+	}else if(!strcmp("switch", value_type)){
+		validateSwitchType(value);
+	}
+}
+
 void Challenge::validateIntType(char* num){
 	string tmp = string(num);
 	if(!is_digits(tmp)){
 		throw INT_TYPE_ERROR;
 	}
+}
+
+void Challenge::validateDoubleType(char* num){
+	string tmp = string(num);
+	if(!is_Doubledigits(tmp)){
+		throw DOUBLE_TYPE_ERROR;
+	}
+}
+
+void Challenge::validateBooleanType(char* value){
+	if(strcmp("true", value) && strcmp("false", value)){
+		throw BOOLEAN_TYPE_ERROR;
+	}
+}
+
+void Challenge::validateSwitchType(char* value){
+	if(strcmp("on", value) && strcmp("off", value)){
+		throw SWITCH_TYPE_ERROR;
+	}
+}
+
+bool Challenge::is_Doubledigits(const string &str){
+	return str.find_first_not_of("0123456789.") == string::npos;
 }
 
 bool Challenge::is_digits(const string &str)

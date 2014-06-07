@@ -50,7 +50,13 @@ em milissegundos. */
 
     void validateDefaultValues();
     void validateScenarioDescription();
+    void validateTypes(char* value_type, char* value);
     void validateIntType(char* num);
+    void validateDoubleType(char* num);
+    void validateBooleanType(char* boolean);
+    void validateSwitchType(char* swit);
+
+    bool is_Doubledigits(const string &str);
     bool is_digits(const std::string &str);
 
     void gridOutputXML(ofstream& file);

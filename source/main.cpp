@@ -468,13 +468,14 @@ void ErrorHandling(int NUM){
 	    case PARAMETER_CLASS_NAME_REQUIRED	 	: printf("%sThe class name is required for the parameter \"%s\".\n",semantic, param_name); break;
 		case PARAMETER_VALUE_TYPE_REQUIRED    	: printf("%sThe value type is required for the parameter \"%s\" in \"%s\" class.\n",semantic, param_name, class_name); break;
 		case PARAMETER_NAME_REQUIRED 			: printf("%sThe class name is required!\n", semantic); break;
+		case PARAMETER_DOESNT_EXISTS			: printf("%sThe parameter \"%s\" doesn't exixts in \"%s\" class. \n", semantic, param_name, class_name); break;
 		case DEFAULT_VALUE_WRONG_BY_TYPE		: printf("%sThe default value is wrong by value type in the parameter \"%s\" in \"%s\" class, expecting %s but as given %s.\n",semantic, param_name, class_name, param.value_type, default_value_type);   break;
 		case PARSING_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s; content in yytext: '%s'\n", error.fname, error.line, error.column, error.s, error.yytext); free(error.s); break;
 	    case NULL_CHALLENGE_NAME				: printf("%sThe challenge name is required!\n", semantic); break;
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
 	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or should be greater than zero!!\n", semantic); break;
 	    case NULL_DURATION						: printf("%sThe duration is required or should be greater than zero!!\n", semantic); break;
-	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't an int\n",error.fname, error.line, error.column, error.num);
+	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't an int\n",error.fname, error.line, error.column, error.num); break;
 	    case NULL_SCENARIO_DESCRIPTION_NAME     : printf("%sThe scenario description name is required!\n", semantic); break;
 	    case WRONG_DIMENSIONS    				: printf("%sThe dimensions are wrong, they should be greater than zero!\n", semantic); break;
 		case NULL_BEACONS					    : printf("%sAt least one Beacon is required!\n", semantic); break;
@@ -489,6 +490,9 @@ void ErrorHandling(int NUM){
 		case INVALID_WALL_HEIGHT				: printf("%sThe wall's height should be greater than zero!\n", semantic); break;
 		case INVALID_WALL_THICKNESS				: printf("%sThe wall's thickness should be equal or greater than zero!\n", semantic); break;
 		case MODEL_DOESNT_EXISTS 				: printf("%sThe model doesn't exists!\n", semantic); break;
+		case DOUBLE_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't a double\n",error.fname, error.line, error.column, error.num); break;
+	    case BOOLEAN_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't a boolean\n",error.fname, error.line, error.column, error.num); break;
+	    case SWITCH_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't a switch\n",error.fname, error.line, error.column, error.num); break;
 	    default            				 		: printf("unknown error");
 	}
 }
