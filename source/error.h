@@ -3,7 +3,7 @@
 
 /************************ Definição de Códigos de Erro ************************/
 #define  PARAMETER_ALREADY_EXISTS		0
-#define  MAP_CLASS_DOESNT_EXISTS		1
+#define  CLASS_DOESNT_EXIST_IN_PT		1
 #define  PARAMETER_DOESNT_EXISTS		2
 #define  PARAMETER_CLASS_NAME_REQUIRED	3
 #define  PARAMETER_VALUE_TYPE_REQUIRED	4
