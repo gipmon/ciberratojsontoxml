@@ -37,16 +37,16 @@
             <li><a href="api.php" style="color: #B00000"><strong>API</strong></a></li>
             <li><a href="http://mymodelrobot.appspot.com/" target="_blank">URDF viewer</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="http://www.rafaelferreira.pt/">Rafael Ferreira</a></li>
+                <li><a href="http://www.rafaelferreira.pt/projects/pt/">Rafael Ferreira</a></li>
                 <li><a href="#">Bernardo Ferreira</a></li>
                 <li><a href="https://www.facebook.com/rlopescunha">Rodrigo Cunha</a></li>
                 <li><a href="https://www.facebook.com/profile.php?id=100000144346090">Rafael Almeida</a></li>
                 <li><a href="https://www.facebook.com/quintanilha.joao.9">João Quintanilha</a></li>
               </ul>
             </li>
-            <li><a href="https://bitbucket.org/eypo94/lfa-work-team/overview">Git Repo</a></li>
+            <li><a target="_blank" href="https://bitbucket.org/eypo94/lfa-work-team/overview">Git Repo</a></li>
           </ul>
         </div>
       </div>
