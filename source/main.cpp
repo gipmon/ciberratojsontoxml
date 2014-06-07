@@ -477,7 +477,7 @@ void ErrorHandling(int NUM){
 	    case NULL_CHALLENGE_TYPE				: printf("%sThe challenge type is required!\n", semantic); break;
 	    case NULL_CYCLE_TIME					: printf("%sThe cycle time is required or should be greater than zero!!\n", semantic); break;
 	    case NULL_DURATION						: printf("%sThe duration is required or should be greater than zero!!\n", semantic); break;
-	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't an int\n",error.fname, error.line, error.column, error.num); break;
+	    case INT_TYPE_ERROR						: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't an int\n",error.fname, error.line, error.column, error.num); break;
 	    case NULL_SCENARIO_DESCRIPTION_NAME     : printf("%sThe scenario description name is required!\n", semantic); break;
 	    case WRONG_DIMENSIONS    				: printf("%sThe dimensions are wrong, they should be greater than zero!\n", semantic); break;
 		case NULL_BEACONS					    : printf("%sAt least one Beacon is required!\n", semantic); break;
@@ -492,9 +492,9 @@ void ErrorHandling(int NUM){
 		case INVALID_WALL_HEIGHT				: printf("%sThe wall's height should be greater than zero!\n", semantic); break;
 		case INVALID_WALL_THICKNESS				: printf("%sThe wall's thickness should be equal or greater than zero!\n", semantic); break;
 		case MODEL_DOESNT_EXISTS 				: printf("%sThe model doesn't exists!\n", semantic); break;
-		case DOUBLE_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't a double\n",error.fname, error.line, error.column, error.num); break;
-	    case BOOLEAN_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't a boolean\n",error.fname, error.line, error.column, error.num); break;
-	    case SWITCH_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: %s isn't a switch\n",error.fname, error.line, error.column, error.num); break;
+		case DOUBLE_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't a double\n",error.fname, error.line, error.column, error.num); break;
+	    case BOOLEAN_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't a boolean\n",error.fname, error.line, error.column, error.num); break;
+	    case SWITCH_TYPE_ERROR					: printf("[PARSING ERROR] Error description below:\n%s: line %d, column %d: \"%s\" isn't a switch\n",error.fname, error.line, error.column, error.num); break;
 	    default            				 		: printf("unknown error");
 	}
 }
