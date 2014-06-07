@@ -85,7 +85,7 @@
           <div class="col-md-6"><h4>URDFFixed.xml:</h4><br/><textarea style="width: 100%" id="urdf_xml_output_fixed" rows="30" readonly></textarea></div>
         </div>
         <div class="row">
-          <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="urdf_xml_output_rotate"  rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>URDFRotate.xml:</h4><br/><textarea style="width: 100%" id="urdf_xml_output_rotate"  rows="30" readonly></textarea></div>
         </div>
       </div>
     </div>
