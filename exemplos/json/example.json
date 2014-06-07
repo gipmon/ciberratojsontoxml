@@ -13,9 +13,9 @@
         "dimensions" : [28, 14],
 
         "beacons" : [
-            { "position" : [30, 7], "height" : 2 }
+            { "position" : [14, 7], "height" : 2 }
         ],
-        
+
         "target areas" : [
             { "position" : [14, 7], "radius" : 1}
         ],
