@@ -69,6 +69,11 @@ Last parameters:
 5. Models and Super Models
 --------------------------
 *Models*
+Os models permite instanciar várias paredes nas walls tendo ambas uma forma pré-definida. Ao instanciar é possível fazer uma translação em x e em y, assim como uma rotação em torno do seu eixo em radianos. 
+
+Um model é definido por um nome que o identifica, uma height que tem de ser >0, um thickness >=0 e dois pontos: first and second.
+
+{ "name" : "nome_do_modelo", "height" : 1, "thickness" : 0.2, "first point" : [9,0], "second point" : [7, 2] },
 
 *Super Models*
 
