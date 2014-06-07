@@ -12,7 +12,9 @@ Command Line Arguments
 Web Service API
 ---------------
 URL: http://lfa.rafaelferreira.pt/
+
 Password: lfaworkteam
+
 The web page will be public on Thursday
 
 --------------
@@ -52,7 +54,9 @@ Class Hierachy
 --------
 Features
 --------
+
 1. Validations
+
 ⋅⋅ Default Values:
 
 ⋅⋅ Scenario description:
