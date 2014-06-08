@@ -15,6 +15,8 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/theme.css" rel="stylesheet">
+    <script type="text/javascript" src="downloadify/js/swfobject.js"></script>
+    <script type="text/javascript" src="downloadify/js/downloadify.min.js"></script>
 
   </head>
 
@@ -78,7 +80,7 @@
         <hr/>
         <h3>XML output</h3>
         <div class="row">
-          <div class="col-md-6"><h4>Grid.xml:</h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Grid.xml:</h4><br/><div id="grid_save_as"></div><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
           <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
         </div>
         <div class="row">
