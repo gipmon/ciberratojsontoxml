@@ -22,7 +22,7 @@ $( document ).ready(function() {
 			append: false
 		});
 	}
-	$("[rel=select]").click(function() {
+	$("[rel=select]").click(function(){
     	var $this = $(this);
 	    $this.select();
 
