@@ -269,7 +269,9 @@ Depois destes cálculos a parede é impressa em URDF da seguinte maneira:
 
 
 
-No caso de duas paredes formarem
+No caso de duas paredes formarem um ângulo recto entre si(produto interno entre as duas paredes = 0), é adicionado um complemento para para a parede ficar bem definida.
+
+![ScreenShot 2014-06-8, às 23.00.22.png](https://bitbucket.org/repo/bgd4ap/images/4088023536-ScreenShot%202014-06-8%2C%20%C3%A0s%2023.00.22.png)
 
 
 5. Models and Super Models
