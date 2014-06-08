@@ -221,13 +221,13 @@ Depois destes cálculos a parede é impressa em URDF da seguinte maneira:
 
 
 <link name=“*nome da parede*”>
-	<visual>
-	<origin xyz=“*xMedio yMedio* 0” rpy="0 0 *angulo*”/>
-	<geometry>
-		<box size=“*comprimento* *thickness* *height*”/>
-	</geometry>
-	<material name="Color”/>
-	</visual>
+   <visual>
+   <origin xyz=“*xMedio yMedio* 0” rpy="0 0 *angulo*”/>
+   <geometry>
+      <box size=“*comprimento* *thickness* *height*”/>
+   </geometry>
+   <material name="Color”/>
+   </visual>
 </link>
 
 
