@@ -80,7 +80,7 @@
         <hr/>
         <h3>XML output</h3>
         <div class="row">
-          <div class="col-md-6"><h4>Grid.xml:</h4><br/><div id="grid_save_as"></div><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Grid.xml <div id="grid_save_as"></div></h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
           <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
         </div>
         <div class="row">

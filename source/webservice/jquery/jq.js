@@ -11,9 +11,9 @@ $( document ).ready(function() {
 			data: function(){ 
 				return document.getElementById(data).value;
 			},
-			onComplete: function(){ alert('Your File Has Been Saved!'); },
-			onCancel: function(){ alert('You have cancelled the saving of this file.'); },
-			onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+			onComplete: function(){ alert('The XML has been saved!'); },
+			onCancel: function(){ alert('You have cancelled the saving of the xml file.'); },
+			onError: function(){ console.log("nothing"); },
 			swf: 'downloadify/media/downloadify.swf',
 			downloadImage: 'downloadify/images/download.png',
 			width: 27,
@@ -41,6 +41,10 @@ $( document ).ready(function() {
 					$('#output').text("OUTPUT done!");
   					$('#output_div').fadeIn("fast");
   					load("grid_save_as", "GRID.xml", "grid");
+  					load("lab_save_as", "LAB.xml", "lab");
+  					load("param_output_save_as", "PARAM.xml", "param_output");
+  					load("urdf_xml_output_rotate_save_as", "URDFRotate.xml", "urdf_xml_output_rotate");
+  					load("urdf_xml_output_fixed_save_as", "URDFFixed.xml", "urdf_xml_output_fixed");
   					scroll('#output_div');
 				}
 			}
