@@ -154,7 +154,7 @@ No final, se os parâmetros que têm default value não estiverem definidos são
 
 **(Parameters list)**
 
-Sempre que um parâmetro for adicionado a primeira tabela de símbolos, o default value é verificado para saber se está em concordância com o value type. Assim como se na class que está a ser inserido ele já existe.
+Sempre que um parâmetro for adicionado na primeira tabela de símbolos, o "default value" é verificado para saber se está em concordância com o "value type". Assim como se na class que este está a ser inserido já está definido.
 
 2. Errors Handling
 ------------------
