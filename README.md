@@ -3,7 +3,7 @@ Menu interface
 Para utilizar o programa através de um menu, basta invocar o seguinte comando:
 ./main.output
 
-MENU:
+**MENU:**
 
 1 - Read parameters list file (.json)
 
@@ -30,7 +30,7 @@ MENU:
 Command Line Arguments
 ======================
 
-OPTIONS:
+**OPTIONS:**
 
 -p : print tables
 
@@ -42,7 +42,8 @@ OPTIONS:
 
 It should be passed the two files .json or nothing!
 
-Example:
+**Example:*
+
 ./main.output -o ../exemplos/json/param-list.json ../exemplos/json/example.json
 
 ./main.output -p ../exemplos/json/param-list.json ../exemplos/json/example.json
