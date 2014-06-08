@@ -3,7 +3,29 @@ Menu interface
 Para utilizar o programa através de um menu, basta invocar o seguinte comando:
 ./main.output
 
+MENU:
 
+1 - Read parameters list file (.json)
+
+2 - Read challenge parameters file (.json)
+
+3 - Print to XML
+
+4 - Print URDF
+
+5 - Add Model to Walls
+
+6 - Clear not perpendicular walls
+
+7 - Create Super Model
+
+8 - Add model to Super Model
+
+9 - Add Super Model to walls
+
+10 - Stats
+
+0 - End Program
 
 Command Line Arguments
 ======================
