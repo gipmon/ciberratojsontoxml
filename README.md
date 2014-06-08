@@ -161,6 +161,7 @@ Esta função está disponível em: main.cpp
 3. XML
 ------
 **Grid**
+
 A grid consiste na grelha de partida que indica as posições e orientações dos robôs no início de uma simulação. É representada por um array de triplos, cada um contendo uma posição e uma direção.
 
 "grid" : [ [x, y, dir] ]
