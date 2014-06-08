@@ -293,6 +293,40 @@ Este complemento é gerado da seguinte maneira:
 </link>
 ```
 
+Será gerado, ainda, um outro URDF.xml em que as paredes(com ângulos rectos) não terão o complemento, porém todas as paredes poderão rodar sobre o seu centro. Isto é conseguido usando joint's da seguinte maneira:
+
+
+Definição do tamanho e orientação da parede:
+
+```
+#!xml
+
+<link name="parede1">
+   <visual>
+   <origin xyz="0 0 0" rpy="0 0 angulo"/>
+   <geometry>
+      <box size="comprimento thickness height"/>
+   </geometry>
+   <material name="Cyan1"/>
+   </visual>
+</link>
+```
+
+
+Definição do eixo de rotação:
+
+```
+#!xml
+
+<joint name="joint1" type="continuous">
+   <parent link="parede1"/>
+   <child link="parede1"/>
+   <origin xyz="xMedio yMedio 0" rpy="0 0 0"/>
+   <axis xyz="0 0 1"/>
+</joint>
+```
+
+
 5. Models and Super Models
 --------------------------
 ** Models**
