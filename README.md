@@ -95,8 +95,10 @@ Class Hierachy
 Features
 ========
 
-1. Validations (Challenge)
+1. Validations
 --------------
+
+**(Challenge)**
 
 Default Values:
 
@@ -149,6 +151,8 @@ Last parameters:
 * Valor não corresponde ao value type (Excepção)
 
 No final, se os parâmetros que têm default value não estiverem definidos são inseridos com o default value correspondente.
+
+**(Parameters list)**
 
 2. Errors Handling
 ------------------
