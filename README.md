@@ -273,6 +273,25 @@ No caso de duas paredes formarem um ângulo recto entre si(produto interno entre
 
 ![ScreenShot 2014-06-8, às 23.00.22.png](https://bitbucket.org/repo/bgd4ap/images/4088023536-ScreenShot%202014-06-8%2C%20%C3%A0s%2023.00.22.png)
 
+Este complemento é gerado da seguinte maneira:
+
+* Ponto médio: Segundo ponto da primeira parede(equivalente ao primeiro ponto da segunda parede).
+* Cálculo do ângulo de rotação em torno do eixo z: igual ao da primeira parede(ou da segunda).
+* Dimensões da parede: quadrado de lado thickness.
+
+```
+#!xml
+
+<link name="nome do complemento">
+   <visual>
+   <origin xyz="xMedio yMedio 0" rpy="0 0 angulo"/>
+   <geometry>
+      <box size="thickness thickness height"/>
+   </geometry>
+   <material name="Color"/>
+   </visual>
+</link>
+```
 
 5. Models and Super Models
 --------------------------
