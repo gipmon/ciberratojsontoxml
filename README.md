@@ -140,11 +140,14 @@ Scenario description:
 * Thickness Model < 0 (Excepção)
 
 Last parameters:
+
 * Classe não existir na tabela de Símbolos (Excepção)
 
 * Se o parâmetro não existir (Excepção)
 
 * Valor não corresponde ao value type (Excepção)
+
+No final, se os parâmetros que têm default value não estiverem definidos são inseridos com o default value correspondente.
 
 2. Errors Handling
 ------------------
