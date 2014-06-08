@@ -1,5 +1,7 @@
 Menu interface
 ==============
+* Para utilizar o programa através de um menu, basta invocar o seguinte comando:
+./main.output
 
 Command Line Arguments
 ======================
@@ -49,16 +51,41 @@ Class Hierachy
 Features
 ========
 
-1. Validations
+1. Validations (Challenge)
 --------------
 Default Values:
+* Challenge Name == NULL (Excepção)
+* Challenge Type == NULL (Excepção)
+* Cycle Time <= 0 || Cycle Time não é valor inteiro (Excepção)
+* Duration <= 0 || Duration não é valor inteiro (Excepção)
 
 Scenario description:
+* Scenario description name == NULL (Excepção)
+* Dimensões, x <= 0 || y <= 0 (Excepção)
+* Número de Faróis < 0 (Excepção)
+* Posição Faróis > Dimensões && Posição Faróis < 0 (Warning)
+* Altura Farol <= 0 (Excepção)
+* Número de Áreas Alvo > 0 (Excepção)
+* Posição Áreas Alvo > Dimensões && Posição Áreas Alvo < 0 (Warning)
+* Raio Área Alvo <= 0 (Excepção)
+* Posição Paredes > Dimensões && Posição Paredes < 0 (Warning)
+* Altura Parede <= 0 (Excepção)
+* Thickness Parede < 0 (Excepção)
+* Número de Grelhas de Partida > 0 (Excepção)
+* Altura model <= 0 (Excepção)
+* Posição Models > Dimensões && Posição Models < 0 (Warning)
+* Thickness Model < 0 (Excepção)
 
 Last parameters:
+* Classe não existir na tabela de Símbolos (Excepção)
+* Se o parâmetro não existir (Excepção)
+* Valor não corresponde ao value type (Excepção)
 
 2. Errors Handling
 ------------------
+**Tratamento de Excepções**
+
+A função Errors Handling, serve para fazer o tratamento de excepções, tanto Semânticos, como de Parsing.
 
 3. XML
 ------
