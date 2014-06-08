@@ -162,13 +162,27 @@ Esta função está disponível em: main.cpp
 ------
 **Grid**
 
-A grid consiste na grelha de partida que indica as posições e orientações dos robôs no início de uma simulação. É representada por um array de triplos, cada um contendo uma posição e uma direção.
+O *Grid.xml* consiste na grelha de partida que indica as posições e orientações dos robôs no início de uma simulação. É representada por um array de triplos, cada um contendo uma posição e uma direção.
 
 "grid" : [ [x, y, dir] ]
 
 Os valores de *x, y e dir* previamente processados e guardados numa estrutura de dados, são impressos pela função *gridOutputXML*.
 
 <Grid> <Position X="x" Y="y" Dir="dir"/> </Grid>
+
+**Lab**
+
+
+
+**Param**
+
+O *Param.xml* contém os parâmetros de simulação utilizados. São representados pelo nome do parâmetro seguido do seu valor.
+
+"*parâmetro*" : "*valor*"
+
+Os nomes e os valores dos parâmetros, depois de validados e guardados, são impressos pela função *paramOutputXML*. Só são impressos os parâmetros que constem no ficheiro param-list.json e os parametros que tenham default value, são automaticamente inseridos no xml com esse default value.
+
+<Parameters *parametro*="*valor*" />
 
 4. URDF
 -------
