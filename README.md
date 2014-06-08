@@ -56,6 +56,7 @@ URL: http://lfa.rafaelferreira.pt/
 
 Password: lfaworkteam
 
+É possível fazer download do ficheiro.
 A página vai ser tornada pública na Quinta-feira.
 
 Class Hierachy
@@ -181,3 +182,5 @@ Um super model é uma lista de models que podem ser instanciados ao mesmo tempo 
 
 5. API
 ------
+
+A API está disponível aqui: http://lfa.rafaelferreira.pt/api.php assim como os parâmetros POST para o pedido e os vários tipos de resposta. 
