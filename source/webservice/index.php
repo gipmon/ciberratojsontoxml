@@ -80,15 +80,15 @@
         <hr/>
         <h3>XML output</h3>
         <div class="row">
-          <div class="col-md-6"><h4>Grid.xml <div id="grid_save_as"></div></h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
-          <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Grid.xml <span class="pull-right" id="grid_save_as"></span></h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Lab.xml: <span class="pull-right" id="lab_save_as"></span></h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
         </div>
         <div class="row">
-          <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="param_output"  rows="30" readonly></textarea></div>
-          <div class="col-md-6"><h4>URDFFixed.xml:</h4><br/><textarea style="width: 100%" id="urdf_xml_output_fixed" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Param.xml: <span class="pull-right" id="param_output_save_as"></span></h4><br/><textarea style="width: 100%" id="param_output"  rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>URDFFixed.xml: <span class="pull-right" id="urdf_xml_output_fixed_save_as"></span></h4><br/><textarea style="width: 100%" id="urdf_xml_output_fixed" rows="30" readonly></textarea></div>
         </div>
         <div class="row">
-          <div class="col-md-6"><h4>URDFRotate.xml:</h4><br/><textarea style="width: 100%" id="urdf_xml_output_rotate"  rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>URDFRotate.xml: <span class="pull-right" id="urdf_xml_output_rotate_save_as"></span></h4><br/><textarea style="width: 100%" id="urdf_xml_output_rotate"  rows="30" readonly></textarea></div>
         </div>
       </div>
     </div>
