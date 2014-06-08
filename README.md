@@ -6,6 +6,7 @@ Para utilizar o programa através de um menu, basta invocar o seguinte comando:
 MENU:
 
 1 - Read parameters list file (.json)
+
 2 - Read challenge parameters file (.json)
 
 3 - Print to XML
