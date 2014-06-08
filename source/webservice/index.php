@@ -15,6 +15,8 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/theme.css" rel="stylesheet">
+    <script type="text/javascript" src="downloadify/js/swfobject.js"></script>
+    <script type="text/javascript" src="downloadify/js/downloadify.min.js"></script>
 
   </head>
 
@@ -37,15 +39,16 @@
             <li><a href="api.php" style="color: #B00000"><strong>API</strong></a></li>
             <li><a href="http://mymodelrobot.appspot.com/" target="_blank">URDF viewer</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membros <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="http://www.rafaelferreira.pt/">Rafael Ferreira</a></li>
+                <li><a href="http://www.rafaelferreira.pt/projects/pt/">Rafael Ferreira</a></li>
                 <li><a href="#">Bernardo Ferreira</a></li>
                 <li><a href="https://www.facebook.com/rlopescunha">Rodrigo Cunha</a></li>
                 <li><a href="https://www.facebook.com/profile.php?id=100000144346090">Rafael Almeida</a></li>
                 <li><a href="https://www.facebook.com/quintanilha.joao.9">João Quintanilha</a></li>
               </ul>
             </li>
+            <li><a target="_blank" href="https://bitbucket.org/eypo94/lfa-work-team/overview">Git Repo</a></li>
           </ul>
         </div>
       </div>
@@ -56,16 +59,16 @@
     $parameters = fread($parameters_file_handling, filesize($parameters_file));
     fclose($parameters_file_handling);
 
-    $challange_file = "../../exemplos/json/example.json";
-    $challange_file_handling = fopen($challange_file, 'r') or die("UPS! Something went wrong!");
-    $challange = fread($challange_file_handling, filesize($challange_file));
-    fclose($challange_file_handling);
+    $challenge_file = "../../exemplos/json/example.json";
+    $challenge_file_handling = fopen($challenge_file, 'r') or die("UPS! Something went wrong!");
+    $challenge = fread($challenge_file_handling, filesize($challenge_file));
+    fclose($challenge_file_handling);
     ?>
     <div class="container theme-showcase" role="main">
-      <h3>JSON input (param list and challange list)</h3>
+      <h3>JSON input (param list and challenge list)</h3>
       <div class="row">
         <div class="col-md-6"><h4>param.json:</h4><br/><textarea style="width: 100%" id="param" rows="15"><?=$parameters?></textarea></div>
-        <div class="col-md-6"><h4>challange.json:</h4><br/><textarea style="width: 100%" id="challange" rows="15"><?=$challange?></textarea></div>
+        <div class="col-md-6"><h4>challenge.json:</h4><br/><textarea style="width: 100%" id="challenge" rows="15"><?=$challenge?></textarea></div>
       </div>
       <p style="text-align: center">
         <button type="button" id="make" class="btn btn-primary btn-lg">Make XML</button>
@@ -77,12 +80,15 @@
         <hr/>
         <h3>XML output</h3>
         <div class="row">
-          <div class="col-md-6"><h4>Grid.xml:</h4><br/><textarea style="width: 100%" id="grid" rows="30" readonly></textarea></div>
-          <div class="col-md-6"><h4>Lab.xml:</h4><br/><textarea style="width: 100%" id="lab" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Grid.xml <span class="pull-right" id="grid_save_as"></span></h4><br/><textarea rel="select" style="width: 100%" id="grid" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Lab.xml: <span class="pull-right" id="lab_save_as"></span></h4><br/><textarea rel="select" style="width: 100%" id="lab" rows="30" readonly></textarea></div>
         </div>
         <div class="row">
-          <div class="col-md-6"><h4>Param.xml:</h4><br/><textarea style="width: 100%" id="param_output"  rows="30" readonly></textarea></div>
-          <div class="col-md-6"><h4>URDF.xml:</h4><br/><textarea style="width: 100%" id="urdf" rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>Param.xml: <span class="pull-right" id="param_output_save_as"></span></h4><br/><textarea rel="select" style="width: 100%" id="param_output"  rows="30" readonly></textarea></div>
+          <div class="col-md-6"><h4>URDFFixed.xml: <span class="pull-right" id="urdf_xml_output_fixed_save_as"></span></h4><br/><textarea rel="select" style="width: 100%" id="urdf_xml_output_fixed" rows="30" readonly></textarea></div>
+        </div>
+        <div class="row">
+          <div class="col-md-6"><h4>URDFRotate.xml: <span class="pull-right" id="urdf_xml_output_rotate_save_as"></span></h4><br/><textarea rel="select" style="width: 100%" id="urdf_xml_output_rotate"  rows="30" readonly></textarea></div>
         </div>
       </div>
     </div>

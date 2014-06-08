@@ -43,19 +43,14 @@
     },
 
     "robot modelling parameters" : {
-
         "motors noise" : 1.5,
         "beacon sensor noise": 2,
-
-        "beacon sensor aperture" : 3.14
-
+        "beacon sensor aperture" : 3.15
     },
 
     "scoring parameters" : {
-
         "robot-robot collision penalty" : 1,
         "robot-wall collision penalty" : 1,
-
         "key time" : 1800
     },
 

@@ -64,7 +64,7 @@
 
 %%
 
-File 	: '{' OL '}' { tmp_challenge->validateDefaultValues(); tmp_challenge->validateScenarioDescription(); }
+File 	: '{' OL '}' { tmp_challenge->validateRequiredValues(); tmp_challenge->validateScenarioDescription(); tmp_challenge->setParametersWithDefaultValues(); }
 		;
 
 OL  	: CLASS ',' OL

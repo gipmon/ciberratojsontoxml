@@ -48,7 +48,8 @@ em milissegundos. */
 
     void printTest();
 
-    void validateDefaultValues();
+    void setParametersWithDefaultValues();
+    void validateRequiredValues();
     void validateScenarioDescription();
     void validateTypes(char* value_type, char* value);
     void validateIntType(char* num);

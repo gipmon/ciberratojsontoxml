@@ -1,9 +1,9 @@
 <?php
-	if(isset($_POST['param']) && isset($_POST['challange'])){
+	if(isset($_POST['param']) && isset($_POST['challenge'])){
 		$param_list = $_POST['param'];
-		$challange = $_POST['challange'];
+		$challenge = $_POST['challenge'];
 	}else{
-		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challange!"));
+		echo json_encode(array("response_type" => "error", "val" => "You should pass the parameter param and challenge!"));
 		exit();
 	}
 
@@ -13,9 +13,9 @@
 		echo json_encode(array("response_type" => "error", "val" => "param.json isn't a JSON file!"));
 		exit();
 	}
-	$ob_cl = json_decode($challange);
+	$ob_cl = json_decode($challenge);
 	if($ob_cl === null){
-		echo json_encode(array("response_type" => "error", "val" => "challange.json isn't a JSON file!"));
+		echo json_encode(array("response_type" => "error", "val" => "challenge.json isn't a JSON file!"));
 		exit();
 	}
 
@@ -26,12 +26,12 @@
 
 	$id = uniqid();
 
-	$default_files = array($id."param.json", $id."challange.json");
+	$default_files = array($dir_json.$id."param.json" => $param_list, $dir_json.$id."challenge.json" => $challenge);
 
 	// create default files
-	foreach ($default_files as $value){
-		$file_handling = fopen($dir_json.$value, 'w') or die("UPS! Something went wrong!");
-		fwrite($file_handling, $param_list);
+	foreach ($default_files as $key => $value){
+		$file_handling = fopen($key, 'w') or die("UPS! Something went wrong!");
+		fwrite($file_handling, $value);
 		fclose($file_handling);
 	}
 
@@ -44,12 +44,15 @@
 			 );
 
 	$files_name = "";
+	foreach ($default_files as $key => $value) {
+		$filename .= " ".$key;
+	}
 	foreach ($files as $key => $value) {
 		$filename .= " ".$value["filename"];
 	}
 
-	$command = "../../main.output -o -s ".$dir_json.$param_file_json." ".$dir_json.$challange_file_json." ".$filename;
-    $output = shell_exec($command);
+	$command = "../../main.output -o -s ".$filename;
+	$output = shell_exec($command);
 
     if($output){
 		echo json_encode(array("response_type" => "error", "val" => str_replace("tmp/json/".$id, "", $output)));
@@ -66,7 +69,7 @@
     foreach ($files as $key => $value) {
     	unlink($value["filename"]);
 	}
-	foreach ($default_files as $value){
-		unlink($value);
+	foreach ($default_files as $key => $value){
+		unlink($key);
 	}
 ?>
