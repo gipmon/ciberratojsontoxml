@@ -335,7 +335,13 @@ Os models permite instanciar várias paredes nas walls tendo ambas uma forma pr�
 
 *Um model é definido* por um nome que o identifica, uma height que tem de ser >0, um thickness >=0 e dois pontos: first and second.
 
-{ "name" : "nome_do_modelo", "height" : 1, "thickness" : 0.2, "first point" : [9,0], "second point" : [7, 2] },
+
+```
+#!json
+
+{ "name" : "nome_do_modelo", "height" : 1, "thickness" : 0.2, "first point" : [9,0], "second point" : [7, 2] }
+```
+
 
 ![models.jpg](https://bitbucket.org/repo/bgd4ap/images/109638247-models.jpg)
 
