@@ -36,4 +36,5 @@ class Walls {
     void URDFOutputFixed(ofstream& file);
     Point* middle_point(Point* a, Point* b);
     double two_points_distance(Point* a, Point* b);
+    void printRobot(ofstream& file);
 };
