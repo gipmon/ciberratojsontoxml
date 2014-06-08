@@ -1,7 +1,9 @@
 Menu interface
 ==============
-* Para utilizar o programa através de um menu, basta invocar o seguinte comando:
+Para utilizar o programa através de um menu, basta invocar o seguinte comando:
 ./main.output
+
+
 
 Command Line Arguments
 ======================
@@ -98,7 +100,9 @@ Scenario description:
 
 Last parameters:
 * Classe não existir na tabela de Símbolos (Excepção)
+
 * Se o parâmetro não existir (Excepção)
+
 * Valor não corresponde ao value type (Excepção)
 
 2. Errors Handling
@@ -106,6 +110,8 @@ Last parameters:
 **Tratamento de Excepções**
 
 A função Errors Handling, serve para fazer o tratamento de excepções, tanto Semânticos, como de Parsing.
+
+Esta função está disponível em: main.cpp
 
 3. XML
 ------
