@@ -65,32 +65,32 @@ Class Hierachy
       +---------+      +--------------+   +---------------+  +-----+
       |Challenge+------+ExtraParamList+---+ParametersClass+--+Param|
       +----+----+      +--------------+   +-------+-------+  +--+--+
-           |                                      |             |   
+           |                                      |             |
       +----+----+  +----------+           +-------+-------+  +--+--+
       +  maze   +--+dimensions|           | class_name    |  |name |
       +----+----+  +----------+           | Vector Param  |  |value|
            |                              +---------------+  +-----+
-           |                           +------------+                         
-           |    +---------+  +------+  | position   |                         
-           |----| beacons +--+beacon+--+ height     |                         
-           |    +---------+  +------+  +------------+                         
-           |                                 +--------+                       
-           |    +-----------+  +----------+  |position|                       
-           |----+targetareas+--+targetarea+--+radius  |                       
-           |    +-----------+  +----------+  +--------+                       
-           |                    +----------+ +-----------+   +-------+        
-           |    +-----+ +----+  |height    +-+corner list+---+ Point |        
-           +----+walls+-+wall+--+thickness | +-----------+   +-------+        
-           |    +-----+ +----+  +----------+                                  
-           |    +-----+  +---------+  +----+     +--------------------+       
-           +----+grid +--+posesList+--+Pose|   +-+ name, first point, |       
-           |    +-----+  +---------+  +----+   | | second point,      |       
-           |    +--------+    +-------+        | | thickness,         |       
-           +----+ models +----+ model +--------+ | height             |       
-           |    +--------+    +-------+          +--------------------+       
-           |    +------------+   +----------+   +-------------------------+   
-           +----+SuperModels +---+SuperModel+---+ name, names_models_list |   
-                +------------+   +----------+   +-------------------------+   
+           |                           +------------+
+           |    +---------+  +------+  | position   |
+           |----| beacons +--+beacon+--+ height     |
+           |    +---------+  +------+  +------------+
+           |                                 +--------+
+           |    +-----------+  +----------+  |position|
+           |----+targetareas+--+targetarea+--+radius  |
+           |    +-----------+  +----------+  +--------+
+           |                    +----------+ +-----------+   +-------+
+           |    +-----+ +----+  |height    +-+corner list+---+ Point |
+           +----+walls+-+wall+--+thickness | +-----------+   +-------+
+           |    +-----+ +----+  +----------+
+           |    +-----+  +---------+  +----+     +--------------------+
+           +----+grid +--+posesList+--+Pose|   +-+ name, first point, |
+           |    +-----+  +---------+  +----+   | | second point,      |
+           |    +--------+    +-------+        | | thickness,         |
+           +----+ models +----+ model +--------+ | height             |
+           |    +--------+    +-------+          +--------------------+
+           |    +------------+   +----------+   +-------------------------+
+           +----+SuperModels +---+SuperModel+---+ name, names_models_list |
+                +------------+   +----------+   +-------------------------+
 
 Features
 ========
@@ -160,6 +160,14 @@ Esta função está disponível em: main.cpp
 
 3. XML
 ------
+**Grid**
+A grid consiste na grelha de partida que indica as posições e orientações dos robôs no início de uma simulação. É representada por um array de triplos, cada um contendo uma posição e uma direção.
+
+"grid" : [ [x, y, dir] ]
+
+Os valores de *x, y e dir* previamente processados e guardados numa estrutura de dados, são impressos pela função *gridOutputXML*.
+
+<Grid> <Position X="x" Y="y" Dir="dir"/> </Grid>
 
 4. URDF
 -------
@@ -168,7 +176,7 @@ Esta função está disponível em: main.cpp
 --------------------------
 ** Models**
 
-Os models permite instanciar várias paredes nas walls tendo ambas uma forma pré-definida. Ao instanciar é possível fazer uma translação em x e em y, assim como uma rotação em torno do seu eixo em radianos. 
+Os models permite instanciar várias paredes nas walls tendo ambas uma forma pré-definida. Ao instanciar é possível fazer uma translação em x e em y, assim como uma rotação em torno do seu eixo em radianos.
 
 *Um model é definido* por um nome que o identifica, uma height que tem de ser >0, um thickness >=0 e dois pontos: first and second.
 
@@ -183,4 +191,4 @@ Um super model é uma lista de models que podem ser instanciados ao mesmo tempo 
 5. API
 ------
 
-A API está disponível aqui: http://lfa.rafaelferreira.pt/api.php assim como os parâmetros POST para o pedido e os vários tipos de resposta. 
+A API está disponível aqui: http://lfa.rafaelferreira.pt/api.php assim como os parâmetros POST para o pedido e os vários tipos de resposta.
