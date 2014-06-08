@@ -42,7 +42,7 @@ Command Line Arguments
 
 It should be passed the two files .json or nothing!
 
-**Example:*
+**Example:**
 
 ./main.output -o ../exemplos/json/param-list.json ../exemplos/json/example.json
 
