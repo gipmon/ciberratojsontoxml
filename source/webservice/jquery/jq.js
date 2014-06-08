@@ -12,7 +12,7 @@ $( document ).ready(function() {
 				return document.getElementById(data).value;
 			},
 			onComplete: function(){ alert('The XML has been saved!'); },
-			onCancel: function(){ alert('You have cancelled the saving of the xml file.'); },
+			onCancel: function(){ console.log("canceled"); },
 			onError: function(){ console.log("nothing"); },
 			swf: 'downloadify/media/downloadify.swf',
 			downloadImage: 'downloadify/images/download.png',
