@@ -192,6 +192,49 @@ Os nomes e os valores dos parâmetros, depois de validados e guardados, são imp
 
 4. URDF
 -------
+Ficheiro URDF.xml gerado com toda a informação necessária para a completa construção e simulação 3D do cenário especificada no ficheiro de entrada example.json. Analisando aspectos como height, thickness e corner list, e através de alguma trigonometria adicional é possível modelar e dispor cada parede no cenário. 
+Para cada lista de pontos definida no ficheiro de entrada, por exemplo:
+
+
+
+
+{ "height" : *h*, "thickness" : *t*, "corner list" : [ [*x1,y1*], [*x2, y2*], [*x3, x4*] . . . ] }
+
+
+
+
+é realizado um *for* percorrendo os pontos, em que o ponto atual e o seguinte formam uma parede. Para isso efetuam-se alguns cálculos:
+
+
+
+
+* Cálculo do ponto médio entre os dois pontos: ((*x1 + x2*)/2 , (*y1 + y2*)/2) = (*x12, y12*) = *ponto médio*
+* Cálculo do ângulo de rotação em torno do eixo z, formado pelos dois pontos, usando a função atan2(y2-y1,x2-x1) = *angulo*
+* Cálculo do comprimento da parede: sqrt((*x1 - x2*)^2 + (*y1 - y2*)^2) = *comprimento*.
+
+
+
+
+Depois destes cálculos a parede é impressa em URDF da seguinte maneira:
+
+
+
+
+<link name=“*nome da parede*”>
+	<visual>
+	<origin xyz=“*xMedio yMedio* 0” rpy="0 0 *angulo*”/>
+	<geometry>
+		<box size=“*comprimento* *thickness* *height*”/>
+	</geometry>
+	<material name="Color”/>
+	</visual>
+</link>
+
+
+
+
+No caso de duas paredes formarem
+
 
 5. Models and Super Models
 --------------------------
