@@ -1,3 +1,5 @@
+# Relatório **(README.md)** #
+
 Menu interface
 ==============
 Para utilizar o programa através de um menu, basta invocar o seguinte comando:
@@ -174,7 +176,7 @@ O *Grid.xml* consiste na grelha de partida que indica as posições e orientaç�
 ```
 #!json
 
-"grid" : [ [x, y, dir] ]
+{"grid" : [ [x, y, dir] ]}
 ```
 
 
