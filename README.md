@@ -192,6 +192,43 @@ Os valores de *x, y e dir* previamente processados e guardados numa estrutura de
 
 **Lab**
 
+O *Lab.xml* consiste na descrição do cenário de simulação. Esta descrição contém elementos tais como:
+
+* Name: Nome do cenário.
+* Dimensions: consiste num par comprimento/largura que define o tamanho do cenário de simulação.
+* Beacons: posição e altura do farol, para onde o robot se deve dirigir.
+* Target Areas: área alvo, centrada no mesmo ponto do farol com um determinado raio.
+* Walls: definição das posições das paredes. Consiste num conjunto de parâmetros para definir a altura da parede(height), grossura da parede(thickness), e um conjunto de pontos(corner list), em que cada par de pontos consecutivos define uma parede.
+
+
+```
+#!json
+
+"scenario description" : {
+   "name" : "TOS challenge",
+   "dimensions" : [28, 14],
+   "beacons" : [ { "position" : [14, 7], "height" : 2 } ],
+   "target areas" : [ { "position" : [14, 7], "radius" : 1} ],
+   "walls" : [ { "height" : 1, "thickness" : 0.3, "corner list" : [ [0, 1], [1, 1], [1, 0] ] } ] }
+
+```
+
+Todos estes valores, depois de guardados, são impressos na função *gridOutputXML* da seguinte maneira:
+
+
+```
+#!xml
+
+<Lab Name="TOS challenge" Width="28" Height="14">
+   <Beacon X="14" Y="7" Height="2"/>
+   <Target X="14" Y="7" Radius="1"/>
+   <Wall Height="1">
+      <Corner X="0" Y="1"/>
+      <Corner X="1" Y="1"/>
+      <Corner X="1" Y="0"/>
+   </Wall>
+</Lab>
+```
 
 
 **Param**
