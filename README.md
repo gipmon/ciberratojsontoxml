@@ -56,10 +56,7 @@ Web Service API
 ===============
 URL: http://lfa.rafaelferreira.pt/
 
-Password: lfaworkteam
-
 É possível fazer download do ficheiro.
-A página vai ser tornada pública na Quinta-feira.
 
 Class Hierachy
 ==============
