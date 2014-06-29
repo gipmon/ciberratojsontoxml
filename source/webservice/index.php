@@ -1,6 +1,3 @@
-<?php
-  if($_POST['password']=="lfaworkteam"):
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -98,9 +95,3 @@
     <script src="jquery/jq.js"></script>
   </body>
 </html>
-<?php else: ?>
-  <form method="post" action="">
-    <input type="password" name="password">
-    <input type="submit">
-  </form>
-<?php endif; ?>
