@@ -54,19 +54,6 @@ It should be passed the two files .json or nothing!
 
 Web Service API
 ===============
-
-![https://lh4.googleusercontent.com/t_3DchX0xQcz-GlMDHEKkGdUF78hdwZFTmgUkpO72jwA40ewnHCmba3yvrduNGTO6gdXIonA6HmWJpY=w2508-h1012-rw](https://lh4.googleusercontent.com/t_3DchX0xQcz-GlMDHEKkGdUF78hdwZFTmgUkpO72jwA40ewnHCmba3yvrduNGTO6gdXIonA6HmWJpY=w2508-h1012-rw)
-
-
-![https://lh4.googleusercontent.com/GssvDuchVUallCZ2orQYtI2ftPTKK9XFTT2QliyouZxfcpXp_EjPXtveMjF2gSDTBZUCe5iw8dvhxqI=w2508-h1012-rw](https://lh4.googleusercontent.com/GssvDuchVUallCZ2orQYtI2ftPTKK9XFTT2QliyouZxfcpXp_EjPXtveMjF2gSDTBZUCe5iw8dvhxqI=w2508-h1012-rw)
-
-
-![https://lh4.googleusercontent.com/1cY7nDsK0XCoE9SG0z_Y5fFrdi7jmfwTXwLrJyyb56CIBd_NVT0ow2vSShAfkg49eLPcYHKUjPAI8T4=w2508-h1012-rw](https://lh4.googleusercontent.com/1cY7nDsK0XCoE9SG0z_Y5fFrdi7jmfwTXwLrJyyb56CIBd_NVT0ow2vSShAfkg49eLPcYHKUjPAI8T4=w2508-h1012-rw)
-
-
-![https://lh3.googleusercontent.com/cjZmbSt2w3unPHXvhDxI2tiMK3-LNNxq_suDm3g3sR_2GvKhqNruwm9j8TZm1XLMYu5Nd0JSHbK7YK0=w2508-h1012-rw](https://lh3.googleusercontent.com/cjZmbSt2w3unPHXvhDxI2tiMK3-LNNxq_suDm3g3sR_2GvKhqNruwm9j8TZm1XLMYu5Nd0JSHbK7YK0=w2508-h1012-rw)
-
-
 É possível fazer download do ficheiro.
 
 Class Hierachy
